@@ -2,8 +2,8 @@
 
 `ggpop` reads PLINK and GCTA PCA output into a typed `ggpop_pca` object.
 The same object supports
-[`plot_pca()`](https://ggpop.local/reference/plot_pca.md) and the
-layered `ggpop() + geom_pca()` style.
+[`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) and
+the layered `ggpop() + geom_pca()` style.
 
 ## API summary
 
@@ -29,13 +29,17 @@ pca <- import_pca(
 plot_pca(pca, title = "GCTA PCA")
 ```
 
-![](pca_files/figure-html/unnamed-chunk-2-1.png)
+![PCA scatter plot. Principal component 1 is on the x-axis and principal
+component 2 is on the y-axis, with point colour encoding population
+group.](pca_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
 ggpop(pca) + geom_pca(pc_x = 1, pc_y = 3)
 ```
 
-![](pca_files/figure-html/unnamed-chunk-3-1.png)
+![PCA scatter plot comparing principal component 1 on the x-axis with
+principal component 3 on the
+y-axis.](pca_files/figure-html/unnamed-chunk-3-1.png)
 
 When the imported object has a `pop` column, both plotting routes map
 population groups to the unified ggpop discrete colour scale.
@@ -45,7 +49,8 @@ ggpop(pca) +
   geom_pca(pc_x = 1, pc_y = 2, palette = "population")
 ```
 
-![](pca_files/figure-html/unnamed-chunk-4-1.png)
+![PCA scatter plot using the unified ggpop population colour palette for
+population groups.](pca_files/figure-html/unnamed-chunk-4-1.png)
 
 ## PC labels
 
@@ -56,7 +61,8 @@ available.
 plot_pca(pca, pc_x = 1, pc_y = 2)
 ```
 
-![](pca_files/figure-html/unnamed-chunk-5-1.png)
+![PCA scatter plot with axis labels that include variance explained when
+eigenvalues are available.](pca_files/figure-html/unnamed-chunk-5-1.png)
 
 ## Optional flashpcaR computation
 

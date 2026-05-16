@@ -24,7 +24,7 @@ It is the closest match to the package's real-world supported examples.
 
 ## GWAS
 
-```{r}
+```{r, fig.alt = "Full-data GWAS examples showing a Manhattan plot and a Q-Q plot from the bundled GCTA result file."}
 gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
 plot_manha(gwas, title = "GCTA Manhattan", use_fastman = TRUE)
 plot_qq(gwas, title = "GCTA Q-Q", use_fastman = TRUE)
@@ -32,7 +32,7 @@ plot_qq(gwas, title = "GCTA Q-Q", use_fastman = TRUE)
 
 ## PCA
 
-```{r}
+```{r, fig.alt = "PCA scatter plot from the bundled GCTA eigenvector file, with point colour encoding imported population groups."}
 pca <- import_pca(
   ggpop_extdata("pca", "gcta.eigenvec"),
   type = "gcta",
@@ -44,7 +44,7 @@ plot_pca(pca, title = "GCTA PCA")
 
 ## Admixture
 
-```{r}
+```{r, fig.alt = "Joined admixture stacked bar chart from full bundled ADMIXTURE results, grouped by population labels."}
 admix <- import_admix(
   ggpop_extdata("admixture"),
   type = "admixture",
@@ -56,6 +56,6 @@ plot_admix(admix, k = "all", title = "ADMIXTURE", order_group = TRUE)
 
 The same data also works with the layered path:
 
-```{r}
+```{r, fig.alt = "Layered admixture stacked bar chart for K equals 3 using the same imported full ADMIXTURE data."}
 ggpop(admix) + geom_admix(k = 3, order_group = TRUE)
 ```

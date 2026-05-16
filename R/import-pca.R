@@ -17,7 +17,7 @@ compute_pca <- function(genotype, method = c("flashpca"), pop_group = NULL, ...)
   if (!requireNamespace("flashpcaR", quietly = TRUE)) {
     stop("Package `flashpcaR` is required for `compute_pca(method = \"flashpca\")`.", call. = FALSE)
   }
-  result <- flashpcaR::flashpca(genotype, ...)
+  result <- .optional_call("flashpcaR", "flashpca", "compute_pca(method = \"flashpca\")", genotype, ...)
   vectors <- as.data.frame(result$vectors, stringsAsFactors = FALSE)
   names(vectors) <- paste0("pc", seq_along(vectors))
   vectors$sample_id <- rownames(vectors) %||% as.character(seq_len(nrow(vectors)))

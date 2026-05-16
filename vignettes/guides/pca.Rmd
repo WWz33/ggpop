@@ -42,17 +42,17 @@ pca <- import_pca(
 )
 ```
 
-```{r}
+```{r, fig.alt = "PCA scatter plot. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group."}
 plot_pca(pca, title = "GCTA PCA")
 ```
 
-```{r}
+```{r, fig.alt = "PCA scatter plot comparing principal component 1 on the x-axis with principal component 3 on the y-axis."}
 ggpop(pca) + geom_pca(pc_x = 1, pc_y = 3)
 ```
 
 When the imported object has a `pop` column, both plotting routes map population groups to the unified ggpop discrete colour scale.
 
-```{r}
+```{r, fig.alt = "PCA scatter plot using the unified ggpop population colour palette for population groups."}
 ggpop(pca) +
   geom_pca(pc_x = 1, pc_y = 2, palette = "population")
 ```
@@ -61,7 +61,7 @@ ggpop(pca) +
 
 The axis labels can carry variance explained when eigenvalues are available.
 
-```{r}
+```{r, fig.alt = "PCA scatter plot with axis labels that include variance explained when eigenvalues are available."}
 plot_pca(pca, pc_x = 1, pc_y = 2)
 ```
 

@@ -37,8 +37,8 @@ colors_pop_okabeito <- new_pop_palette(
 
 colors_pop_distinct <- new_pop_palette(
   c(
-    "#2121D9", "#9999FF", "#DF0101", "#04B404", "#FFFB23", "#FF9326",
-    "#A945FF", "#0089B2", "#B26314", "#610B5E", "#FE2E9A", "#BFF217"
+    "#4E79A7", "#F28E2B", "#59A14F", "#E15759", "#76B7B2", "#B07AA1",
+    "#EDC948", "#9C755F", "#BAB0AC", "#2F4B7C", "#A05195", "#FF7C43"
   ),
   "colors_pop_distinct"
 )

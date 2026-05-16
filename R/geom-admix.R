@@ -45,13 +45,14 @@ StatAdmixOrder <- ggplot2::ggproto(
 
 geom_admix <- function(mapping = NULL, data = NULL, ...,
                        sort = c("none", "cluster", "all", "label"), sortind = NULL,
-                       k = "all", palette = NULL, group = "pop", order_group = FALSE,
+                       k = "all", palette = NULL, group = "pop", pop_group = TRUE,
+                       order_group = FALSE,
                        show_group_labels = NULL, subset_group = NULL,
                        bar_width = 1, show.legend = FALSE, show_sample_labels = FALSE,
                        indlabwithgrplab = FALSE, indlabsep = " ",
                        indlabsize = 5, indlabangle = 90, indlabvjust = 0.5,
                        indlabhjust = 1, indlabcol = "grey30", indlabspacer = 0,
-                       grplabsize = 7, grplabcol = "grey30", grplabbgcol = "#DCDCDC",
+                       grplabsize = 7, grplabcol = "grey30", grplabbgcol = NA,
                        show_y_axis = FALSE, show_ticks = FALSE, ticksize = 0.1,
                        ticklength = 0.03, base_size = 5, base_family = "",
                        legend_position = "top",
@@ -63,6 +64,11 @@ geom_admix <- function(mapping = NULL, data = NULL, ...,
     sort <- sortind
   } else {
     sort <- match.arg(sort)
+  }
+  if (isFALSE(pop_group)) {
+    group <- NULL
+    order_group <- FALSE
+    show_group_labels <- FALSE
   }
   layer_data <- .admix_layer_data(
     data,
@@ -135,7 +141,8 @@ geom_admix <- function(mapping = NULL, data = NULL, ...,
 
 geom_admix_pub <- function(mapping = ggplot2::aes(sample_id = .data$sample_id, cluster = .data$cluster, proportion = .data$proportion),
                            data = NULL, ..., sort = c("none", "cluster", "all", "label"),
-                           k = "all", palette = NULL, bar_width = 1, show.legend = FALSE,
+                           k = "all", palette = NULL, pop_group = TRUE,
+                           bar_width = 1, show.legend = FALSE,
                            show_sample_labels = FALSE, inherit.aes = TRUE) {
   geom_admix(
     mapping = mapping,
@@ -144,6 +151,7 @@ geom_admix_pub <- function(mapping = ggplot2::aes(sample_id = .data$sample_id, c
     sort = sort,
     k = k,
     palette = palette,
+    pop_group = pop_group,
     bar_width = bar_width,
     show.legend = show.legend,
     show_sample_labels = show_sample_labels,

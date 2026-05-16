@@ -2,15 +2,16 @@
 
 The recommended user-facing interfaces are:
 
-- [`import_gwas()`](https://ggpop.local/reference/import_gwas.md) \|\>
-  [`plot_manha()`](https://ggpop.local/reference/plot_manha.md) or
-  [`ggpop()`](https://ggpop.local/reference/ggpop.md) +
-  [`geom_manha()`](https://ggpop.local/reference/geom_manha.md)
-- [`import_gwas()`](https://ggpop.local/reference/import_gwas.md) \|\>
-  [`plot_qq()`](https://ggpop.local/reference/plot_qq.md) or
-  [`ggpop()`](https://ggpop.local/reference/ggpop.md) +
-  [`ggpop::geom_qq()`](https://ggpop.local/reference/geom_qq.md)
-- [`plot_admix()`](https://ggpop.local/reference/plot_admix.md)
+- [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
+  \|\>
+  [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
+  or [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) +
+  [`geom_manha()`](https://wwz33.github.io/ggpop/reference/geom_manha.md)
+- [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
+  \|\> [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md)
+  or [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) +
+  [`ggpop::geom_qq()`](https://wwz33.github.io/ggpop/reference/geom_qq.md)
+- [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
 - `ggpop() + geom_admix()`
 
 The package also exports advanced helpers for users who need
@@ -29,9 +30,10 @@ These helpers keep the original `pophelper` return structure.
 
 These are kept only for compatibility with older prompt-generated
 examples. Use
-[`import_gwas()`](https://ggpop.local/reference/import_gwas.md) and
-[`plot_manha()`](https://ggpop.local/reference/plot_manha.md) in new
-code.
+[`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
+and
+[`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
+in new code.
 
 ``` r
 improt_gwas("assoc.mlma", type = "gcta")

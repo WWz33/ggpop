@@ -198,6 +198,7 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
                        suggestive_colour = "blue",
                        size = 0.9, shape = 20, speedup = TRUE,
                        logp = TRUE, maxP = 14, bybp = FALSE,
+                       palette = "manhattan", binary = FALSE,
                        base_size = 11,
                        na.rm = FALSE, show.legend = FALSE,
                        inherit.aes = TRUE) {
@@ -242,7 +243,11 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
     ggplot2::scale_y_continuous(expand = c(0, 0)),
     .gwas_fastman_theme(base_size = base_size),
     .gwas_fastman_scale(data, speedup = speedup, logp = logp, maxP = maxP, bybp = bybp),
-    scale_colour_ggpop(colour_count, "manhattan", guide = "none")
+    if (isTRUE(binary)) {
+      .gwas_binary_colour_scale(colour_count, palette)
+    } else {
+      scale_colour_ggpop(colour_count, palette, guide = "none")
+    }
   )
   Filter(Negate(is.null), layers)
 }
@@ -253,7 +258,8 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
                            threshold_colour = "red",
                            suggestive_colour = "blue",
                            speedup = TRUE, logp = TRUE, maxP = 14,
-                           bybp = FALSE, base_size = 11, show.legend = FALSE,
+                           bybp = FALSE, palette = "manhattan", binary = FALSE,
+                           base_size = 11, show.legend = FALSE,
                            inherit.aes = TRUE) {
   geom_manha(
     mapping = mapping,
@@ -269,8 +275,17 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
     logp = logp,
     maxP = maxP,
     bybp = bybp,
+    palette = palette,
+    binary = binary,
     base_size = base_size,
     show.legend = show.legend,
     inherit.aes = inherit.aes
   )
+}
+
+.gwas_binary_colour_scale <- function(n, palette) {
+  values <- ggpop_palette(2, palette)
+  values <- rep_len(values, n)
+  values <- stats::setNames(values, as.character(seq_len(n)))
+  ggplot2::scale_colour_manual(values = values, guide = "none")
 }

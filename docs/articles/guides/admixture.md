@@ -2,12 +2,12 @@
 
 `ggpop` keeps the user-facing admixture API narrow:
 
-- [`import_admix()`](https://ggpop.local/reference/import_admixture.md)
+- [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
   /
-  [`import_admixture()`](https://ggpop.local/reference/import_admixture.md)
+  [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
   create typed `ggpop_admix` objects;
-- [`plot_admix()`](https://ggpop.local/reference/plot_admix.md) returns
-  a `ggplot` object;
+- [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+  returns a `ggplot` object;
 - `ggpop() + geom_admix()` gives the extension-style layered workflow.
 
 ## API summary
@@ -18,7 +18,7 @@
 | Import STRUCTURE-style numeric Q matrix | `import_admixture(file, type = "structure")` | Limited numeric Q support |
 | Direct plot | `plot_admix(data, k = ...)` | `k = "all"`, one K, or a vector |
 | Layered plot | `ggpop(data) + geom_admix(k = ...)` | Main ggplot extension path |
-| Original pophelper behavior | [`plot_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md) | Advanced compatibility layer |
+| Original pophelper behavior | [`plot_pophelper_q()`](https://wwz33.github.io/ggpop/reference/pophelper_compat.md) | Advanced compatibility layer |
 
 ## Full K results
 
@@ -35,19 +35,25 @@ admix <- import_admix(
 plot_admix(admix, k = "all")
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-2-1.png)
+![Joined admixture stacked bar chart with one panel per K value, showing
+ancestry proportions for each
+individual.](admixture_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
 plot_admix(admix, k = c(2, 4))
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-3-1.png)
+![Admixture stacked bar charts for selected K values 2 and 4, comparing
+ancestry proportions across
+individuals.](admixture_files/figure-html/unnamed-chunk-3-1.png)
 
 ``` r
 ggpop(admix) + geom_admix(k = 3)
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-4-1.png)
+![Layered admixture stacked bar chart for K equals 3, with individuals
+on the x-axis and ancestry proportions stacked within each
+bar.](admixture_files/figure-html/unnamed-chunk-4-1.png)
 
 ## Population group labels and sorting
 
@@ -85,7 +91,9 @@ plot_admix(
 )
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-6-1.png)
+![Admixture stacked bar chart for K equals 3 with individual labels and
+population group labels used for
+sorting.](admixture_files/figure-html/unnamed-chunk-6-1.png)
 
 The layered ggplot path returns the same kind of ggplot object:
 
@@ -94,34 +102,40 @@ ggpop(admix) +
   geom_admix(k = 3, sort = "all", order_group = TRUE)
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-7-1.png)
+![Layered admixture stacked bar chart sorted by ancestry cluster and
+population group
+labels.](admixture_files/figure-html/unnamed-chunk-7-1.png)
 
 ## Direct vs layered use
 
-[`plot_admix()`](https://ggpop.local/reference/plot_admix.md) is the
-direct plot wrapper.
-[`geom_admix()`](https://ggpop.local/reference/geom_admix.md) is the
-layered interface when you want to build a larger `ggplot` object
+[`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+is the direct plot wrapper.
+[`geom_admix()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
+is the layered interface when you want to build a larger `ggplot` object
 yourself. Both routes use the same visual defaults;
-[`plot_admix()`](https://ggpop.local/reference/plot_admix.md) is the
-reference style, and `ggpop(admix) + geom_admix()` reproduces that
-publication-level look inside a ggplot composition.
+[`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+is the reference style, and `ggpop(admix) + geom_admix()` reproduces
+that publication-level look inside a ggplot composition.
 
 ``` r
 plot_admix(admix, k = 3)
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-8-1.png)
+![Two admixture stacked bar charts comparing the direct plot_admix route
+and the layered ggpop plus geom_admix
+route.](admixture_files/figure-html/unnamed-chunk-8-1.png)
 
 ``` r
 ggpop(admix) + geom_admix(k = 3)
 ```
 
-![](admixture_files/figure-html/unnamed-chunk-8-2.png)
+![Two admixture stacked bar charts comparing the direct plot_admix route
+and the layered ggpop plus geom_admix
+route.](admixture_files/figure-html/unnamed-chunk-8-2.png)
 
 ## STRUCTURE-style input
 
-[`import_admixture()`](https://ggpop.local/reference/import_admixture.md)
+[`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
 also accepts limited STRUCTURE-style inputs. The importer always returns
 the same typed long-format object.
 

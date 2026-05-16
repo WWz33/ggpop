@@ -70,7 +70,7 @@ the module `geom_*()` when you want to compose with other ggplot layers.
 
 The direct path:
 
-```{r}
+```{r, fig.alt = "Manhattan plot showing chromosomes along the x-axis and minus log10 p-values on the y-axis."}
 gwas |>
   plot_manha(title = "GCTA Manhattan", use_fastman = FALSE)
 ```
@@ -85,7 +85,7 @@ gwas |>
 
 The same pattern applies across modules:
 
-```{r}
+```{r, fig.alt = "Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot, and an admixture stacked bar chart."}
 gwas |> ggpop() + ggpop::geom_qq()
 pca |> ggpop() + geom_pca()
 admix |> ggpop() + geom_admix(k = 3, order_group = TRUE)
@@ -95,20 +95,20 @@ admix |> ggpop() + geom_admix(k = 3, order_group = TRUE)
 
 Population grouping uses a simple two-column file:
 
-```{r}
+```{r, fig.alt = "Two-column population group table imported from pop_group.txt with sample and pop columns."}
 head(import_pop_group(ggpop_extdata("pop_group.txt")))
 ```
 
 The same file drives PCA colours and admixture group labels:
 
-```{r}
+```{r, fig.alt = "PCA scatter plot by population and admixture stacked bar plot with group labels."}
 pca |> plot_pca(title = "GCTA PCA by population")
 admix |> plot_admix(k = 3, order_group = TRUE, show_group_labels = TRUE)
 ```
 
 All categorical colours use a unified discrete palette entry:
 
-```{r}
+```{r, fig.alt = "Two discrete palette outputs for population and admixture colour schemes."}
 ggpop_palette(4, "population")
 ggpop_palette(8, "admixture")
 ```

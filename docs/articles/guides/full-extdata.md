@@ -18,13 +18,17 @@ plot_manha(gwas, title = "GCTA Manhattan", use_fastman = TRUE)
 #> Adding another scale for y, which will replace the existing scale.
 ```
 
-![](full-extdata_files/figure-html/unnamed-chunk-1-1.png)
+![Full-data GWAS examples showing a Manhattan plot and a Q-Q plot from
+the bundled GCTA result
+file.](full-extdata_files/figure-html/unnamed-chunk-1-1.png)
 
 ``` r
 plot_qq(gwas, title = "GCTA Q-Q", use_fastman = TRUE)
 ```
 
-![](full-extdata_files/figure-html/unnamed-chunk-1-2.png)
+![Full-data GWAS examples showing a Manhattan plot and a Q-Q plot from
+the bundled GCTA result
+file.](full-extdata_files/figure-html/unnamed-chunk-1-2.png)
 
 ## PCA
 
@@ -38,7 +42,9 @@ pca <- import_pca(
 plot_pca(pca, title = "GCTA PCA")
 ```
 
-![](full-extdata_files/figure-html/unnamed-chunk-2-1.png)
+![PCA scatter plot from the bundled GCTA eigenvector file, with point
+colour encoding imported population
+groups.](full-extdata_files/figure-html/unnamed-chunk-2-1.png)
 
 ## Admixture
 
@@ -52,7 +58,9 @@ admix <- import_admix(
 plot_admix(admix, k = "all", title = "ADMIXTURE", order_group = TRUE)
 ```
 
-![](full-extdata_files/figure-html/unnamed-chunk-3-1.png)
+![Joined admixture stacked bar chart from full bundled ADMIXTURE
+results, grouped by population
+labels.](full-extdata_files/figure-html/unnamed-chunk-3-1.png)
 
 The same data also works with the layered path:
 
@@ -60,4 +68,6 @@ The same data also works with the layered path:
 ggpop(admix) + geom_admix(k = 3, order_group = TRUE)
 ```
 
-![](full-extdata_files/figure-html/unnamed-chunk-4-1.png)
+![Layered admixture stacked bar chart for K equals 3 using the same
+imported full ADMIXTURE
+data.](full-extdata_files/figure-html/unnamed-chunk-4-1.png)

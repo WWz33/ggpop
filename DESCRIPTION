@@ -7,7 +7,7 @@ Author: ggpop Authors
 Maintainer: ggpop Authors <maintainer@example.com>
 Description: Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, and Q-Q plots.
 License: MIT + file LICENSE
-URL: https://ggpop.local/
+URL: https://wwz33.github.io/ggpop/, https://github.com/WWz33/ggpop
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
@@ -26,5 +26,9 @@ Suggests:
     pophelper,
     rmarkdown,
     testthat (>= 3.0.0)
+Remotes:
+    adhikari-statgen-lab/fastman,
+    WWz33/flashpca/flashpcaR,
+    royfrancis/pophelper
 Config/testthat/edition: 3
 VignetteBuilder: knitr

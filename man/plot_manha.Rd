@@ -7,7 +7,7 @@ plot_manha(data, title = "Manhattan plot", subtitle = NULL, caption = NULL,
   threshold = 5e-8, suggestive = 1e-5, use_fastman = TRUE,
   point_size = 0.9, point_alpha = NA, base_size = 11,
   base_family = "", legend_position = "none", logp = TRUE, maxP = 14,
-  bybp = FALSE, ...)
+  bybp = FALSE, palette = "manhattan", binary = FALSE, ...)
 plot_gwas(data, ...)
 }
 \arguments{
@@ -18,6 +18,8 @@ plot_gwas(data, ...)
 \item{point_size, point_alpha}{Point appearance.}
 \item{base_size, base_family, legend_position}{Publication theme settings. `base_family` and `legend_position` are retained for fastman compatibility; native GWAS paths use `base_size` through the module geom defaults.}
 \item{logp, maxP, bybp}{Core `fastman::fastman_gg()` controls forwarded by `plot_manha()` and mirrored by `geom_manha()`.}
+\item{palette}{A ggpop palette name or a character vector of hex colours for native Manhattan plots. Non-default palettes use the native ggplot implementation even when `use_fastman = TRUE`.}
+\item{binary}{If `TRUE`, repeat two palette colours across chromosomes for a binary alternating Manhattan plot. If `FALSE`, use one discrete colour per chromosome.}
 \item{...}{Additional layer or backend arguments.}
 }
 \description{

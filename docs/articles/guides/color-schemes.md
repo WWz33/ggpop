@@ -11,8 +11,8 @@ interpolate when more categories are requested.
 ggpop_palette(4, "population")
 #> [1] "#0072B2" "#009E73" "#E69F00" "#CC79A7"
 ggpop_palette(8, "admixture")
-#> [1] "#2121D9" "#9999FF" "#04B404" "#FFFB23" "#A945FF" "#0089B2" "#610B5E"
-#> [8] "#BFF217"
+#> [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948" "#9C755F"
+#> [7] "#2F4B7C" "#FF7C43"
 ggpop_palette(5, "manhattan")
 #> [1] "#D95319" "#E4A100" "#5EA500" "#0095D4" "#0C53AA"
 ```
@@ -32,7 +32,9 @@ ggplot2::ggplot(df, ggplot2::aes(pc1, pc2, colour = pop)) +
   ggplot2::theme_classic()
 ```
 
-![](color-schemes_files/figure-html/unnamed-chunk-2-1.png)
+![Scatter chart. Simulated PC1 and PC2 values are plotted with point
+colour encoding four population
+categories.](color-schemes_files/figure-html/unnamed-chunk-2-1.png)
 
 ## Custom palettes
 

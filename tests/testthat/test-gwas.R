@@ -76,6 +76,16 @@ test_that("Manhattan geom exposes core fastman controls", {
   expect_length(bybp$layout$panel_params[[1]]$x$breaks, 0)
 })
 
+test_that("Manhattan geom accepts explicit chromosomal and binary palettes", {
+  data <- import_gwas(extdata_path("gwas/gcta.mlma"), type = "gcta")
+
+  chromosomal <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = "publication"))
+  binary <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = c("#123456", "#654321"), binary = TRUE))
+
+  expect_gt(length(unique(chromosomal$data[[1]]$colour)), 2)
+  expect_true(all(unique(binary$data[[1]]$colour) %in% c("#123456", "#654321")))
+})
+
 test_that("QQ geom follows fastqq defaults for native ggplot path", {
   data <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
 

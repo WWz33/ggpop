@@ -46,15 +46,15 @@ admix <- import_admix(
 )
 ```
 
-```{r}
+```{r, fig.alt = "Joined admixture stacked bar chart with one panel per K value, showing ancestry proportions for each individual."}
 plot_admix(admix, k = "all")
 ```
 
-```{r}
+```{r, fig.alt = "Admixture stacked bar charts for selected K values 2 and 4, comparing ancestry proportions across individuals."}
 plot_admix(admix, k = c(2, 4))
 ```
 
-```{r}
+```{r, fig.alt = "Layered admixture stacked bar chart for K equals 3, with individuals on the x-axis and ancestry proportions stacked within each bar."}
 ggpop(admix) + geom_admix(k = 3)
 ```
 
@@ -73,7 +73,7 @@ The native ggplot implementation mirrors the supported pophelper `plotQ()` behav
 - group labels with `show_group_labels = TRUE`;
 - sorting with group labels using `order_group = TRUE`.
 
-```{r}
+```{r, fig.alt = "Admixture stacked bar chart for K equals 3 with individual labels and population group labels used for sorting."}
 plot_admix(
   admix,
   k = 3,
@@ -86,7 +86,7 @@ plot_admix(
 
 The layered ggplot path returns the same kind of ggplot object:
 
-```{r}
+```{r, fig.alt = "Layered admixture stacked bar chart sorted by ancestry cluster and population group labels."}
 ggpop(admix) +
   geom_admix(k = 3, sort = "all", order_group = TRUE)
 ```
@@ -98,7 +98,7 @@ ggpop(admix) +
 Both routes use the same visual defaults; `plot_admix()` is the reference style,
 and `ggpop(admix) + geom_admix()` reproduces that publication-level look inside a ggplot composition.
 
-```{r}
+```{r, fig.alt = "Two admixture stacked bar charts comparing the direct plot_admix route and the layered ggpop plus geom_admix route."}
 plot_admix(admix, k = 3)
 ggpop(admix) + geom_admix(k = 3)
 ```

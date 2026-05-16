@@ -13,13 +13,14 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
   data = NULL, geom = "point", position = "identity", ..., threshold = 5e-8,
   suggestive = 1e-5, threshold_colour = "red", suggestive_colour = "blue",
   size = 0.9, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
-  bybp = FALSE, base_size = 11, na.rm = FALSE, show.legend = FALSE,
-  inherit.aes = TRUE)
+  bybp = FALSE, palette = "manhattan", binary = FALSE, base_size = 11,
+  na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
 geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
   data = NULL, ..., size = 0.9, alpha = NA, threshold = 5e-8,
   suggestive = 1e-5, threshold_colour = "red", suggestive_colour = "blue",
-  speedup = TRUE, logp = TRUE, maxP = 14, bybp = FALSE, base_size = 11,
-  show.legend = FALSE, inherit.aes = TRUE)
+  speedup = TRUE, logp = TRUE, maxP = 14, bybp = FALSE,
+  palette = "manhattan", binary = FALSE, base_size = 11, show.legend = FALSE,
+  inherit.aes = TRUE)
 ```
 
 ## Arguments
@@ -68,6 +69,16 @@ geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .dat
 - bybp:
 
   Display position in Mb rather than combined chromosome scale.
+
+- palette:
+
+  A ggpop palette name or a character vector of hex colours.
+
+- binary:
+
+  If \`TRUE\`, repeat two colours across chromosomes for a binary
+  alternating Manhattan palette. If \`FALSE\`, assign one discrete
+  colour per chromosome.
 
 - base_size:
 

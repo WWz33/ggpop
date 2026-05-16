@@ -41,17 +41,17 @@ The intended flow is:
 gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
 ```
 
-```{r}
+```{r, fig.alt = "Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with threshold lines marking suggestive and genome-wide significance."}
 plot_manha(gwas, title = "GCTA Manhattan", use_fastman = TRUE)
 ```
 
-```{r}
+```{r, fig.alt = "Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with a diagonal reference line and genomic inflation label."}
 plot_qq(gwas, title = "GCTA Q-Q", use_fastman = TRUE)
 ```
 
 ## Layered workflow
 
-```{r}
+```{r, fig.alt = "Layered GWAS examples showing a Manhattan plot followed by a Q-Q scatter plot using the same imported GWAS object."}
 gwas |>
   ggpop() +
   geom_manha()
@@ -63,6 +63,27 @@ gwas |>
 
 `plot_manha(gwas, use_fastman = FALSE)` and `ggpop(gwas) + geom_manha()`
 share the same default threshold and suggestive reference lines.
+
+## GWAS colour palettes
+
+The GWAS module uses the same unified discrete palette entry as the rest of
+`ggpop`. Manhattan plots default to one discrete colour per chromosome:
+
+```{r, fig.alt = "Manhattan plot using the default ggpop manhattan palette with one discrete colour assigned per chromosome."}
+plot_manha(gwas, use_fastman = FALSE, palette = "manhattan")
+```
+
+For a two-colour alternating Manhattan plot, set `binary = TRUE` and pass either
+a ggpop palette name or two explicit colours:
+
+```{r, fig.alt = "Manhattan plot using a two-colour alternating palette repeated across chromosomes."}
+plot_manha(
+  gwas,
+  use_fastman = FALSE,
+  palette = c("#123456", "#654321"),
+  binary = TRUE
+)
+```
 
 ## Alternative GWAS formats
 

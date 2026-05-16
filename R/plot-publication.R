@@ -3,16 +3,21 @@ plot_manha <- function(data, title = "Manhattan plot", subtitle = NULL, caption 
                        use_fastman = TRUE, point_size = 0.9, point_alpha = NA,
                        base_size = 11, base_family = "", legend_position = "none",
                        logp = TRUE, maxP = 14, bybp = FALSE,
+                       palette = "manhattan", binary = FALSE,
                        ...) {
   .require_class(data, "ggpop_gwas", "Manhattan plot data")
   .require_columns(data, c("chr", "pos", "p"), "GWAS data")
-  if (use_fastman && requireNamespace("fastman", quietly = TRUE)) {
+  use_original_fastman <- use_fastman && identical(palette, "manhattan") && !isTRUE(binary)
+  if (use_original_fastman && requireNamespace("fastman", quietly = TRUE)) {
     fastman_data <- data
     chr_numeric <- suppressWarnings(as.numeric(as.character(fastman_data$chr)))
     if (all(!is.na(chr_numeric))) {
       fastman_data$chr <- chr_numeric
     }
-    plot <- fastman::fastman_gg(
+    plot <- .optional_call(
+      "fastman",
+      "fastman_gg",
+      "plot_manha(use_fastman = TRUE)",
       fastman_data,
       chr = "chr",
       bp = "pos",
@@ -39,6 +44,8 @@ plot_manha <- function(data, title = "Manhattan plot", subtitle = NULL, caption 
       logp = logp,
       maxP = maxP,
       bybp = bybp,
+      palette = palette,
+      binary = binary,
       ...
     )
   plot <- .ggpop_apply_labels(plot, title, subtitle, caption, "Chromosome", expression(-log[10]~(p)))
@@ -56,7 +63,7 @@ plot_qq <- function(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
   .require_class(data, "ggpop_gwas", "Q-Q plot data")
   .require_columns(data, "p", "GWAS data")
   if (use_fastman && requireNamespace("fastman", quietly = TRUE)) {
-    result <- fastman::fastqq_gg(data$p, size = point_size, lambda = show_lambda, ...)
+    result <- .optional_call("fastman", "fastqq_gg", "plot_qq(use_fastman = TRUE)", data$p, size = point_size, lambda = show_lambda, ...)
     plot <- if (is.list(result)) result[[1]] else result
     return(.ggpop_apply_labels(plot, title, subtitle, caption, NULL, NULL) +
       theme_ggpop_publication(base_size, base_family, legend_position))
@@ -76,12 +83,21 @@ plot_qq <- function(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
 plot_pca <- function(data, title = "PCA plot", subtitle = NULL, caption = NULL,
                      pc_x = 1, pc_y = 2, point_size = 1.8, point_alpha = 0.85,
                      base_size = 11, base_family = "", legend_position = "right",
-                     palette = NULL, ...) {
+                     palette = NULL, pop_group = TRUE, ...) {
   .require_class(data, "ggpop_pca", "PCA plot data")
   x_lab <- .pc_label(data, pc_x)
   y_lab <- .pc_label(data, pc_y)
-  plot <- ggpop(data) +
-    geom_pca_pub(pc_x = pc_x, pc_y = pc_y, size = point_size, alpha = point_alpha, base_size = base_size, palette = palette, ...)
+  plot <- ggpop(data, pop_group = pop_group) +
+    geom_pca_pub(
+      pc_x = pc_x,
+      pc_y = pc_y,
+      size = point_size,
+      alpha = point_alpha,
+      base_size = base_size,
+      palette = palette,
+      pop_group = pop_group,
+      ...
+    )
   plot <- .ggpop_apply_labels(plot, title, subtitle, caption, x_lab, y_lab)
   plot <- plot + ggplot2::theme(legend.position = legend_position)
   plot
@@ -93,12 +109,18 @@ plot_admix <- function(data, title = "Admixture plot", subtitle = NULL, caption 
                        show_group_labels = NULL, subset_group = NULL,
                        show_legend = FALSE, show_sample_labels = FALSE,
                        base_size = 5, base_family = "", legend_position = "top",
+                       pop_group = TRUE,
                        bar_width = 1, ...) {
   .require_class(data, "ggpop_admix", "Admixture plot data")
   if (!is.null(sortind)) {
     sort <- sortind
   } else {
     sort <- match.arg(sort)
+  }
+  if (isFALSE(pop_group)) {
+    group <- NULL
+    order_group <- FALSE
+    show_group_labels <- FALSE
   }
   data <- .filter_admix_k(data, k)
   if (nrow(data) == 0) {
@@ -117,6 +139,7 @@ plot_admix <- function(data, title = "Admixture plot", subtitle = NULL, caption 
       k = "all",
       palette = palette,
       group = group,
+      pop_group = pop_group,
       order_group = order_group,
       show_group_labels = show_group_labels,
       subset_group = subset_group,
@@ -134,7 +157,7 @@ plot_admix <- function(data, title = "Admixture plot", subtitle = NULL, caption 
 as_pophelper_qlist <- function(data) {
   if (is.list(data) && !is.data.frame(data)) {
     .require_pophelper()
-    invisible(pophelper::is.qlist(data))
+    invisible(.pophelper_get("is.qlist")(data))
     return(data)
   }
   .require_columns(data, c("sample_id", "run_id", "cluster", "proportion"), "admixture data")

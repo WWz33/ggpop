@@ -1,71 +1,203 @@
-# ggpop
+<!-- README.md is maintained directly for now. -->
 
-`ggpop` is a ggplot2 extension package for population-genetics plots.
+# ggpop <a href="https://wwz33.github.io/ggpop/"><img src="man/figures/readme-pca.png" align="right" height="139" alt="Scatter chart of PCA results with samples grouped by population colour." /></a>
 
-## Modules
+<!-- badges: start -->
 
-- `import_gwas()` + `plot_manha()` / `plot_qq()` or `ggpop()` + `geom_manha()` / `ggpop::geom_qq()` for GCTA, GEMMA, and EMMAX GWAS results, following [`fastman`](https://github.com/adhikari-statgen-lab/fastman) behavior and keeping `fastman` as a suggested reference dependency.
-- `import_pca()` + `ggpop()` + `geom_pca()` for PLINK/GCTA PCA files, plus `compute_pca(method = "flashpca")` via `flashpcaR`.
-- `import_admix()` / `import_admixture()` for full multi-K ADMIXTURE `.Q` result sets and limited STRUCTURE-like numeric Q matrices.
-- Admixture user plotting is intentionally narrow: use `plot_admix()` for the direct path, or `ggpop() + geom_admix()` for the ggplot extension path.
-- Population groups use a shared `sample pop` file through `import_pop_group()` / `pop_group = ...`; PCA maps `pop` to colour and admixture uses it for pophelper-style group labels and sorting.
-- Discrete population-genomics colours use one palette entry: `ggpop_palette()`, `scale_colour_ggpop()`, and `scale_fill_ggpop()`.
-- Publication-oriented wrappers: `plot_manha()`, `plot_qq()`, `plot_pca()`, `plot_admix()`, `theme_ggpop_publication()`, and `ggpop_palette()`.
-- Original-package compatibility: `plot_manha()` / `plot_qq()` use `fastman::fastman_gg()` / `fastman::fastqq_gg()` by default when available; `plot_admixture_pophelper()` converts ggpop admixture data to a `pophelper` qlist and calls `pophelper::plotQ()`.
-- Advanced compatibility: `*_pub` helpers and `pophelper_*()` wrappers are exported for package integration and original-package parity, but are not the recommended user-facing admixture plotting API.
+[![R](https://img.shields.io/badge/R-%3E%3D%204.1-blue.svg)](https://www.r-project.org/)
+[![ggplot2](https://img.shields.io/badge/ggplot2-extension-2C3E50.svg)](https://ggplot2.tidyverse.org/)
+[![pkgdown](https://img.shields.io/badge/docs-pkgdown-75AADB.svg)](https://wwz33.github.io/ggpop/)
+<!-- badges: end -->
 
-## Examples
+The goal of `ggpop` is to streamline publication-ready population-genomics
+visualization in R. It combines typed import helpers, direct plotting functions,
+and composable `ggplot2` extension layers for GWAS, PCA, and admixture results.
 
-```r
+`ggpop` focuses on a tidy workflow:
+
+``` r
+import_gwas("assoc.mlma", type = "gcta") |>
+  plot_manha()
+
 import_gwas("assoc.mlma", type = "gcta") |>
   ggpop() +
   geom_manha()
 ```
 
-![Example Manhattan plot](man/figures/readme-manhattan.png)
+Both paths return `ggplot` objects. The direct `plot_*()` functions define the
+publication-style visual contract, and the matching `geom_*()` layers follow the
+same defaults inside a `ggpop()` pipeline.
 
-```r
+GWAS Manhattan plots support explicit palette control:
+
+``` r
+plot_manha(gwas, palette = "publication")
+plot_manha(gwas, palette = c("#123456", "#654321"), binary = TRUE)
+```
+
+## Installation
+
+You can install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("WWz33/ggpop")
+```
+
+The core package uses CRAN-available dependencies for native plotting. Optional
+compatibility backends are installed from GitHub-aware `Remotes` when requested:
+
+- [`fastman`](https://github.com/adhikari-statgen-lab/fastman) for original Manhattan and Q-Q backends;
+- [`flashpcaR`](https://github.com/WWz33/flashpca/tree/master/flashpcaR) for `compute_pca(method = "flashpca")`;
+- [`pophelper`](https://github.com/royfrancis/pophelper) for direct `plotQ()` compatibility helpers.
+
+Dependency repository policy:
+
+- `fastman` is unmodified and points to the original upstream repository.
+- `pophelper` is unmodified and points to the original upstream repository.
+- `flashpcaR` required Windows source-install fixes and points to
+  <https://github.com/WWz33/flashpca>.
+
+## Usage
+
+Here are the main workflows.
+
+Also have a look at the [getting started
+guide](https://wwz33.github.io/ggpop/articles/ggpop.html) and the [full
+documentation](https://wwz33.github.io/ggpop/reference/).
+
+``` r
+library(ggpop)
+
+import_gwas("assoc.mlma", type = "gcta") |>
+  plot_manha(title = "GCTA Manhattan", use_fastman = FALSE)
+```
+
+<img src="man/figures/readme-manhattan.png" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with alternating chromosome colours and horizontal genome-wide threshold lines." style="display: block; margin: auto;" />
+
+``` r
 import_gwas("assoc.mlma", type = "gcta") |>
   ggpop() +
-  geom_qq()
-
-import_pca("plink.eigenvec", type = "plink", pop_group = "pop_group.txt") |>
-  ggpop() +
-  geom_pca()
+  geom_manha()
 ```
 
-![Example PCA plot](man/figures/readme-pca.png)
-
-```r
-import_admix("admixture_results/", type = "admixture",
-  ind = "samples.fam", pop_group = "pop_group.txt") |>
-  plot_admix(k = "all", order_group = TRUE)
-
-import_admix("admixture_results/", type = "admixture") |>
-  plot_admix(k = c(2, 4))
-
-import_admixture("run.2.Q", type = "admixture") |>
-  ggpop() +
-  geom_admix(k = 2)
-
-import_gwas("assoc.mlma", type = "gcta") |>
-  plot_manha(title = "Trait Manhattan", use_fastman = TRUE)
-
-import_admixture("run.8.Q", type = "admixture") |>
-  plot_admix(title = "ADMIXTURE K = 8", show_legend = TRUE)
-
-import_admixture("run.8.Q", type = "admixture") |>
-  ggpop() +
-  geom_admix(k = 8, show_sample_labels = TRUE)
+``` r
+import_pca(
+  "plink.eigenvec",
+  type = "plink",
+  pop_group = "pop_group.txt"
+) |>
+  plot_pca(title = "PCA by population")
 ```
 
-![Example admixture plot](man/figures/readme-admixture.png)
+<img src="man/figures/readme-pca.png" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group." style="display: block; margin: auto;" />
 
-Advanced compatibility escape hatch:
+`pop_group` is optional at plot time:
 
-```r
-import_admixture("run.8.Q", type = "admixture") |>
-  plot_pophelper_q(showlegend = TRUE)
+``` r
+plot_pca(pca, pop_group = FALSE)
 ```
 
-`improt_gwas()` and `prot_gwas()` are kept only as typo-compatible aliases for older prompts/examples. Use `import_gwas()` and `plot_manha()` in new code.
+``` r
+import_admix(
+  "admixture_results/",
+  type = "admixture",
+  ind = "samples.fam",
+  pop_group = "pop_group.txt"
+) |>
+  plot_admix(k = 3, sort = "all", order_group = TRUE)
+```
+
+<img src="man/figures/readme-admixture.png" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions fill each bar, with group labels separating population groups." style="display: block; margin: auto;" />
+
+`pop_group` is optional at plot time:
+
+``` r
+plot_admix(admix, k = 3, pop_group = FALSE)
+```
+
+``` r
+import_admix(
+  "admixture_results/",
+  type = "admixture",
+  ind = "samples.fam",
+  pop_group = "pop_group.txt"
+) |>
+  ggpop() +
+  geom_admix(k = 3, sort = "all", order_group = TRUE)
+```
+
+Population groups use a simple two-column `sample pop` file:
+
+``` text
+sample  pop
+P001    PopA
+P002    PopB
+```
+
+## Interface
+
+The recommended user-facing API is intentionally small.
+
+| Module | Import | Direct plot | ggplot extension |
+|---|---|---|---|
+| GWAS Manhattan | `import_gwas()` | `plot_manha()` | `ggpop() + geom_manha()` |
+| GWAS Q-Q | `import_gwas()` | `plot_qq()` | `ggpop() + geom_qq()` |
+| PCA | `import_pca()` / `compute_pca()` | `plot_pca()` | `ggpop() + geom_pca()` |
+| Admixture | `import_admix()` | `plot_admix()` | `ggpop() + geom_admix()` |
+| Population groups | `import_pop_group()` | used by plot functions | used by geom layers |
+
+Advanced compatibility helpers remain available for users who need direct
+backend behavior, but ordinary workflows should prefer the `import_*() |>
+plot_*()` and `import_*() |> ggpop() + geom_*()` interfaces.
+
+## Color Schemes
+
+`ggpop` provides a unified discrete palette entry for population-genomics
+categorical variables. PCA population colours and admixture cluster fills use the
+same publication-oriented palette system by default.
+
+``` r
+ggpop_palette(5, "population")
+ggpop_palette(5, "admixture")
+scale_colour_ggpop("population")
+scale_fill_ggpop("admixture")
+```
+
+## Fixed Installation Issues
+
+This version includes dependency fixes needed for reliable source installation:
+
+- added `Remotes` for GitHub-only optional dependencies;
+- kept unmodified `fastman` and `pophelper` pointed at upstream repositories;
+- forked `flashpcaR` to `WWz33/flashpca` for Windows source installation;
+- replaced `flashpcaR/flashpcaR/src/*.cpp` and `src/*.h` path stubs with real source files;
+- changed `flashpcaR/flashpcaR/src/Makevars` and `Makevars.win` from `CXX11` to `CXX14`;
+- fixed optional backend argument forwarding for calls such as `plot_manha(use_fastman = TRUE)`.
+
+## Documentation
+
+- [Package index](https://wwz33.github.io/ggpop/reference/)
+  Overview of all ggpop functions
+
+- [Get started](https://wwz33.github.io/ggpop/articles/ggpop.html)
+  Getting started guide
+
+- [GWAS guide](https://wwz33.github.io/ggpop/articles/guides/gwas.html)
+  Manhattan and Q-Q plotting workflows
+
+- [PCA guide](https://wwz33.github.io/ggpop/articles/guides/pca.html)
+  PCA imports, population colours, and plotting
+
+- [Admixture guide](https://wwz33.github.io/ggpop/articles/guides/admixture.html)
+  ADMIXTURE/STRUCTURE imports, group labels, and sorting
+
+- [Color schemes](https://wwz33.github.io/ggpop/articles/guides/color-schemes.html)
+  Unified discrete palettes for population-genomics plots
+
+## Acknowledgements
+
+`ggpop` builds on `ggplot2` and follows tidy plotting conventions inspired by
+packages such as `tidyplots`. Optional compatibility paths reference `fastman`,
+`flashpcaR`, and `pophelper` while keeping the native ggplot implementation
+usable without those packages.

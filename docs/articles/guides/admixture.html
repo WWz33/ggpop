@@ -6,43 +6,27 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Admixture plots • ggpop</title>
-<script src="../../lightswitch.js"></script><script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<script src="../../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../../deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="../../deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="../../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../../deps/headroom-0.11.0/headroom.min.js"></script><script src="../../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../../deps/search-1.0.0/fuse.min.js"></script><script src="../../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="Admixture plots">
-<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-3BQ49J7KYH"></script><script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3BQ49J7KYH');
-</script><script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareSourceCode",
-  "name": "ggpop",
-  "description": "Extension of ggplot2 for population genetics plots, including GWAS Manhattan and Q-Q plots, PCA plots, and ADMIXTURE/STRUCTURE-style ancestry proportion plots with tidy S3 import workflows.",
-  "url": "https://ggpop.local/",
-  "codeRepository": "https://ggpop.local/",
-  "programmingLanguage": {
-    "@type": "ComputerLanguage",
-    "name": "R"
-  },
-  "license": "https://opensource.org/licenses/MIT",
-  "version": "0.0.0.9000",
-  "keywords": ["R", "ggplot2", "population genetics", "GWAS", "Manhattan plot", "Q-Q plot", "PCA", "ADMIXTURE", "STRUCTURE", "data visualization"]
-}
-</script>
+<script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-hide-below="1200" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script><script async src="https://widget.kapa.ai/kapa-widget.bundle.js" data-button-hide="true" data-modal-disclaimer="This is a custom LLM for answering questions about dplyr, tidyr, and ggplot2. Answers are based on the contents of the documentation. Rate the answers to let us know what you think!" data-modal-ask-ai-input-placeholder="Ask me a question about dplyr, tidyr, or ggplot2." data-modal-header-bg-color="#f9f9f9" data-modal-override-open-class="open-kapa-widget" data-project-color="#365a7a" data-project-name="dplyr" data-user-analytics-fingerprint-enabled="false" data-user-analytics-cookie-enabled="false" data-bot-protection-mechanism="hcaptcha" data-website-id="44ae76c6-2ae5-4899-ab42-de9f17f07c7b"></script>
 </head>
 <body>
-    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../../index.html">ggpop</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +60,7 @@
 
 
   </div>
-</nav><div class="container template-article">
+</nav><div class="container template-article" id="container">
 
 
 
@@ -87,7 +71,7 @@
       <h1>Admixture plots</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/WWz33/ggpop/blob/HEAD/vignettes/guides/admixture.Rmd" class="external-link"><code>vignettes/guides/admixture.Rmd</code></a></small>
       <div class="d-none name"><code>admixture.Rmd</code></div>
     </div>
 
@@ -160,13 +144,13 @@ layered workflow.</li>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Joined admixture stacked bar chart with one panel per K value, showing ancestry proportions for each individual." width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Admixture stacked bar charts for selected K values 2 and 4, comparing ancestry proportions across individuals." width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Layered admixture stacked bar chart for K equals 3, with individuals on the x-axis and ancestry proportions stacked within each bar." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="population-group-labels-and-sorting">Population group labels and sorting<a class="anchor" aria-label="anchor" href="#population-group-labels-and-sorting"></a>
@@ -202,12 +186,12 @@ layered workflow.</li>
 <span>  show_group_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_sample_labels <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Admixture stacked bar chart for K equals 3 with individual labels and population group labels used for sorting." width="700"></p>
 <p>The layered ggplot path returns the same kind of ggplot object:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, sort <span class="op">=</span> <span class="st">"all"</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Layered admixture stacked bar chart sorted by ancestry cluster and population group labels." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="direct-vs-layered-use">Direct vs layered use<a class="anchor" aria-label="anchor" href="#direct-vs-layered-use"></a>
@@ -220,10 +204,10 @@ and <code>ggpop(admix) + geom_admix()</code> reproduces that
 publication-level look inside a ggplot composition.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Two admixture stacked bar charts comparing the direct plot_admix route and the layered ggpop plus geom_admix route." width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" alt="" width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" alt="Two admixture stacked bar charts comparing the direct plot_admix route and the layered ggpop plus geom_admix route." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="structure-style-input">STRUCTURE-style input<a class="anchor" aria-label="anchor" href="#structure-style-input"></a>
@@ -241,7 +225,9 @@ object.</p>
 
 
 
-    <footer><div class="pkgdown-footer-left">
+   </div>
+  <footer><div class="container">
+  <div class="pkgdown-footer-left">
   <p>Developed by ggpop Authors.</p>
 </div>
 
@@ -249,12 +235,6 @@ object.</p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
-    </footer>
-</div>
-
-
-
-
-
-  </body>
+  </div></footer>
+</body>
 </html>

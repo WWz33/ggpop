@@ -44,6 +44,20 @@ test_that("PCA defaults to population colour when pop is present", {
   expect_equal(length(unique(built$data[[1]]$colour)), length(unique(pca$pop)))
 })
 
+test_that("PCA population colour is optional at plot time", {
+  pca <- import_pca(
+    extdata_path("pca/gcta.eigenvec"),
+    type = "gcta",
+    pop_group = extdata_path("pop_group.txt")
+  )
+
+  plot <- plot_pca(pca, pop_group = FALSE)
+  built <- ggplot2::ggplot_build(plot)
+
+  expect_s3_class(plot, "ggplot")
+  expect_equal(length(unique(built$data[[1]]$colour)), 1)
+})
+
 test_that("admixture implements pophelper-style group labels and sorting", {
   admix <- import_admix(
     extdata_dir("admixture"),
@@ -67,4 +81,20 @@ test_that("admixture implements pophelper-style group labels and sorting", {
   expect_true(".facet_group" %in% names(layout))
   expect_equal(sort(unique(as.character(layout$.facet_group))), sort(unique(admix$pop)))
   expect_false(is.null(built$plot$theme$axis.text.x))
+})
+
+test_that("admixture population grouping is optional at plot time", {
+  admix <- import_admix(
+    extdata_dir("admixture"),
+    type = "admixture",
+    ind = extdata_path("snp/finalsnp_ld.fam"),
+    pop_group = extdata_path("pop_group.txt")
+  )
+
+  plot <- plot_admix(admix, k = 3, pop_group = FALSE, show_group_labels = TRUE)
+  built <- ggplot2::ggplot_build(plot)
+  layout <- built$layout$layout
+
+  expect_s3_class(plot, "ggplot")
+  expect_false(".facet_group" %in% names(layout) && any(as.character(layout$.facet_group) != ""))
 })
