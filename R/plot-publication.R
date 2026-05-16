@@ -46,6 +46,7 @@ plot_manha <- function(data, title = "Manhattan plot", subtitle = NULL, caption 
       bybp = bybp,
       palette = palette,
       binary = binary,
+      base_family = base_family,
       ...
     )
   plot <- .ggpop_apply_labels(plot, title, subtitle, caption, "Chromosome", expression(-log[10]~(p)))
@@ -75,6 +76,7 @@ plot_qq <- function(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
       alpha = point_alpha,
       show_lambda = show_lambda,
       base_size = base_size,
+      base_family = base_family,
       ...
     )
   .ggpop_apply_labels(plot, title, subtitle, caption, expression(Expected ~ -log[10](italic(P))), expression(Observed ~ -log[10](italic(P))))
@@ -94,6 +96,7 @@ plot_pca <- function(data, title = "PCA plot", subtitle = NULL, caption = NULL,
       size = point_size,
       alpha = point_alpha,
       base_size = base_size,
+      base_family = base_family,
       palette = palette,
       pop_group = pop_group,
       ...

@@ -14,11 +14,13 @@ geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
   position = "identity", ..., size = 0.8, alpha = 0.8, colour = "black",
   diagonal = TRUE, diagonal_colour = "red", show_lambda = TRUE,
   maxP = 14, fix_zero = TRUE, speedup = TRUE, base_size = 11,
-  na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
+  base_family = "", lambda_size = base_size * 0.9, na.rm = FALSE,
+  show.legend = FALSE, inherit.aes = TRUE)
 geom_qq_pub(mapping = ggplot2::aes(p = .data$p), data = NULL, ...,
   size = 0.8, alpha = 0.8, diagonal = TRUE, diagonal_colour = "red",
   show_lambda = TRUE, maxP = 14, fix_zero = TRUE, speedup = TRUE,
-  base_size = 11, show.legend = FALSE, inherit.aes = TRUE)
+  base_size = 11, base_family = "", lambda_size = base_size * 0.9,
+  show.legend = FALSE, inherit.aes = TRUE)
 ```
 
 ## Arguments
@@ -81,6 +83,14 @@ geom_qq_pub(mapping = ggplot2::aes(p = .data$p), data = NULL, ...,
 - base_size:
 
   Base font size for the tidyplot-style ggpop theme.
+
+- base_family:
+
+  Base font family for the tidyplot-style ggpop theme.
+
+- lambda_size:
+
+  Font size for the genomic inflation factor annotation.
 
 - show.legend:
 

@@ -50,9 +50,9 @@ geom_admix <- function(mapping = NULL, data = NULL, ...,
                        show_group_labels = NULL, subset_group = NULL,
                        bar_width = 1, show.legend = FALSE, show_sample_labels = FALSE,
                        indlabwithgrplab = FALSE, indlabsep = " ",
-                       indlabsize = 5, indlabangle = 90, indlabvjust = 0.5,
+                       indlabsize = NULL, indlabangle = 90, indlabvjust = 0.5,
                        indlabhjust = 1, indlabcol = "grey30", indlabspacer = 0,
-                       grplabsize = 7, grplabcol = "grey30", grplabbgcol = NA,
+                       grplabsize = NULL, grplabcol = "grey30", grplabbgcol = NA,
                        show_y_axis = FALSE, show_ticks = FALSE, ticksize = 0.1,
                        ticklength = 0.03, base_size = 5, base_family = "",
                        legend_position = "top",
@@ -70,6 +70,8 @@ geom_admix <- function(mapping = NULL, data = NULL, ...,
     order_group <- FALSE
     show_group_labels <- FALSE
   }
+  indlabsize <- indlabsize %||% base_size
+  grplabsize <- grplabsize %||% (base_size + 2)
   layer_data <- .admix_layer_data(
     data,
     k = k,

@@ -180,7 +180,9 @@ geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
                     alpha = 0.8, colour = "black", diagonal = TRUE,
                     diagonal_colour = "red", show_lambda = TRUE,
                     maxP = 14, fix_zero = TRUE, speedup = TRUE,
-                    base_size = 11, na.rm = FALSE, show.legend = FALSE,
+                    base_size = 11, base_family = "",
+                    lambda_size = base_size * 0.9,
+                    na.rm = FALSE, show.legend = FALSE,
                     inherit.aes = TRUE) {
   layers <- c(
     list(
@@ -217,13 +219,14 @@ geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
           fix_zero = fix_zero,
           speedup = speedup,
           na.rm = na.rm,
+          size = lambda_size,
           inherit.aes = inherit.aes
         )
       }
     ),
     .gwas_fastqq_scales(data, maxP = maxP, fix_zero = fix_zero, speedup = speedup),
     list(
-      .theme_tidyplot(fontsize = base_size),
+      .theme_tidyplot(fontsize = base_size, base_family = base_family),
       ggplot2::theme(legend.position = "none")
     )
   )
@@ -234,7 +237,8 @@ geom_qq_pub <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
                         ..., size = 0.8, alpha = 0.8,
                         diagonal = TRUE, diagonal_colour = "red",
                         show_lambda = TRUE, maxP = 14, fix_zero = TRUE,
-                        speedup = TRUE, base_size = 11,
+                        speedup = TRUE, base_size = 11, base_family = "",
+                        lambda_size = base_size * 0.9,
                         show.legend = FALSE, inherit.aes = TRUE) {
   geom_qq(
     mapping = mapping,
@@ -249,6 +253,8 @@ geom_qq_pub <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
     fix_zero = fix_zero,
     speedup = speedup,
     base_size = base_size,
+    base_family = base_family,
+    lambda_size = lambda_size,
     show.legend = show.legend,
     inherit.aes = inherit.aes
   )

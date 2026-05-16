@@ -14,13 +14,13 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
   suggestive = 1e-5, threshold_colour = "red", suggestive_colour = "blue",
   size = 0.9, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
   bybp = FALSE, palette = "manhattan", binary = FALSE, base_size = 11,
-  na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
+  base_family = "", na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
 geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
   data = NULL, ..., size = 0.9, alpha = NA, threshold = 5e-8,
   suggestive = 1e-5, threshold_colour = "red", suggestive_colour = "blue",
   speedup = TRUE, logp = TRUE, maxP = 14, bybp = FALSE,
-  palette = "manhattan", binary = FALSE, base_size = 11, show.legend = FALSE,
-  inherit.aes = TRUE)
+  palette = "manhattan", binary = FALSE, base_size = 11, base_family = "",
+  show.legend = FALSE, inherit.aes = TRUE)
 ```
 
 ## Arguments
@@ -83,6 +83,10 @@ geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .dat
 - base_size:
 
   Base font size for the default module theme.
+
+- base_family:
+
+  Base font family for the default module theme.
 
 - threshold_colour, suggestive_colour:
 

@@ -156,8 +156,9 @@ StatManha <- ggplot2::ggproto(
   )
 }
 
-.gwas_fastman_theme <- function(base_size = 11) {
-  ggplot2::theme_minimal(base_size = base_size) +
+.gwas_fastman_theme <- function(base_size = 11, base_family = "") {
+  ggplot2::theme_minimal(base_size = base_size, base_family = base_family) +
+    .ggpop_text_theme(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
       axis.text.x = ggplot2::element_text(angle = 0, vjust = 0.5),
       axis.title = ggplot2::element_text(),
@@ -199,7 +200,7 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
                        size = 0.9, shape = 20, speedup = TRUE,
                        logp = TRUE, maxP = 14, bybp = FALSE,
                        palette = "manhattan", binary = FALSE,
-                       base_size = 11,
+                       base_size = 11, base_family = "",
                        na.rm = FALSE, show.legend = FALSE,
                        inherit.aes = TRUE) {
   colour_count <- 64
@@ -241,7 +242,7 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
       )
     },
     ggplot2::scale_y_continuous(expand = c(0, 0)),
-    .gwas_fastman_theme(base_size = base_size),
+    .gwas_fastman_theme(base_size = base_size, base_family = base_family),
     .gwas_fastman_scale(data, speedup = speedup, logp = logp, maxP = maxP, bybp = bybp),
     if (isTRUE(binary)) {
       .gwas_binary_colour_scale(colour_count, palette)
@@ -259,7 +260,7 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
                            suggestive_colour = "blue",
                            speedup = TRUE, logp = TRUE, maxP = 14,
                            bybp = FALSE, palette = "manhattan", binary = FALSE,
-                           base_size = 11, show.legend = FALSE,
+                           base_size = 11, base_family = "", show.legend = FALSE,
                            inherit.aes = TRUE) {
   geom_manha(
     mapping = mapping,
@@ -278,6 +279,7 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
     palette = palette,
     binary = binary,
     base_size = base_size,
+    base_family = base_family,
     show.legend = show.legend,
     inherit.aes = inherit.aes
   )

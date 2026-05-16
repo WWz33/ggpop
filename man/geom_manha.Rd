@@ -8,13 +8,13 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
   suggestive = 1e-5, threshold_colour = "red", suggestive_colour = "blue",
   size = 0.9, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
   bybp = FALSE, palette = "manhattan", binary = FALSE, base_size = 11,
-  na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
+  base_family = "", na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
 geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
   data = NULL, ..., size = 0.9, alpha = NA, threshold = 5e-8,
   suggestive = 1e-5, threshold_colour = "red", suggestive_colour = "blue",
   speedup = TRUE, logp = TRUE, maxP = 14, bybp = FALSE,
-  palette = "manhattan", binary = FALSE, base_size = 11, show.legend = FALSE,
-  inherit.aes = TRUE)
+  palette = "manhattan", binary = FALSE, base_size = 11, base_family = "",
+  show.legend = FALSE, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Aesthetic mapping. Defaults to `chr`, `pos`, and `p`.}
@@ -31,6 +31,7 @@ geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .dat
 \item{palette}{A ggpop palette name or a character vector of hex colours.}
 \item{binary}{If `TRUE`, repeat two colours across chromosomes for a binary alternating Manhattan palette. If `FALSE`, assign one discrete colour per chromosome.}
 \item{base_size}{Base font size for the default module theme.}
+\item{base_family}{Base font family for the default module theme.}
 \item{threshold_colour, suggestive_colour}{Reference-line colours.}
 \item{alpha}{Point alpha for publication style.}
 \item{na.rm}{Remove missing values.}

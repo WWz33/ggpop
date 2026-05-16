@@ -303,6 +303,8 @@ Shared palettes, scales, and publication theme helpers.
   [`theme_minimal_y()`](https://wwz33.github.io/ggpop/reference/themes.md)
   [`style_void()`](https://wwz33.github.io/ggpop/reference/themes.md) :
   ggpop theme helpers
+- [`adjust_font()`](https://wwz33.github.io/ggpop/reference/adjust_font.md)
+  : Adjust ggpop font settings
 
 ## Advanced Compatibility
 

@@ -1,6 +1,6 @@
 geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
                      data = NULL, ..., pc_x = 1, pc_y = 2, base_size = 11,
-                     palette = NULL, pop_group = TRUE,
+                     base_family = "", palette = NULL, pop_group = TRUE,
                      na.rm = FALSE,
                      show.legend = NA, inherit.aes = TRUE) {
   layer_data <- data
@@ -13,6 +13,7 @@ geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
   if (isTRUE(pop_group) && .pca_has_pop(layer_data, mapping)) {
     mapping <- .add_pop_colour_mapping(mapping)
   }
+  labels <- .pca_axis_labels(layer_data, pc_x = pc_x, pc_y = pc_y)
   list(
     ggplot2::geom_point(
       mapping = mapping,
@@ -22,15 +23,17 @@ geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
       show.legend = show.legend,
       inherit.aes = inherit.aes
     ),
+    if (!is.null(labels)) ggplot2::labs(x = labels$x, y = labels$y),
     if (.pca_should_add_colour_scale(layer_data, pop_group = pop_group)) scale_colour_ggpop(palette = palette %||% "population"),
-    .theme_tidyplot(fontsize = base_size)
+    .theme_tidyplot(fontsize = base_size, base_family = base_family)
   )
 }
 
 geom_pca_pub <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
                          data = NULL, ..., pc_x = 1, pc_y = 2,
                          size = 1.8, alpha = 0.85, na.rm = FALSE,
-                         base_size = 11, show.legend = NA, palette = NULL, pop_group = TRUE,
+                         base_size = 11, base_family = "", show.legend = NA,
+                         palette = NULL, pop_group = TRUE,
                          inherit.aes = TRUE) {
   geom_pca(
     mapping = mapping,
@@ -41,6 +44,7 @@ geom_pca_pub <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
     size = size,
     alpha = alpha,
     base_size = base_size,
+    base_family = base_family,
     palette = palette,
     pop_group = pop_group,
     na.rm = na.rm,
@@ -67,4 +71,14 @@ geom_pca_pub <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
   values <- as.list(mapping)
   values$colour <- rlang::expr(.data$pop)
   do.call(ggplot2::aes, values)
+}
+
+.pca_axis_labels <- function(data, pc_x = 1, pc_y = 2) {
+  if (!is.null(data)) {
+    return(list(x = .pc_label(data, pc_x), y = .pc_label(data, pc_y)))
+  }
+  if (pc_x != 1 || pc_y != 2) {
+    return(list(x = paste0("PC", pc_x), y = paste0("PC", pc_y)))
+  }
+  NULL
 }

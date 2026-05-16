@@ -13,6 +13,7 @@ theme_ggpop_publication <- function(base_size = 11, base_family = "",
     ggplot2::element_blank()
   }
   ggplot2::theme_classic(base_size = base_size, base_family = base_family) +
+    .ggpop_text_theme(base_size = base_size, base_family = base_family) +
     ggplot2::theme(
       plot.title = ggplot2::element_text(face = "bold", colour = "grey10", margin = ggplot2::margin(b = 5)),
       plot.subtitle = ggplot2::element_text(colour = "grey30", margin = ggplot2::margin(b = 6)),

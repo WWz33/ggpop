@@ -85,6 +85,7 @@ reference:
   - scale_color_ggpop
   - theme_ggpop_publication
   - theme_tidyplot
+  - adjust_font
 - title: Advanced Compatibility
   desc: Exported integration hooks and original-package compatibility layers.
   contents:

@@ -1,20 +1,21 @@
-theme_tidyplot <- function(plot, fontsize = 7) {
+theme_tidyplot <- function(plot, fontsize = 7, base_family = "") {
   plot <- .check_ggpop_plot(plot)
-  plot + .theme_tidyplot(fontsize = fontsize)
+  plot + .theme_tidyplot(fontsize = fontsize, base_family = base_family)
 }
 
-theme_ggplot2 <- function(plot, fontsize = 7) {
+theme_ggplot2 <- function(plot, fontsize = 7, base_family = "") {
   plot <- .check_ggpop_plot(plot)
   plot +
-    ggplot2::theme_grey(base_size = fontsize) +
+    ggplot2::theme_grey(base_size = fontsize, base_family = base_family) +
+    .ggpop_text_theme(base_size = fontsize, base_family = base_family) +
     ggplot2::theme(
       plot.background = ggplot2::element_rect(colour = NA, fill = NA)
     )
 }
 
-theme_minimal_xy <- function(plot, fontsize = 7) {
+theme_minimal_xy <- function(plot, fontsize = 7, base_family = "") {
   plot <- .check_ggpop_plot(plot)
-  plot <- theme_tidyplot(plot, fontsize = fontsize)
+  plot <- theme_tidyplot(plot, fontsize = fontsize, base_family = base_family)
   plot +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(
@@ -44,9 +45,9 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
     )
 }
 
-theme_minimal_x <- function(plot, fontsize = 7) {
+theme_minimal_x <- function(plot, fontsize = 7, base_family = "") {
   plot <- .check_ggpop_plot(plot)
-  plot <- theme_tidyplot(plot, fontsize = fontsize)
+  plot <- theme_tidyplot(plot, fontsize = fontsize, base_family = base_family)
   plot +
     ggplot2::theme(
       axis.line.x = ggplot2::element_blank(),
@@ -69,9 +70,9 @@ theme_minimal_x <- function(plot, fontsize = 7) {
     )
 }
 
-theme_minimal_y <- function(plot, fontsize = 7) {
+theme_minimal_y <- function(plot, fontsize = 7, base_family = "") {
   plot <- .check_ggpop_plot(plot)
-  plot <- theme_tidyplot(plot, fontsize = fontsize)
+  plot <- theme_tidyplot(plot, fontsize = fontsize, base_family = base_family)
   plot +
     ggplot2::theme(
       axis.line.y = ggplot2::element_blank(),
@@ -94,18 +95,20 @@ theme_minimal_y <- function(plot, fontsize = 7) {
     )
 }
 
-style_void <- function(plot, fontsize = 7) {
+style_void <- function(plot, fontsize = 7, base_family = "") {
   plot <- .check_ggpop_plot(plot)
   plot +
-    ggplot2::theme_void(base_size = fontsize) +
+    ggplot2::theme_void(base_size = fontsize, base_family = base_family) +
+    .ggpop_text_theme(base_size = fontsize, base_family = base_family) +
     ggplot2::theme(
       panel.spacing = grid::unit(0, "mm"),
       strip.text = ggplot2::element_text(margin = ggplot2::margin(7, 0, 0, 0))
     )
 }
 
-.theme_tidyplot <- function(fontsize = 7) {
-  ggplot2::theme_classic(base_size = fontsize) +
+.theme_tidyplot <- function(fontsize = 7, base_family = "") {
+  ggplot2::theme_classic(base_size = fontsize, base_family = base_family) +
+    .ggpop_text_theme(base_size = fontsize, base_family = base_family) +
     ggplot2::theme(
       plot.background = ggplot2::element_rect(colour = NA, fill = NA),
       panel.border = ggplot2::element_blank(),

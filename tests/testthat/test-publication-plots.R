@@ -2,12 +2,34 @@ test_that("publication theme and palettes are configurable", {
   expect_s3_class(theme_ggpop_publication(), "theme")
   base_plot <- ggplot2::ggplot(data.frame(x = 1, y = 1), ggplot2::aes(x, y)) + ggplot2::geom_point()
   expect_s3_class(theme_tidyplot(base_plot), "ggplot")
+  expect_s3_class(adjust_font(base_plot), "ggplot")
   expect_s3_class(theme_ggplot2(base_plot), "ggplot")
   expect_s3_class(theme_minimal_xy(base_plot), "ggplot")
   expect_s3_class(theme_minimal_x(base_plot), "ggplot")
   expect_s3_class(theme_minimal_y(base_plot), "ggplot")
   expect_length(ggpop_palette(4, "admixture"), 4)
   expect_s3_class(scale_fill_ggpop(3), "ScaleDiscrete")
+})
+
+test_that("font adjustment propagates through publication plotting helpers", {
+  gwas <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
+  pca <- import_pca(extdata_path("small_plink.eigenvec"), type = "plink")
+  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+
+  base_plot <- (ggplot2::ggplot(data.frame(x = 1, y = 1), ggplot2::aes(x, y)) +
+    ggplot2::geom_point()) |>
+    adjust_font(base_size = 13, base_family = "mono")
+
+  pca_plot <- plot_pca(pca, base_size = 13, base_family = "mono")
+  manha_plot <- plot_manha(gwas, use_fastman = FALSE, base_size = 13, base_family = "mono")
+  qq_plot <- plot_qq(gwas, use_fastman = FALSE, base_size = 13, base_family = "mono")
+  admix_plot <- plot_admix(admix, base_size = 8, show_sample_labels = TRUE)
+
+  expect_equal(ggplot2::ggplot_build(base_plot)$plot$theme$text$family, "mono")
+  expect_equal(ggplot2::ggplot_build(pca_plot)$plot$theme$text$family, "mono")
+  expect_equal(ggplot2::ggplot_build(manha_plot)$plot$theme$text$family, "mono")
+  expect_equal(ggplot2::ggplot_build(qq_plot)$plot$theme$text$family, "mono")
+  expect_equal(ggplot2::ggplot_build(admix_plot)$plot$theme$axis.text.x$size, 8)
 })
 
 test_that("publication plotting wrappers build native ggplot outputs", {

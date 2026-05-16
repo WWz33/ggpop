@@ -85,12 +85,12 @@ colours, and interpolate when more categories are requested.</p>
 <h2 id="built-in-schemes">Built-in schemes<a class="anchor" aria-label="anchor" href="#built-in-schemes"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggpop.local/reference/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"population"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"population"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "#0072B2" "#009E73" "#E69F00" "#CC79A7"</span></span>
-<span><span class="fu"><a href="https://ggpop.local/reference/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948" "#9C755F"</span></span>
 <span><span class="co">#&gt; [7] "#2F4B7C" "#FF7C43"</span></span>
-<span><span class="fu"><a href="https://ggpop.local/reference/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"manhattan"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"manhattan"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "#D95319" "#E4A100" "#5EA500" "#0095D4" "#0C53AA"</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -105,7 +105,7 @@ colours, and interpolate when more categories are requested.</p>
 <span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">pc1</span>, <span class="va">pc2</span>, colour <span class="op">=</span> <span class="va">pop</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggpop.local/reference/pop_palettes.html" class="external-link">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="color-schemes_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Scatter chart. Simulated PC1 and PC2 values are plotted with point colour encoding four population categories." width="700"></p>
 </div>
@@ -118,7 +118,7 @@ colours, and interpolate when more categories are requested.</p>
 <span>  name <span class="op">=</span> <span class="st">"my population palette"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggpop.local/reference/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">6</span>, <span class="va">my_pop_colors</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">6</span>, <span class="va">my_pop_colors</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "#644296" "#B86A5A" "#CB824C" "#5F7A97" "#775D7B" "#D1352C"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
