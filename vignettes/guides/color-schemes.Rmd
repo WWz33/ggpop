@@ -1,0 +1,53 @@
+---
+title: "Discrete color schemes"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig_height: 4
+vignette: >
+  %\VignetteIndexEntry{Discrete color schemes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+```
+
+`ggpop` focuses on population-genomics categorical variables, so the palette API is discrete-only.
+It follows the tidyplots color-scheme idea: pass a named scheme or hex vector, downsample extra colours, and interpolate when more categories are requested.
+
+## Built-in schemes
+
+```{r}
+ggpop_palette(4, "population")
+ggpop_palette(8, "admixture")
+ggpop_palette(5, "manhattan")
+```
+
+## ggplot scales
+
+```{r}
+df <- data.frame(
+  pop = rep(c("PopA", "PopB", "PopC", "PopD"), each = 5),
+  pc1 = rnorm(20),
+  pc2 = rnorm(20)
+)
+
+ggplot2::ggplot(df, ggplot2::aes(pc1, pc2, colour = pop)) +
+  ggplot2::geom_point(size = 2) +
+  scale_colour_ggpop("population") +
+  ggplot2::theme_classic()
+```
+
+## Custom palettes
+
+```{r}
+my_pop_colors <- new_pop_palette(
+  c("#644296", "#F08533", "#3B78B0", "#D1352C"),
+  name = "my population palette"
+)
+
+ggpop_palette(6, my_pop_colors)
+```

@@ -1,0 +1,30 @@
+Package: ggpop
+Title: ggplot2 Extensions for Population Genetics Plots
+Version: 0.0.0.9000
+Authors@R: 
+    person("ggpop", "Authors", email = "maintainer@example.com", role = c("aut", "cre"))
+Author: ggpop Authors
+Maintainer: ggpop Authors <maintainer@example.com>
+Description: Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, and Q-Q plots.
+License: MIT + file LICENSE
+URL: https://ggpop.local/
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends:
+    R (>= 4.1)
+Imports:
+    ggplot2,
+    rlang,
+    stats,
+    utils
+Suggests:
+    fastman,
+    flashpcaR,
+    knitr,
+    pkgdown,
+    pophelper,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

@@ -1,0 +1,58 @@
+---
+title: "Compatibility and advanced helpers"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 4.5
+vignette: >
+  %\VignetteIndexEntry{Compatibility and advanced helpers}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+
+ggpop_extdata <- function(...) {
+  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+}
+```
+
+The recommended user-facing interfaces are:
+
+- `import_gwas()` |> `plot_manha()` or `ggpop()` + `geom_manha()`
+- `import_gwas()` |> `plot_qq()` or `ggpop()` + `ggpop::geom_qq()`
+- `plot_admix()`
+- `ggpop() + geom_admix()`
+
+The package also exports advanced helpers for users who need original-package
+compatibility or integration with older code.
+
+## pophelper compatibility
+
+```{r eval=FALSE}
+plot_pophelper_q(import_admix("runs/", type = "admixture"), returnplot = TRUE)
+plot_admixture_pophelper(import_admix("runs/", type = "admixture"))
+```
+
+These helpers keep the original `pophelper` return structure.
+
+## Typo-compatible aliases
+
+These are kept only for compatibility with older prompt-generated examples.
+Use `import_gwas()` and `plot_manha()` in new code.
+
+```{r eval=FALSE}
+improt_gwas("assoc.mlma", type = "gcta")
+prot_gwas("assoc.mlma", type = "gcta")
+```
+
+## Importing pophelper qlists
+
+```{r eval=FALSE}
+read_pophelper_q(files = "run1.Q", as_ggpop = TRUE)
+```
+
+When `as_ggpop = TRUE`, compatibility input is converted to a typed `ggpop_admix`
+object so it can enter the same plotting pipeline as native imports.

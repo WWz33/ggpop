@@ -1,0 +1,61 @@
+---
+title: "Full extdata gallery"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 4.5
+vignette: >
+  %\VignetteIndexEntry{Full extdata gallery}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+
+ggpop_extdata <- function(...) {
+  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+}
+```
+
+This gallery uses the full example data shipped in `inst/extdata`.
+It is the closest match to the package's real-world supported examples.
+
+## GWAS
+
+```{r}
+gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
+plot_manha(gwas, title = "GCTA Manhattan", use_fastman = TRUE)
+plot_qq(gwas, title = "GCTA Q-Q", use_fastman = TRUE)
+```
+
+## PCA
+
+```{r}
+pca <- import_pca(
+  ggpop_extdata("pca", "gcta.eigenvec"),
+  type = "gcta",
+  eigenval = ggpop_extdata("pca", "gcta.eigenval"),
+  pop_group = ggpop_extdata("pop_group.txt")
+)
+plot_pca(pca, title = "GCTA PCA")
+```
+
+## Admixture
+
+```{r}
+admix <- import_admix(
+  ggpop_extdata("admixture"),
+  type = "admixture",
+  ind = ggpop_extdata("snp", "finalsnp_ld.fam"),
+  pop_group = ggpop_extdata("pop_group.txt")
+)
+plot_admix(admix, k = "all", title = "ADMIXTURE", order_group = TRUE)
+```
+
+The same data also works with the layered path:
+
+```{r}
+ggpop(admix) + geom_admix(k = 3, order_group = TRUE)
+```

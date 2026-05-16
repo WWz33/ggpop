@@ -1,0 +1,264 @@
+# ggpop
+
+`ggpop` is a ggplot2 extension package for population-genetics plots.
+
+## Modules
+
+- [`import_gwas()`](https://ggpop.local/reference/import_gwas.md) +
+  [`plot_manha()`](https://ggpop.local/reference/plot_manha.md) /
+  [`plot_qq()`](https://ggpop.local/reference/plot_qq.md) or
+  [`ggpop()`](https://ggpop.local/reference/ggpop.md) +
+  [`geom_manha()`](https://ggpop.local/reference/geom_manha.md) /
+  [`ggpop::geom_qq()`](https://ggpop.local/reference/geom_qq.md) for
+  GCTA, GEMMA, and EMMAX GWAS results, following
+  [`fastman`](https://github.com/adhikari-statgen-lab/fastman) behavior
+  and keeping `fastman` as a suggested reference dependency.
+- [`import_pca()`](https://ggpop.local/reference/import_pca.md) +
+  [`ggpop()`](https://ggpop.local/reference/ggpop.md) +
+  [`geom_pca()`](https://ggpop.local/reference/geom_pca.md) for
+  PLINK/GCTA PCA files, plus `compute_pca(method = "flashpca")` via
+  `flashpcaR`.
+- [`import_admix()`](https://ggpop.local/reference/import_admixture.md)
+  /
+  [`import_admixture()`](https://ggpop.local/reference/import_admixture.md)
+  for full multi-K ADMIXTURE `.Q` result sets and limited STRUCTURE-like
+  numeric Q matrices.
+- Admixture user plotting is intentionally narrow: use
+  [`plot_admix()`](https://ggpop.local/reference/plot_admix.md) for the
+  direct path, or `ggpop() + geom_admix()` for the ggplot extension
+  path.
+- Population groups use a shared `sample pop` file through
+  [`import_pop_group()`](https://ggpop.local/reference/import_pop_group.md)
+  / `pop_group = ...`; PCA maps `pop` to colour and admixture uses it
+  for pophelper-style group labels and sorting.
+- Discrete population-genomics colours use one palette entry:
+  `ggpop_palette()`, `scale_colour_ggpop()`, and `scale_fill_ggpop()`.
+- Publication-oriented wrappers:
+  [`plot_manha()`](https://ggpop.local/reference/plot_manha.md),
+  [`plot_qq()`](https://ggpop.local/reference/plot_qq.md),
+  [`plot_pca()`](https://ggpop.local/reference/plot_pca.md),
+  [`plot_admix()`](https://ggpop.local/reference/plot_admix.md),
+  [`theme_ggpop_publication()`](https://ggpop.local/reference/theme_ggpop_publication.md),
+  and `ggpop_palette()`.
+- Original-package compatibility:
+  [`plot_manha()`](https://ggpop.local/reference/plot_manha.md) /
+  [`plot_qq()`](https://ggpop.local/reference/plot_qq.md) use
+  `fastman::fastman_gg()` / `fastman::fastqq_gg()` by default when
+  available;
+  [`plot_admixture_pophelper()`](https://ggpop.local/reference/plot_admix.md)
+  converts ggpop admixture data to a `pophelper` qlist and calls
+  [`pophelper::plotQ()`](https://rdrr.io/pkg/pophelper/man/plotQ.html).
+- Advanced compatibility: `*_pub` helpers and `pophelper_*()` wrappers
+  are exported for package integration and original-package parity, but
+  are not the recommended user-facing admixture plotting API.
+
+## Examples
+
+``` r
+import_gwas("assoc.mlma", type = "gcta") |>
+  ggpop() +
+  geom_manha()
+```
+
+![Example Manhattan plot](reference/figures/readme-manhattan.png)
+
+Example Manhattan plot
+
+``` r
+import_gwas("assoc.mlma", type = "gcta") |>
+  ggpop() +
+  geom_qq()
+
+import_pca("plink.eigenvec", type = "plink", pop_group = "pop_group.txt") |>
+  ggpop() +
+  geom_pca()
+```
+
+![Example PCA plot](reference/figures/readme-pca.png)
+
+Example PCA plot
+
+``` r
+import_admix("admixture_results/", type = "admixture",
+  ind = "samples.fam", pop_group = "pop_group.txt") |>
+  plot_admix(k = "all", order_group = TRUE)
+
+import_admix("admixture_results/", type = "admixture") |>
+  plot_admix(k = c(2, 4))
+
+import_admixture("run.2.Q", type = "admixture") |>
+  ggpop() +
+  geom_admix(k = 2)
+
+import_gwas("assoc.mlma", type = "gcta") |>
+  plot_manha(title = "Trait Manhattan", use_fastman = TRUE)
+
+import_admixture("run.8.Q", type = "admixture") |>
+  plot_admix(title = "ADMIXTURE K = 8", show_legend = TRUE)
+
+import_admixture("run.8.Q", type = "admixture") |>
+  ggpop() +
+  geom_admix(k = 8, show_sample_labels = TRUE)
+```
+
+![Example admixture plot](reference/figures/readme-admixture.png)
+
+Example admixture plot
+
+Advanced compatibility escape hatch:
+
+``` r
+import_admixture("run.8.Q", type = "admixture") |>
+  plot_pophelper_q(showlegend = TRUE)
+```
+
+[`improt_gwas()`](https://ggpop.local/reference/import_gwas.md) and
+[`prot_gwas()`](https://ggpop.local/reference/import_gwas.md) are kept
+only as typo-compatible aliases for older prompts/examples. Use
+[`import_gwas()`](https://ggpop.local/reference/import_gwas.md) and
+[`plot_manha()`](https://ggpop.local/reference/plot_manha.md) in new
+code.
+
+# Package index
+
+## Core Data Workflows
+
+Import typed data and start tidy ggplot workflows.
+
+- [`ggpop()`](https://ggpop.local/reference/ggpop.md) : Create a ggplot
+  object from ggpop data
+- [`import_gwas()`](https://ggpop.local/reference/import_gwas.md)
+  [`improt_gwas()`](https://ggpop.local/reference/import_gwas.md)
+  [`prot_gwas()`](https://ggpop.local/reference/import_gwas.md) : Import
+  GWAS result files
+- [`import_pca()`](https://ggpop.local/reference/import_pca.md)
+  [`compute_pca()`](https://ggpop.local/reference/import_pca.md) :
+  Import or compute PCA results
+- [`import_pop_group()`](https://ggpop.local/reference/import_pop_group.md)
+  : Import population group labels
+- [`import_admixture()`](https://ggpop.local/reference/import_admixture.md)
+  [`import_admix()`](https://ggpop.local/reference/import_admixture.md)
+  : Import admixture proportion files
+
+## GWAS Plots
+
+Manhattan and Q-Q plots for GCTA, GEMMA, and EMMAX results.
+
+- [`plot_manha()`](https://ggpop.local/reference/plot_manha.md)
+  [`plot_gwas()`](https://ggpop.local/reference/plot_manha.md) :
+  Publication-oriented Manhattan plots
+- [`geom_manha()`](https://ggpop.local/reference/geom_manha.md)
+  [`geom_manha_pub()`](https://ggpop.local/reference/geom_manha.md) :
+  Manhattan plot layer
+- [`plot_qq()`](https://ggpop.local/reference/plot_qq.md) :
+  Publication-oriented GWAS Q-Q plots
+- [`geom_qq()`](https://ggpop.local/reference/geom_qq.md)
+  [`geom_qq_pub()`](https://ggpop.local/reference/geom_qq.md) : Q-Q plot
+  layer for GWAS p-values
+
+## PCA Plots
+
+PLINK/GCTA imports and optional flashpcaR computation.
+
+- [`plot_pca()`](https://ggpop.local/reference/plot_pca.md) :
+  Publication-oriented PCA plots
+- [`geom_pca()`](https://ggpop.local/reference/geom_pca.md)
+  [`geom_pca_pub()`](https://ggpop.local/reference/geom_pca.md) : PCA
+  scatter layer
+- [`import_pca()`](https://ggpop.local/reference/import_pca.md)
+  [`compute_pca()`](https://ggpop.local/reference/import_pca.md) :
+  Import or compute PCA results
+
+## Admixture Plots
+
+Narrow user-facing admixture plotting API.
+
+- [`plot_admix()`](https://ggpop.local/reference/plot_admix.md)
+  [`as_pophelper_qlist()`](https://ggpop.local/reference/plot_admix.md)
+  [`plot_admixture_pophelper()`](https://ggpop.local/reference/plot_admix.md)
+  : Publication-oriented admixture plots
+- [`geom_admix()`](https://ggpop.local/reference/geom_admix.md)
+  [`geom_admix_pub()`](https://ggpop.local/reference/geom_admix.md) :
+  Admixture barplot layer
+
+## Styling
+
+Shared palettes, scales, and publication theme helpers.
+
+- [`new_pop_palette()`](https://ggpop.local/reference/pop_palettes.md)
+  [`ggpop_palette()`](https://ggpop.local/reference/pop_palettes.md)
+  [`scale_colour_ggpop()`](https://ggpop.local/reference/pop_palettes.md)
+  [`scale_color_ggpop()`](https://ggpop.local/reference/pop_palettes.md)
+  [`scale_fill_ggpop()`](https://ggpop.local/reference/pop_palettes.md)
+  : Discrete ggpop population palettes
+- [`theme_ggpop_publication()`](https://ggpop.local/reference/theme_ggpop_publication.md)
+  [`ggpop_palette()`](https://ggpop.local/reference/theme_ggpop_publication.md)
+  [`scale_fill_ggpop()`](https://ggpop.local/reference/theme_ggpop_publication.md)
+  [`scale_colour_ggpop()`](https://ggpop.local/reference/theme_ggpop_publication.md)
+  : Publication-oriented ggpop styles
+- [`theme_tidyplot()`](https://ggpop.local/reference/themes.md)
+  [`theme_ggplot2()`](https://ggpop.local/reference/themes.md)
+  [`theme_minimal_xy()`](https://ggpop.local/reference/themes.md)
+  [`theme_minimal_x()`](https://ggpop.local/reference/themes.md)
+  [`theme_minimal_y()`](https://ggpop.local/reference/themes.md)
+  [`style_void()`](https://ggpop.local/reference/themes.md) : ggpop
+  theme helpers
+
+## Advanced Compatibility
+
+Exported integration hooks and original-package compatibility layers.
+
+- [`geom_admix()`](https://ggpop.local/reference/geom_admix.md)
+  [`geom_admix_pub()`](https://ggpop.local/reference/geom_admix.md) :
+  Admixture barplot layer
+- [`geom_manha()`](https://ggpop.local/reference/geom_manha.md)
+  [`geom_manha_pub()`](https://ggpop.local/reference/geom_manha.md) :
+  Manhattan plot layer
+- [`geom_pca()`](https://ggpop.local/reference/geom_pca.md)
+  [`geom_pca_pub()`](https://ggpop.local/reference/geom_pca.md) : PCA
+  scatter layer
+- [`geom_qq()`](https://ggpop.local/reference/geom_qq.md)
+  [`geom_qq_pub()`](https://ggpop.local/reference/geom_qq.md) : Q-Q plot
+  layer for GWAS p-values
+- [`plot_admix()`](https://ggpop.local/reference/plot_admix.md)
+  [`as_pophelper_qlist()`](https://ggpop.local/reference/plot_admix.md)
+  [`plot_admixture_pophelper()`](https://ggpop.local/reference/plot_admix.md)
+  : Publication-oriented admixture plots
+- [`pophelper_functions()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`pophelper_call()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`import_pophelper_qlist()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`pophelper_as_qlist()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`pophelper_is_qlist()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`read_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`plot_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`plot_pophelper_q_multiline()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`align_pophelper_k()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`sort_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`split_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`merge_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`join_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`tabulate_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`summarise_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`analyse_pophelper_q()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`evanno_pophelper_structure()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`pophelper_distruct_colours()`](https://ggpop.local/reference/pophelper_compat.md)
+  [`pophelper_verify_grplab()`](https://ggpop.local/reference/pophelper_compat.md)
+  : pophelper compatibility layer
+
+# Articles
+
+### Start Here
+
+- [Getting Started with ggpop](https://ggpop.local/articles/ggpop.md):
+
+### Module Guides
+
+- [GWAS plots](https://ggpop.local/articles/guides/gwas.md):
+- [PCA plots](https://ggpop.local/articles/guides/pca.md):
+- [Admixture plots](https://ggpop.local/articles/guides/admixture.md):
+- [Discrete color
+  schemes](https://ggpop.local/articles/guides/color-schemes.md):
+- [Full extdata
+  gallery](https://ggpop.local/articles/guides/full-extdata.md):
+- [Compatibility and advanced
+  helpers](https://ggpop.local/articles/guides/compatibility.md):

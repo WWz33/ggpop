@@ -1,0 +1,15 @@
+pandoc: 3.6.3
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles:
+  guides/admixture: guides/admixture.html
+  guides/color-schemes: guides/color-schemes.html
+  guides/compatibility: guides/compatibility.html
+  guides/full-extdata: guides/full-extdata.html
+  ggpop: ggpop.html
+  guides/gwas: guides/gwas.html
+  guides/pca: guides/pca.html
+last_built: 2026-05-16T18:42Z
+urls:
+  reference: https://ggpop.local/reference
+  article: https://ggpop.local/articles

@@ -1,0 +1,75 @@
+---
+title: "PCA plots"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig_height: 4.5
+vignette: >
+  %\VignetteIndexEntry{PCA plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+
+ggpop_extdata <- function(...) {
+  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+}
+```
+
+`ggpop` reads PLINK and GCTA PCA output into a typed `ggpop_pca` object.
+The same object supports `plot_pca()` and the layered `ggpop() + geom_pca()` style.
+
+## API summary
+
+| Task | API | Notes |
+|---|---|---|
+| Import PLINK/GCTA PCA | `import_pca(file, type = ..., eigenval = NULL, pop_group = NULL)` | Returns `ggpop_pca` |
+| Direct plot | `plot_pca(data, pc_x = 1, pc_y = 2)` | Returns `ggplot` |
+| Layered plot | `ggpop(data) + geom_pca(pc_x = 1, pc_y = 2)` | Tidy ggplot extension path |
+| Compute PCA | `compute_pca(genotype, method = "flashpca")` | Requires `flashpcaR` |
+
+## GCTA PCA
+
+```{r}
+pca <- import_pca(
+  ggpop_extdata("pca", "gcta.eigenvec"),
+  type = "gcta",
+  eigenval = ggpop_extdata("pca", "gcta.eigenval"),
+  pop_group = ggpop_extdata("pop_group.txt")
+)
+```
+
+```{r}
+plot_pca(pca, title = "GCTA PCA")
+```
+
+```{r}
+ggpop(pca) + geom_pca(pc_x = 1, pc_y = 3)
+```
+
+When the imported object has a `pop` column, both plotting routes map population groups to the unified ggpop discrete colour scale.
+
+```{r}
+ggpop(pca) +
+  geom_pca(pc_x = 1, pc_y = 2, palette = "population")
+```
+
+## PC labels
+
+The axis labels can carry variance explained when eigenvalues are available.
+
+```{r}
+plot_pca(pca, pc_x = 1, pc_y = 2)
+```
+
+## Optional flashpcaR computation
+
+`compute_pca(method = "flashpca")` is available when `flashpcaR` is installed.
+It is intentionally not forced during vignette build because it depends on a genotype object.
+
+```{r eval=FALSE}
+compute_pca(genotype, method = "flashpca")
+```

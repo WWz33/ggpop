@@ -1,0 +1,102 @@
+url: https://ggpop.local/
+
+development:
+  mode: unreleased
+
+template:
+  bootstrap: 5
+  light-switch: true
+  includes:
+    in_header: |
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BQ49J7KYH"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3BQ49J7KYH');
+      </script>
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "ggpop",
+        "description": "Extension of ggplot2 for population genetics plots, including GWAS Manhattan and Q-Q plots, PCA plots, and ADMIXTURE/STRUCTURE-style ancestry proportion plots with tidy S3 import workflows.",
+        "url": "https://ggpop.local/",
+        "codeRepository": "https://ggpop.local/",
+        "programmingLanguage": {
+          "@type": "ComputerLanguage",
+          "name": "R"
+        },
+        "license": "https://opensource.org/licenses/MIT",
+        "version": "0.0.0.9000",
+        "keywords": ["R", "ggplot2", "population genetics", "GWAS", "Manhattan plot", "Q-Q plot", "PCA", "ADMIXTURE", "STRUCTURE", "data visualization"]
+      }
+      </script>
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search]
+
+articles:
+- title: Start Here
+  navbar: ~
+  contents:
+  - ggpop
+- title: Module Guides
+  navbar: Guides
+  contents:
+  - guides/gwas
+  - guides/pca
+  - guides/admixture
+  - guides/color-schemes
+  - guides/full-extdata
+  - guides/compatibility
+
+reference:
+- title: Core Data Workflows
+  desc: Import typed data and start tidy ggplot workflows.
+  contents:
+  - ggpop
+  - import_gwas
+  - import_pca
+  - import_pop_group
+  - import_admix
+  - import_admixture
+- title: GWAS Plots
+  desc: Manhattan and Q-Q plots for GCTA, GEMMA, and EMMAX results.
+  contents:
+  - plot_manha
+  - geom_manha
+  - plot_qq
+  - geom_qq
+- title: PCA Plots
+  desc: PLINK/GCTA imports and optional flashpcaR computation.
+  contents:
+  - plot_pca
+  - geom_pca
+  - compute_pca
+- title: Admixture Plots
+  desc: Narrow user-facing admixture plotting API.
+  contents:
+  - plot_admix
+  - geom_admix
+- title: Styling
+  desc: Shared palettes, scales, and publication theme helpers.
+  contents:
+  - pop_palettes
+  - new_pop_palette
+  - ggpop_palette
+  - scale_fill_ggpop
+  - scale_colour_ggpop
+  - scale_color_ggpop
+  - theme_ggpop_publication
+  - theme_tidyplot
+- title: Advanced Compatibility
+  desc: Exported integration hooks and original-package compatibility layers.
+  contents:
+  - ends_with("_pub")
+  - plot_admixture_pophelper
+  - as_pophelper_qlist
+  - pophelper_compat

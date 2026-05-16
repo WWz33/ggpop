@@ -1,0 +1,123 @@
+---
+title: "Getting Started with ggpop"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 6
+    fig_height: 4
+vignette: >
+  %\VignetteIndexEntry{Getting Started with ggpop}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+
+ggpop_extdata <- function(...) {
+  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+}
+```
+
+`ggpop` is a ggplot2 extension package for population genetics workflows.
+The package keeps each module in the same tidy shape:
+
+- `import_*()` functions create typed S3 objects.
+- `plot_*()` functions return full `ggplot` objects.
+- `ggpop()` + `geom_*()` build layered ggplot extensions.
+- Advanced compatibility helpers remain exported for users who need original-package behavior.
+
+## Module API map
+
+| Module | Import | Direct plot | ggplot extension path | Advanced / compatibility |
+|---|---|---|---|---|
+| GWAS Manhattan | `import_gwas()` | `plot_manha()` | `ggpop() + geom_manha()` | `fastman` backend when installed |
+| GWAS Q-Q | `import_gwas()` | `plot_qq()` | `ggpop() + ggpop::geom_qq()` | `fastman` backend when installed |
+| PCA | `import_pca()` / `compute_pca()` | `plot_pca()` | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
+| Admixture | `import_admix()` / `import_admixture()` | `plot_admix()` | `ggpop() + geom_admix()` | `plot_pophelper_q()` / `plot_admixture_pophelper()` |
+
+## Core pattern
+
+```{r}
+gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
+pca <- import_pca(
+  ggpop_extdata("pca", "gcta.eigenvec"),
+  type = "gcta",
+  eigenval = ggpop_extdata("pca", "gcta.eigenval"),
+  pop_group = ggpop_extdata("pop_group.txt")
+)
+admix <- import_admix(
+  ggpop_extdata("admixture"),
+  type = "admixture",
+  ind = ggpop_extdata("snp", "finalsnp_ld.fam"),
+  pop_group = ggpop_extdata("pop_group.txt")
+)
+```
+
+Each importer returns a typed object:
+
+```{r}
+class(gwas)
+class(pca)
+class(admix)
+```
+
+## Tidy plotting style
+
+Every module has two user-facing plotting paths. Use the direct `plot_*()`
+function when you want the reference plot immediately, or use `ggpop()` plus
+the module `geom_*()` when you want to compose with other ggplot layers.
+
+The direct path:
+
+```{r}
+gwas |>
+  plot_manha(title = "GCTA Manhattan", use_fastman = FALSE)
+```
+
+The ggplot extension path:
+
+```{r}
+gwas |>
+  ggpop() +
+  geom_manha()
+```
+
+The same pattern applies across modules:
+
+```{r}
+gwas |> ggpop() + ggpop::geom_qq()
+pca |> ggpop() + geom_pca()
+admix |> ggpop() + geom_admix(k = 3, order_group = TRUE)
+```
+
+## Population groups and discrete colours
+
+Population grouping uses a simple two-column file:
+
+```{r}
+head(import_pop_group(ggpop_extdata("pop_group.txt")))
+```
+
+The same file drives PCA colours and admixture group labels:
+
+```{r}
+pca |> plot_pca(title = "GCTA PCA by population")
+admix |> plot_admix(k = 3, order_group = TRUE, show_group_labels = TRUE)
+```
+
+All categorical colours use a unified discrete palette entry:
+
+```{r}
+ggpop_palette(4, "population")
+ggpop_palette(8, "admixture")
+```
+
+## What to use
+
+- Use `plot_manha()` and `ggpop() + geom_manha()` for Manhattan plots.
+- Use `plot_qq()` and `ggpop() + ggpop::geom_qq()` for Q-Q plots.
+- Use `plot_pca()` and `ggpop() + geom_pca()` for PCA plots.
+- Use `plot_admix()` and `ggpop() + geom_admix()` for admixture plots.
+- Treat the direct `plot_*()` functions as the reference style; `geom_*()` is the same look inside a ggplot composition.
+- Use `plot_pophelper_q()` or `plot_admixture_pophelper()` only when you need compatibility with existing `pophelper` workflows.

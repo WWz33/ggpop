@@ -1,0 +1,25 @@
+\name{plot_manha}
+\alias{plot_manha}
+\alias{plot_gwas}
+\title{Publication-oriented Manhattan plots}
+\usage{
+plot_manha(data, title = "Manhattan plot", subtitle = NULL, caption = NULL,
+  threshold = 5e-8, suggestive = 1e-5, use_fastman = TRUE,
+  point_size = 0.9, point_alpha = NA, base_size = 11,
+  base_family = "", legend_position = "none", logp = TRUE, maxP = 14,
+  bybp = FALSE, ...)
+plot_gwas(data, ...)
+}
+\arguments{
+\item{data}{A `ggpop_gwas` object.}
+\item{title, subtitle, caption}{Plot text.}
+\item{threshold, suggestive}{Manhattan reference p-value thresholds.}
+\item{use_fastman}{Use `fastman::fastman_gg()` when available.}
+\item{point_size, point_alpha}{Point appearance.}
+\item{base_size, base_family, legend_position}{Publication theme settings. `base_family` and `legend_position` are retained for fastman compatibility; native GWAS paths use `base_size` through the module geom defaults.}
+\item{logp, maxP, bybp}{Core `fastman::fastman_gg()` controls forwarded by `plot_manha()` and mirrored by `geom_manha()`.}
+\item{...}{Additional layer or backend arguments.}
+}
+\description{
+High-level publication-oriented plot builders. `plot_manha()` is the Manhattan direct API, and `plot_gwas()` remains a compatibility alias only. The reference visual standard is `plot_manha(..., use_fastman = TRUE)`, and the tidy extension path is `ggpop(data) + geom_manha()`.
+}
