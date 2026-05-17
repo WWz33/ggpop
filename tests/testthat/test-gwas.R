@@ -31,34 +31,31 @@ test_that("GWAS tidy ggpop pipeline builds Manhattan and QQ layers", {
 test_that("GWAS direct plot aligns with Manhattan geom defaults", {
   data <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
 
-  plot <- plot_manha(data, use_fastman = FALSE)
+  plot <- plot_manha(data)
   geom <- ggpop(data) + geom_manha()
 
   expect_s3_class(plot, "ggplot")
   expect_equal(length(ggplot2::ggplot_build(plot)$data), length(ggplot2::ggplot_build(geom)$data))
 })
 
-test_that("fastman GWAS plots and geom_manha share the same visual contract", {
+test_that("plot_manha and geom_manha share the same internal fastman visual contract", {
   data <- import_gwas(extdata_path("gwas/gcta.mlma"), type = "gcta")
 
-  skip_if_not(requireNamespace("fastman", quietly = TRUE))
-
-  fastman_plot <- ggplot2::ggplot_build(plot_manha(data, use_fastman = TRUE))
+  plot <- ggplot2::ggplot_build(plot_manha(data))
   geom_layer <- geom_manha()
   geom <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data))
 
   expect_true(is.list(geom_layer))
 
-  fastman_points <- fastman_plot$data[[1]]
+  plot_points <- plot$data[[1]]
   geom_points <- geom$data[[1]]
 
-  expect_equal(range(fastman_points$x, na.rm = TRUE), range(geom_points$x, na.rm = TRUE))
-  expect_equal(fastman_plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
-  expect_equal(as.character(fastman_plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
-  expect_equal(unique(head(fastman_points$colour, 1)), "#D95319")
-  expect_equal(fastman_points$size[1], 0.9)
-  expect_equal(fastman_plot$data[[2]]$colour, "blue")
-  expect_equal(fastman_plot$data[[3]]$colour, "red")
+  expect_equal(range(plot_points$x, na.rm = TRUE), range(geom_points$x, na.rm = TRUE))
+  expect_equal(plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
+  expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
+  expect_equal(plot_points$size[1], 0.9)
+  expect_equal(plot$data[[2]]$colour, "blue")
+  expect_equal(plot$data[[3]]$colour, "red")
 })
 
 test_that("Manhattan geom exposes core fastman controls", {

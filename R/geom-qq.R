@@ -1,3 +1,23 @@
+plot_qq <- function(data, title = NULL, subtitle = NULL, caption = NULL,
+                    show_lambda = TRUE, point_size = 0.8,
+                    point_alpha = 0.8, base_size = 11, base_family = "",
+                    legend_position = "none", ...) {
+  .require_class(data, "ggpop_gwas", "Q-Q plot data")
+  .require_columns(data, "p", "GWAS data")
+  plot <- ggpop(data) +
+    geom_qq(
+      data = data,
+      size = point_size,
+      alpha = point_alpha,
+      show_lambda = show_lambda,
+      base_size = base_size,
+      base_family = base_family,
+      ...
+    )
+  plot <- .ggpop_apply_labels(plot, title, subtitle, caption, expression(Expected ~ -log[10](italic(P))), expression(Observed ~ -log[10](italic(P))))
+  plot + ggplot2::theme(legend.position = legend_position)
+}
+
 StatQQGwas <- ggplot2::ggproto(
   "StatQQGwas", ggplot2::Stat,
   required_aes = "p",

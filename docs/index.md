@@ -3,7 +3,9 @@
 The goal of `ggpop` is to streamline publication-ready
 population-genomics visualization in R. It combines typed import
 helpers, direct plotting functions, and composable `ggplot2` extension
-layers for GWAS, PCA, and admixture results.
+layers for GWAS, PCA, and admixture results. It also includes a
+population genomics statistics module for windowed FST, pi, Tajima’s D,
+Dxy, and Watterson’s theta summaries.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -39,11 +41,10 @@ pak::pak("WWz33/ggpop")
 ```
 
 The core package uses CRAN-available dependencies for native plotting.
-Optional compatibility backends are installed from GitHub-aware
-`Remotes` when requested:
+The GWAS module includes internal fastman-style Manhattan and Q-Q
+plotting logic, so ordinary GWAS plots do not require installing
+`fastman`.
 
-- [`fastman`](https://github.com/adhikari-statgen-lab/fastman) for
-  original Manhattan and Q-Q backends;
 - [`flashpcaR`](https://github.com/WWz33/flashpca/tree/master/flashpcaR)
   for `compute_pca(method = "flashpca")`;
 - [`pophelper`](https://github.com/royfrancis/pophelper) for direct
@@ -51,8 +52,6 @@ Optional compatibility backends are installed from GitHub-aware
 
 Dependency repository policy:
 
-- `fastman` is unmodified and points to the original upstream
-  repository.
 - `pophelper` is unmodified and points to the original upstream
   repository.
 - `flashpcaR` required Windows source-install fixes and points to
@@ -70,7 +69,7 @@ documentation](https://wwz33.github.io/ggpop/reference/).
 library(ggpop)
 
 import_gwas("assoc.mlma", type = "gcta") |>
-  plot_manha(title = "GCTA Manhattan", use_fastman = FALSE)
+  plot_manha(title = "GCTA Manhattan")
 ```
 
 ![Manhattan plot. Chromosomes are arranged along the x-axis and minus
@@ -142,6 +141,11 @@ P001    PopA
 P002    PopB
 ```
 
+``` r
+import_stats("pixy_results/", type = "pixy") |>
+  plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+```
+
 ## Interface
 
 The recommended user-facing API is intentionally small.
@@ -152,6 +156,7 @@ The recommended user-facing API is intentionally small.
 | GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + geom_qq()` |
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` |
 | Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
+| Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need
@@ -182,8 +187,8 @@ installation:
   real source files;
 - changed `flashpcaR/flashpcaR/src/Makevars` and `Makevars.win` from
   `CXX11` to `CXX14`;
-- fixed optional backend argument forwarding for calls such as
-  `plot_manha(use_fastman = TRUE)`.
+- embedded fastman-style Manhattan and Q-Q plotting behavior in native
+  ggplot layers.
 
 ## Documentation
 
@@ -194,10 +199,14 @@ installation:
 - [Admixture
   guide](https://wwz33.github.io/ggpop/articles/guides/admixture.html)
   ADMIXTURE/STRUCTURE imports, group labels, and sorting
+- [Population statistics
+  guide](https://wwz33.github.io/ggpop/articles/guides/stats.html)
+  Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting
 
 ## Acknowledgements
 
 `ggpop` builds on `ggplot2` and follows tidy plotting conventions
 inspired by packages such as `tidyplots`. Optional compatibility paths
-reference `fastman`, `flashpcaR`, and `pophelper` while keeping the
-native ggplot implementation usable without those packages.
+reference `flashpcaR` and `pophelper`, while GWAS Manhattan and Q-Q
+plots use native ggplot layers with fastman-style data transformation
+and layout.

@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/admixture.html">Admixture plots</a></li>
+    <li><a class="dropdown-item" href="../../articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/compatibility.html">Compatibility and advanced helpers</a></li>
@@ -144,13 +145,13 @@ layered workflow.</li>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Joined admixture stacked bar chart with one panel per K value, showing ancestry proportions for each individual." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Faceted stacked bar chart. Each panel represents one K value from the imported ADMIXTURE directory, individuals are arranged along the x-axis, and stacked bar segments show ancestry proportions that sum to one for each individual." width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Admixture stacked bar charts for selected K values 2 and 4, comparing ancestry proportions across individuals." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Faceted stacked bar chart with two selected K panels. The K equals 2 and K equals 4 panels show how ancestry proportions split into more clusters when a higher K value is selected." width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Layered admixture stacked bar chart for K equals 3, with individuals on the x-axis and ancestry proportions stacked within each bar." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Stacked bar chart. Individuals are on the x-axis and ancestry proportions are stacked within each bar for K equals 3, demonstrating that the ggplot layer path produces the same kind of admixture display as the direct plot." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="population-group-labels-and-sorting">Population group labels and sorting<a class="anchor" aria-label="anchor" href="#population-group-labels-and-sorting"></a>
@@ -186,12 +187,12 @@ layered workflow.</li>
 <span>  show_group_labels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_sample_labels <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Admixture stacked bar chart for K equals 3 with individual labels and population group labels used for sorting." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Grouped stacked bar chart. Individuals are sorted within population groups for K equals 3, ancestry cluster proportions fill each bar, and population group strip labels separate the sample groups." width="700"></p>
 <p>The layered ggplot path returns the same kind of ggplot object:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, sort <span class="op">=</span> <span class="st">"all"</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Layered admixture stacked bar chart sorted by ancestry cluster and population group labels." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Layered grouped stacked bar chart. Individuals are ordered by ancestry cluster and population group, showing that the geom_admix layer preserves the same sorting and grouping controls as plot_admix." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="direct-vs-layered-use">Direct vs layered use<a class="anchor" aria-label="anchor" href="#direct-vs-layered-use"></a>
@@ -204,10 +205,10 @@ and <code>ggpop(admix) + geom_admix()</code> reproduces that
 publication-level look inside a ggplot composition.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Two admixture stacked bar charts comparing the direct plot_admix route and the layered ggpop plus geom_admix route." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Stacked bar chart from plot_admix. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar for K equals 3." width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="admixture_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" alt="Two admixture stacked bar charts comparing the direct plot_admix route and the layered ggpop plus geom_admix route." width="700"></p>
+<p><img src="admixture_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" alt="Stacked bar chart from ggpop plus geom_admix. The same K equals 3 ancestry proportions are displayed through the layered ggplot extension path." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="structure-style-input">STRUCTURE-style input<a class="anchor" aria-label="anchor" href="#structure-style-input"></a>

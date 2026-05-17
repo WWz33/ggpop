@@ -7,10 +7,9 @@ High-level publication-oriented Q-Q plot builder. The direct path is
 ## Usage
 
 ``` r
-plot_qq(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
-  show_lambda = TRUE, use_fastman = TRUE, point_size = 0.8,
-  point_alpha = 0.8, base_size = 11, base_family = "",
-  legend_position = "none", ...)
+plot_qq(data, title = NULL, subtitle = NULL, caption = NULL,
+  show_lambda = TRUE, point_size = 0.8, point_alpha = 0.8,
+  base_size = 11, base_family = "", legend_position = "none", ...)
 ```
 
 ## Arguments
@@ -26,10 +25,6 @@ plot_qq(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
 - show_lambda:
 
   Display genomic inflation factor on Q-Q plots.
-
-- use_fastman:
-
-  Use \`fastman::fastqq_gg()\` when available.
 
 - point_size, point_alpha:
 

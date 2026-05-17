@@ -1,6 +1,5 @@
 \name{geom_admix}
 \alias{geom_admix}
-\alias{geom_admix_pub}
 \title{Admixture barplot layer}
 \usage{
 geom_admix(mapping = NULL, data = NULL, ...,
@@ -15,11 +14,6 @@ geom_admix(mapping = NULL, data = NULL, ...,
   show_y_axis = FALSE, show_ticks = FALSE, ticksize = 0.1,
   ticklength = 0.03, base_size = 5, base_family = "",
   legend_position = "top", na.rm = FALSE, inherit.aes = TRUE)
-geom_admix_pub(mapping = ggplot2::aes(sample_id = .data$sample_id,
-  cluster = .data$cluster, proportion = .data$proportion), data = NULL, ...,
-  sort = c("none", "cluster", "label"), k = "all", palette = NULL,
-  bar_width = 1, show.legend = FALSE, show_sample_labels = FALSE,
-  inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Ignored. Admixture layers require pophelper-style stacked Q bars.}

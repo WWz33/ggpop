@@ -32,9 +32,10 @@ ggplot2::ggplot(df, ggplot2::aes(pc1, pc2, colour = pop)) +
   ggplot2::theme_classic()
 ```
 
-![Scatter chart. Simulated PC1 and PC2 values are plotted with point
-colour encoding four population
-categories.](color-schemes_files/figure-html/unnamed-chunk-2-1.png)
+![Scatter chart. Simulated PC1 values are on the x-axis and simulated
+PC2 values are on the y-axis, with point colour encoding four population
+categories through
+scale_colour_ggpop.](color-schemes_files/figure-html/unnamed-chunk-2-1.png)
 
 ## Custom palettes
 

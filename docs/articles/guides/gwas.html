@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/admixture.html">Admixture plots</a></li>
+    <li><a class="dropdown-item" href="../../articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/compatibility.html">Compatibility and advanced helpers</a></li>
@@ -83,8 +84,8 @@ outputs. The intended flow is:</p>
 <li>import a typed object;</li>
 <li>plot with <code><a href="../../reference/plot_manha.html">plot_manha()</a></code> / <code><a href="../../reference/plot_qq.html">plot_qq()</a></code> or
 <code>ggpop() + geom_*()</code>;</li>
-<li>keep <a href="https://github.com/adhikari-statgen-lab/fastman" class="external-link"><code>fastman</code></a>
-as the optional fast path when installed.</li>
+<li>use internal fastman-style Manhattan and Q-Q plotting behavior
+without an external <code>fastman</code> dependency.</li>
 </ol>
 <div class="section level2">
 <h2 id="api-summary">API summary<a class="anchor" aria-label="anchor" href="#api-summary"></a>
@@ -125,9 +126,9 @@ as the optional fast path when installed.</li>
 </tr>
 <tr class="even">
 <td>Backend</td>
-<td><code>use_fastman = TRUE</code></td>
+<td>internal fastman-style layout</td>
 <td>native ggpop stat</td>
-<td>Direct wrappers use fastman when available</td>
+<td>Direct wrappers and geoms share one implementation</td>
 </tr>
 </tbody>
 </table>
@@ -138,19 +139,11 @@ as the optional fast path when installed.</li>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"gwas"</span>, <span class="st">"gcta.mlma"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span>, use_fastman <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'ggplot2'</span></span>
-<span><span class="co">#&gt; The following object is masked from 'package:ggpop':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     geom_qq</span></span>
-<span><span class="co">#&gt; Scale for <span style="color: #00BB00;">y</span> is already present.</span></span>
-<span><span class="co">#&gt; Adding another scale for <span style="color: #00BB00;">y</span>, which will replace the existing scale.</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with threshold lines marking suggestive and genome-wide significance." width="700"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="gwas_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Most points sit below the reference lines, while the horizontal suggestive and genome-wide threshold lines show where stronger GWAS signals would stand out." width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Q-Q"</span>, use_fastman <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with a diagonal reference line and genomic inflation label." width="700"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Q-Q"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="gwas_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis. Points follow the red diagonal reference line closely, and a lambda annotation summarizes genomic inflation." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="layered-workflow">Layered workflow<a class="anchor" aria-label="anchor" href="#layered-workflow"></a>
@@ -159,14 +152,14 @@ as the optional fast path when installed.</li>
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_manha.html">geom_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Layered GWAS examples showing a Manhattan plot followed by a Q-Q scatter plot using the same imported GWAS object." width="700"></p>
+<p><img src="gwas_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Manhattan plot from the layered ggplot workflow. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with horizontal suggestive and genome-wide threshold lines." width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggpop</span><span class="fu">::</span><span class="fu"><a href="../../reference/geom_qq.html">geom_qq</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" alt="Layered GWAS examples showing a Manhattan plot followed by a Q-Q scatter plot using the same imported GWAS object." width="700"></p>
-<p><code>plot_manha(gwas, use_fastman = FALSE)</code> and
+<p><img src="gwas_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" alt="Q-Q scatter plot from the layered ggplot workflow. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with points compared against a diagonal reference line." width="700"></p>
+<p><code>plot_manha(gwas)</code> and
 <code>ggpop(gwas) + geom_manha()</code> share the same default threshold
 and suggestive reference lines.</p>
 </div>
@@ -177,19 +170,18 @@ and suggestive reference lines.</p>
 rest of <code>ggpop</code>. Manhattan plots default to one discrete
 colour per chromosome:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, use_fastman <span class="op">=</span> <span class="cn">FALSE</span>, palette <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Manhattan plot using the default ggpop manhattan palette with one discrete colour assigned per chromosome." width="700"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, palette <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="gwas_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Manhattan plot with one discrete colour per chromosome. Alternating chromosome colour bands make chromosome boundaries easier to distinguish while preserving the same p-value threshold lines." width="700"></p>
 <p>For a two-colour alternating Manhattan plot, set
 <code>binary = TRUE</code> and pass either a ggpop palette name or two
 explicit colours:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span></span>
 <span>  <span class="va">gwas</span>,</span>
-<span>  use_fastman <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#123456"</span>, <span class="st">"#654321"</span><span class="op">)</span>,</span>
 <span>  binary <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Manhattan plot using a two-colour alternating palette repeated across chromosomes." width="700"></p>
+<p><img src="gwas_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Manhattan plot with a two-colour alternating palette. Adjacent chromosomes alternate between the two supplied colours, emphasizing chromosome separation without changing the p-value scale or thresholds." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="alternative-gwas-formats">Alternative GWAS formats<a class="anchor" aria-label="anchor" href="#alternative-gwas-formats"></a>
@@ -202,9 +194,8 @@ code:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/import_gwas.html">improt_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../../reference/import_gwas.html">prot_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span></code></pre></div>
-<p>If <code>fastman</code> is installed, the direct GWAS wrappers use it
-by default. If it is not installed, the ggplot-native path still
-works.</p>
+<p>GWAS plotting uses ggpop’s internal ggplot implementation in both
+direct and layered workflows.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

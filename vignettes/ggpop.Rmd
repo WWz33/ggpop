@@ -31,10 +31,11 @@ The package keeps each module in the same tidy shape:
 
 | Module | Import | Direct plot | ggplot extension path | Advanced / compatibility |
 |---|---|---|---|---|
-| GWAS Manhattan | `import_gwas()` | `plot_manha()` | `ggpop() + geom_manha()` | `fastman` backend when installed |
-| GWAS Q-Q | `import_gwas()` | `plot_qq()` | `ggpop() + ggpop::geom_qq()` | `fastman` backend when installed |
+| GWAS Manhattan | `import_gwas()` | `plot_manha()` | `ggpop() + geom_manha()` | internal fastman-style layout |
+| GWAS Q-Q | `import_gwas()` | `plot_qq()` | `ggpop() + ggpop::geom_qq()` | internal fastqq-style layout |
 | PCA | `import_pca()` / `compute_pca()` | `plot_pca()` | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
-| Admixture | `import_admix()` / `import_admixture()` | `plot_admix()` | `ggpop() + geom_admix()` | `plot_pophelper_q()` / `plot_admixture_pophelper()` |
+| Admixture | `import_admix()` / `import_admixture()` | `plot_admix()` | `ggpop() + geom_admix()` | see compatibility article |
+| Population statistics | `import_stats()` | `plot_stats()` | `ggpop() + geom_stats()` | pixy and vcftools summaries |
 
 ## Core pattern
 
@@ -52,6 +53,10 @@ admix <- import_admix(
   ind = ggpop_extdata("snp", "finalsnp_ld.fam"),
   pop_group = ggpop_extdata("pop_group.txt")
 )
+stats <- import_stats(
+  ggpop_extdata("Population_genomics_statistics", "pixy"),
+  type = "pixy"
+)
 ```
 
 Each importer returns a typed object:
@@ -60,6 +65,7 @@ Each importer returns a typed object:
 class(gwas)
 class(pca)
 class(admix)
+class(stats)
 ```
 
 ## Tidy plotting style
@@ -70,14 +76,14 @@ the module `geom_*()` when you want to compose with other ggplot layers.
 
 The direct path:
 
-```{r, fig.alt = "Manhattan plot showing chromosomes along the x-axis and minus log10 p-values on the y-axis."}
+```{r, fig.alt = "Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Points form chromosome-specific bands with horizontal reference lines marking suggestive and genome-wide significance thresholds."}
 gwas |>
-  plot_manha(title = "GCTA Manhattan", use_fastman = FALSE)
+  plot_manha(title = "GCTA Manhattan")
 ```
 
 The ggplot extension path:
 
-```{r}
+```{r, fig.alt = "Manhattan plot from the layered ggplot extension path. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, matching the direct plot_manha visual style."}
 gwas |>
   ggpop() +
   geom_manha()
@@ -85,7 +91,7 @@ gwas |>
 
 The same pattern applies across modules:
 
-```{r, fig.alt = "Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot, and an admixture stacked bar chart."}
+```{r, fig.alt = c("Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with points compared against a diagonal reference line.", "Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population groups.", "Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar for K equals 3.")}
 gwas |> ggpop() + ggpop::geom_qq()
 pca |> ggpop() + geom_pca()
 admix |> ggpop() + geom_admix(k = 3, order_group = TRUE)
@@ -101,14 +107,14 @@ head(import_pop_group(ggpop_extdata("pop_group.txt")))
 
 The same file drives PCA colours and admixture group labels:
 
-```{r, fig.alt = "PCA scatter plot by population and admixture stacked bar plot with group labels."}
+```{r, fig.alt = c("Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups.", "Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar, with population group labels used for ordering.")}
 pca |> plot_pca(title = "GCTA PCA by population")
 admix |> plot_admix(k = 3, order_group = TRUE, show_group_labels = TRUE)
 ```
 
 All categorical colours use a unified discrete palette entry:
 
-```{r, fig.alt = "Two discrete palette outputs for population and admixture colour schemes."}
+```{r, fig.alt = "Two discrete palette outputs. The first vector lists four population colours, and the second vector lists eight admixture cluster colours for categorical encodings."}
 ggpop_palette(4, "population")
 ggpop_palette(8, "admixture")
 ```
@@ -119,5 +125,6 @@ ggpop_palette(8, "admixture")
 - Use `plot_qq()` and `ggpop() + ggpop::geom_qq()` for Q-Q plots.
 - Use `plot_pca()` and `ggpop() + geom_pca()` for PCA plots.
 - Use `plot_admix()` and `ggpop() + geom_admix()` for admixture plots.
+- Use `plot_stats()` and `ggpop() + geom_stats()` for windowed population statistics.
 - Treat the direct `plot_*()` functions as the reference style; `geom_*()` is the same look inside a ggplot composition.
-- Use `plot_pophelper_q()` or `plot_admixture_pophelper()` only when you need compatibility with existing `pophelper` workflows.
+- Use the compatibility article only when you need original `pophelper` workflows.

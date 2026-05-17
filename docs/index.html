@@ -47,6 +47,7 @@
     <li><a class="dropdown-item" href="articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="articles/guides/admixture.html">Admixture plots</a></li>
+    <li><a class="dropdown-item" href="articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><a class="dropdown-item" href="articles/guides/compatibility.html">Compatibility and advanced helpers</a></li>
@@ -70,7 +71,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>ggpop</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results.</p>
+<p>The goal of <code>ggpop</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries.</p>
 <p><code>ggpop</code> focuses on a tidy workflow:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -91,10 +92,8 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"WWz33/ggpop"</span><span class="op">)</span></span></code></pre></div>
-<p>The core package uses CRAN-available dependencies for native plotting. Optional compatibility backends are installed from GitHub-aware <code>Remotes</code> when requested:</p>
+<p>The core package uses CRAN-available dependencies for native plotting. The GWAS module includes internal fastman-style Manhattan and Q-Q plotting logic, so ordinary GWAS plots do not require installing <code>fastman</code>.</p>
 <ul>
-<li>
-<a href="https://github.com/adhikari-statgen-lab/fastman" class="external-link"><code>fastman</code></a> for original Manhattan and Q-Q backends;</li>
 <li>
 <a href="https://github.com/WWz33/flashpca/tree/master/flashpcaR" class="external-link"><code>flashpcaR</code></a> for <code>compute_pca(method = "flashpca")</code>;</li>
 <li>
@@ -102,8 +101,6 @@
 </ul>
 <p>Dependency repository policy:</p>
 <ul>
-<li>
-<code>fastman</code> is unmodified and points to the original upstream repository.</li>
 <li>
 <code>pophelper</code> is unmodified and points to the original upstream repository.</li>
 <li>
@@ -119,7 +116,7 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggpop/">ggpop</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span>, use_fastman <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/readme-manhattan.png" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with alternating chromosome colours and horizontal genome-wide threshold lines." style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -161,6 +158,9 @@
 <pre class="text"><code>sample  pop
 P001    PopA
 P002    PopB</code></pre>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/import_stats.html">import_stats</a></span><span class="op">(</span><span class="st">"pixy_results/"</span>, type <span class="op">=</span> <span class="st">"pixy"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/geom_stats.html">plot_stats</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fst"</span>, <span class="st">"pi"</span><span class="op">)</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="interface">Interface<a class="anchor" aria-label="anchor" href="#interface"></a>
@@ -207,6 +207,12 @@ P002    PopB</code></pre>
 <td><code>ggpop() + geom_admix()</code></td>
 </tr>
 <tr>
+<td>Population statistics</td>
+<td><code><a href="reference/import_stats.html">import_stats()</a></code></td>
+<td><code><a href="reference/geom_stats.html">plot_stats()</a></code></td>
+<td><code>ggpop() + geom_stats()</code></td>
+</tr>
+<tr>
 <td>Population groups</td>
 <td><code><a href="reference/import_pop_group.html">import_pop_group()</a></code></td>
 <td>used by plot functions</td>
@@ -220,7 +226,7 @@ P002    PopB</code></pre>
 <h2 id="color-schemes">Color Schemes<a class="anchor" aria-label="anchor" href="#color-schemes"></a>
 </h2>
 <p><code>ggpop</code> provides a unified discrete palette entry for population-genomics categorical variables. PCA population colours and admixture cluster fills use the same publication-oriented palette system by default.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"population"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span></span>
@@ -233,7 +239,7 @@ P002    PopB</code></pre>
 <ul>
 <li>replaced <code>flashpcaR/flashpcaR/src/*.cpp</code> and <code>src/*.h</code> path stubs with real source files;</li>
 <li>changed <code>flashpcaR/flashpcaR/src/Makevars</code> and <code>Makevars.win</code> from <code>CXX11</code> to <code>CXX14</code>;</li>
-<li>fixed optional backend argument forwarding for calls such as <code>plot_manha(use_fastman = TRUE)</code>.</li>
+<li>embedded fastman-style Manhattan and Q-Q plotting behavior in native ggplot layers.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -246,12 +252,14 @@ P002    PopB</code></pre>
 <a href="https://wwz33.github.io/ggpop/articles/guides/pca.html">PCA guide</a> PCA imports, population colours, and plotting</li>
 <li>
 <a href="https://wwz33.github.io/ggpop/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</li>
+<li>
+<a href="https://wwz33.github.io/ggpop/articles/guides/stats.html">Population statistics guide</a> Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h2>
-<p><code>ggpop</code> builds on <code>ggplot2</code> and follows tidy plotting conventions inspired by packages such as <code>tidyplots</code>. Optional compatibility paths reference <code>fastman</code>, <code>flashpcaR</code>, and <code>pophelper</code> while keeping the native ggplot implementation usable without those packages.</p>
+<p><code>ggpop</code> builds on <code>ggplot2</code> and follows tidy plotting conventions inspired by packages such as <code>tidyplots</code>. Optional compatibility paths reference <code>flashpcaR</code> and <code>pophelper</code>, while GWAS Manhattan and Q-Q plots use native ggplot layers with fastman-style data transformation and layout.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

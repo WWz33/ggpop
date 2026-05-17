@@ -37,6 +37,29 @@ pophelper_is_qlist <- function(qlist) {
   TRUE
 }
 
+as_pophelper_qlist <- function(data) {
+  if (is.list(data) && !is.data.frame(data)) {
+    .require_pophelper()
+    invisible(.pophelper_get("is.qlist")(data))
+    return(data)
+  }
+  .require_columns(data, c("sample_id", "run_id", "cluster", "proportion"), "admixture data")
+  runs <- split(data, data$run_id)
+  qlist <- lapply(runs, function(run_data) {
+    clusters <- sort(unique(as.character(run_data$cluster)))
+    samples <- unique(as.character(run_data$sample_id))
+    matrix_data <- stats::xtabs(proportion ~ sample_id + cluster, run_data)
+    matrix_data <- matrix_data[samples, clusters, drop = FALSE]
+    out <- as.data.frame.matrix(matrix_data, stringsAsFactors = FALSE)
+    names(out) <- paste0("Cluster", seq_along(out))
+    attr(out, "ind") <- nrow(out)
+    attr(out, "k") <- ncol(out)
+    out
+  })
+  names(qlist) <- names(runs)
+  qlist
+}
+
 read_pophelper_q <- function(files = NULL, filetype = "auto", indlabfromfile = FALSE,
                              readci = FALSE, as_ggpop = FALSE) {
   .require_pophelper()
@@ -71,6 +94,18 @@ plot_pophelper_q_multiline <- function(data, ..., exportplot = FALSE, returnplot
   .require_pophelper()
   .pophelper_get("plotQMultiline")(
     qlist = as_pophelper_qlist(data),
+    ...,
+    exportplot = exportplot,
+    returnplot = returnplot,
+    theme = theme,
+    basesize = basesize
+  )
+}
+
+plot_admixture_pophelper <- function(data, ..., exportplot = FALSE, returnplot = TRUE,
+                                     theme = "theme_bw", basesize = 8) {
+  plot_pophelper_q(
+    data,
     ...,
     exportplot = exportplot,
     returnplot = returnplot,

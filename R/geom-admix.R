@@ -1,3 +1,54 @@
+plot_admix <- function(data, title = NULL, subtitle = NULL, caption = NULL,
+                       sort = c("none", "cluster", "all", "label"), sortind = NULL,
+                       k = "all", palette = NULL, group = "pop", order_group = FALSE,
+                       show_group_labels = NULL, subset_group = NULL,
+                       show_legend = FALSE, show_sample_labels = FALSE,
+                       base_size = 5, base_family = "", legend_position = "top",
+                       pop_group = TRUE,
+                       bar_width = 1, ...) {
+  .require_class(data, "ggpop_admix", "Admixture plot data")
+  if (!is.null(sortind)) {
+    sort <- sortind
+  } else {
+    sort <- match.arg(sort)
+  }
+  if (isFALSE(pop_group)) {
+    group <- NULL
+    order_group <- FALSE
+    show_group_labels <- FALSE
+  }
+  data <- .filter_admix_k(data, k)
+  if (nrow(data) == 0) {
+    stop("No admixture rows remain after K filtering.", call. = FALSE)
+  }
+  clusters <- sort(unique(as.character(data$cluster)))
+  if (is.null(palette)) {
+    palette <- ggpop_palette(length(clusters), "admixture")
+  }
+  names(palette) <- clusters
+  plot <- ggpop(data) +
+    geom_admix(
+      data = data,
+      sort = sort,
+      sortind = sortind,
+      k = "all",
+      palette = palette,
+      group = group,
+      pop_group = pop_group,
+      order_group = order_group,
+      show_group_labels = show_group_labels,
+      subset_group = subset_group,
+      bar_width = bar_width,
+      show.legend = show_legend,
+      show_sample_labels = show_sample_labels,
+      base_size = base_size,
+      base_family = base_family,
+      legend_position = legend_position,
+      ...
+    )
+  .ggpop_apply_labels(plot, title, subtitle, caption, NULL, NULL, fill = "Cluster")
+}
+
 StatAdmixOrder <- ggplot2::ggproto(
   "StatAdmixOrder", ggplot2::Stat,
   required_aes = c("sample_id", "cluster", "proportion"),

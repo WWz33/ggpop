@@ -4,7 +4,7 @@
 \alias{as_pophelper_qlist}
 \title{Publication-oriented admixture plots}
 \usage{
-plot_admix(data, title = "Admixture plot", subtitle = NULL, caption = NULL,
+plot_admix(data, title = NULL, subtitle = NULL, caption = NULL,
   sort = c("none", "cluster", "all", "label"), sortind = NULL,
   k = "all", palette = NULL, group = "pop", order_group = FALSE,
   show_group_labels = NULL, subset_group = NULL, show_legend = FALSE,

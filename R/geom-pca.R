@@ -1,3 +1,27 @@
+plot_pca <- function(data, title = NULL, subtitle = NULL, caption = NULL,
+                     pc_x = 1, pc_y = 2, point_size = 1.8, point_alpha = 0.85,
+                     base_size = 11, base_family = "", legend_position = "right",
+                     palette = NULL, pop_group = TRUE, ...) {
+  .require_class(data, "ggpop_pca", "PCA plot data")
+  x_lab <- .pc_label(data, pc_x)
+  y_lab <- .pc_label(data, pc_y)
+  plot <- ggpop(data, pop_group = pop_group) +
+    geom_pca(
+      pc_x = pc_x,
+      pc_y = pc_y,
+      size = point_size,
+      alpha = point_alpha,
+      base_size = base_size,
+      base_family = base_family,
+      palette = palette,
+      pop_group = pop_group,
+      ...
+    )
+  plot <- .ggpop_apply_labels(plot, title, subtitle, caption, x_lab, y_lab)
+  plot <- plot + ggplot2::theme(legend.position = legend_position)
+  plot
+}
+
 geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
                      data = NULL, ..., pc_x = 1, pc_y = 2, base_size = 11,
                      base_family = "", palette = NULL, pop_group = TRUE,
@@ -81,4 +105,13 @@ geom_pca_pub <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
     return(list(x = paste0("PC", pc_x), y = paste0("PC", pc_y)))
   }
   NULL
+}
+
+.pc_label <- function(data, pc) {
+  variance <- attr(data, "variance_explained")
+  label <- paste0("PC", pc)
+  if (!is.null(variance) && length(variance) >= pc && is.finite(variance[pc])) {
+    label <- paste0(label, " (", round(variance[pc] * 100, 1), "%)")
+  }
+  label
 }

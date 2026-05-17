@@ -20,7 +20,7 @@ It follows the tidyplots color-scheme idea: pass a named scheme or hex vector, d
 
 ## Built-in schemes
 
-```{r, fig.alt = "Three discrete palette outputs showing population, admixture, and manhattan colour schemes."}
+```{r, fig.alt = "Three discrete palette vectors. The outputs list example colours for population groups, admixture clusters, and Manhattan chromosome categories."}
 ggpop_palette(4, "population")
 ggpop_palette(8, "admixture")
 ggpop_palette(5, "manhattan")
@@ -28,7 +28,7 @@ ggpop_palette(5, "manhattan")
 
 ## ggplot scales
 
-```{r, fig.alt = "Scatter chart. Simulated PC1 and PC2 values are plotted with point colour encoding four population categories."}
+```{r, fig.alt = "Scatter chart. Simulated PC1 values are on the x-axis and simulated PC2 values are on the y-axis, with point colour encoding four population categories through scale_colour_ggpop."}
 df <- data.frame(
   pop = rep(c("PopA", "PopB", "PopC", "PopD"), each = 5),
   pc1 = rnorm(20),
@@ -43,7 +43,7 @@ ggplot2::ggplot(df, ggplot2::aes(pc1, pc2, colour = pop)) +
 
 ## Custom palettes
 
-```{r, fig.alt = "Custom discrete palette output showing six colours generated from a four-colour population palette."}
+```{r, fig.alt = "Custom discrete palette output. Six colours are generated from a four-colour population palette, demonstrating interpolation for categorical palettes with more requested groups than supplied colours."}
 my_pop_colors <- new_pop_palette(
   c("#644296", "#F08533", "#3B78B0", "#D1352C"),
   name = "my population palette"

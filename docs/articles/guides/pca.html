@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/admixture.html">Admixture plots</a></li>
+    <li><a class="dropdown-item" href="../../articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/compatibility.html">Compatibility and advanced helpers</a></li>
@@ -134,17 +135,17 @@
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="va">pca</span>, title <span class="op">=</span> <span class="st">"GCTA PCA"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="pca_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="PCA scatter plot. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group." width="700"></p>
+<p><img src="pca_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups. Samples cluster by their PCA coordinates while preserving the same population colour mapping used elsewhere in ggpop." width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">pca</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/geom_pca.html">geom_pca</a></span><span class="op">(</span>pc_x <span class="op">=</span> <span class="fl">1</span>, pc_y <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="pca_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="PCA scatter plot comparing principal component 1 on the x-axis with principal component 3 on the y-axis." width="700"></p>
+<p><img src="pca_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 3 is on the y-axis, showing that geom_pca can switch component axes while keeping the same sample-level PCA data." width="700"></p>
 <p>When the imported object has a <code>pop</code> column, both plotting
 routes map population groups to the unified ggpop discrete colour
 scale.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">pca</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_pca.html">geom_pca</a></span><span class="op">(</span>pc_x <span class="op">=</span> <span class="fl">1</span>, pc_y <span class="op">=</span> <span class="fl">2</span>, palette <span class="op">=</span> <span class="st">"population"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="pca_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="PCA scatter plot using the unified ggpop population colour palette for population groups." width="700"></p>
+<p><img src="pca_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Scatter chart. Principal component 1 and principal component 2 are plotted with point colour mapped to population group through the unified ggpop population palette." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="pc-labels">PC labels<a class="anchor" aria-label="anchor" href="#pc-labels"></a>
@@ -153,7 +154,7 @@ scale.</p>
 available.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="va">pca</span>, pc_x <span class="op">=</span> <span class="fl">1</span>, pc_y <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="pca_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="PCA scatter plot with axis labels that include variance explained when eigenvalues are available." width="700"></p>
+<p><img src="pca_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Scatter chart. Principal component axes include variance explained percentages in their labels when eigenvalues are available, making the relative contribution of each PC explicit." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="optional-flashpcar-computation">Optional flashpcaR computation<a class="anchor" aria-label="anchor" href="#optional-flashpcar-computation"></a>

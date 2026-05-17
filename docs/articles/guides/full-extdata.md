@@ -7,28 +7,22 @@ the closest match to the package’s real-world supported examples.
 
 ``` r
 gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
-plot_manha(gwas, title = "GCTA Manhattan", use_fastman = TRUE)
-#> Loading required package: ggplot2
-#> 
-#> Attaching package: 'ggplot2'
-#> The following object is masked from 'package:ggpop':
-#> 
-#>     geom_qq
-#> Scale for y is already present.
-#> Adding another scale for y, which will replace the existing scale.
+plot_manha(gwas, title = "GCTA Manhattan")
 ```
 
-![Full-data GWAS examples showing a Manhattan plot and a Q-Q plot from
-the bundled GCTA result
-file.](full-extdata_files/figure-html/unnamed-chunk-1-1.png)
+![Manhattan plot from the bundled GCTA result file. Chromosomes are
+arranged along the x-axis and minus log10 p-values are on the y-axis,
+with horizontal reference lines marking GWAS
+thresholds.](full-extdata_files/figure-html/unnamed-chunk-1-1.png)
 
 ``` r
-plot_qq(gwas, title = "GCTA Q-Q", use_fastman = TRUE)
+plot_qq(gwas, title = "GCTA Q-Q")
 ```
 
-![Full-data GWAS examples showing a Manhattan plot and a Q-Q plot from
-the bundled GCTA result
-file.](full-extdata_files/figure-html/unnamed-chunk-1-2.png)
+![Q-Q scatter plot from the bundled GCTA result file. Expected minus
+log10 p-values are on the x-axis and observed minus log10 p-values are
+on the y-axis, with points compared against a diagonal reference
+line.](full-extdata_files/figure-html/unnamed-chunk-1-2.png)
 
 ## PCA
 
@@ -42,9 +36,10 @@ pca <- import_pca(
 plot_pca(pca, title = "GCTA PCA")
 ```
 
-![PCA scatter plot from the bundled GCTA eigenvector file, with point
-colour encoding imported population
-groups.](full-extdata_files/figure-html/unnamed-chunk-2-1.png)
+![Scatter chart from the bundled GCTA PCA eigenvector file. Principal
+components define the axes and point colour encodes imported population
+groups from the shared pop_group.txt
+metadata.](full-extdata_files/figure-html/unnamed-chunk-2-1.png)
 
 ## Admixture
 
@@ -58,9 +53,10 @@ admix <- import_admix(
 plot_admix(admix, k = "all", title = "ADMIXTURE", order_group = TRUE)
 ```
 
-![Joined admixture stacked bar chart from full bundled ADMIXTURE
-results, grouped by population
-labels.](full-extdata_files/figure-html/unnamed-chunk-3-1.png)
+![Faceted stacked bar chart from the full bundled ADMIXTURE results.
+Each K panel shows individuals as bars, ancestry proportions as stacked
+segments, and population labels used to group
+samples.](full-extdata_files/figure-html/unnamed-chunk-3-1.png)
 
 The same data also works with the layered path:
 
@@ -68,6 +64,7 @@ The same data also works with the layered path:
 ggpop(admix) + geom_admix(k = 3, order_group = TRUE)
 ```
 
-![Layered admixture stacked bar chart for K equals 3 using the same
-imported full ADMIXTURE
-data.](full-extdata_files/figure-html/unnamed-chunk-4-1.png)
+![Stacked bar chart for K equals 3 from the layered ggplot workflow.
+Individuals are grouped by population metadata and each bar shows
+ancestry proportions summing to
+one.](full-extdata_files/figure-html/unnamed-chunk-4-1.png)

@@ -24,16 +24,13 @@ Import typed data and start tidy ggplot workflows.
 Manhattan and Q-Q plots for GCTA, GEMMA, and EMMAX results.
 
 - [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
-  [`plot_gwas()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
   : Publication-oriented Manhattan plots
 - [`geom_manha()`](https://wwz33.github.io/ggpop/reference/geom_manha.md)
-  [`geom_manha_pub()`](https://wwz33.github.io/ggpop/reference/geom_manha.md)
   : Manhattan plot layer
 - [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) :
   Publication-oriented GWAS Q-Q plots
-- [`geom_qq()`](https://wwz33.github.io/ggpop/reference/geom_qq.md)
-  [`geom_qq_pub()`](https://wwz33.github.io/ggpop/reference/geom_qq.md)
-  : Q-Q plot layer for GWAS p-values
+- [`geom_qq()`](https://wwz33.github.io/ggpop/reference/geom_qq.md) :
+  Q-Q plot layer for GWAS p-values
 
 ## PCA Plots
 
@@ -41,9 +38,8 @@ PLINK/GCTA imports and optional flashpcaR computation.
 
 - [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) :
   Publication-oriented PCA plots
-- [`geom_pca()`](https://wwz33.github.io/ggpop/reference/geom_pca.md)
-  [`geom_pca_pub()`](https://wwz33.github.io/ggpop/reference/geom_pca.md)
-  : PCA scatter layer
+- [`geom_pca()`](https://wwz33.github.io/ggpop/reference/geom_pca.md) :
+  PCA scatter layer
 - [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md)
   [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md)
   : Import or compute PCA results
@@ -57,7 +53,6 @@ Narrow user-facing admixture plotting API.
   [`plot_admixture_pophelper()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
   : Publication-oriented admixture plots
 - [`geom_admix()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
-  [`geom_admix_pub()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
   : Admixture barplot layer
 
 ## Population Genomics Statistics
@@ -100,18 +95,6 @@ Shared palettes, scales, and publication theme helpers.
 
 Exported integration hooks and original-package compatibility layers.
 
-- [`geom_admix()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
-  [`geom_admix_pub()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
-  : Admixture barplot layer
-- [`geom_manha()`](https://wwz33.github.io/ggpop/reference/geom_manha.md)
-  [`geom_manha_pub()`](https://wwz33.github.io/ggpop/reference/geom_manha.md)
-  : Manhattan plot layer
-- [`geom_pca()`](https://wwz33.github.io/ggpop/reference/geom_pca.md)
-  [`geom_pca_pub()`](https://wwz33.github.io/ggpop/reference/geom_pca.md)
-  : PCA scatter layer
-- [`geom_qq()`](https://wwz33.github.io/ggpop/reference/geom_qq.md)
-  [`geom_qq_pub()`](https://wwz33.github.io/ggpop/reference/geom_qq.md)
-  : Q-Q plot layer for GWAS p-values
 - [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
   [`as_pophelper_qlist()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
   [`plot_admixture_pophelper()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)

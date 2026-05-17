@@ -14,10 +14,11 @@ workflows. The package keeps each module in the same tidy shape:
 
 | Module | Import | Direct plot | ggplot extension path | Advanced / compatibility |
 |----|----|----|----|----|
-| GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop() + geom_manha()` | `fastman` backend when installed |
-| GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + ggpop::geom_qq()` | `fastman` backend when installed |
+| GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop() + geom_manha()` | internal fastman-style layout |
+| GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + ggpop::geom_qq()` | internal fastqq-style layout |
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
-| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) / [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | [`plot_pophelper_q()`](https://wwz33.github.io/ggpop/reference/pophelper_compat.md) / [`plot_admixture_pophelper()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) |
+| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) / [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
+| Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
 
 ## Core pattern
 
@@ -35,6 +36,10 @@ admix <- import_admix(
   ind = ggpop_extdata("snp", "finalsnp_ld.fam"),
   pop_group = ggpop_extdata("pop_group.txt")
 )
+stats <- import_stats(
+  ggpop_extdata("Population_genomics_statistics", "pixy"),
+  type = "pixy"
+)
 ```
 
 Each importer returns a typed object:
@@ -46,6 +51,8 @@ class(pca)
 #> [1] "ggpop_pca"  "data.frame"
 class(admix)
 #> [1] "ggpop_admix" "data.frame"
+class(stats)
+#> [1] "ggpop_stats" "data.frame"
 ```
 
 ## Tidy plotting style
@@ -59,11 +66,13 @@ The direct path:
 
 ``` r
 gwas |>
-  plot_manha(title = "GCTA Manhattan", use_fastman = FALSE)
+  plot_manha(title = "GCTA Manhattan")
 ```
 
-![Manhattan plot showing chromosomes along the x-axis and minus log10
-p-values on the y-axis.](ggpop_files/figure-html/unnamed-chunk-3-1.png)
+![Manhattan plot. Chromosomes are arranged along the x-axis and minus
+log10 p-values are on the y-axis. Points form chromosome-specific bands
+with horizontal reference lines marking suggestive and genome-wide
+significance thresholds.](ggpop_files/figure-html/unnamed-chunk-3-1.png)
 
 The ggplot extension path:
 
@@ -73,7 +82,10 @@ gwas |>
   geom_manha()
 ```
 
-![](ggpop_files/figure-html/unnamed-chunk-4-1.png)
+![Manhattan plot from the layered ggplot extension path. Chromosomes are
+arranged along the x-axis and minus log10 p-values are on the y-axis,
+matching the direct plot_manha visual
+style.](ggpop_files/figure-html/unnamed-chunk-4-1.png)
 
 The same pattern applies across modules:
 
@@ -81,25 +93,26 @@ The same pattern applies across modules:
 gwas |> ggpop() + ggpop::geom_qq()
 ```
 
-![Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot,
-and an admixture stacked bar
-chart.](ggpop_files/figure-html/unnamed-chunk-5-1.png)
+![Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and
+observed minus log10 p-values are on the y-axis, with points compared
+against a diagonal reference
+line.](ggpop_files/figure-html/unnamed-chunk-5-1.png)
 
 ``` r
 pca |> ggpop() + geom_pca()
 ```
 
-![Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot,
-and an admixture stacked bar
-chart.](ggpop_files/figure-html/unnamed-chunk-5-2.png)
+![Scatter chart. Principal component 1 is on the x-axis and principal
+component 2 is on the y-axis, with point colour encoding population
+groups.](ggpop_files/figure-html/unnamed-chunk-5-2.png)
 
 ``` r
 admix |> ggpop() + geom_admix(k = 3, order_group = TRUE)
 ```
 
-![Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot,
-and an admixture stacked bar
-chart.](ggpop_files/figure-html/unnamed-chunk-5-3.png)
+![Stacked bar chart. Individuals are arranged along the x-axis and
+ancestry proportions are stacked within each bar for K equals
+3.](ggpop_files/figure-html/unnamed-chunk-5-3.png)
 
 ## Population groups and discrete colours
 
@@ -122,15 +135,18 @@ The same file drives PCA colours and admixture group labels:
 pca |> plot_pca(title = "GCTA PCA by population")
 ```
 
-![PCA scatter plot by population and admixture stacked bar plot with
-group labels.](ggpop_files/figure-html/unnamed-chunk-7-1.png)
+![Scatter chart. Principal component 1 is on the x-axis and principal
+component 2 is on the y-axis, with point colour encoding imported
+population groups.](ggpop_files/figure-html/unnamed-chunk-7-1.png)
 
 ``` r
 admix |> plot_admix(k = 3, order_group = TRUE, show_group_labels = TRUE)
 ```
 
-![PCA scatter plot by population and admixture stacked bar plot with
-group labels.](ggpop_files/figure-html/unnamed-chunk-7-2.png)
+![Stacked bar chart. Individuals are arranged along the x-axis and
+ancestry proportions are stacked within each bar, with population group
+labels used for
+ordering.](ggpop_files/figure-html/unnamed-chunk-7-2.png)
 
 All categorical colours use a unified discrete palette entry:
 
@@ -155,10 +171,10 @@ ggpop_palette(8, "admixture")
 - Use
   [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
   and `ggpop() + geom_admix()` for admixture plots.
+- Use
+  [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
+  and `ggpop() + geom_stats()` for windowed population statistics.
 - Treat the direct `plot_*()` functions as the reference style;
   `geom_*()` is the same look inside a ggplot composition.
-- Use
-  [`plot_pophelper_q()`](https://wwz33.github.io/ggpop/reference/pophelper_compat.md)
-  or
-  [`plot_admixture_pophelper()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
-  only when you need compatibility with existing `pophelper` workflows.
+- Use the compatibility article only when you need original `pophelper`
+  workflows.

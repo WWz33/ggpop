@@ -42,17 +42,17 @@ pca <- import_pca(
 )
 ```
 
-```{r, fig.alt = "PCA scatter plot. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group."}
+```{r, fig.alt = "Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups. Samples cluster by their PCA coordinates while preserving the same population colour mapping used elsewhere in ggpop."}
 plot_pca(pca, title = "GCTA PCA")
 ```
 
-```{r, fig.alt = "PCA scatter plot comparing principal component 1 on the x-axis with principal component 3 on the y-axis."}
+```{r, fig.alt = "Scatter chart. Principal component 1 is on the x-axis and principal component 3 is on the y-axis, showing that geom_pca can switch component axes while keeping the same sample-level PCA data."}
 ggpop(pca) + geom_pca(pc_x = 1, pc_y = 3)
 ```
 
 When the imported object has a `pop` column, both plotting routes map population groups to the unified ggpop discrete colour scale.
 
-```{r, fig.alt = "PCA scatter plot using the unified ggpop population colour palette for population groups."}
+```{r, fig.alt = "Scatter chart. Principal component 1 and principal component 2 are plotted with point colour mapped to population group through the unified ggpop population palette."}
 ggpop(pca) +
   geom_pca(pc_x = 1, pc_y = 2, palette = "population")
 ```
@@ -61,7 +61,7 @@ ggpop(pca) +
 
 The axis labels can carry variance explained when eigenvalues are available.
 
-```{r, fig.alt = "PCA scatter plot with axis labels that include variance explained when eigenvalues are available."}
+```{r, fig.alt = "Scatter chart. Principal component axes include variance explained percentages in their labels when eigenvalues are available, making the relative contribution of each PC explicit."}
 plot_pca(pca, pc_x = 1, pc_y = 2)
 ```
 

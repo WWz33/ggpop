@@ -19,7 +19,6 @@ Imports:
     stats,
     utils
 Suggests:
-    fastman,
     flashpcaR,
     knitr,
     pkgdown,
@@ -27,7 +26,6 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Remotes:
-    adhikari-statgen-lab/fastman,
     WWz33/flashpca/flashpcaR,
     royfrancis/pophelper
 Config/testthat/edition: 3

@@ -29,17 +29,20 @@ pca <- import_pca(
 plot_pca(pca, title = "GCTA PCA")
 ```
 
-![PCA scatter plot. Principal component 1 is on the x-axis and principal
-component 2 is on the y-axis, with point colour encoding population
-group.](pca_files/figure-html/unnamed-chunk-2-1.png)
+![Scatter chart. Principal component 1 is on the x-axis and principal
+component 2 is on the y-axis, with point colour encoding imported
+population groups. Samples cluster by their PCA coordinates while
+preserving the same population colour mapping used elsewhere in
+ggpop.](pca_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
 ggpop(pca) + geom_pca(pc_x = 1, pc_y = 3)
 ```
 
-![PCA scatter plot comparing principal component 1 on the x-axis with
-principal component 3 on the
-y-axis.](pca_files/figure-html/unnamed-chunk-3-1.png)
+![Scatter chart. Principal component 1 is on the x-axis and principal
+component 3 is on the y-axis, showing that geom_pca can switch component
+axes while keeping the same sample-level PCA
+data.](pca_files/figure-html/unnamed-chunk-3-1.png)
 
 When the imported object has a `pop` column, both plotting routes map
 population groups to the unified ggpop discrete colour scale.
@@ -49,8 +52,9 @@ ggpop(pca) +
   geom_pca(pc_x = 1, pc_y = 2, palette = "population")
 ```
 
-![PCA scatter plot using the unified ggpop population colour palette for
-population groups.](pca_files/figure-html/unnamed-chunk-4-1.png)
+![Scatter chart. Principal component 1 and principal component 2 are
+plotted with point colour mapped to population group through the unified
+ggpop population palette.](pca_files/figure-html/unnamed-chunk-4-1.png)
 
 ## PC labels
 
@@ -61,8 +65,10 @@ available.
 plot_pca(pca, pc_x = 1, pc_y = 2)
 ```
 
-![PCA scatter plot with axis labels that include variance explained when
-eigenvalues are available.](pca_files/figure-html/unnamed-chunk-5-1.png)
+![Scatter chart. Principal component axes include variance explained
+percentages in their labels when eigenvalues are available, making the
+relative contribution of each PC
+explicit.](pca_files/figure-html/unnamed-chunk-5-1.png)
 
 ## Optional flashpcaR computation
 

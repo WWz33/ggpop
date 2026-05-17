@@ -2,10 +2,9 @@
 
 Adds a Q-Q plot as a list of ggplot layers using the same core p-value
 cleaning, truncation, speedup, red diagonal, and lambda annotation
-contract as \`fastman::fastqq_gg()\`, while applying the tidyplot-style
-ggpop theme from \`theme_tidyplot()\`. \`geom_qq_pub()\` is the
-publication-style layer used by native \`plot_qq(..., use_fastman =
-FALSE)\`.
+contract as ggpop's internal fastqq-style layout, while applying the
+tidyplot-style ggpop theme from \`theme_tidyplot()\`. \`geom_qq()\` is
+the ggplot extension path paired with direct \`plot_qq()\`.
 
 ## Usage
 
@@ -15,11 +14,6 @@ geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
   diagonal = TRUE, diagonal_colour = "red", show_lambda = TRUE,
   maxP = 14, fix_zero = TRUE, speedup = TRUE, base_size = 11,
   base_family = "", lambda_size = base_size * 0.9, na.rm = FALSE,
-  show.legend = FALSE, inherit.aes = TRUE)
-geom_qq_pub(mapping = ggplot2::aes(p = .data$p), data = NULL, ...,
-  size = 0.8, alpha = 0.8, diagonal = TRUE, diagonal_colour = "red",
-  show_lambda = TRUE, maxP = 14, fix_zero = TRUE, speedup = TRUE,
-  base_size = 11, base_family = "", lambda_size = base_size * 0.9,
   show.legend = FALSE, inherit.aes = TRUE)
 ```
 
@@ -67,8 +61,8 @@ geom_qq_pub(mapping = ggplot2::aes(p = .data$p), data = NULL, ...,
 
 - maxP:
 
-  Maximum displayed \`-log10(p)\` value, following
-  \`fastman::fastqq_gg()\`.
+  Maximum displayed \`-log10(p)\` value, following ggpop's internal
+  fastqq-style layout.
 
 - fix_zero:
 
@@ -78,7 +72,7 @@ geom_qq_pub(mapping = ggplot2::aes(p = .data$p), data = NULL, ...,
 - speedup:
 
   Round expected and observed values to reduce duplicate points,
-  following \`fastman::fastqq_gg()\`.
+  following ggpop's internal fastqq-style layout.
 
 - base_size:
 

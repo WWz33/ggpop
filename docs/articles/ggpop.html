@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/admixture.html">Admixture plots</a></li>
+    <li><a class="dropdown-item" href="../articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><a class="dropdown-item" href="../articles/guides/compatibility.html">Compatibility and advanced helpers</a></li>
@@ -116,16 +117,14 @@ original-package behavior.</li>
 <td><code><a href="../reference/import_gwas.html">import_gwas()</a></code></td>
 <td><code><a href="../reference/plot_manha.html">plot_manha()</a></code></td>
 <td><code>ggpop() + geom_manha()</code></td>
-<td>
-<code>fastman</code> backend when installed</td>
+<td>internal fastman-style layout</td>
 </tr>
 <tr class="even">
 <td>GWAS Q-Q</td>
 <td><code><a href="../reference/import_gwas.html">import_gwas()</a></code></td>
 <td><code><a href="../reference/plot_qq.html">plot_qq()</a></code></td>
 <td><code>ggpop() + ggpop::geom_qq()</code></td>
-<td>
-<code>fastman</code> backend when installed</td>
+<td>internal fastqq-style layout</td>
 </tr>
 <tr class="odd">
 <td>PCA</td>
@@ -143,10 +142,14 @@ original-package behavior.</li>
 </td>
 <td><code><a href="../reference/plot_admix.html">plot_admix()</a></code></td>
 <td><code>ggpop() + geom_admix()</code></td>
-<td>
-<code><a href="../reference/pophelper_compat.html">plot_pophelper_q()</a></code> /
-<code><a href="../reference/plot_admix.html">plot_admixture_pophelper()</a></code>
-</td>
+<td>see compatibility article</td>
+</tr>
+<tr class="odd">
+<td>Population statistics</td>
+<td><code><a href="../reference/import_stats.html">import_stats()</a></code></td>
+<td><code><a href="../reference/geom_stats.html">plot_stats()</a></code></td>
+<td><code>ggpop() + geom_stats()</code></td>
+<td>pixy and vcftools summaries</td>
 </tr>
 </tbody>
 </table>
@@ -167,6 +170,10 @@ original-package behavior.</li>
 <span>  type <span class="op">=</span> <span class="st">"admixture"</span>,</span>
 <span>  ind <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"snp"</span>, <span class="st">"finalsnp_ld.fam"</span><span class="op">)</span>,</span>
 <span>  pop_group <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"pop_group.txt"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_stats.html">import_stats</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"Population_genomics_statistics"</span>, <span class="st">"pixy"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"pixy"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Each importer returns a typed object:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -175,7 +182,9 @@ original-package behavior.</li>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">pca</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_pca"  "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ggpop_admix" "data.frame"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "ggpop_admix" "data.frame"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ggpop_stats" "data.frame"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="tidy-plotting-style">Tidy plotting style<a class="anchor" aria-label="anchor" href="#tidy-plotting-style"></a>
@@ -188,24 +197,24 @@ layers.</p>
 <p>The direct path:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span>, use_fastman <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Manhattan plot showing chromosomes along the x-axis and minus log10 p-values on the y-axis." width="700"></p>
+<span>  <span class="fu"><a href="../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Points form chromosome-specific bands with horizontal reference lines marking suggestive and genome-wide significance thresholds." width="700"></p>
 <p>The ggplot extension path:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_manha.html">geom_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Manhattan plot from the layered ggplot extension path. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, matching the direct plot_manha visual style." width="700"></p>
 <p>The same pattern applies across modules:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggpop</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_qq.html">geom_qq</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot, and an admixture stacked bar chart." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with points compared against a diagonal reference line." width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/geom_pca.html">geom_pca</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-5-2.png" class="r-plt" alt="Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot, and an admixture stacked bar chart." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-5-2.png" class="r-plt" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population groups." width="700"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">admix</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-5-3.png" class="r-plt" alt="Three layered ggpop examples: a Q-Q scatter plot, a PCA scatter plot, and an admixture stacked bar chart." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-5-3.png" class="r-plt" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar for K equals 3." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="population-groups-and-discrete-colours">Population groups and discrete colours<a class="anchor" aria-label="anchor" href="#population-groups-and-discrete-colours"></a>
@@ -223,10 +232,10 @@ layers.</p>
 <p>The same file drives PCA colours and admixture group labels:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pca</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA PCA by population"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="PCA scatter plot by population and admixture stacked bar plot with group labels." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups." width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">admix</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span>, show_group_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" alt="PCA scatter plot by population and admixture stacked bar plot with group labels." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar, with population group labels used for ordering." width="700"></p>
 <p>All categorical colours use a unified discrete palette entry:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"population"</span><span class="op">)</span></span>
@@ -247,12 +256,14 @@ layers.</p>
 for PCA plots.</li>
 <li>Use <code><a href="../reference/plot_admix.html">plot_admix()</a></code> and
 <code>ggpop() + geom_admix()</code> for admixture plots.</li>
+<li>Use <code><a href="../reference/geom_stats.html">plot_stats()</a></code> and
+<code>ggpop() + geom_stats()</code> for windowed population
+statistics.</li>
 <li>Treat the direct <code>plot_*()</code> functions as the reference
 style; <code>geom_*()</code> is the same look inside a ggplot
 composition.</li>
-<li>Use <code><a href="../reference/pophelper_compat.html">plot_pophelper_q()</a></code> or
-<code><a href="../reference/plot_admix.html">plot_admixture_pophelper()</a></code> only when you need compatibility
-with existing <code>pophelper</code> workflows.</li>
+<li>Use the compatibility article only when you need original
+<code>pophelper</code> workflows.</li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

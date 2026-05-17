@@ -11,6 +11,8 @@
 - [PCA plots](https://wwz33.github.io/ggpop/articles/guides/pca.md):
 - [Admixture
   plots](https://wwz33.github.io/ggpop/articles/guides/admixture.md):
+- [Population genomics
+  statistics](https://wwz33.github.io/ggpop/articles/guides/stats.md):
 - [Discrete color
   schemes](https://wwz33.github.io/ggpop/articles/guides/color-schemes.md):
 - [Full extdata

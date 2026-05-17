@@ -3,8 +3,8 @@
 Adds a PCA plot as a list of ggplot layers: the point layer, PC axis
 labels with variance contribution when available, unified discrete
 population colour scale when \`pop\` is present, and the tidyplot-style
-ggpop theme from \`theme_tidyplot()\`. \`geom_pca_pub()\` is the
-publication-style layer used by \`plot_pca()\`.
+ggpop theme from \`theme_tidyplot()\`. \`geom_pca()\` is the ggplot
+extension path paired with direct \`plot_pca()\`.
 
 ## Usage
 
@@ -13,10 +13,6 @@ geom_pca(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
   data = NULL, ..., pc_x = 1, pc_y = 2, base_size = 11,
   base_family = "", palette = NULL, pop_group = TRUE, na.rm = FALSE,
   show.legend = NA, inherit.aes = TRUE)
-geom_pca_pub(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
-  data = NULL, ..., pc_x = 1, pc_y = 2, size = 1.8, alpha = 0.85,
-  na.rm = FALSE, base_size = 11, base_family = "", show.legend = NA,
-  palette = NULL, pop_group = TRUE, inherit.aes = TRUE)
 ```
 
 ## Arguments
@@ -56,10 +52,6 @@ geom_pca_pub(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
 - pop_group:
 
   Use imported \`pop\` metadata for population colours when available.
-
-- size, alpha:
-
-  Point appearance for publication style.
 
 - na.rm:
 

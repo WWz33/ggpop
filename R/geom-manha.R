@@ -1,3 +1,33 @@
+plot_manha <- function(data, title = NULL, subtitle = NULL, caption = NULL,
+                       threshold = 5e-8, suggestive = 1e-5,
+                       point_size = 0.9, point_alpha = NA,
+                       base_size = 11, base_family = "", legend_position = "none",
+                       logp = TRUE, maxP = 14, bybp = FALSE,
+                       palette = "manhattan", binary = FALSE,
+                       ...) {
+  .require_class(data, "ggpop_gwas", "Manhattan plot data")
+  .require_columns(data, c("chr", "pos", "p"), "GWAS data")
+  plot <- ggpop(data) +
+    geom_manha(
+      data = data,
+      size = point_size,
+      alpha = point_alpha,
+      base_size = base_size,
+      threshold = threshold,
+      suggestive = suggestive,
+      logp = logp,
+      maxP = maxP,
+      bybp = bybp,
+      palette = palette,
+      binary = binary,
+      base_family = base_family,
+      ...
+    )
+  y_label <- if (isTRUE(logp)) expression(-log[10]~(p)) else "p"
+  plot <- .ggpop_apply_labels(plot, title, subtitle, caption, "Chromosome", y_label)
+  plot + ggplot2::theme(legend.position = legend_position)
+}
+
 StatManha <- ggplot2::ggproto(
   "StatManha", ggplot2::Stat,
   required_aes = c("chr", "pos", "p"),

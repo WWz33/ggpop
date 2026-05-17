@@ -35,25 +35,28 @@ admix <- import_admix(
 plot_admix(admix, k = "all")
 ```
 
-![Joined admixture stacked bar chart with one panel per K value, showing
-ancestry proportions for each
-individual.](admixture_files/figure-html/unnamed-chunk-2-1.png)
+![Faceted stacked bar chart. Each panel represents one K value from the
+imported ADMIXTURE directory, individuals are arranged along the x-axis,
+and stacked bar segments show ancestry proportions that sum to one for
+each individual.](admixture_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
 plot_admix(admix, k = c(2, 4))
 ```
 
-![Admixture stacked bar charts for selected K values 2 and 4, comparing
-ancestry proportions across
-individuals.](admixture_files/figure-html/unnamed-chunk-3-1.png)
+![Faceted stacked bar chart with two selected K panels. The K equals 2
+and K equals 4 panels show how ancestry proportions split into more
+clusters when a higher K value is
+selected.](admixture_files/figure-html/unnamed-chunk-3-1.png)
 
 ``` r
 ggpop(admix) + geom_admix(k = 3)
 ```
 
-![Layered admixture stacked bar chart for K equals 3, with individuals
-on the x-axis and ancestry proportions stacked within each
-bar.](admixture_files/figure-html/unnamed-chunk-4-1.png)
+![Stacked bar chart. Individuals are on the x-axis and ancestry
+proportions are stacked within each bar for K equals 3, demonstrating
+that the ggplot layer path produces the same kind of admixture display
+as the direct plot.](admixture_files/figure-html/unnamed-chunk-4-1.png)
 
 ## Population group labels and sorting
 
@@ -91,9 +94,10 @@ plot_admix(
 )
 ```
 
-![Admixture stacked bar chart for K equals 3 with individual labels and
-population group labels used for
-sorting.](admixture_files/figure-html/unnamed-chunk-6-1.png)
+![Grouped stacked bar chart. Individuals are sorted within population
+groups for K equals 3, ancestry cluster proportions fill each bar, and
+population group strip labels separate the sample
+groups.](admixture_files/figure-html/unnamed-chunk-6-1.png)
 
 The layered ggplot path returns the same kind of ggplot object:
 
@@ -102,9 +106,10 @@ ggpop(admix) +
   geom_admix(k = 3, sort = "all", order_group = TRUE)
 ```
 
-![Layered admixture stacked bar chart sorted by ancestry cluster and
-population group
-labels.](admixture_files/figure-html/unnamed-chunk-7-1.png)
+![Layered grouped stacked bar chart. Individuals are ordered by ancestry
+cluster and population group, showing that the geom_admix layer
+preserves the same sorting and grouping controls as
+plot_admix.](admixture_files/figure-html/unnamed-chunk-7-1.png)
 
 ## Direct vs layered use
 
@@ -121,17 +126,17 @@ that publication-level look inside a ggplot composition.
 plot_admix(admix, k = 3)
 ```
 
-![Two admixture stacked bar charts comparing the direct plot_admix route
-and the layered ggpop plus geom_admix
-route.](admixture_files/figure-html/unnamed-chunk-8-1.png)
+![Stacked bar chart from plot_admix. Individuals are arranged along the
+x-axis and ancestry proportions are stacked within each bar for K equals
+3.](admixture_files/figure-html/unnamed-chunk-8-1.png)
 
 ``` r
 ggpop(admix) + geom_admix(k = 3)
 ```
 
-![Two admixture stacked bar charts comparing the direct plot_admix route
-and the layered ggpop plus geom_admix
-route.](admixture_files/figure-html/unnamed-chunk-8-2.png)
+![Stacked bar chart from ggpop plus geom_admix. The same K equals 3
+ancestry proportions are displayed through the layered ggplot extension
+path.](admixture_files/figure-html/unnamed-chunk-8-2.png)
 
 ## STRUCTURE-style input
 
