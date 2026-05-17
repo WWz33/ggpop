@@ -35,6 +35,7 @@ test_that("admixture plotting supports K selection", {
   expect_equal(nrow(ggplot2::ggplot_build(geom_k3)$data[[1]]), 912)
   expect_equal(nrow(ggplot2::ggplot_build(plot_all)$data[[1]]), nrow(data))
   expect_equal(nrow(ggplot2::ggplot_build(geom_all)$data[[1]]), nrow(data))
+  expect_setequal(as.character(ggplot2::ggplot_build(geom_k3)$layout$layout$run_id), unique(as.character(.filter_admix_k(data, 3)$run_id)))
   expect_equal(length(unique(ggplot2::ggplot_build(plot_all)$layout$layout$PANEL)), length(unique(data$k)))
   expect_equal(length(unique(ggplot2::ggplot_build(geom_all)$layout$layout$PANEL)), length(unique(data$k)))
   expect_equal(

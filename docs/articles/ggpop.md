@@ -165,12 +165,13 @@ from pixy or vcftools outputs:
 
 ``` r
 stats |>
-  plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+  plot_stats(stat = "all", chr = "chr2L")
 ```
 
-![Two-panel line plot of population genomics statistics on chr2L. FST
-and pi are stacked vertically, genomic position in megabases is on the
-shared x-axis, and each panel uses its own statistic value
+![Faceted line plot of population genomics statistics on chr2L. Dxy,
+FST, pi, Tajima's D, and Watterson's theta are stacked vertically,
+genomic position in megabases is on the shared x-axis, and each panel
+uses its own statistic value
 scale.](ggpop_files/figure-html/unnamed-chunk-9-1.png)
 
 The layered path filters facets to the requested statistics:

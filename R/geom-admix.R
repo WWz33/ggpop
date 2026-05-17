@@ -189,7 +189,45 @@ geom_admix <- function(mapping = NULL, data = NULL, ...,
       ggplot2::theme(strip.text.x = ggplot2::element_blank())
     }
   )
-  Filter(Negate(is.null), layers)
+  structure(
+    Filter(Negate(is.null), layers),
+    class = c("ggpop_admix_layers", "list"),
+    ggpop_admix_data = layer_data,
+    ggpop_admix_filter = list(
+      k = k,
+      sort = sort,
+      group = group,
+      order_group = order_group,
+      subset_group = subset_group,
+      indlabwithgrplab = indlabwithgrplab,
+      indlabsep = indlabsep
+    )
+  )
+}
+
+ggplot_add.ggpop_admix_layers <- function(object, plot, object_name) {
+  layer_data <- attr(object, "ggpop_admix_data", exact = TRUE)
+  filter <- attr(object, "ggpop_admix_filter", exact = TRUE)
+  if (inherits(plot$data, "ggpop_admix")) {
+    plot$data <- if (is.function(layer_data)) {
+      .prepare_admix_plot_data(
+        plot$data,
+        k = filter$k,
+        sort = filter$sort,
+        group = filter$group,
+        order_group = filter$order_group,
+        subset_group = filter$subset_group,
+        indlabwithgrplab = filter$indlabwithgrplab,
+        indlabsep = filter$indlabsep
+      )
+    } else {
+      layer_data
+    }
+  }
+  for (layer in unclass(object)) {
+    plot <- plot + layer
+  }
+  plot
 }
 
 geom_admix_pub <- function(mapping = ggplot2::aes(sample_id = .data$sample_id, cluster = .data$cluster, proportion = .data$proportion),

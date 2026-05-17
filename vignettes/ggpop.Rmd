@@ -124,9 +124,9 @@ ggpop_palette(8, "admixture")
 The statistics module uses the same tidy pattern for windowed summaries from
 pixy or vcftools outputs:
 
-```{r, fig.alt = "Two-panel line plot of population genomics statistics on chr2L. FST and pi are stacked vertically, genomic position in megabases is on the shared x-axis, and each panel uses its own statistic value scale."}
+```{r, fig.alt = "Faceted line plot of population genomics statistics on chr2L. Dxy, FST, pi, Tajima's D, and Watterson's theta are stacked vertically, genomic position in megabases is on the shared x-axis, and each panel uses its own statistic value scale."}
 stats |>
-  plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+  plot_stats(stat = "all", chr = "chr2L")
 ```
 
 The layered path filters facets to the requested statistics:

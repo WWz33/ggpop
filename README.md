@@ -138,8 +138,12 @@ P002    PopB
 
 ``` r
 import_stats("pixy_results/", type = "pixy") |>
-  plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+  plot_stats(stat = "all", chr = "chr2L")
+```
 
+<img src="man/figures/readme-stats.png" alt="Faceted line plot. Population genomics statistics are stacked vertically for chromosome chr2L, genomic position in megabases is on the shared x-axis, and each panel has its own statistic value scale." style="display: block; margin: auto;" />
+
+``` r
 import_stats("vcftools_results/", type = "vcftools") |>
   plot_stats(stat = "all", chr = "chr2L")
 ```
