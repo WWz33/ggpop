@@ -74,6 +74,12 @@ reference:
   contents:
   - plot_admix
   - geom_admix
+- title: Population Genomics Statistics
+  desc: Windowed FST, pi, Tajima's D, and related statistics from pixy or vcftools.
+  contents:
+  - import_stats
+  - plot_stats
+  - geom_stats
 - title: Styling
   desc: Shared palettes, scales, and publication theme helpers.
   contents:

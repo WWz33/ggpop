@@ -1,4 +1,4 @@
-plot_manha <- function(data, title = "Manhattan plot", subtitle = NULL, caption = NULL,
+plot_manha <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                        threshold = 5e-8, suggestive = 1e-5,
                        use_fastman = TRUE, point_size = 0.9, point_alpha = NA,
                        base_size = 11, base_family = "", legend_position = "none",
@@ -57,7 +57,7 @@ plot_gwas <- function(data, ...) {
   plot_manha(data, ...)
 }
 
-plot_qq <- function(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
+plot_qq <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                     show_lambda = TRUE, use_fastman = TRUE, point_size = 0.8,
                     point_alpha = 0.8, base_size = 11, base_family = "",
                     legend_position = "none", ...) {
@@ -82,7 +82,7 @@ plot_qq <- function(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
   .ggpop_apply_labels(plot, title, subtitle, caption, expression(Expected ~ -log[10](italic(P))), expression(Observed ~ -log[10](italic(P))))
 }
 
-plot_pca <- function(data, title = "PCA plot", subtitle = NULL, caption = NULL,
+plot_pca <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                      pc_x = 1, pc_y = 2, point_size = 1.8, point_alpha = 0.85,
                      base_size = 11, base_family = "", legend_position = "right",
                      palette = NULL, pop_group = TRUE, ...) {
@@ -106,7 +106,7 @@ plot_pca <- function(data, title = "PCA plot", subtitle = NULL, caption = NULL,
   plot
 }
 
-plot_admix <- function(data, title = "Admixture plot", subtitle = NULL, caption = NULL,
+plot_admix <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                        sort = c("none", "cluster", "all", "label"), sortind = NULL,
                        k = "all", palette = NULL, group = "pop", order_group = FALSE,
                        show_group_labels = NULL, subset_group = NULL,

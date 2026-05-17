@@ -60,6 +60,17 @@ Narrow user-facing admixture plotting API.
   [`geom_admix_pub()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
   : Admixture barplot layer
 
+## Population Genomics Statistics
+
+Windowed FST, pi, Tajima’s D, and related statistics from pixy or
+vcftools.
+
+- [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md)
+  : Import population genomics summary statistics
+- [`geom_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
+  [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
+  : Population genomics statistics plots
+
 ## Styling
 
 Shared palettes, scales, and publication theme helpers.

@@ -51,7 +51,25 @@ test_that("publication plotting wrappers build native ggplot outputs", {
   for (plot in plots) {
     expect_s3_class(plot, "ggplot")
     expect_silent(ggplot2::ggplot_build(plot))
+    expect_null(plot$labels$title)
   }
+})
+
+test_that("plot wrappers add no default titles while geoms remain layers", {
+  gwas <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
+  pca <- import_pca(extdata_path("small_plink.eigenvec"), type = "plink")
+  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+
+  expect_null(plot_manha(gwas, use_fastman = FALSE)$labels$title)
+  expect_null(plot_qq(gwas, use_fastman = FALSE)$labels$title)
+  expect_null(plot_pca(pca)$labels$title)
+  expect_null(plot_admix(admix)$labels$title)
+  expect_equal(plot_manha(gwas, title = "GWAS")$labels$title, "GWAS")
+
+  expect_true(is.list(geom_manha()))
+  expect_true(is.list(geom_qq()))
+  expect_true(is.list(geom_pca()))
+  expect_true(is.list(geom_admix()))
 })
 
 test_that("publication geom layers align with native plot wrappers", {
