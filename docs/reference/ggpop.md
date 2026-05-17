@@ -3,13 +3,13 @@
 Creates a ggplot2 object from typed ggpop data so users can add ggpop
 geoms with the standard \`+\` syntax.
 
-## 用法
+## Usage
 
 ``` r
 ggpop(data, mapping = ggplot2::aes(), ..., module = NULL)
 ```
 
-## 参数
+## Arguments
 
 - data:
 

@@ -6,7 +6,7 @@ population colour scale when \`pop\` is present, and the tidyplot-style
 ggpop theme from \`theme_tidyplot()\`. \`geom_pca_pub()\` is the
 publication-style layer used by \`plot_pca()\`.
 
-## 用法
+## Usage
 
 ``` r
 geom_pca(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
@@ -19,7 +19,7 @@ geom_pca_pub(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
   palette = NULL, pop_group = TRUE, inherit.aes = TRUE)
 ```
 
-## 参数
+## Arguments
 
 - mapping:
 

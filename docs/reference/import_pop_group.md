@@ -3,13 +3,13 @@
 Imports a two-column population group file for PCA colours and admixture
 group labels. The default format is \`sample pop\`.
 
-## 用法
+## Usage
 
 ``` r
 import_pop_group(file, sample_col = "sample", pop_col = "pop", ...)
 ```
 
-## 参数
+## Arguments
 
 - file:
 
@@ -27,7 +27,7 @@ import_pop_group(file, sample_col = "sample", pop_col = "pop", ...)
 
   Additional arguments passed to \`read.table()\`.
 
-## 范例
+## Examples
 
 ``` r
 groups <- import_pop_group(system.file("extdata", "pop_group.txt", package = "ggpop"))

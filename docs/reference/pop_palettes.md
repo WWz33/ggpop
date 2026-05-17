@@ -5,7 +5,7 @@ variables. Palettes follow tidyplots-style behavior: extra colours can
 be downsampled, and short palettes are interpolated when more categories
 are requested.
 
-## 用法
+## Usage
 
 ``` r
 new_pop_palette(x, name = "ggpop palette", reverse = FALSE)
@@ -23,7 +23,7 @@ scale_fill_ggpop(palette = c("admixture", "population", "publication", "manhatta
   downsample = c("evenly", "first", "last", "middle"), ...)
 ```
 
-## 范例
+## Examples
 
 ``` r
 ggpop_palette(4, "population")

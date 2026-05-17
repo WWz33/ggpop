@@ -5,7 +5,7 @@ Manhattan direct API, and \`plot_gwas()\` remains a compatibility alias
 only. The reference visual standard is \`plot_manha(..., use_fastman =
 TRUE)\`, and the tidy extension path is \`ggpop(data) + geom_manha()\`.
 
-## 用法
+## Usage
 
 ``` r
 plot_manha(data, title = "Manhattan plot", subtitle = NULL, caption = NULL,
@@ -16,7 +16,7 @@ plot_manha(data, title = "Manhattan plot", subtitle = NULL, caption = NULL,
 plot_gwas(data, ...)
 ```
 
-## 参数
+## Arguments
 
 - data:
 

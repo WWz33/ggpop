@@ -178,6 +178,11 @@ scale_fill_ggpop("admixture")
 This version includes dependency fixes needed for reliable source
 installation:
 
+- added `Remotes` for GitHub-only optional dependencies;
+- kept unmodified `fastman` and `pophelper` pointed at upstream
+  repositories;
+- forked `flashpcaR` to `WWz33/flashpca` for Windows source
+  installation;
 - replaced `flashpcaR/flashpcaR/src/*.cpp` and `src/*.h` path stubs with
   real source files;
 - changed `flashpcaR/flashpcaR/src/Makevars` and `Makevars.win` from
@@ -187,13 +192,25 @@ installation:
 
 ## Documentation
 
+- [Package index](https://wwz33.github.io/ggpop/reference/) Overview of
+  all ggpop functions
+
+- [Get started](https://wwz33.github.io/ggpop/articles/ggpop.html)
+  Getting started guide
+
 - [GWAS guide](https://wwz33.github.io/ggpop/articles/guides/gwas.html)
   Manhattan and Q-Q plotting workflows
+
 - [PCA guide](https://wwz33.github.io/ggpop/articles/guides/pca.html)
   PCA imports, population colours, and plotting
+
 - [Admixture
   guide](https://wwz33.github.io/ggpop/articles/guides/admixture.html)
   ADMIXTURE/STRUCTURE imports, group labels, and sorting
+
+- [Color
+  schemes](https://wwz33.github.io/ggpop/articles/guides/color-schemes.html)
+  Unified discrete palettes for population-genomics plots
 
 ## Acknowledgements
 

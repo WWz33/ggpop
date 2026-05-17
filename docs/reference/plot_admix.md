@@ -10,7 +10,7 @@ converts ggpop long-form admixture data to a pophelper qlist and calls
 \`pophelper::plotQ()\` for direct original-package compatibility; its
 return structure follows pophelper.
 
-## 用法
+## Usage
 
 ``` r
 plot_admix(data, title = "Admixture plot", subtitle = NULL, caption = NULL,
@@ -24,7 +24,7 @@ plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
   theme = "theme_bw", basesize = 8)
 ```
 
-## 参数
+## Arguments
 
 - data:
 
@@ -73,7 +73,7 @@ plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
 
   Arguments forwarded to \`pophelper::plotQ()\`.
 
-## 细节
+## Details
 
 The recommended user-facing admixture plotting interfaces are
 \`plot_admix()\` and \`geom_admix()\`. \`plot_admixture_pophelper()\` is

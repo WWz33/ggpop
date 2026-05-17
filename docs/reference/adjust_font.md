@@ -2,7 +2,7 @@
 
 Apply a consistent text scale to a ggpop/ggplot object.
 
-## 用法
+## Usage
 
 ``` r
 adjust_font(
@@ -21,7 +21,7 @@ adjust_font(
 )
 ```
 
-## 参数
+## Arguments
 
 - plot:
 
@@ -55,6 +55,6 @@ adjust_font(
 
   Optional font face passed to text elements.
 
-## 值
+## Value
 
 A ggplot object.
