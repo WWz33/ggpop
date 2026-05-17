@@ -10,14 +10,6 @@ import_gwas <- function(file, type = c("auto", "gcta", "gemma", "emmax"), ...) {
   .new_ggpop_gwas(data, source = type)
 }
 
-improt_gwas <- function(file, type = c("auto", "gcta", "gemma", "emmax"), ...) {
-  import_gwas(file = file, type = type, ...)
-}
-
-prot_gwas <- function(file, type = c("auto", "gcta", "gemma", "emmax"), ...) {
-  import_gwas(file = file, type = type, ...)
-}
-
 .guess_gwas_type <- function(file) {
   lower <- tolower(file)
   if (grepl("\\.mlma(\\.gz)?$", lower)) return("gcta")

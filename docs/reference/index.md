@@ -7,16 +7,14 @@ Import typed data and start tidy ggplot workflows.
 - [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) : Create
   a ggplot object from ggpop data
 - [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
-  [`improt_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
-  [`prot_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
   : Import GWAS result files
 - [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md)
   [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md)
   : Import or compute PCA results
 - [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md)
   : Import population group labels
-- [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
-  [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
+- [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md)
+  [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admix.md)
   : Import admixture proportion files
 
 ## GWAS Plots

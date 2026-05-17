@@ -1,5 +1,5 @@
-import_admixture <- function(file, type = c("auto", "structure", "admixture"), ind = NULL,
-                             pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...) {
+import_admix <- function(file, type = c("auto", "structure", "admixture"), ind = NULL,
+                         pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...) {
   type <- match.arg(type)
   files <- .resolve_admix_files(file, pattern = pattern, recursive = recursive)
   if (type == "auto") type <- .guess_admix_type(files[1])
@@ -12,9 +12,9 @@ import_admixture <- function(file, type = c("auto", "structure", "admixture"), i
   .new_ggpop_admix(data, source = type)
 }
 
-import_admix <- function(file, type = c("auto", "structure", "admixture"), ind = NULL,
-                         pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...) {
-  import_admixture(file = file, type = type, ind = ind, pattern = pattern, recursive = recursive, pop_group = pop_group, ...)
+import_admixture <- function(file, type = c("auto", "structure", "admixture"), ind = NULL,
+                             pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...) {
+  import_admix(file = file, type = type, ind = ind, pattern = pattern, recursive = recursive, pop_group = pop_group, ...)
 }
 
 .guess_admix_type <- function(file) {

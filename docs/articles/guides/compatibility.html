@@ -48,6 +48,8 @@
     <li><a class="dropdown-item" href="../../articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/full-extdata.html">Full extdata gallery</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Advanced</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/compatibility.html">Compatibility and advanced helpers</a></li>
   </ul>
 </li>
@@ -97,25 +99,15 @@ original-package compatibility or integration with older code.</p>
 <h2 id="pophelper-compatibility">pophelper compatibility<a class="anchor" aria-label="anchor" href="#pophelper-compatibility"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/pophelper_compat.html">plot_pophelper_q</a></span><span class="op">(</span><span class="fu"><a href="../../reference/import_admixture.html">import_admix</a></span><span class="op">(</span><span class="st">"runs/"</span>, type <span class="op">=</span> <span class="st">"admixture"</span><span class="op">)</span>, returnplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/plot_admix.html">plot_admixture_pophelper</a></span><span class="op">(</span><span class="fu"><a href="../../reference/import_admixture.html">import_admix</a></span><span class="op">(</span><span class="st">"runs/"</span>, type <span class="op">=</span> <span class="st">"admixture"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/pophelper_compat.html">plot_pophelper_q</a></span><span class="op">(</span><span class="fu"><a href="../../reference/import_admix.html">import_admix</a></span><span class="op">(</span><span class="st">"runs/"</span>, type <span class="op">=</span> <span class="st">"admixture"</span><span class="op">)</span>, returnplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../../reference/plot_admix.html">plot_admixture_pophelper</a></span><span class="op">(</span><span class="fu"><a href="../../reference/import_admix.html">import_admix</a></span><span class="op">(</span><span class="st">"runs/"</span>, type <span class="op">=</span> <span class="st">"admixture"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>These helpers keep the original <code>pophelper</code> return
 structure.</p>
 </div>
 <div class="section level2">
-<h2 id="typo-compatible-aliases">Typo-compatible aliases<a class="anchor" aria-label="anchor" href="#typo-compatible-aliases"></a>
-</h2>
-<p>These are kept only for compatibility with older prompt-generated
-examples. Use <code><a href="../../reference/import_gwas.html">import_gwas()</a></code> and <code><a href="../../reference/plot_manha.html">plot_manha()</a></code>
-in new code.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/import_gwas.html">improt_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/import_gwas.html">prot_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="importing-pophelper-qlists">Importing pophelper qlists<a class="anchor" aria-label="anchor" href="#importing-pophelper-qlists"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/pophelper_compat.html">read_pophelper_q</a></span><span class="op">(</span>files <span class="op">=</span> <span class="st">"run1.Q"</span>, as_ggpop <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>When <code>as_ggpop = TRUE</code>, compatibility input is converted
 to a typed <code>ggpop_admix</code> object so it can enter the same

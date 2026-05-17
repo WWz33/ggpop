@@ -166,7 +166,7 @@ The recommended user-facing API is intentionally small.
 | GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop() + geom_manha()` |
 | GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + geom_qq()` |
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` |
-| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
+| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 

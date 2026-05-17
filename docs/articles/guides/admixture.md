@@ -2,10 +2,8 @@
 
 `ggpop` keeps the user-facing admixture API narrow:
 
-- [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
-  /
-  [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
-  create typed `ggpop_admix` objects;
+- [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md)
+  creates typed `ggpop_admix` objects;
 - [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
   returns a `ggplot` object;
 - `ggpop() + geom_admix()` gives the extension-style layered workflow.
@@ -15,7 +13,7 @@
 | Task | API | Notes |
 |----|----|----|
 | Import ADMIXTURE directory or `.Q` files | `import_admix(file, type = "admixture", pop_group = NULL)` | Reads full K result sets |
-| Import STRUCTURE-style numeric Q matrix | `import_admixture(file, type = "structure")` | Limited numeric Q support |
+| Import STRUCTURE-style numeric Q matrix | `import_admix(file, type = "structure")` | Limited numeric Q support |
 | Direct plot | `plot_admix(data, k = ...)` | `k = "all"`, one K, or a vector |
 | Layered plot | `ggpop(data) + geom_admix(k = ...)` | Main ggplot extension path |
 | Original pophelper behavior | [`plot_pophelper_q()`](https://wwz33.github.io/ggpop/reference/pophelper_compat.md) | Advanced compatibility layer |
@@ -140,11 +138,11 @@ path.](admixture_files/figure-html/unnamed-chunk-8-2.png)
 
 ## STRUCTURE-style input
 
-[`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md)
+[`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md)
 also accepts limited STRUCTURE-style inputs. The importer always returns
 the same typed long-format object.
 
 ``` r
-structure <- import_admixture("structure_results.out", type = "structure")
+structure <- import_admix("structure_results.out", type = "structure")
 plot_admix(structure, k = "all")
 ```

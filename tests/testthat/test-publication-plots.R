@@ -14,7 +14,7 @@ test_that("publication theme and palettes are configurable", {
 test_that("font adjustment propagates through publication plotting helpers", {
   gwas <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
   pca <- import_pca(extdata_path("small_plink.eigenvec"), type = "plink")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   base_plot <- (ggplot2::ggplot(data.frame(x = 1, y = 1), ggplot2::aes(x, y)) +
     ggplot2::geom_point()) |>
@@ -39,7 +39,7 @@ test_that("publication plotting wrappers build native ggplot outputs", {
     type = "plink",
     eigenval = extdata_path("small_plink.eigenval")
   )
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   plots <- list(
     plot_manha(gwas),
@@ -58,7 +58,7 @@ test_that("publication plotting wrappers build native ggplot outputs", {
 test_that("plot wrappers add no default titles while geoms remain layers", {
   gwas <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
   pca <- import_pca(extdata_path("small_plink.eigenvec"), type = "plink")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   expect_null(plot_manha(gwas)$labels$title)
   expect_null(plot_qq(gwas)$labels$title)
@@ -75,7 +75,7 @@ test_that("plot wrappers add no default titles while geoms remain layers", {
 test_that("publication geom layers align with native plot wrappers", {
   gwas <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
   pca <- import_pca(extdata_path("small_plink.eigenvec"), type = "plink")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   manha_geom <- ggpop(gwas) + geom_manha()
   qq_geom <- ggpop(gwas) + geom_qq()
@@ -109,7 +109,7 @@ test_that("publication wrappers support tidy pipe style", {
 
   if (requireNamespace("pophelper", quietly = TRUE)) {
     pophelper_plot <- suppressWarnings(
-      import_admixture(extdata_path("small_admixture.Q"), type = "admixture") |>
+      import_admix(extdata_path("small_admixture.Q"), type = "admixture") |>
         plot_admixture_pophelper()
     )
 
@@ -119,7 +119,7 @@ test_that("publication wrappers support tidy pipe style", {
 
 test_that("original-package compatibility adapters are available", {
   gwas <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
   qlist <- as_pophelper_qlist(admix)
 
   expect_type(qlist, "list")

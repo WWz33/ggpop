@@ -21,7 +21,7 @@ ggpop_extdata <- function(...) {
 
 `ggpop` keeps the user-facing admixture API narrow:
 
-- `import_admix()` / `import_admixture()` create typed `ggpop_admix` objects;
+- `import_admix()` creates typed `ggpop_admix` objects;
 - `plot_admix()` returns a `ggplot` object;
 - `ggpop() + geom_admix()` gives the extension-style layered workflow.
 
@@ -30,7 +30,7 @@ ggpop_extdata <- function(...) {
 | Task | API | Notes |
 |---|---|---|
 | Import ADMIXTURE directory or `.Q` files | `import_admix(file, type = "admixture", pop_group = NULL)` | Reads full K result sets |
-| Import STRUCTURE-style numeric Q matrix | `import_admixture(file, type = "structure")` | Limited numeric Q support |
+| Import STRUCTURE-style numeric Q matrix | `import_admix(file, type = "structure")` | Limited numeric Q support |
 | Direct plot | `plot_admix(data, k = ...)` | `k = "all"`, one K, or a vector |
 | Layered plot | `ggpop(data) + geom_admix(k = ...)` | Main ggplot extension path |
 | Original pophelper behavior | `plot_pophelper_q()` | Advanced compatibility layer |
@@ -105,10 +105,10 @@ ggpop(admix) + geom_admix(k = 3)
 
 ## STRUCTURE-style input
 
-`import_admixture()` also accepts limited STRUCTURE-style inputs.
+`import_admix()` also accepts limited STRUCTURE-style inputs.
 The importer always returns the same typed long-format object.
 
 ```{r eval=FALSE}
-structure <- import_admixture("structure_results.out", type = "structure")
+structure <- import_admix("structure_results.out", type = "structure")
 plot_admix(structure, k = "all")
 ```

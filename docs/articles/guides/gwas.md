@@ -111,14 +111,6 @@ can be overridden explicitly with `threshold_color` and
 ## Alternative GWAS formats
 
 [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
-accepts `type = "gcta"`, `type = "gemma"`, and `type = "emmax"`. The
-package also keeps typo-compatible aliases for old prompts and
-notebooks. They are compatibility helpers, not recommended in new code:
-
-``` r
-improt_gwas("assoc.mlma", type = "gcta")
-prot_gwas("assoc.mlma", type = "gcta")
-```
-
-GWAS plotting uses ggpop’s internal ggplot implementation in both direct
-and layered workflows.
+accepts `type = "gcta"`, `type = "gemma"`, and `type = "emmax"`. GWAS
+plotting uses ggpop’s internal ggplot implementation in both direct and
+layered workflows.

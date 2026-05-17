@@ -17,7 +17,7 @@ workflows. The package keeps each module in the same tidy shape:
 | GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop() + geom_manha()` | internal fastman-style layout |
 | GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + ggpop::geom_qq()` | internal fastqq-style layout |
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
-| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) / [`import_admixture()`](https://wwz33.github.io/ggpop/reference/import_admixture.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
+| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
 
 ## Core pattern

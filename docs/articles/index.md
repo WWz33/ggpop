@@ -17,5 +17,8 @@
   schemes](https://wwz33.github.io/ggpop/articles/guides/color-schemes.md):
 - [Full extdata
   gallery](https://wwz33.github.io/ggpop/articles/guides/full-extdata.md):
+
+### Advanced
+
 - [Compatibility and advanced
   helpers](https://wwz33.github.io/ggpop/articles/guides/compatibility.md):

@@ -26,20 +26,6 @@ plot_admixture_pophelper(import_admix("runs/", type = "admixture"))
 
 These helpers keep the original `pophelper` return structure.
 
-## Typo-compatible aliases
-
-These are kept only for compatibility with older prompt-generated
-examples. Use
-[`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
-and
-[`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
-in new code.
-
-``` r
-improt_gwas("assoc.mlma", type = "gcta")
-prot_gwas("assoc.mlma", type = "gcta")
-```
-
 ## Importing pophelper qlists
 
 ``` r

@@ -2,14 +2,11 @@
 
 Imports supported GWAS results into a \`ggpop_gwas\` data frame with
 normalized \`chr\`, \`pos\`, \`p\`, and \`snp\` columns.
-\`improt_gwas()\` and \`prot_gwas()\` are typo-compatible aliases.
 
 ## Usage
 
 ``` r
 import_gwas(file, type = c("auto", "gcta", "gemma", "emmax"), ...)
-improt_gwas(file, type = c("auto", "gcta", "gemma", "emmax"), ...)
-prot_gwas(file, type = c("auto", "gcta", "gemma", "emmax"), ...)
 ```
 
 ## Arguments

@@ -12,7 +12,7 @@ test_that("pophelper compatibility layer lists all exported pophelper functions"
 
 test_that("ggpop admixture data round-trips through pophelper qlist", {
   skip_if_not_installed("pophelper")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   qlist <- pophelper_as_qlist(admix)
   expect_true(pophelper_is_qlist(qlist))
@@ -25,7 +25,7 @@ test_that("ggpop admixture data round-trips through pophelper qlist", {
 
 test_that("pophelper plotting wrappers call plotQ and plotQMultiline", {
   skip_if_not_installed("pophelper")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   expect_type(suppressWarnings(plot_pophelper_q(admix)), "list")
   expect_type(suppressWarnings(plot_admixture_pophelper(admix)), "list")
@@ -55,7 +55,7 @@ test_that("pophelper plotQ join interface works with native qlist input", {
 
 test_that("pophelper generic and analysis wrappers dispatch to original package", {
   skip_if_not_installed("pophelper")
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
 
   expect_true(pophelper_call("is.qlist", pophelper_as_qlist(admix)) |> is.null())
   expect_s3_class(tabulate_pophelper_q(admix), "data.frame")

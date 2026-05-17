@@ -1,10 +1,16 @@
 test_that("admixture importers support ADMIXTURE and limited STRUCTURE", {
-  admix <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
-  structure <- import_admixture(extdata_path("small_structure.out"), type = "structure")
+  admix <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
+  structure <- import_admix(extdata_path("small_structure.out"), type = "structure")
 
   expect_s3_class(admix, "ggpop_admix")
   expect_equal(unique(admix$k), 2L)
   expect_equal(unique(structure$source), "structure")
+})
+
+test_that("admixture compatibility alias returns the same typed data", {
+  file <- extdata_path("small_admixture.Q")
+
+  expect_equal(import_admixture(file, type = "admixture"), import_admix(file, type = "admixture"))
 })
 
 test_that("admixture importer reads full K result directories", {
@@ -16,7 +22,7 @@ test_that("admixture importer reads full K result directories", {
 })
 
 test_that("admixture tidy ggpop pipeline builds", {
-  data <- import_admixture(extdata_path("small_admixture.Q"), type = "admixture")
+  data <- import_admix(extdata_path("small_admixture.Q"), type = "admixture")
   plot <- ggpop(data) + geom_admix()
 
   expect_s3_class(plot, "ggplot")

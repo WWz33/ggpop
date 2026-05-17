@@ -9,13 +9,6 @@ test_that("GWAS importers normalize supported sources", {
   expect_equal(emmax$source[1], "emmax")
 })
 
-test_that("GWAS typo aliases import the same normalized data", {
-  file <- extdata_path("small_gcta.mlma")
-
-  expect_equal(improt_gwas(file, type = "gcta"), import_gwas(file, type = "gcta"))
-  expect_equal(prot_gwas(file, type = "gcta"), import_gwas(file, type = "gcta"))
-})
-
 test_that("GWAS tidy ggpop pipeline builds Manhattan and QQ layers", {
   data <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
 

@@ -2,17 +2,17 @@
 
 Imports admixture proportions into long-format \`ggpop_admix\` S3 data
 for \`plot_admix()\` and \`geom_admix()\`. Directories are read as full
-multi-K ADMIXTURE result sets. \`import_admix()\` is the shorter
-user-facing alias. When \`pop_group\` is supplied, population labels are
-joined by \`sample_id\` and drive pophelper-style group facets and
-sorting.
+multi-K ADMIXTURE result sets. \`import_admix()\` is the user-facing
+interface; \`import_admixture()\` is kept as a compatibility alias. When
+\`pop_group\` is supplied, population labels are joined by \`sample_id\`
+and drive pophelper-style group facets and sorting.
 
 ## Usage
 
 ``` r
-import_admixture(file, type = c("auto", "structure", "admixture"), ind = NULL,
-  pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...)
 import_admix(file, type = c("auto", "structure", "admixture"), ind = NULL,
+  pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...)
+import_admixture(file, type = c("auto", "structure", "admixture"), ind = NULL,
   pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...)
 ```
 
