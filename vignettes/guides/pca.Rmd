@@ -43,7 +43,7 @@ pca <- import_pca(
 ```
 
 ```{r, fig.alt = "Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups. Samples cluster by their PCA coordinates while preserving the same population colour mapping used elsewhere in ggpop."}
-plot_pca(pca, title = "GCTA PCA")
+plot_pca(pca)
 ```
 
 ```{r, fig.alt = "Scatter chart. Principal component 1 is on the x-axis and principal component 3 is on the y-axis, showing that geom_pca can switch component axes while keeping the same sample-level PCA data."}

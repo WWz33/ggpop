@@ -197,7 +197,7 @@ layers.</p>
 <p>The direct path:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Points form chromosome-specific bands with horizontal reference lines marking suggestive and genome-wide significance thresholds." width="700"></p>
 <p>The ggplot extension path:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -231,7 +231,7 @@ layers.</p>
 <span><span class="co">#&gt; 6      P012 PopB</span></span></code></pre></div>
 <p>The same file drives PCA colours and admixture group labels:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pca</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"GCTA PCA by population"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pca</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups." width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">admix</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span>, show_group_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>

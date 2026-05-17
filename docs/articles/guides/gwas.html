@@ -139,10 +139,10 @@ without an external <code>fastman</code> dependency.</li>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"gwas"</span>, <span class="st">"gcta.mlma"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gwas_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Most points sit below the reference lines, while the horizontal suggestive and genome-wide threshold lines show where stronger GWAS signals would stand out." width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Q-Q"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">gwas</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gwas_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis. Points follow the red diagonal reference line closely, and a lambda annotation summarizes genomic inflation." width="700"></p>
 </div>
 <div class="section level2">

@@ -7,7 +7,7 @@ the closest match to the package’s real-world supported examples.
 
 ``` r
 gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
-plot_manha(gwas, title = "GCTA Manhattan")
+plot_manha(gwas)
 ```
 
 ![Manhattan plot from the bundled GCTA result file. Chromosomes are
@@ -16,7 +16,7 @@ with horizontal reference lines marking GWAS
 thresholds.](full-extdata_files/figure-html/unnamed-chunk-1-1.png)
 
 ``` r
-plot_qq(gwas, title = "GCTA Q-Q")
+plot_qq(gwas)
 ```
 
 ![Q-Q scatter plot from the bundled GCTA result file. Expected minus
@@ -33,7 +33,7 @@ pca <- import_pca(
   eigenval = ggpop_extdata("pca", "gcta.eigenval"),
   pop_group = ggpop_extdata("pop_group.txt")
 )
-plot_pca(pca, title = "GCTA PCA")
+plot_pca(pca)
 ```
 
 ![Scatter chart from the bundled GCTA PCA eigenvector file. Principal
@@ -50,7 +50,7 @@ admix <- import_admix(
   ind = ggpop_extdata("snp", "finalsnp_ld.fam"),
   pop_group = ggpop_extdata("pop_group.txt")
 )
-plot_admix(admix, k = "all", title = "ADMIXTURE", order_group = TRUE)
+plot_admix(admix, k = "all", order_group = TRUE)
 ```
 
 ![Faceted stacked bar chart from the full bundled ADMIXTURE results.

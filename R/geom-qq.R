@@ -1,5 +1,7 @@
 plot_qq <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                     show_lambda = TRUE, point_size = 0.8,
+                    diagonal_color = .gwas_threshold_color(),
+                    diagonal_colour = NULL,
                     point_alpha = 0.8, base_size = 11, base_family = "",
                     legend_position = "none", ...) {
   .require_class(data, "ggpop_gwas", "Q-Q plot data")
@@ -9,6 +11,7 @@ plot_qq <- function(data, title = NULL, subtitle = NULL, caption = NULL,
       data = data,
       size = point_size,
       alpha = point_alpha,
+      diagonal_color = diagonal_colour %||% diagonal_color,
       show_lambda = show_lambda,
       base_size = base_size,
       base_family = base_family,
@@ -198,12 +201,14 @@ StatQQLambda <- ggplot2::ggproto(
 geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
                     geom = "point", position = "identity", ..., size = 0.8,
                     alpha = 0.8, colour = "black", diagonal = TRUE,
-                    diagonal_colour = "red", show_lambda = TRUE,
+                    diagonal_color = .gwas_threshold_color(),
+                    diagonal_colour = NULL, show_lambda = TRUE,
                     maxP = 14, fix_zero = TRUE, speedup = TRUE,
                     base_size = 11, base_family = "",
-                    lambda_size = base_size * 0.9,
+                    lambda_size = base_size * 0.65,
                     na.rm = FALSE, show.legend = FALSE,
                     inherit.aes = TRUE) {
+  diagonal_color <- diagonal_colour %||% diagonal_color
   layers <- c(
     list(
       .geom_qq_layer(
@@ -228,7 +233,7 @@ geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
           slope = 1,
           linewidth = 0.5,
           linetype = "solid",
-          colour = diagonal_colour
+          colour = diagonal_color
         )
       },
       if (show_lambda) {
@@ -255,11 +260,14 @@ geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
 
 geom_qq_pub <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
                         ..., size = 0.8, alpha = 0.8,
-                        diagonal = TRUE, diagonal_colour = "red",
+                        diagonal = TRUE,
+                        diagonal_color = .gwas_threshold_color(),
+                        diagonal_colour = NULL,
                         show_lambda = TRUE, maxP = 14, fix_zero = TRUE,
                         speedup = TRUE, base_size = 11, base_family = "",
-                        lambda_size = base_size * 0.9,
+                        lambda_size = base_size * 0.65,
                         show.legend = FALSE, inherit.aes = TRUE) {
+  diagonal_color <- diagonal_colour %||% diagonal_color
   geom_qq(
     mapping = mapping,
     data = data,
@@ -267,7 +275,7 @@ geom_qq_pub <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
     size = size,
     alpha = alpha,
     diagonal = diagonal,
-    diagonal_colour = diagonal_colour,
+    diagonal_color = diagonal_color,
     show_lambda = show_lambda,
     maxP = maxP,
     fix_zero = fix_zero,

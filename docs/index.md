@@ -70,7 +70,7 @@ documentation](https://wwz33.github.io/ggpop/reference/).
 library(ggpop)
 
 import_gwas("assoc.mlma", type = "gcta") |>
-  plot_manha(title = "GCTA Manhattan")
+  plot_manha()
 ```
 
 ![Manhattan plot. Chromosomes are arranged along the x-axis and minus
@@ -90,7 +90,7 @@ import_pca(
   type = "plink",
   pop_group = "pop_group.txt"
 ) |>
-  plot_pca(title = "PCA by population")
+  plot_pca()
 ```
 
 ![Scatter chart. Principal component 1 is on the x-axis and principal

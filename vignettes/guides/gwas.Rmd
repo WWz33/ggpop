@@ -42,11 +42,11 @@ gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
 ```
 
 ```{r, fig.alt = "Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Most points sit below the reference lines, while the horizontal suggestive and genome-wide threshold lines show where stronger GWAS signals would stand out."}
-plot_manha(gwas, title = "GCTA Manhattan")
+plot_manha(gwas)
 ```
 
 ```{r, fig.alt = "Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis. Points follow the red diagonal reference line closely, and a lambda annotation summarizes genomic inflation."}
-plot_qq(gwas, title = "GCTA Q-Q")
+plot_qq(gwas)
 ```
 
 ## Layered workflow

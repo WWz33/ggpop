@@ -8,7 +8,7 @@ unified ggpop discrete colour scale by default.
 
 ``` r
 plot_pca(data, title = NULL, subtitle = NULL, caption = NULL,
-  pc_x = 1, pc_y = 2, point_size = 1.8, point_alpha = 0.85,
+  pc_x = 1, pc_y = 2, point_size = 2.16, point_alpha = 0.9,
   base_size = 11, base_family = "", legend_position = "right",
   palette = NULL, ...)
 ```

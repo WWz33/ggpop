@@ -72,7 +72,7 @@ documentation](https://wwz33.github.io/ggpop/reference/).
 library(ggpop)
 
 import_gwas("assoc.mlma", type = "gcta") |>
-  plot_manha(title = "GCTA Manhattan")
+  plot_manha()
 ```
 
 <img src="man/figures/readme-manhattan.png" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with alternating chromosome colours and horizontal genome-wide threshold lines." style="display: block; margin: auto;" />
@@ -89,7 +89,7 @@ import_pca(
   type = "plink",
   pop_group = "pop_group.txt"
 ) |>
-  plot_pca(title = "PCA by population")
+  plot_pca()
 ```
 
 <img src="man/figures/readme-pca.png" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group." style="display: block; margin: auto;" />

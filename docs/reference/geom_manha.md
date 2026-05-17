@@ -12,7 +12,7 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
   data = NULL, geom = "point", position = "identity", ..., threshold = 5e-8,
   suggestive = 1e-5, threshold_color = .gwas_threshold_color(),
   suggestive_color = .gwas_suggestive_color(),
-  size = 0.9, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
+  size = 1.404, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
   bybp = FALSE, palette = "manhattan", binary = FALSE, base_size = 11,
   base_family = "", na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
 ```

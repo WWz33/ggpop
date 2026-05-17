@@ -4,8 +4,8 @@
 \usage{
 geom_pca(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
   data = NULL, ..., pc_x = 1, pc_y = 2, base_size = 11,
-  base_family = "", palette = NULL, pop_group = TRUE, na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE)
+  base_family = "", palette = NULL, pop_group = TRUE, size = 2.16,
+  alpha = 0.9, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
 }
 \arguments{
 \item{mapping}{Aesthetic mapping. Defaults to PC1 and PC2.}
@@ -17,6 +17,7 @@ geom_pca(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
 \item{base_family}{Base font family for the tidyplot-style ggpop theme.}
 \item{palette}{Discrete ggpop palette name or hex vector for population colours.}
 \item{pop_group}{Use imported `pop` metadata for population colours when available.}
+\item{size, alpha}{Point size and transparency. Defaults match `plot_pca()`.}
 \item{na.rm}{Remove missing values.}
 \item{show.legend}{Legend display.}
 \item{inherit.aes}{Inherit plot aesthetics.}

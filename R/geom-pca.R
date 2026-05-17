@@ -1,5 +1,5 @@
 plot_pca <- function(data, title = NULL, subtitle = NULL, caption = NULL,
-                     pc_x = 1, pc_y = 2, point_size = 1.8, point_alpha = 0.85,
+                     pc_x = 1, pc_y = 2, point_size = 2.16, point_alpha = 0.9,
                      base_size = 11, base_family = "", legend_position = "right",
                      palette = NULL, pop_group = TRUE, ...) {
   .require_class(data, "ggpop_pca", "PCA plot data")
@@ -25,7 +25,7 @@ plot_pca <- function(data, title = NULL, subtitle = NULL, caption = NULL,
 geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
                      data = NULL, ..., pc_x = 1, pc_y = 2, base_size = 11,
                      base_family = "", palette = NULL, pop_group = TRUE,
-                     na.rm = FALSE,
+                     size = 2.16, alpha = 0.9, na.rm = FALSE,
                      show.legend = NA, inherit.aes = TRUE) {
   layer_data <- data
   if (isFALSE(pop_group) && !is.null(layer_data) && "pop" %in% names(layer_data)) {
@@ -43,6 +43,8 @@ geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
       mapping = mapping,
       data = layer_data,
       ...,
+      size = size,
+      alpha = alpha,
       na.rm = na.rm,
       show.legend = show.legend,
       inherit.aes = inherit.aes
@@ -55,7 +57,7 @@ geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
 
 geom_pca_pub <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
                          data = NULL, ..., pc_x = 1, pc_y = 2,
-                         size = 1.8, alpha = 0.85, na.rm = FALSE,
+                         size = 2.16, alpha = 0.9, na.rm = FALSE,
                          base_size = 11, base_family = "", show.legend = NA,
                          palette = NULL, pop_group = TRUE,
                          inherit.aes = TRUE) {

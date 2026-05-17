@@ -53,7 +53,8 @@ test_that("plot_manha and geom_manha share the same internal fastman visual cont
   expect_equal(range(plot_points$x, na.rm = TRUE), range(geom_points$x, na.rm = TRUE))
   expect_equal(plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
   expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
-  expect_equal(plot_points$size[1], 0.9)
+  expect_equal(plot_points$size[1], 1.404)
+  expect_equal(plot_points$alpha[1], 0.9)
   expect_equal(plot$data[[2]]$colour, ggpop_palette(1, "publication"))
   expect_equal(plot$data[[3]]$colour, ggpop_palette(4, "publication")[4])
 })
@@ -98,9 +99,20 @@ test_that("QQ geom follows fastqq defaults for native ggplot path", {
   expect_equal(length(qq$data), 3)
   expect_equal(range(qq$data[[1]]$x, na.rm = TRUE), range(fastqq_points$expected, na.rm = TRUE))
   expect_equal(range(qq$data[[1]]$y, na.rm = TRUE), range(fastqq_points$observed, na.rm = TRUE))
-  expect_equal(qq$data[[2]]$colour, "red")
+  expect_equal(qq$data[[2]]$colour, ggpop_palette(4, "publication")[4])
   expect_equal(qq$data[[2]]$linetype, "solid")
+  expect_equal(qq$data[[3]]$size, 11 * 0.65)
   expect_match(qq$data[[3]]$label, "\u03BB = ")
+})
+
+test_that("QQ diagonal colour can be changed explicitly", {
+  data <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
+
+  plot <- ggplot2::ggplot_build(plot_qq(data, diagonal_color = "#4E79A7"))
+  geom <- ggplot2::ggplot_build(ggpop(data) + geom_qq(data = data, diagonal_color = "#4E79A7"))
+
+  expect_equal(plot$data[[2]]$colour, "#4E79A7")
+  expect_equal(geom$data[[2]]$colour, "#4E79A7")
 })
 
 test_that("QQ geom exposes fastqq edge-case controls", {

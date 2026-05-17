@@ -36,3 +36,15 @@ test_that("PCA geom labels axes with variance contribution when available", {
   expect_equal(explicit_geom_plot$labels$x, wrapper_plot$labels$x)
   expect_equal(explicit_geom_plot$labels$y, wrapper_plot$labels$y)
 })
+
+test_that("PCA plot and geom share default point appearance", {
+  data <- import_pca(extdata_path("small_plink.eigenvec"), type = "plink")
+
+  plot <- ggplot2::ggplot_build(plot_pca(data))
+  geom <- ggplot2::ggplot_build(ggpop(data) + geom_pca(data = data))
+
+  expect_equal(plot$data[[1]]$size[1], 2.16)
+  expect_equal(plot$data[[1]]$alpha[1], 0.9)
+  expect_equal(geom$data[[1]]$size[1], 2.16)
+  expect_equal(geom$data[[1]]$alpha[1], 0.9)
+})

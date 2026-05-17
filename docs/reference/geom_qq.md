@@ -1,19 +1,21 @@
 # Q-Q plot layer for GWAS p-values
 
 Adds a Q-Q plot as a list of ggplot layers using the same core p-value
-cleaning, truncation, speedup, red diagonal, and lambda annotation
-contract as ggpop's internal fastqq-style layout, while applying the
-tidyplot-style ggpop theme from \`theme_tidyplot()\`. \`geom_qq()\` is
-the ggplot extension path paired with direct \`plot_qq()\`.
+cleaning, truncation, speedup, publication-palette diagonal, and lambda
+annotation contract as ggpop's internal fastqq-style layout, while
+applying the tidyplot-style ggpop theme from \`theme_tidyplot()\`.
+\`geom_qq()\` is the ggplot extension path paired with direct
+\`plot_qq()\`.
 
 ## Usage
 
 ``` r
 geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
   position = "identity", ..., size = 0.8, alpha = 0.8, colour = "black",
-  diagonal = TRUE, diagonal_colour = "red", show_lambda = TRUE,
+  diagonal = TRUE, diagonal_color = .gwas_threshold_color(),
+  diagonal_colour = NULL, show_lambda = TRUE,
   maxP = 14, fix_zero = TRUE, speedup = TRUE, base_size = 11,
-  base_family = "", lambda_size = base_size * 0.9, na.rm = FALSE,
+  base_family = "", lambda_size = base_size * 0.65, na.rm = FALSE,
   show.legend = FALSE, inherit.aes = TRUE)
 ```
 
@@ -51,9 +53,14 @@ geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
 
   Draw the expected-equals-observed diagonal.
 
+- diagonal_color:
+
+  Diagonal line colour. Defaults to the unified ggpop publication
+  threshold colour and can be overridden explicitly.
+
 - diagonal_colour:
 
-  Diagonal line colour.
+  Deprecated spelling kept for compatibility. Prefer \`diagonal_color\`.
 
 - show_lambda:
 

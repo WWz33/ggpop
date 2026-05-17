@@ -26,7 +26,7 @@ pca <- import_pca(
 ```
 
 ``` r
-plot_pca(pca, title = "GCTA PCA")
+plot_pca(pca)
 ```
 
 ![Scatter chart. Principal component 1 is on the x-axis and principal

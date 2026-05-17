@@ -11,8 +11,8 @@ extension path paired with direct \`plot_pca()\`.
 ``` r
 geom_pca(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
   data = NULL, ..., pc_x = 1, pc_y = 2, base_size = 11,
-  base_family = "", palette = NULL, pop_group = TRUE, na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE)
+  base_family = "", palette = NULL, pop_group = TRUE, size = 2.16,
+  alpha = 0.9, na.rm = FALSE, show.legend = NA, inherit.aes = TRUE)
 ```
 
 ## Arguments
@@ -52,6 +52,10 @@ geom_pca(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
 - pop_group:
 
   Use imported \`pop\` metadata for population colours when available.
+
+- size, alpha:
+
+  Point size and transparency. Defaults match \`plot_pca()\`.
 
 - na.rm:
 

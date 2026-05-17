@@ -86,10 +86,10 @@ real-world supported examples.</p>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"gwas"</span>, <span class="st">"gcta.mlma"</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Manhattan"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span><span class="op">)</span></span></code></pre></div>
 <p><img src="full-extdata_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="Manhattan plot from the bundled GCTA result file. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with horizontal reference lines marking GWAS thresholds." width="700"></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">gwas</span>, title <span class="op">=</span> <span class="st">"GCTA Q-Q"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_qq.html">plot_qq</a></span><span class="op">(</span><span class="va">gwas</span><span class="op">)</span></span></code></pre></div>
 <p><img src="full-extdata_files/figure-html/unnamed-chunk-1-2.png" class="r-plt" alt="Q-Q scatter plot from the bundled GCTA result file. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with points compared against a diagonal reference line." width="700"></p>
 </div>
 <div class="section level2">
@@ -102,7 +102,7 @@ real-world supported examples.</p>
 <span>  eigenval <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"pca"</span>, <span class="st">"gcta.eigenval"</span><span class="op">)</span>,</span>
 <span>  pop_group <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"pop_group.txt"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="va">pca</span>, title <span class="op">=</span> <span class="st">"GCTA PCA"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../../reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="va">pca</span><span class="op">)</span></span></code></pre></div>
 <p><img src="full-extdata_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Scatter chart from the bundled GCTA PCA eigenvector file. Principal components define the axes and point colour encodes imported population groups from the shared pop_group.txt metadata." width="700"></p>
 </div>
 <div class="section level2">
@@ -115,7 +115,7 @@ real-world supported examples.</p>
 <span>  ind <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"snp"</span>, <span class="st">"finalsnp_ld.fam"</span><span class="op">)</span>,</span>
 <span>  pop_group <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"pop_group.txt"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="st">"all"</span>, title <span class="op">=</span> <span class="st">"ADMIXTURE"</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="st">"all"</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="full-extdata_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Faceted stacked bar chart from the full bundled ADMIXTURE results. Each K panel shows individuals as bars, ancestry proportions as stacked segments, and population labels used to group samples." width="700"></p>
 <p>The same data also works with the layered path:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">

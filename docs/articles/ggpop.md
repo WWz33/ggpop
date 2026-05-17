@@ -66,7 +66,7 @@ The direct path:
 
 ``` r
 gwas |>
-  plot_manha(title = "GCTA Manhattan")
+  plot_manha()
 ```
 
 ![Manhattan plot. Chromosomes are arranged along the x-axis and minus
@@ -132,7 +132,7 @@ head(import_pop_group(ggpop_extdata("pop_group.txt")))
 The same file drives PCA colours and admixture group labels:
 
 ``` r
-pca |> plot_pca(title = "GCTA PCA by population")
+pca |> plot_pca()
 ```
 
 ![Scatter chart. Principal component 1 is on the x-axis and principal

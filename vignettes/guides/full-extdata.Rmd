@@ -26,8 +26,8 @@ It is the closest match to the package's real-world supported examples.
 
 ```{r, fig.alt = c("Manhattan plot from the bundled GCTA result file. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with horizontal reference lines marking GWAS thresholds.", "Q-Q scatter plot from the bundled GCTA result file. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with points compared against a diagonal reference line.")}
 gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
-plot_manha(gwas, title = "GCTA Manhattan")
-plot_qq(gwas, title = "GCTA Q-Q")
+plot_manha(gwas)
+plot_qq(gwas)
 ```
 
 ## PCA
@@ -39,7 +39,7 @@ pca <- import_pca(
   eigenval = ggpop_extdata("pca", "gcta.eigenval"),
   pop_group = ggpop_extdata("pop_group.txt")
 )
-plot_pca(pca, title = "GCTA PCA")
+plot_pca(pca)
 ```
 
 ## Admixture
@@ -51,7 +51,7 @@ admix <- import_admix(
   ind = ggpop_extdata("snp", "finalsnp_ld.fam"),
   pop_group = ggpop_extdata("pop_group.txt")
 )
-plot_admix(admix, k = "all", title = "ADMIXTURE", order_group = TRUE)
+plot_admix(admix, k = "all", order_group = TRUE)
 ```
 
 The same data also works with the layered path:

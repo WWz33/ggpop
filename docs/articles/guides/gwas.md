@@ -27,7 +27,7 @@ gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
 ```
 
 ``` r
-plot_manha(gwas, title = "GCTA Manhattan")
+plot_manha(gwas)
 ```
 
 ![Manhattan plot. Chromosomes are arranged along the x-axis and minus
@@ -37,7 +37,7 @@ show where stronger GWAS signals would stand
 out.](gwas_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
-plot_qq(gwas, title = "GCTA Q-Q")
+plot_qq(gwas)
 ```
 
 ![Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and

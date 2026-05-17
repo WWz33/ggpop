@@ -78,7 +78,7 @@ The direct path:
 
 ```{r, fig.alt = "Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis. Points form chromosome-specific bands with horizontal reference lines marking suggestive and genome-wide significance thresholds."}
 gwas |>
-  plot_manha(title = "GCTA Manhattan")
+  plot_manha()
 ```
 
 The ggplot extension path:
@@ -108,7 +108,7 @@ head(import_pop_group(ggpop_extdata("pop_group.txt")))
 The same file drives PCA colours and admixture group labels:
 
 ```{r, fig.alt = c("Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding imported population groups.", "Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar, with population group labels used for ordering.")}
-pca |> plot_pca(title = "GCTA PCA by population")
+pca |> plot_pca()
 admix |> plot_admix(k = 3, order_group = TRUE, show_group_labels = TRUE)
 ```
 
