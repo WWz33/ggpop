@@ -75,7 +75,7 @@ import_gwas("assoc.mlma", type = "gcta") |>
   plot_manha()
 ```
 
-<img src="man/figures/readme-manhattan.png" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with alternating chromosome colours and horizontal genome-wide threshold lines." style="display: block; margin: auto; max-width: 75%;" />
+<p align="center"><img src="man/figures/readme-manhattan.png" width="75%" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with alternating chromosome colours and horizontal genome-wide threshold lines." /></p>
 
 ``` r
 import_gwas("assoc.mlma", type = "gcta") |>
@@ -92,7 +92,7 @@ import_pca(
   plot_pca()
 ```
 
-<img src="man/figures/readme-pca.png" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group." style="display: block; margin: auto; max-width: 60%;" />
+<p align="center"><img src="man/figures/readme-pca.png" width="60%" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group." /></p>
 
 `pop_group` is optional at plot time:
 
@@ -110,7 +110,7 @@ import_admix(
   plot_admix(k = 3, sort = "all", order_group = TRUE)
 ```
 
-<img src="man/figures/readme-admixture.png" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions fill each bar, with group labels separating population groups." style="display: block; margin: auto; max-width: 60%;" />
+<p align="center"><img src="man/figures/readme-admixture.png" width="60%" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions fill each bar, with group labels separating population groups." /></p>
 
 `pop_group` is optional at plot time:
 
@@ -142,7 +142,7 @@ import_stats("pixy_results/", type = "pixy") |>
   plot_stats(stat = "all", chr = "chr2L")
 ```
 
-<img src="man/figures/readme-stats.png" alt="Faceted line plot. Population genomics statistics are stacked vertically for chromosome chr2L, genomic position in megabases is on the shared x-axis, and each panel has its own statistic value scale." style="display: block; margin: auto; max-width: 60%;" />
+<p align="center"><img src="man/figures/readme-stats.png" width="60%" alt="Faceted line plot. Population genomics statistics are stacked vertically for chromosome chr2L, genomic position in megabases is on the shared x-axis, and each panel has its own statistic value scale." /></p>
 
 ``` r
 import_stats("vcftools_results/", type = "vcftools") |>
