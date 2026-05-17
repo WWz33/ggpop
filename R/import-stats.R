@@ -120,7 +120,7 @@ import_stats <- function(dir = NULL, ..., type = c("pixy", "vcftools", "auto")) 
     stop("Cannot map vcftools statistics file: ", basename(file), call. = FALSE)
   }
   if (is.null(start_col)) start_col <- pos_col
-  if (is.null(end_col)) end_col <- pos_col
+  if (is.null(end_col)) end_col <- pos_col %||% start_col
   data <- data.frame(
     stat = stat,
     chr = raw[[chr_col]],
@@ -150,7 +150,7 @@ import_stats <- function(dir = NULL, ..., type = c("pixy", "vcftools", "auto")) 
     stat,
     pi = c("pi"),
     fst = c("weighted_fst", "mean_fst", "fst"),
-    tajima_d = c("tajima_d"),
+    tajima_d = c("tajima_d", "tajimad"),
     c(stat, "value")
   )
 }

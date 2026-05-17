@@ -36,11 +36,17 @@ Watterson's theta.
 
 ## Import pixy results
 
+The bundled pixy example is a dense chr2L windowed data set. It contains 4,000
+tidy rows across five statistics: 500 pairwise Dxy windows, 500 pairwise FST
+windows, and 1,000 within-population windows each for pi, Tajima's D, and
+Watterson's theta. Windows are 100 bp wide and span positions 1--50,000.
+
 ```{r}
 pixy_dir <- ggpop_extdata("Population_genomics_statistics", "pixy")
 stats <- import_stats(pixy_dir, type = "pixy")
 class(stats)
 unique(stats$stat)
+range(stats$start)
 ```
 
 You can also import selected files explicitly:
@@ -56,14 +62,47 @@ selected <- import_stats(
 unique(selected$stat)
 ```
 
+## Import vcftools results
+
+vcftools results use a different column naming convention, but enter the same
+typed plotting object. Supported examples include `.windowed.pi`,
+`.windowed.weir.fst`, and `.Tajima.D` files.
+
+```{r}
+vcftools_dir <- ggpop_extdata("Population_genomics_statistics", "vcftools")
+vcftools_stats <- import_stats(vcftools_dir, type = "vcftools")
+class(vcftools_stats)
+unique(vcftools_stats$stat)
+```
+
+Explicit file selection works the same way:
+
+```{r}
+vcftools_selected <- import_stats(
+  vcftools_dir,
+  pi = "vcftools.windowed.pi",
+  fst = "vcftools.windowed.weir.fst",
+  tajima = "vcftools.Tajima.D",
+  type = "vcftools"
+)
+unique(vcftools_selected$stat)
+```
+
 ## Plot all statistics
 
 By default, `stat = "all"` stacks the selected statistics vertically and keeps
 the x-axis aligned. This mirrors the usual pixy plotting layout for comparing
-windowed summaries across the same genomic coordinate system.
+windowed summaries across the same genomic coordinate system. For the bundled
+example, all panels use chr2L 100 bp windows across the first 50 kb.
 
-```{r, fig.alt = "Faceted line plot of population genomics statistics. Statistic names define vertically stacked panels, genomic position in megabases is on the x-axis, and statistic value is on the y-axis. The shared x-axis lets FST, pi, Tajima's D, Dxy, and Watterson's theta be compared across the same chromosome windows."}
+```{r, fig.alt = "Faceted line plot of population genomics statistics across chr2L. Five statistic panels are stacked vertically for Dxy, FST, pi, Tajima's D, and Watterson's theta. Genomic position in megabases is on the shared x-axis from 1 to 50,000 bases, and each panel has its own statistic value scale."}
 plot_stats(stats, stat = "all", chr = "chr2L")
+```
+
+The same plotting path works for vcftools imports:
+
+```{r, fig.alt = "Faceted line plot from vcftools results. FST, pi, and Tajima's D are stacked vertically, genomic position in megabases is on the x-axis, and each panel has its own statistic value scale."}
+plot_stats(vcftools_stats, stat = "all", chr = "chr2L")
 ```
 
 ## Select statistics and regions
@@ -71,20 +110,22 @@ plot_stats(stats, stat = "all", chr = "chr2L")
 Use `stat` to choose one or more summaries, `chr` to select chromosomes, and
 `start` / `end` to focus on windows overlapping a region.
 
-```{r, fig.alt = "Two-panel line plot. FST and pi are stacked vertically for chromosome chr2L, with genomic position in megabases on the x-axis and each statistic value on its own y-axis."}
+```{r, fig.alt = "Two-panel line plot. FST and pi are stacked vertically for chromosome chr2L using 100 bp windows, with genomic position in megabases on the shared x-axis and each statistic value on its own y-axis."}
 plot_stats(stats, stat = c("fst", "pi"), chr = "chr2L")
 ```
 
-```{r, fig.alt = "Regional line plot of population genomics statistics. Windows on chromosome chr2L overlapping the first 20,000 bases are shown, focusing the x-axis on a small genomic interval."}
+```{r, fig.alt = "Regional line plot of population genomics statistics. Windows on chromosome chr2L overlapping bases 1 to 20,000 are shown, focusing all statistic panels on the first two-fifths of the bundled 50 kb example region."}
 plot_stats(stats, chr = "chr2L", start = 1, end = 20000)
 ```
 
 Multiple chromosomes can be selected. When more than one chromosome is shown,
 the default plot uses points to avoid implying continuous genomic distance
-between chromosomes.
+between chromosomes. The bundled pixy example contains only chr2L, so the
+multi-chromosome example below uses the vcftools import if multiple chromosomes
+are present in user data.
 
-```{r, fig.alt = "Faceted point plot of population genomics statistics across two chromosomes. Statistic panels are stacked vertically, point position shows genomic window midpoint, and colour separates chromosome categories."}
-plot_stats(stats, chr = c("chr2L", "chr3L"))
+```{r eval=FALSE}
+plot_stats(stats, chr = c("chr1", "chr2"))
 ```
 
 ## Layered workflow

@@ -16,6 +16,25 @@ test_that("population genomics statistics import pixy directories and explicit f
   expect_true(all(c("dxy", "fst", "pi", "tajima_d", "watterson_theta") %in% unique(auto$stat)))
 })
 
+test_that("population genomics statistics import vcftools result directories", {
+  vcftools_dir <- extdata_dir("Population_genomics_statistics/vcftools")
+
+  auto <- import_stats(vcftools_dir, type = "vcftools")
+  explicit <- import_stats(
+    vcftools_dir,
+    pi = "vcftools.windowed.pi",
+    fst = "vcftools.windowed.weir.fst",
+    tajima = "vcftools.Tajima.D",
+    type = "vcftools"
+  )
+
+  expect_s3_class(auto, "ggpop_stats")
+  expect_true(all(c("pi", "fst", "tajima_d") %in% unique(auto$stat)))
+  expect_true(all(c("stat", "chr", "start", "end", "pos", "value", ".group") %in% names(explicit)))
+  expect_true(all(is.finite(explicit$pos)))
+  expect_true(all(explicit$end >= explicit$start))
+})
+
 test_that("population genomics statistics plots support stat, chromosome, and region filters", {
   pixy_dir <- extdata_dir("Population_genomics_statistics/pixy")
   data <- import_stats(pixy_dir, type = "pixy")

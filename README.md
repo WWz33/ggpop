@@ -139,6 +139,9 @@ P002    PopB
 ``` r
 import_stats("pixy_results/", type = "pixy") |>
   plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+
+import_stats("vcftools_results/", type = "vcftools") |>
+  plot_stats(stat = "all", chr = "chr2L")
 ```
 
 ## Interface

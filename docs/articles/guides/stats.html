@@ -131,6 +131,11 @@ FST, pi, Tajima’s D, Dxy, and Watterson’s theta.</p>
 <div class="section level2">
 <h2 id="import-pixy-results">Import pixy results<a class="anchor" aria-label="anchor" href="#import-pixy-results"></a>
 </h2>
+<p>The bundled pixy example is a dense chr2L windowed data set. It
+contains 4,000 tidy rows across five statistics: 500 pairwise Dxy
+windows, 500 pairwise FST windows, and 1,000 within-population windows
+each for pi, Tajima’s D, and Watterson’s theta. Windows are 100 bp wide
+and span positions 1–50,000.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pixy_dir</span> <span class="op">&lt;-</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"Population_genomics_statistics"</span>, <span class="st">"pixy"</span><span class="op">)</span></span>
 <span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_stats.html">import_stats</a></span><span class="op">(</span><span class="va">pixy_dir</span>, type <span class="op">=</span> <span class="st">"pixy"</span><span class="op">)</span></span>
@@ -138,7 +143,9 @@ FST, pi, Tajima’s D, Dxy, and Watterson’s theta.</p>
 <span><span class="co">#&gt; [1] "ggpop_stats" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">stats</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "dxy"             "fst"             "pi"             </span></span>
-<span><span class="co">#&gt; [4] "tajima_d"        "watterson_theta"</span></span></code></pre></div>
+<span><span class="co">#&gt; [4] "tajima_d"        "watterson_theta"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">stats</span><span class="op">$</span><span class="va">start</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]     1 49901</span></span></code></pre></div>
 <p>You can also import selected files explicitly:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_stats.html">import_stats</a></span><span class="op">(</span></span>
@@ -153,15 +160,46 @@ FST, pi, Tajima’s D, Dxy, and Watterson’s theta.</p>
 <span><span class="co">#&gt; [4] "tajima_d"        "watterson_theta"</span></span></code></pre></div>
 </div>
 <div class="section level2">
+<h2 id="import-vcftools-results">Import vcftools results<a class="anchor" aria-label="anchor" href="#import-vcftools-results"></a>
+</h2>
+<p>vcftools results use a different column naming convention, but enter
+the same typed plotting object. Supported examples include
+<code>.windowed.pi</code>, <code>.windowed.weir.fst</code>, and
+<code>.Tajima.D</code> files.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vcftools_dir</span> <span class="op">&lt;-</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"Population_genomics_statistics"</span>, <span class="st">"vcftools"</span><span class="op">)</span></span>
+<span><span class="va">vcftools_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_stats.html">import_stats</a></span><span class="op">(</span><span class="va">vcftools_dir</span>, type <span class="op">=</span> <span class="st">"vcftools"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">vcftools_stats</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ggpop_stats" "data.frame"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">vcftools_stats</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "tajima_d" "pi"       "fst"</span></span></code></pre></div>
+<p>Explicit file selection works the same way:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vcftools_selected</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_stats.html">import_stats</a></span><span class="op">(</span></span>
+<span>  <span class="va">vcftools_dir</span>,</span>
+<span>  pi <span class="op">=</span> <span class="st">"vcftools.windowed.pi"</span>,</span>
+<span>  fst <span class="op">=</span> <span class="st">"vcftools.windowed.weir.fst"</span>,</span>
+<span>  tajima <span class="op">=</span> <span class="st">"vcftools.Tajima.D"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"vcftools"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">vcftools_selected</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "tajima_d" "pi"       "fst"</span></span></code></pre></div>
+</div>
+<div class="section level2">
 <h2 id="plot-all-statistics">Plot all statistics<a class="anchor" aria-label="anchor" href="#plot-all-statistics"></a>
 </h2>
 <p>By default, <code>stat = "all"</code> stacks the selected statistics
 vertically and keeps the x-axis aligned. This mirrors the usual pixy
 plotting layout for comparing windowed summaries across the same genomic
-coordinate system.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+coordinate system. For the bundled example, all panels use chr2L 100 bp
+windows across the first 50 kb.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_stats.html">plot_stats</a></span><span class="op">(</span><span class="va">stats</span>, stat <span class="op">=</span> <span class="st">"all"</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stats_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Faceted line plot of population genomics statistics. Statistic names define vertically stacked panels, genomic position in megabases is on the x-axis, and statistic value is on the y-axis. The shared x-axis lets FST, pi, Tajima's D, Dxy, and Watterson's theta be compared across the same chromosome windows." width="700"></p>
+<p><img src="stats_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Faceted line plot of population genomics statistics across chr2L. Five statistic panels are stacked vertically for Dxy, FST, pi, Tajima's D, and Watterson's theta. Genomic position in megabases is on the shared x-axis from 1 to 50,000 bases, and each panel has its own statistic value scale." width="700"></p>
+<p>The same plotting path works for vcftools imports:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_stats.html">plot_stats</a></span><span class="op">(</span><span class="va">vcftools_stats</span>, stat <span class="op">=</span> <span class="st">"all"</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="stats_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Faceted line plot from vcftools results. FST, pi, and Tajima's D are stacked vertically, genomic position in megabases is on the x-axis, and each panel has its own statistic value scale." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="select-statistics-and-regions">Select statistics and regions<a class="anchor" aria-label="anchor" href="#select-statistics-and-regions"></a>
@@ -169,28 +207,29 @@ coordinate system.</p>
 <p>Use <code>stat</code> to choose one or more summaries,
 <code>chr</code> to select chromosomes, and <code>start</code> /
 <code>end</code> to focus on windows overlapping a region.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_stats.html">plot_stats</a></span><span class="op">(</span><span class="va">stats</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fst"</span>, <span class="st">"pi"</span><span class="op">)</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stats_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Two-panel line plot. FST and pi are stacked vertically for chromosome chr2L, with genomic position in megabases on the x-axis and each statistic value on its own y-axis." width="700"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p><img src="stats_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Two-panel line plot. FST and pi are stacked vertically for chromosome chr2L using 100 bp windows, with genomic position in megabases on the shared x-axis and each statistic value on its own y-axis." width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_stats.html">plot_stats</a></span><span class="op">(</span><span class="va">stats</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span>, start <span class="op">=</span> <span class="fl">1</span>, end <span class="op">=</span> <span class="fl">20000</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stats_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Regional line plot of population genomics statistics. Windows on chromosome chr2L overlapping the first 20,000 bases are shown, focusing the x-axis on a small genomic interval." width="700"></p>
+<p><img src="stats_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Regional line plot of population genomics statistics. Windows on chromosome chr2L overlapping bases 1 to 20,000 are shown, focusing all statistic panels on the first two-fifths of the bundled 50 kb example region." width="700"></p>
 <p>Multiple chromosomes can be selected. When more than one chromosome
 is shown, the default plot uses points to avoid implying continuous
-genomic distance between chromosomes.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_stats.html">plot_stats</a></span><span class="op">(</span><span class="va">stats</span>, chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr2L"</span>, <span class="st">"chr3L"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stats_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Faceted point plot of population genomics statistics across two chromosomes. Statistic panels are stacked vertically, point position shows genomic window midpoint, and colour separates chromosome categories." width="700"></p>
+genomic distance between chromosomes. The bundled pixy example contains
+only chr2L, so the multi-chromosome example below uses the vcftools
+import if multiple chromosomes are present in user data.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_stats.html">plot_stats</a></span><span class="op">(</span><span class="va">stats</span>, chr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr1"</span>, <span class="st">"chr2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="layered-workflow">Layered workflow<a class="anchor" aria-label="anchor" href="#layered-workflow"></a>
 </h2>
 <p>The layered API follows the same grammar as the other modules:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stats</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_stats.html">geom_stats</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"fst"</span>, <span class="st">"pi"</span><span class="op">)</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="stats_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Layered line plot of FST and pi. The ggpop object supplies imported population statistics and geom_stats draws two vertically stacked statistic panels for chromosome chr2L." width="700"></p>
+<p><img src="stats_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="Layered line plot of FST and pi. The ggpop object supplies imported population statistics and geom_stats draws two vertically stacked statistic panels for chromosome chr2L." width="700"></p>
 <p>The module uses ggpop’s shared theme, font sizing, and discrete
 palette interfaces. Use <code>palette</code>, <code>base_size</code>,
 and <code>base_family</code> the same way as the GWAS and PCA
