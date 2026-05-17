@@ -119,6 +119,24 @@ ggpop_palette(4, "population")
 ggpop_palette(8, "admixture")
 ```
 
+## Population statistics
+
+The statistics module uses the same tidy pattern for windowed summaries from
+pixy or vcftools outputs:
+
+```{r, fig.alt = "Two-panel line plot of population genomics statistics on chr2L. FST and pi are stacked vertically, genomic position in megabases is on the shared x-axis, and each panel uses its own statistic value scale."}
+stats |>
+  plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+```
+
+The layered path filters facets to the requested statistics:
+
+```{r, fig.alt = "Layered two-panel line plot of population genomics statistics. The ggpop object supplies imported pixy statistics and geom_stats draws only the selected FST and pi facets for chr2L."}
+stats |>
+  ggpop() +
+  geom_stats(stat = c("fst", "pi"), chr = "chr2L")
+```
+
 ## What to use
 
 - Use `plot_manha()` and `ggpop() + geom_manha()` for Manhattan plots.

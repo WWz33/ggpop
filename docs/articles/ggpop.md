@@ -158,6 +158,34 @@ ggpop_palette(8, "admixture")
 #> [7] "#2F4B7C" "#FF7C43"
 ```
 
+## Population statistics
+
+The statistics module uses the same tidy pattern for windowed summaries
+from pixy or vcftools outputs:
+
+``` r
+stats |>
+  plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+```
+
+![Two-panel line plot of population genomics statistics on chr2L. FST
+and pi are stacked vertically, genomic position in megabases is on the
+shared x-axis, and each panel uses its own statistic value
+scale.](ggpop_files/figure-html/unnamed-chunk-9-1.png)
+
+The layered path filters facets to the requested statistics:
+
+``` r
+stats |>
+  ggpop() +
+  geom_stats(stat = c("fst", "pi"), chr = "chr2L")
+```
+
+![Layered two-panel line plot of population genomics statistics. The
+ggpop object supplies imported pixy statistics and geom_stats draws only
+the selected FST and pi facets for
+chr2L.](ggpop_files/figure-html/unnamed-chunk-10-1.png)
+
 ## What to use
 
 - Use

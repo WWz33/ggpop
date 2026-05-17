@@ -56,6 +56,11 @@ test_that("population genomics statistics plots support stat, chromosome, and re
   all_stats_layout <- ggplot2::ggplot_build(plot_stats(data, stat = "all"))$layout$layout
   expect_equal(length(unique(all_stats_layout$COL)), 1)
   expect_equal(length(unique(all_stats_layout$ROW)), length(unique(data$stat)))
+
+  filtered_layout <- ggplot2::ggplot_build(
+    ggpop(data) + geom_stats(stat = c("fst", "pi"), chr = "chr2L")
+  )$layout$layout
+  expect_setequal(as.character(filtered_layout$stat), c("fst", "pi"))
 })
 
 test_that("population genomics statistics use unified theme and palette controls", {

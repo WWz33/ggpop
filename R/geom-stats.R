@@ -28,6 +28,7 @@ geom_stats <- function(mapping = ggplot2::aes(x = .data$pos / 1e6, y = .data$val
       show.legend = show.legend,
       inherit.aes = inherit.aes
     ),
+    .stats_plot_data_layer(layer_data),
     if (colour_count > 0) scale_colour_ggpop(colour_count, palette, guide = "none"),
     ggplot2::scale_x_continuous(expand = c(0, 0)),
     ggplot2::scale_y_continuous(expand = c(0, 0)),
@@ -40,7 +41,46 @@ geom_stats <- function(mapping = ggplot2::aes(x = .data$pos / 1e6, y = .data$val
         legend.position = "none"
       )
   )
-  Filter(Negate(is.null), layers)
+  structure(
+    Filter(Negate(is.null), layers),
+    class = c("ggpop_stats_layers", "list"),
+    ggpop_stats_data = layer_data,
+    ggpop_stats_filter = list(stat = stat, chr = chr, start = start, end = end)
+  )
+}
+
+.stats_plot_data_layer <- function(data) {
+  ggplot2::layer(
+    data = data,
+    mapping = ggplot2::aes(),
+    stat = "identity",
+    geom = "blank",
+    position = "identity",
+    inherit.aes = FALSE,
+    show.legend = FALSE
+  )
+}
+
+ggplot_add.ggpop_stats_layers <- function(object, plot, object_name) {
+  layer_data <- attr(object, "ggpop_stats_data", exact = TRUE)
+  filter <- attr(object, "ggpop_stats_filter", exact = TRUE)
+  if (inherits(plot$data, "ggpop_stats")) {
+    plot$data <- if (is.function(layer_data)) {
+      .filter_stats_data(
+        plot$data,
+        stat = filter$stat,
+        chr = filter$chr,
+        start = filter$start,
+        end = filter$end
+      )
+    } else {
+      layer_data
+    }
+  }
+  for (layer in unclass(object)) {
+    plot <- plot + layer
+  }
+  plot
 }
 
 .stats_default_size <- function(geom, base_size = 11) {
