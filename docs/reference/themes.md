@@ -4,7 +4,7 @@ Theme helpers for ggpop plots. \`theme_tidyplot()\` is the primary
 tidyplot-style theme used by the PCA and GWAS modules. The minimal
 variants selectively keep one or both axes visible.
 
-## Usage
+## 用法
 
 ``` r
 theme_tidyplot(plot, fontsize = 7, base_family = "")
@@ -15,7 +15,7 @@ theme_minimal_y(plot, fontsize = 7, base_family = "")
 style_void(plot, fontsize = 7, base_family = "")
 ```
 
-## Arguments
+## 参数
 
 - plot:
 

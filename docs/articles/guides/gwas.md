@@ -28,9 +28,9 @@ gwas <- import_gwas(ggpop_extdata("gwas", "gcta.mlma"), type = "gcta")
 
 ``` r
 plot_manha(gwas, title = "GCTA Manhattan", use_fastman = TRUE)
-#> Loading required package: ggplot2
+#> 载入需要的程序包：ggplot2
 #> 
-#> Attaching package: 'ggplot2'
+#> 载入程序包：'ggplot2'
 #> The following object is masked from 'package:ggpop':
 #> 
 #>     geom_qq

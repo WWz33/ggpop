@@ -3,7 +3,7 @@
 Helpers for publication-oriented ggpop figures: a clean theme, colour
 palettes, and discrete fill/colour scales.
 
-## Usage
+## 用法
 
 ``` r
 theme_ggpop_publication(base_size = 11, base_family = "",
@@ -13,7 +13,7 @@ scale_fill_ggpop(n = NULL, palette = c("admixture", "publication"), ...)
 scale_colour_ggpop(n = NULL, palette = c("manhattan", "publication"), ...)
 ```
 
-## Arguments
+## 参数
 
 - base_size, base_family:
 

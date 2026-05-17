@@ -8,7 +8,7 @@ pophelper \`plotQ()\` behavior for individual labels, sample sorting,
 group labels, and sorting with group labels while returning a ggplot
 object.
 
-## Usage
+## 用法
 
 ``` r
 geom_admix(mapping = NULL, data = NULL, ...,
@@ -30,7 +30,7 @@ geom_admix_pub(mapping = ggplot2::aes(sample_id = .data$sample_id,
   inherit.aes = TRUE)
 ```
 
-## Arguments
+## 参数
 
 - mapping:
 

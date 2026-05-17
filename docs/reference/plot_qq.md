@@ -4,7 +4,7 @@ High-level publication-oriented Q-Q plot builder. The direct path is
 \`import_gwas(...) \|\> plot_qq()\`, and the tidy extension path is
 \`import_gwas(...) \|\> ggpop() + geom_qq()\`.
 
-## Usage
+## 用法
 
 ``` r
 plot_qq(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
@@ -13,7 +13,7 @@ plot_qq(data, title = "Q-Q plot", subtitle = NULL, caption = NULL,
   legend_position = "none", ...)
 ```
 
-## Arguments
+## 参数
 
 - data:
 

@@ -1,12 +1,12 @@
-# Authors and Citation
+# 作者与引用
 
-## Authors
+## 作者
 
-- **ggpop Authors**. Author, maintainer.
+- **ggpop Authors**. 作者, 维护者.
 
-## Citation
+## 引用
 
-Source:
+来源：
 [`DESCRIPTION`](https://github.com/WWz33/ggpop/blob/HEAD/DESCRIPTION)
 
 Authors g (2026). *ggpop: ggplot2 Extensions for Population Genetics

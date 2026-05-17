@@ -6,7 +6,7 @@ threshold lines, fastman-style scales, and the default module theme.
 \`plot_manha()\`. \`geom_manha_pub()\` is retained as an advanced
 compatibility helper.
 
-## Usage
+## 用法
 
 ``` r
 geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
@@ -23,7 +23,7 @@ geom_manha_pub(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .dat
   show.legend = FALSE, inherit.aes = TRUE)
 ```
 
-## Arguments
+## 参数
 
 - mapping:
 

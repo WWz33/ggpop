@@ -7,7 +7,7 @@ user-facing alias. When \`pop_group\` is supplied, population labels are
 joined by \`sample_id\` and drive pophelper-style group facets and
 sorting.
 
-## Usage
+## 用法
 
 ``` r
 import_admixture(file, type = c("auto", "structure", "admixture"), ind = NULL,
@@ -16,7 +16,7 @@ import_admix(file, type = c("auto", "structure", "admixture"), ind = NULL,
   pattern = "\\.Q$", recursive = FALSE, pop_group = NULL, ...)
 ```
 
-## Arguments
+## 参数
 
 - file:
 

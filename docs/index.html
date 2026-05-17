@@ -24,24 +24,24 @@
     <a href="#container" class="visually-hidden-focusable">Skip to content</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="网站导航"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">ggpop</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="切换导航栏">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/ggpop.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="articles/ggpop.html">入门简介</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">参考</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown--" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">文章</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown--">
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="articles/guides/gwas.html">GWAS plots</a></li>
@@ -55,7 +55,7 @@
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="搜索网站" placeholder="搜索" data-search-index="search.json">
 </form></li>
       </ul>
 </div>
@@ -231,9 +231,6 @@ P002    PopB</code></pre>
 </h2>
 <p>This version includes dependency fixes needed for reliable source installation:</p>
 <ul>
-<li>added <code>Remotes</code> for GitHub-only optional dependencies;</li>
-<li>kept unmodified <code>fastman</code> and <code>pophelper</code> pointed at upstream repositories;</li>
-<li>forked <code>flashpcaR</code> to <code>WWz33/flashpca</code> for Windows source installation;</li>
 <li>replaced <code>flashpcaR/flashpcaR/src/*.cpp</code> and <code>src/*.h</code> path stubs with real source files;</li>
 <li>changed <code>flashpcaR/flashpcaR/src/Makevars</code> and <code>Makevars.win</code> from <code>CXX11</code> to <code>CXX14</code>;</li>
 <li>fixed optional backend argument forwarding for calls such as <code>plot_manha(use_fastman = TRUE)</code>.</li>
@@ -243,12 +240,12 @@ P002    PopB</code></pre>
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
 <ul>
-<li><p><a href="https://wwz33.github.io/ggpop/reference/">Package index</a> Overview of all ggpop functions</p></li>
-<li><p><a href="https://wwz33.github.io/ggpop/articles/ggpop.html">Get started</a> Getting started guide</p></li>
-<li><p><a href="https://wwz33.github.io/ggpop/articles/guides/gwas.html">GWAS guide</a> Manhattan and Q-Q plotting workflows</p></li>
-<li><p><a href="https://wwz33.github.io/ggpop/articles/guides/pca.html">PCA guide</a> PCA imports, population colours, and plotting</p></li>
-<li><p><a href="https://wwz33.github.io/ggpop/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</p></li>
-<li><p><a href="https://wwz33.github.io/ggpop/articles/guides/color-schemes.html">Color schemes</a> Unified discrete palettes for population-genomics plots</p></li>
+<li>
+<a href="https://wwz33.github.io/ggpop/articles/guides/gwas.html">GWAS guide</a> Manhattan and Q-Q plotting workflows</li>
+<li>
+<a href="https://wwz33.github.io/ggpop/articles/guides/pca.html">PCA guide</a> PCA imports, population colours, and plotting</li>
+<li>
+<a href="https://wwz33.github.io/ggpop/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</li>
 </ul>
 </div>
 <div class="section level2">
@@ -257,16 +254,16 @@ P002    PopB</code></pre>
 <p><code>ggpop</code> builds on <code>ggplot2</code> and follows tidy plotting conventions inspired by packages such as <code>tidyplots</code>. Optional compatibility paths reference <code>fastman</code>, <code>flashpcaR</code>, and <code>pophelper</code> while keeping the native ggplot implementation usable without those packages.</p>
 </div>
 </div>
-  </main><aside class="col-md-3"><div class="links">
-<h2 data-toc-skip>Links</h2>
+  </main><aside class="col-md-3"><div class="-">
+<h2 data-toc-skip>链接</h2>
 <ul class="list-unstyled">
-<li><a href="https://cloud.r-project.org/package=ggpop" class="external-link">View on CRAN</a></li>
-<li><a href="https://github.com/WWz33/ggpop/" class="external-link">Browse source code</a></li>
+<li><a href="https://cloud.r-project.org/package=ggpop" class="external-link">访问CRAN</a></li>
+<li><a href="https://github.com/WWz33/ggpop/" class="external-link">浏览源代码</a></li>
 </ul>
 </div>
 
-<div class="license">
-<h2 data-toc-skip>License</h2>
+<div class="-">
+<h2 data-toc-skip>许可</h2>
 <ul class="list-unstyled">
 <li>
 <a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
@@ -275,22 +272,22 @@ P002    PopB</code></pre>
 </div>
 
 
-<div class="citation">
-<h2 data-toc-skip>Citation</h2>
+<div class="-">
+<h2 data-toc-skip>引用</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing ggpop</a></li>
+<li><a href="authors.html#citation">引用 ggpop</a></li>
 </ul>
 </div>
 
-<div class="developers">
-<h2 data-toc-skip>Developers</h2>
+<div class="-">
+<h2 data-toc-skip>开发者</h2>
 <ul class="list-unstyled">
-<li>ggpop Authors <br><small class="roles"> Author, maintainer </small>   </li>
+<li>ggpop Authors <br><small class="roles"> 作者, 维护者 </small>   </li>
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
+<div class="-">
+<h2 data-toc-skip>开发状态</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R-%3E%3D%204.1-blue.svg" alt="R"></a></li>
 <li><a href="https://ggplot2.tidyverse.org/" class="external-link"><img src="https://img.shields.io/badge/ggplot2-extension-2C3E50.svg" alt="ggplot2"></a></li>
@@ -305,11 +302,11 @@ P002    PopB</code></pre>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by ggpop Authors.</p>
+  <p>开发者： ggpop Authors.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>该网站由 <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0 构建。</p>
 </div>
 
   </div></footer>

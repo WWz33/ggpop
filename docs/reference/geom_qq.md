@@ -7,7 +7,7 @@ ggpop theme from \`theme_tidyplot()\`. \`geom_qq_pub()\` is the
 publication-style layer used by native \`plot_qq(..., use_fastman =
 FALSE)\`.
 
-## Usage
+## 用法
 
 ``` r
 geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
@@ -23,7 +23,7 @@ geom_qq_pub(mapping = ggplot2::aes(p = .data$p), data = NULL, ...,
   show.legend = FALSE, inherit.aes = TRUE)
 ```
 
-## Arguments
+## 参数
 
 - mapping:
 

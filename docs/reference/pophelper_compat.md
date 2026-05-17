@@ -6,7 +6,7 @@ Regular users should prefer \`import_admix(...) \|\> plot_admix(k =
 These helpers directly call original \`pophelper\` functions when full
 feature parity is required.
 
-## Usage
+## 用法
 
 ``` r
 pophelper_functions()
@@ -33,7 +33,7 @@ pophelper_distruct_colours(...)
 pophelper_verify_grplab(grplab)
 ```
 
-## Arguments
+## 参数
 
 - .fn:
 
@@ -72,7 +72,7 @@ pophelper_verify_grplab(grplab)
 
   Group label data frame passed to \`pophelper::verifyGrplab()\`.
 
-## Details
+## 细节
 
 \`pophelper_functions()\` returns the covered pophelper export list.
 \`pophelper_call()\` is a generic escape hatch for any listed original

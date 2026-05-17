@@ -4,7 +4,7 @@ High-level publication-oriented PCA plot builder. When \`pop_group\` was
 supplied to \`import_pca()\`, population groups are mapped to the
 unified ggpop discrete colour scale by default.
 
-## Usage
+## 用法
 
 ``` r
 plot_pca(data, title = "PCA plot", subtitle = NULL, caption = NULL,
@@ -13,7 +13,7 @@ plot_pca(data, title = "PCA plot", subtitle = NULL, caption = NULL,
   palette = NULL, ...)
 ```
 
-## Arguments
+## 参数
 
 - data:
 
