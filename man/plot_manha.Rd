@@ -3,15 +3,18 @@
 \title{Publication-oriented Manhattan plots}
 \usage{
 plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
-  threshold = 5e-8, suggestive = 1e-5, point_size = 0.9,
-  point_alpha = NA, base_size = 11, base_family = "",
-  legend_position = "none", logp = TRUE, maxP = 14, bybp = FALSE,
-  palette = "manhattan", binary = FALSE, ...)
+  threshold = 5e-8, suggestive = 1e-5,
+  threshold_color = .gwas_threshold_color(),
+  suggestive_color = .gwas_suggestive_color(), point_size = 0.9,
+  point_alpha = NA, base_size = 11, base_family = "", legend_position = "none",
+  logp = TRUE, maxP = 14, bybp = FALSE, palette = "manhattan",
+  binary = FALSE, ...)
 }
 \arguments{
 \item{data}{A `ggpop_gwas` object.}
 \item{title, subtitle, caption}{Plot text.}
 \item{threshold, suggestive}{Manhattan reference p-value thresholds.}
+\item{threshold_color, suggestive_color}{Reference-line colours. Defaults use the unified ggpop publication palette and can be overridden explicitly.}
 \item{point_size, point_alpha}{Point appearance.}
 \item{base_size, base_family, legend_position}{Publication theme settings.}
 \item{logp, maxP, bybp}{Core fastman-style controls forwarded by `plot_manha()` and mirrored by `geom_manha()`.}

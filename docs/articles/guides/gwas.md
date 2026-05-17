@@ -94,7 +94,7 @@ pass either a ggpop palette name or two explicit colours:
 ``` r
 plot_manha(
   gwas,
-  palette = c("#123456", "#654321"),
+  palette = c("#4E79A7", "#F28E2B"),
   binary = TRUE
 )
 ```
@@ -103,6 +103,10 @@ plot_manha(
 chromosomes alternate between the two supplied colours, emphasizing
 chromosome separation without changing the p-value scale or
 thresholds.](gwas_files/figure-html/unnamed-chunk-6-1.png)
+
+Reference-line colours use the same publication palette by default, and
+can be overridden explicitly with `threshold_color` and
+`suggestive_color`.
 
 ## Alternative GWAS formats
 

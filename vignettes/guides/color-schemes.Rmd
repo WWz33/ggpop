@@ -45,7 +45,7 @@ ggplot2::ggplot(df, ggplot2::aes(pc1, pc2, colour = pop)) +
 
 ```{r, fig.alt = "Custom discrete palette output. Six colours are generated from a four-colour population palette, demonstrating interpolation for categorical palettes with more requested groups than supplied colours."}
 my_pop_colors <- new_pop_palette(
-  c("#644296", "#F08533", "#3B78B0", "#D1352C"),
+  c("#4E79A7", "#F28E2B", "#59A14F", "#E15759"),
   name = "my population palette"
 )
 

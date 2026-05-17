@@ -31,7 +31,7 @@ c.ggpop_palette_scheme <- function(...) {
 }
 
 colors_pop_okabeito <- new_pop_palette(
-  c("#0072B2", "#56B4E9", "#009E73", "#F5C710", "#E69F00", "#D55E00", "#CC79A7"),
+  c("#4E79A7", "#F28E2B", "#59A14F", "#E15759", "#76B7B2", "#B07AA1", "#EDC948"),
   "colors_pop_okabeito"
 )
 
@@ -49,7 +49,7 @@ colors_pop_paper <- new_pop_palette(
 )
 
 colors_pop_manhattan <- new_pop_palette(
-  c("#D95319", "#E4A100", "#7E2F8E", "#5EA500", "#0095D4", "#A2142F", "#0C53AA"),
+  c("#4E79A7", "#F28E2B", "#59A14F", "#E15759", "#76B7B2", "#B07AA1", "#EDC948"),
   "colors_pop_manhattan"
 )
 

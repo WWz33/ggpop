@@ -1,5 +1,7 @@
 plot_manha <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                        threshold = 5e-8, suggestive = 1e-5,
+                       threshold_color = .gwas_threshold_color(),
+                       suggestive_color = .gwas_suggestive_color(),
                        point_size = 0.9, point_alpha = NA,
                        base_size = 11, base_family = "", legend_position = "none",
                        logp = TRUE, maxP = 14, bybp = FALSE,
@@ -15,6 +17,8 @@ plot_manha <- function(data, title = NULL, subtitle = NULL, caption = NULL,
       base_size = base_size,
       threshold = threshold,
       suggestive = suggestive,
+      threshold_color = threshold_color,
+      suggestive_color = suggestive_color,
       logp = logp,
       maxP = maxP,
       bybp = bybp,
@@ -225,8 +229,8 @@ StatManha <- ggplot2::ggproto(
 geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
                        data = NULL, geom = "point", position = "identity",
                        ..., threshold = 5e-8, suggestive = 1e-5,
-                       threshold_colour = "red",
-                       suggestive_colour = "blue",
+                       threshold_color = .gwas_threshold_color(),
+                       suggestive_color = .gwas_suggestive_color(),
                        size = 0.9, shape = 20, speedup = TRUE,
                        logp = TRUE, maxP = 14, bybp = FALSE,
                        palette = "manhattan", binary = FALSE,
@@ -260,7 +264,7 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
         yintercept = -log10(suggestive),
         linewidth = 0.5,
         linetype = "solid",
-        colour = suggestive_colour
+        colour = suggestive_color
       )
     },
     if (!is.null(threshold)) {
@@ -268,7 +272,7 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
         yintercept = -log10(threshold),
         linewidth = 0.5,
         linetype = "solid",
-        colour = threshold_colour
+        colour = threshold_color
       )
     },
     ggplot2::scale_y_continuous(expand = c(0, 0)),
@@ -286,8 +290,8 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
 geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
                            data = NULL, ..., size = 0.9, alpha = NA,
                            threshold = 5e-8, suggestive = 1e-5,
-                           threshold_colour = "red",
-                           suggestive_colour = "blue",
+                           threshold_color = .gwas_threshold_color(),
+                           suggestive_color = .gwas_suggestive_color(),
                            speedup = TRUE, logp = TRUE, maxP = 14,
                            bybp = FALSE, palette = "manhattan", binary = FALSE,
                            base_size = 11, base_family = "", show.legend = FALSE,
@@ -300,8 +304,8 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
     alpha = alpha,
     threshold = threshold,
     suggestive = suggestive,
-    threshold_colour = threshold_colour,
-    suggestive_colour = suggestive_colour,
+    threshold_color = threshold_color,
+    suggestive_color = suggestive_color,
     speedup = speedup,
     logp = logp,
     maxP = maxP,
@@ -320,4 +324,12 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
   values <- rep_len(values, n)
   values <- stats::setNames(values, as.character(seq_len(n)))
   ggplot2::scale_colour_manual(values = values, guide = "none")
+}
+
+.gwas_threshold_color <- function() {
+  ggpop_palette(4, "publication")[4]
+}
+
+.gwas_suggestive_color <- function() {
+  ggpop_palette(1, "publication")
 }

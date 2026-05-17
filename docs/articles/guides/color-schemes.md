@@ -9,12 +9,12 @@ interpolate when more categories are requested.
 
 ``` r
 ggpop_palette(4, "population")
-#> [1] "#0072B2" "#009E73" "#E69F00" "#CC79A7"
+#> [1] "#4E79A7" "#59A14F" "#76B7B2" "#EDC948"
 ggpop_palette(8, "admixture")
 #> [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948" "#9C755F"
 #> [7] "#2F4B7C" "#FF7C43"
 ggpop_palette(5, "manhattan")
-#> [1] "#D95319" "#E4A100" "#5EA500" "#0095D4" "#0C53AA"
+#> [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948"
 ```
 
 ## ggplot scales
@@ -41,10 +41,10 @@ scale_colour_ggpop.](color-schemes_files/figure-html/unnamed-chunk-2-1.png)
 
 ``` r
 my_pop_colors <- new_pop_palette(
-  c("#644296", "#F08533", "#3B78B0", "#D1352C"),
+  c("#4E79A7", "#F28E2B", "#59A14F", "#E15759"),
   name = "my population palette"
 )
 
 ggpop_palette(6, my_pop_colors)
-#> [1] "#644296" "#B86A5A" "#CB824C" "#5F7A97" "#775D7B" "#D1352C"
+#> [1] "#4E79A7" "#B0855C" "#D39132" "#779D47" "#8F8353" "#E15759"
 ```

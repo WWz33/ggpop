@@ -27,7 +27,7 @@ scale_fill_ggpop(palette = c("admixture", "population", "publication", "manhatta
 
 ``` r
 ggpop_palette(4, "population")
-#> [1] "#0072B2" "#009E73" "#E69F00" "#CC79A7"
+#> [1] "#4E79A7" "#59A14F" "#76B7B2" "#EDC948"
 ggplot2::ggplot(data.frame(pop = c("A", "B"), x = 1:2, y = 1:2),
   ggplot2::aes(x, y, colour = pop)) +
   ggplot2::geom_point() +

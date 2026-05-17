@@ -178,10 +178,13 @@ explicit colours:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span></span>
 <span>  <span class="va">gwas</span>,</span>
-<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#123456"</span>, <span class="st">"#654321"</span><span class="op">)</span>,</span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#4E79A7"</span>, <span class="st">"#F28E2B"</span><span class="op">)</span>,</span>
 <span>  binary <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="gwas_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Manhattan plot with a two-colour alternating palette. Adjacent chromosomes alternate between the two supplied colours, emphasizing chromosome separation without changing the p-value scale or thresholds." width="700"></p>
+<p>Reference-line colours use the same publication palette by default,
+and can be overridden explicitly with <code>threshold_color</code> and
+<code>suggestive_color</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="alternative-gwas-formats">Alternative GWAS formats<a class="anchor" aria-label="anchor" href="#alternative-gwas-formats"></a>

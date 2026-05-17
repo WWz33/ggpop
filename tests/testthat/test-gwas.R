@@ -54,8 +54,8 @@ test_that("plot_manha and geom_manha share the same internal fastman visual cont
   expect_equal(plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
   expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
   expect_equal(plot_points$size[1], 0.9)
-  expect_equal(plot$data[[2]]$colour, "blue")
-  expect_equal(plot$data[[3]]$colour, "red")
+  expect_equal(plot$data[[2]]$colour, ggpop_palette(1, "publication"))
+  expect_equal(plot$data[[3]]$colour, ggpop_palette(4, "publication")[4])
 })
 
 test_that("Manhattan geom exposes core fastman controls", {
@@ -77,10 +77,10 @@ test_that("Manhattan geom accepts explicit chromosomal and binary palettes", {
   data <- import_gwas(extdata_path("gwas/gcta.mlma"), type = "gcta")
 
   chromosomal <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = "publication"))
-  binary <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = c("#123456", "#654321"), binary = TRUE))
+  binary <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = c("#4E79A7", "#F28E2B"), binary = TRUE))
 
   expect_gt(length(unique(chromosomal$data[[1]]$colour)), 2)
-  expect_true(all(unique(binary$data[[1]]$colour) %in% c("#123456", "#654321")))
+  expect_true(all(unique(binary$data[[1]]$colour) %in% c("#4E79A7", "#F28E2B")))
 })
 
 test_that("QQ geom follows fastqq defaults for native ggplot path", {

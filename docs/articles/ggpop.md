@@ -152,7 +152,7 @@ All categorical colours use a unified discrete palette entry:
 
 ``` r
 ggpop_palette(4, "population")
-#> [1] "#0072B2" "#009E73" "#E69F00" "#CC79A7"
+#> [1] "#4E79A7" "#59A14F" "#76B7B2" "#EDC948"
 ggpop_palette(8, "admixture")
 #> [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948" "#9C755F"
 #> [7] "#2F4B7C" "#FF7C43"
