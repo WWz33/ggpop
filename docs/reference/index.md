@@ -64,6 +64,16 @@ vcftools.
   [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
   : Population genomics statistics plots
 
+## Selective Sweep Scans
+
+Selscan and XPCLR imports with chromosome and region plotting.
+
+- [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md)
+  : Import selective sweep scan results
+- [`geom_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+  [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+  : Selective sweep scan plots
+
 ## Styling
 
 Shared palettes, scales, and publication theme helpers.

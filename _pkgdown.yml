@@ -43,6 +43,7 @@ articles:
   - guides/pca
   - guides/admixture
   - guides/stats
+  - guides/selection
   - guides/color-schemes
   - guides/full-extdata
 - title: Advanced
@@ -83,6 +84,12 @@ reference:
   - import_stats
   - plot_stats
   - geom_stats
+- title: Selective Sweep Scans
+  desc: Selscan and XPCLR imports with chromosome and region plotting.
+  contents:
+  - import_selection
+  - plot_selection
+  - geom_selection
 - title: Styling
   desc: Shared palettes, scales, and publication theme helpers.
   contents:

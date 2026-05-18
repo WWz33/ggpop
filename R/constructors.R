@@ -55,6 +55,33 @@
   data
 }
 
+.new_ggpop_selection <- function(data, source) {
+  .require_columns(data, c("stat", "chr", "pos", "value"), "Selective sweep scan data")
+  data$stat <- as.character(data$stat)
+  data$chr <- as.character(data$chr)
+  data$pos <- as.numeric(data$pos)
+  data$value <- as.numeric(data$value)
+  if (!"start" %in% names(data)) {
+    data$start <- data$pos
+  }
+  if (!"end" %in% names(data)) {
+    data$end <- data$pos
+  }
+  if (!"score_type" %in% names(data)) {
+    data$score_type <- "raw"
+  }
+  data$start <- as.numeric(data$start)
+  data$end <- as.numeric(data$end)
+  data$score_type <- as.character(data$score_type)
+  data$source <- source
+  data$.group <- .selection_group_id(data)
+  if (any(!is.finite(data$pos), na.rm = TRUE)) {
+    stop("Selective sweep scan positions must be finite numeric values.", call. = FALSE)
+  }
+  class(data) <- unique(c("ggpop_selection", class(data)))
+  data
+}
+
 .stats_group_id <- function(data) {
   parts <- list(data$stat)
   if ("pop1" %in% names(data)) {
@@ -62,6 +89,14 @@
   }
   if ("pop2" %in% names(data)) {
     parts <- c(parts, list(data$pop2))
+  }
+  do.call(interaction, c(parts, list(drop = TRUE, sep = ":")))
+}
+
+.selection_group_id <- function(data) {
+  parts <- list(data$stat)
+  if ("score_type" %in% names(data)) {
+    parts <- c(parts, list(data$score_type))
   }
   do.call(interaction, c(parts, list(drop = TRUE, sep = ":")))
 }

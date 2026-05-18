@@ -7,12 +7,12 @@ variants selectively keep one or both axes visible.
 ## Usage
 
 ``` r
-theme_tidyplot(plot, fontsize = 7, base_family = "")
-theme_ggplot2(plot, fontsize = 7, base_family = "")
-theme_minimal_xy(plot, fontsize = 7, base_family = "")
-theme_minimal_x(plot, fontsize = 7, base_family = "")
-theme_minimal_y(plot, fontsize = 7, base_family = "")
-style_void(plot, fontsize = 7, base_family = "")
+theme_tidyplot(plot, base_size = 7, base_family = "", fontsize = NULL)
+theme_ggplot2(plot, base_size = 7, base_family = "", fontsize = NULL)
+theme_minimal_xy(plot, base_size = 7, base_family = "", fontsize = NULL)
+theme_minimal_x(plot, base_size = 7, base_family = "", fontsize = NULL)
+theme_minimal_y(plot, base_size = 7, base_family = "", fontsize = NULL)
+style_void(plot, base_size = 7, base_family = "", fontsize = NULL)
 ```
 
 ## Arguments
@@ -21,10 +21,14 @@ style_void(plot, fontsize = 7, base_family = "")
 
   A ggplot object.
 
-- fontsize:
+- base_size:
 
   Base font size.
 
 - base_family:
 
   Base font family.
+
+- fontsize:
+
+  Compatibility alias for \`base_size\`.

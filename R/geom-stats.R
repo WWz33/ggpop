@@ -34,7 +34,7 @@ geom_stats <- function(mapping = ggplot2::aes(x = .data$pos / 1e6, y = .data$val
     ggplot2::scale_y_continuous(expand = c(0, 0)),
     ggplot2::labs(x = "Position (Mb)", y = "Statistic value", colour = colour_by),
     .stats_facet(layer_data),
-    .theme_tidyplot(fontsize = base_size, base_family = base_family) +
+    .theme_tidyplot(base_size = base_size, base_family = base_family) +
       ggplot2::theme(
         panel.spacing = grid::unit(0.1, "cm"),
         strip.background = ggplot2::element_blank(),

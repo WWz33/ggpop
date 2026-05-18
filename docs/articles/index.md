@@ -13,6 +13,8 @@
   plots](https://wwz33.github.io/ggpop/articles/guides/admixture.md):
 - [Population genomics
   statistics](https://wwz33.github.io/ggpop/articles/guides/stats.md):
+- [Selective sweep
+  scans](https://wwz33.github.io/ggpop/articles/guides/selection.md):
 - [Discrete color
   schemes](https://wwz33.github.io/ggpop/articles/guides/color-schemes.md):
 - [Full extdata

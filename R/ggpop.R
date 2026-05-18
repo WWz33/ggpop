@@ -21,3 +21,7 @@ ggpop.ggpop_admix <- function(data, mapping = ggplot2::aes(), ..., module = NULL
 ggpop.ggpop_stats <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
   ggplot2::ggplot(data = data, mapping = mapping)
 }
+
+ggpop.ggpop_selection <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
+  ggplot2::ggplot(data = data, mapping = mapping)
+}

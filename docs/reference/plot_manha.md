@@ -9,8 +9,10 @@ internal fastman-style ggplot implementation.
 ``` r
 plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
   threshold = 5e-8, suggestive = 1e-5,
-  threshold_color = .gwas_threshold_color(),
-  suggestive_color = .gwas_suggestive_color(), point_size = 1.404,
+  threshold_colour = .gwas_threshold_color(),
+  suggestive_colour = .gwas_suggestive_color(),
+  threshold_color = NULL, suggestive_color = NULL,
+  point_size = 1.5,
   point_alpha = 0.9, base_size = 11, base_family = "", legend_position = "none",
   logp = TRUE, maxP = 14, bybp = FALSE, palette = "manhattan",
   binary = FALSE, ...)
@@ -30,10 +32,15 @@ plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
 
   Manhattan reference p-value thresholds.
 
-- threshold_color, suggestive_color:
+- threshold_colour, suggestive_colour:
 
   Reference-line colours. Defaults use the unified ggpop publication
   palette and can be overridden explicitly.
+
+- threshold_color, suggestive_color:
+
+  Compatibility aliases for \`threshold_colour\` and
+  \`suggestive_colour\`.
 
 - point_size, point_alpha:
 

@@ -4,8 +4,8 @@
 \usage{
 geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
   position = "identity", ..., size = 0.8, alpha = 0.8, colour = "black",
-  diagonal = TRUE, diagonal_color = .gwas_threshold_color(),
-  diagonal_colour = NULL, show_lambda = TRUE,
+  diagonal = TRUE, diagonal_colour = .gwas_threshold_color(),
+  diagonal_color = NULL, show_lambda = TRUE,
   maxP = 14, fix_zero = TRUE, speedup = TRUE, base_size = 11,
   base_family = "", lambda_size = base_size * 0.65, na.rm = FALSE,
   show.legend = FALSE, inherit.aes = TRUE)
@@ -19,8 +19,8 @@ geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
 \item{na.rm}{Remove missing values.}
 \item{size, alpha, colour}{Point appearance for publication style.}
 \item{diagonal}{Draw the expected-equals-observed diagonal.}
-\item{diagonal_color}{Diagonal line colour. Defaults to the unified ggpop publication threshold colour and can be overridden explicitly.}
-\item{diagonal_colour}{Deprecated spelling kept for compatibility. Prefer `diagonal_color`.}
+\item{diagonal_colour}{Diagonal line colour. Defaults to the unified ggpop publication threshold colour and can be overridden explicitly.}
+\item{diagonal_color}{Compatibility alias for `diagonal_colour`.}
 \item{show_lambda}{Display genomic inflation factor.}
 \item{maxP}{Maximum displayed `-log10(p)` value, following ggpop's internal fastqq-style layout.}
 \item{fix_zero}{Replace zero p-values with the minimum non-zero p-value before log transform.}

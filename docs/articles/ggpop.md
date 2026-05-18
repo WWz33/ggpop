@@ -19,6 +19,7 @@ workflows. The package keeps each module in the same tidy shape:
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
 | Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
+| Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` | selscan and XPCLR scans |
 
 ## Core pattern
 
@@ -40,6 +41,14 @@ stats <- import_stats(
   ggpop_extdata("Population_genomics_statistics", "pixy"),
   type = "pixy"
 )
+selscan_chr1 <- import_selection(
+  ggpop_extdata("selective_sweep", "selscan"),
+  ihs = "chr1.ihs.out.100bins.norm",
+  nsl = "chr1.nsl.out.100bins.norm",
+  xpehh = "chr1.xpehh.out.norm",
+  xpnsl = "chr1.xpnsl.out.norm",
+  type = "selscan"
+)
 ```
 
 Each importer returns a typed object:
@@ -53,6 +62,8 @@ class(admix)
 #> [1] "ggpop_admix" "data.frame"
 class(stats)
 #> [1] "ggpop_stats" "data.frame"
+class(selscan_chr1)
+#> [1] "ggpop_selection" "data.frame"
 ```
 
 ## Tidy plotting style
@@ -187,6 +198,26 @@ ggpop object supplies imported pixy statistics and geom_stats draws only
 the selected FST and pi facets for
 chr2L.](ggpop_files/figure-html/unnamed-chunk-10-1.png)
 
+## Selective sweep scans
+
+Selection scan outputs use the same direct and layered plotting shape.
+The direct plot can show signed values or absolute score magnitude, and
+thresholds can be fixed values or filtered-data quantiles. Genome-wide
+calls default to a Manhattan-like chromosome axis; calls with `chr`,
+`start`, or `end` default to a single-region view.
+
+``` r
+selscan_chr1 |>
+  plot_selection(
+    stat = c("ihs", "nsl", "xpehh", "xpnsl"),
+    chr = "1"
+  )
+```
+
+![Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL
+are stacked vertically with genomic position in megabases on the
+x-axis.](ggpop_files/figure-html/unnamed-chunk-11-1.png)
+
 ## What to use
 
 - Use
@@ -203,6 +234,9 @@ chr2L.](ggpop_files/figure-html/unnamed-chunk-10-1.png)
 - Use
   [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
   and `ggpop() + geom_stats()` for windowed population statistics.
+- Use
+  [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+  and `ggpop() + geom_selection()` for selective sweep scans.
 - Treat the direct `plot_*()` functions as the reference style;
   `geom_*()` is the same look inside a ggplot composition.
 - Use the compatibility article only when you need original `pophelper`

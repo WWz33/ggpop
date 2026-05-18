@@ -46,6 +46,7 @@
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/admixture.html">Admixture plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/stats.html">Population genomics statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/guides/selection.html">Selective sweep scans</a></li>
     <li><a class="dropdown-item" href="../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -151,6 +152,13 @@ original-package behavior.</li>
 <td><code>ggpop() + geom_stats()</code></td>
 <td>pixy and vcftools summaries</td>
 </tr>
+<tr class="even">
+<td>Selective sweeps</td>
+<td><code><a href="../reference/import_selection.html">import_selection()</a></code></td>
+<td><code><a href="../reference/geom_selection.html">plot_selection()</a></code></td>
+<td><code>ggpop() + geom_selection()</code></td>
+<td>selscan and XPCLR scans</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -174,6 +182,14 @@ original-package behavior.</li>
 <span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_stats.html">import_stats</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"Population_genomics_statistics"</span>, <span class="st">"pixy"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"pixy"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">selscan_chr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_selection.html">import_selection</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"selective_sweep"</span>, <span class="st">"selscan"</span><span class="op">)</span>,</span>
+<span>  ihs <span class="op">=</span> <span class="st">"chr1.ihs.out.100bins.norm"</span>,</span>
+<span>  nsl <span class="op">=</span> <span class="st">"chr1.nsl.out.100bins.norm"</span>,</span>
+<span>  xpehh <span class="op">=</span> <span class="st">"chr1.xpehh.out.norm"</span>,</span>
+<span>  xpnsl <span class="op">=</span> <span class="st">"chr1.xpnsl.out.norm"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"selscan"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Each importer returns a typed object:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -184,7 +200,9 @@ original-package behavior.</li>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_admix" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ggpop_stats" "data.frame"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "ggpop_stats" "data.frame"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">selscan_chr1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ggpop_selection" "data.frame"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="tidy-plotting-style">Tidy plotting style<a class="anchor" aria-label="anchor" href="#tidy-plotting-style"></a>
@@ -238,9 +256,9 @@ layers.</p>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar, with population group labels used for ordering." width="700"></p>
 <p>All categorical colours use a unified discrete palette entry:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"population"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"population"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "#4E79A7" "#59A14F" "#76B7B2" "#EDC948"</span></span>
-<span><span class="fu"><a href="https://wwz33.github.io/ggpop/reference/pop_palettes.html">ggpop_palette</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">8</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948" "#9C755F"</span></span>
 <span><span class="co">#&gt; [7] "#2F4B7C" "#FF7C43"</span></span></code></pre></div>
 </div>
@@ -261,6 +279,23 @@ summaries from pixy or vcftools outputs:</p>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="Layered two-panel line plot of population genomics statistics. The ggpop object supplies imported pixy statistics and geom_stats draws only the selected FST and pi facets for chr2L." width="700"></p>
 </div>
 <div class="section level2">
+<h2 id="selective-sweep-scans">Selective sweep scans<a class="anchor" aria-label="anchor" href="#selective-sweep-scans"></a>
+</h2>
+<p>Selection scan outputs use the same direct and layered plotting
+shape. The direct plot can show signed values or absolute score
+magnitude, and thresholds can be fixed values or filtered-data
+quantiles. Genome-wide calls default to a Manhattan-like chromosome
+axis; calls with <code>chr</code>, <code>start</code>, or
+<code>end</code> default to a single-region view.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">selscan_chr1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/geom_selection.html">plot_selection</a></span><span class="op">(</span></span>
+<span>    stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ihs"</span>, <span class="st">"nsl"</span>, <span class="st">"xpehh"</span>, <span class="st">"xpnsl"</span><span class="op">)</span>,</span>
+<span>    chr <span class="op">=</span> <span class="st">"1"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis." width="700"></p>
+</div>
+<div class="section level2">
 <h2 id="what-to-use">What to use<a class="anchor" aria-label="anchor" href="#what-to-use"></a>
 </h2>
 <ul>
@@ -275,6 +310,8 @@ for PCA plots.</li>
 <li>Use <code><a href="../reference/geom_stats.html">plot_stats()</a></code> and
 <code>ggpop() + geom_stats()</code> for windowed population
 statistics.</li>
+<li>Use <code><a href="../reference/geom_selection.html">plot_selection()</a></code> and
+<code>ggpop() + geom_selection()</code> for selective sweep scans.</li>
 <li>Treat the direct <code>plot_*()</code> functions as the reference
 style; <code>geom_*()</code> is the same look inside a ggplot
 composition.</li>

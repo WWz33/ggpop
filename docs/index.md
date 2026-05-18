@@ -5,7 +5,8 @@ population-genomics visualization in R. It combines typed import
 helpers, direct plotting functions, and composable `ggplot2` extension
 layers for GWAS, PCA, and admixture results. It also includes a
 population genomics statistics module for windowed FST, pi, Tajima’s D,
-Dxy, and Watterson’s theta summaries.
+Dxy, and Watterson’s theta summaries, plus selective sweep scan plots
+for selscan and XPCLR outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -157,6 +158,34 @@ import_stats("vcftools_results/", type = "vcftools") |>
   plot_stats(stat = "all", chr = "chr2L")
 ```
 
+``` r
+selscan_chr1 <- import_selection(
+  "selscan_results/",
+  ihs = "chr1.ihs.out.100bins.norm",
+  nsl = "chr1.nsl.out.100bins.norm",
+  xpehh = "chr1.xpehh.out.norm",
+  xpnsl = "chr1.xpnsl.out.norm",
+  type = "selscan"
+)
+
+plot_selection(
+  selscan_chr1,
+  stat = c("ihs", "nsl", "xpehh", "xpnsl"),
+  chr = "1"
+)
+```
+
+![Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL
+are stacked vertically with genomic position in megabases on the
+x-axis.](reference/figures/readme-selection.png)
+
+Selection plots support signed or absolute score views. Fixed thresholds
+such as `threshold = 2` draw score cutoffs directly, while
+`threshold = 0.95, threshold_type = "quantile"` derives a cutoff from
+the filtered scan values. Genome-wide calls default to a Manhattan-like
+chromosome axis; calls with `chr`, `start`, or `end` default to a
+single-region view.
+
 ## Interface
 
 The recommended user-facing API is intentionally small.
@@ -168,6 +197,7 @@ The recommended user-facing API is intentionally small.
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` |
 | Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
+| Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need
@@ -213,11 +243,15 @@ installation:
 - [Population statistics
   guide](https://wwz33.github.io/ggpop/articles/guides/stats.html)
   Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting
+- [Selective sweep
+  guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
+  selscan and XPCLR imports, signed or absolute score plots, and
+  quantile thresholds
 
 ## Acknowledgements
 
 `ggpop` builds on `ggplot2` and follows tidy plotting conventions
 inspired by packages such as `tidyplots`. Optional compatibility paths
 reference `flashpcaR` and `pophelper`, while GWAS Manhattan and Q-Q
-plots use native ggplot layers with fastman-style data transformation
+plots use native ggplot layers with `fastman`-style data transformation
 and layout.

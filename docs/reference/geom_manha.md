@@ -10,9 +10,10 @@ threshold lines, fastman-style scales, and the default module theme.
 ``` r
 geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
   data = NULL, geom = "point", position = "identity", ..., threshold = 5e-8,
-  suggestive = 1e-5, threshold_color = .gwas_threshold_color(),
-  suggestive_color = .gwas_suggestive_color(),
-  size = 1.404, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
+  suggestive = 1e-5, threshold_colour = .gwas_threshold_color(),
+  suggestive_colour = .gwas_suggestive_color(),
+  threshold_color = NULL, suggestive_color = NULL,
+  size = 1.5, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
   bybp = FALSE, palette = "manhattan", binary = FALSE, base_size = 11,
   base_family = "", na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
 ```
@@ -82,10 +83,15 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
 
   Base font family for the default module theme.
 
-- threshold_color, suggestive_color:
+- threshold_colour, suggestive_colour:
 
   Reference-line colours. Defaults use the unified ggpop publication
   palette and can be overridden explicitly.
+
+- threshold_color, suggestive_color:
+
+  Compatibility aliases for \`threshold_colour\` and
+  \`suggestive_colour\`.
 
 - na.rm:
 

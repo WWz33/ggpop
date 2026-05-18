@@ -12,8 +12,8 @@ applying the tidyplot-style ggpop theme from \`theme_tidyplot()\`.
 ``` r
 geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
   position = "identity", ..., size = 0.8, alpha = 0.8, colour = "black",
-  diagonal = TRUE, diagonal_color = .gwas_threshold_color(),
-  diagonal_colour = NULL, show_lambda = TRUE,
+  diagonal = TRUE, diagonal_colour = .gwas_threshold_color(),
+  diagonal_color = NULL, show_lambda = TRUE,
   maxP = 14, fix_zero = TRUE, speedup = TRUE, base_size = 11,
   base_family = "", lambda_size = base_size * 0.65, na.rm = FALSE,
   show.legend = FALSE, inherit.aes = TRUE)
@@ -53,14 +53,14 @@ geom_qq(mapping = ggplot2::aes(p = .data$p), data = NULL, geom = "point",
 
   Draw the expected-equals-observed diagonal.
 
-- diagonal_color:
+- diagonal_colour:
 
   Diagonal line colour. Defaults to the unified ggpop publication
   threshold colour and can be overridden explicitly.
 
-- diagonal_colour:
+- diagonal_color:
 
-  Deprecated spelling kept for compatibility. Prefer \`diagonal_color\`.
+  Compatibility alias for \`diagonal_colour\`.
 
 - show_lambda:
 

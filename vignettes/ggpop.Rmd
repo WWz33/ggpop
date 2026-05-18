@@ -36,6 +36,7 @@ The package keeps each module in the same tidy shape:
 | PCA | `import_pca()` / `compute_pca()` | `plot_pca()` | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
 | Admixture | `import_admix()` | `plot_admix()` | `ggpop() + geom_admix()` | see compatibility article |
 | Population statistics | `import_stats()` | `plot_stats()` | `ggpop() + geom_stats()` | pixy and vcftools summaries |
+| Selective sweeps | `import_selection()` | `plot_selection()` | `ggpop() + geom_selection()` | selscan and XPCLR scans |
 
 ## Core pattern
 
@@ -57,6 +58,14 @@ stats <- import_stats(
   ggpop_extdata("Population_genomics_statistics", "pixy"),
   type = "pixy"
 )
+selscan_chr1 <- import_selection(
+  ggpop_extdata("selective_sweep", "selscan"),
+  ihs = "chr1.ihs.out.100bins.norm",
+  nsl = "chr1.nsl.out.100bins.norm",
+  xpehh = "chr1.xpehh.out.norm",
+  xpnsl = "chr1.xpnsl.out.norm",
+  type = "selscan"
+)
 ```
 
 Each importer returns a typed object:
@@ -66,6 +75,7 @@ class(gwas)
 class(pca)
 class(admix)
 class(stats)
+class(selscan_chr1)
 ```
 
 ## Tidy plotting style
@@ -137,6 +147,22 @@ stats |>
   geom_stats(stat = c("fst", "pi"), chr = "chr2L")
 ```
 
+## Selective sweep scans
+
+Selection scan outputs use the same direct and layered plotting shape. The
+direct plot can show signed values or absolute score magnitude, and thresholds
+can be fixed values or filtered-data quantiles. Genome-wide calls default to a
+Manhattan-like chromosome axis; calls with `chr`, `start`, or `end` default to a
+single-region view.
+
+```{r, fig.alt = "Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis."}
+selscan_chr1 |>
+  plot_selection(
+    stat = c("ihs", "nsl", "xpehh", "xpnsl"),
+    chr = "1"
+  )
+```
+
 ## What to use
 
 - Use `plot_manha()` and `ggpop() + geom_manha()` for Manhattan plots.
@@ -144,5 +170,6 @@ stats |>
 - Use `plot_pca()` and `ggpop() + geom_pca()` for PCA plots.
 - Use `plot_admix()` and `ggpop() + geom_admix()` for admixture plots.
 - Use `plot_stats()` and `ggpop() + geom_stats()` for windowed population statistics.
+- Use `plot_selection()` and `ggpop() + geom_selection()` for selective sweep scans.
 - Treat the direct `plot_*()` functions as the reference style; `geom_*()` is the same look inside a ggplot composition.
 - Use the compatibility article only when you need original `pophelper` workflows.

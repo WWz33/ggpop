@@ -1,0 +1,6 @@
+norm --xpnsl --files chr1.xpnsl.out chr10.xpnsl.out chr11.xpnsl.out chr12.xpnsl.out chr13.xpnsl.out chr14.xpnsl.out chr15.xpnsl.out chr16.xpnsl.out chr17.xpnsl.out chr18.xpnsl.out chr19.xpnsl.out chr2.xpnsl.out chr20.xpnsl.out chr3.xpnsl.out chr4.xpnsl.out chr5.xpnsl.out chr6.xpnsl.out chr7.xpnsl.out chr8.xpnsl.out chr9.xpnsl.out 
+
+
+Total loci: 33892
+num	mean	variance
+33892	-0.183098	0.0314596

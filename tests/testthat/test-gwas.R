@@ -46,7 +46,7 @@ test_that("plot_manha and geom_manha share the same internal fastman visual cont
   expect_equal(range(plot_points$x, na.rm = TRUE), range(geom_points$x, na.rm = TRUE))
   expect_equal(plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
   expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
-  expect_equal(plot_points$size[1], 1.404)
+  expect_equal(plot_points$size[1], 1.5)
   expect_equal(plot_points$alpha[1], 0.9)
   expect_equal(plot$data[[2]]$colour, ggpop_palette(1, "publication"))
   expect_equal(plot$data[[3]]$colour, ggpop_palette(4, "publication")[4])

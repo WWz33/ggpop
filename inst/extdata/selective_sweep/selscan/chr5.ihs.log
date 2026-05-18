@@ -1,0 +1,1151 @@
+selscan v3.0.1
+/home/ww/biosoft/selscan --ihs --unphased --pmap --vcf work/chr/chr5.vcf.gz --map work/chr/chr5.map --out work/results/chr5 --threads 4 
+Opening work/chr/chr5.vcf.gz to count number of haplotypes and loci...
+--skip-low-freq set. Removing all variants < 0.05.
+
+Loading 304 haplotypes and 1438 loci. Skipped 29 loci 
+
+Removed 29 low frequency variants from haplotype data.
+====
+Input file loaded in 0.013772 s.
+=====
+
+v3.0.1
+Calculating iHS.
+=====
+Input (VCF) filename: work/chr/chr5.vcf.gz
+Map filename: work/chr/chr5.map
+Output file: work/results/chr5
+Threads: 4
+Scale parameter: 20000
+Max gap parameter: 200000
+EHH cutoff value: 0.05
+Minimum MAF cutoff: 0.05
+Phased: no
+Alt flag set: no
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 529167 id: Gm05_529167Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 620800 id: Gm05_620800Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 643883 id: Gm05_643883Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 529218 id: Gm05_529218Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 650049 id: Gm05_650049Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 545738 id: Gm05_545738WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 818181 id: Gm05_818181Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 574479 id: Gm05_574479Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 802933 id: Gm05_802933Skipping calculation.
+Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 865596 id: Gm05_865596WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 907001 id: Gm05_907001Skipping calculation.
+Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 898947 id: Gm05_898947WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 907042 id: Gm05_907042Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 955651 id: Gm05_955651Skipping calculation.
+Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 971671 id: Gm05_971671Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 955721 id: Gm05_955721Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 989049 id: Gm05_989049Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 986566 id: Gm05_986566Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 989106 id: Gm05_989106Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 997305 id: Gm05_997305Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 990453 id: Gm05_990453Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1023118 id: Gm05_1023118Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1017442 id: Gm05_1017442Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 997322 id: Gm05_997322Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1028260 id: Gm05_1028260Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1038293 id: Gm05_1038293Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1038265 id: Gm05_1038265Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1038299 id: Gm05_1038299Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1069659 id: Gm05_1069659Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1087972 id: Gm05_1087972Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1088004 id: Gm05_1088004Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1088017 id: Gm05_1088017Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1130915 id: Gm05_1130915Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1166197 id: Gm05_1166197Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1166224 id: Gm05_1166224Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1231350 id: Gm05_1231350Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1232696 id: Gm05_1232696Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1256532 id: Gm05_1256532Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1256579 id: Gm05_1256579Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1263288 id: Gm05_1263288Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1294579 id: Gm05_1294579Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1430380 id: Gm05_1430380Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1431402 id: Gm05_1431402Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1483963 id: Gm05_1483963Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1487058 id: Gm05_1487058Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 1520128 id: Gm05_1520128Skipping calculation.
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1531144 id: Gm05_1531144
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1531277 id: Gm05_1531277
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1531286 id: Gm05_1531286
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1531536 id: Gm05_1531536
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1545415 id: Gm05_1545415
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1545824 id: Gm05_1545824
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1563696 id: Gm05_1563696
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1554612 id: Gm05_1554612
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1645930 id: Gm05_1645930
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1645943 id: Gm05_1645943
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1663667 id: Gm05_1663667
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1702041 id: Gm05_1702041
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1708219 id: Gm05_1708219
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1754210 id: Gm05_1754210
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1778888 id: Gm05_1778888
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1779331 id: Gm05_1779331
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1819575 id: Gm05_1819575
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1823776 id: Gm05_1823776
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1893961 id: Gm05_1893961
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1894282 id: Gm05_1894282
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1897348 id: Gm05_1897348
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1968802 id: Gm05_1968802
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1901790 id: Gm05_1901790
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 2199342 id: Gm05_2199342
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 2209256 id: Gm05_2209256
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2535670 id: Gm05_2535670
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 2209380 id: Gm05_2209380
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2566821 id: Gm05_2566821
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2575475 id: Gm05_2575475
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2576630 id: Gm05_2576630
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2587652 id: Gm05_2587652
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2600912 id: Gm05_2600912
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2609789 id: Gm05_2609789
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2668371 id: Gm05_2668371
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2668581 id: Gm05_2668581
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2668587 id: Gm05_2668587
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2679599 id: Gm05_2679599
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1972733 id: Gm05_1972733
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2679757 id: Gm05_2679757
+WARNING: Reached a gap of 203811bp > 200000bp. Skipping calculation at position 1995531 id: Gm05_1995531
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2720602 id: Gm05_2720602
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2844369 id: Gm05_2844369
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2844406 id: Gm05_2844406
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2897661 id: Gm05_2897661
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2955345 id: Gm05_2955345
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2959425 id: Gm05_2959425
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 2959677 id: Gm05_2959677
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 3002558 id: Gm05_3002558
+WARNING: Reached a gap of 326290bp > 200000bp. Skipping calculation at position 3002589 id: Gm05_3002589
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3302589 id: Gm05_3302589
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3304326 id: Gm05_3304326
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3304596 id: Gm05_3304596
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3307218 id: Gm05_3307218
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3310429 id: Gm05_3310429
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3310181 id: Gm05_3310181
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3310156 id: Gm05_3310156
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3420963 id: Gm05_3420963
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3310444 id: Gm05_3310444
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3421133 id: Gm05_3421133
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3454479 id: Gm05_3454479
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3454169 id: Gm05_3454169
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3421146 id: Gm05_3421146
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3463720 id: Gm05_3463720
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3475990 id: Gm05_3475990
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3496064 id: Gm05_3496064
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3499623 id: Gm05_3499623
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3499633 id: Gm05_3499633
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3499826 id: Gm05_3499826
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3499805 id: Gm05_3499805
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3507805 id: Gm05_3507805
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3538707 id: Gm05_3538707
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3538745 id: Gm05_3538745
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3507819 id: Gm05_3507819
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3538972 id: Gm05_3538972
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3541104 id: Gm05_3541104
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3540862 id: Gm05_3540862
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3546219 id: Gm05_3546219
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3608630 id: Gm05_3608630
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3608621 id: Gm05_3608621
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3646461 id: Gm05_3646461
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3646215 id: Gm05_3646215
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3612346 id: Gm05_3612346
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3646535 id: Gm05_3646535
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3670246 id: Gm05_3670246
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3670274 id: Gm05_3670274
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3690818 id: Gm05_3690818
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3704626 id: Gm05_3704626
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3791901 id: Gm05_3791901
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3894352 id: Gm05_3894352
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3894531 id: Gm05_3894531
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3950336 id: Gm05_3950336
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3963904 id: Gm05_3963904
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3964103 id: Gm05_3964103
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3964119 id: Gm05_3964119
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3993828 id: Gm05_3993828
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 3993782 id: Gm05_3993782
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 4011587 id: Gm05_4011587
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 4110862 id: Gm05_4110862
+WARNING: Reached a gap of 659348bp > 200000bp. Skipping calculation at position 4941225 id: Gm05_4941225
+WARNING: Reached a gap of 659348bp > 200000bp. Skipping calculation at position 5079314 id: Gm05_5079314
+WARNING: Reached a gap of 659348bp > 200000bp. Skipping calculation at position 5112405 id: Gm05_5112405
+WARNING: Reached a gap of 659348bp > 200000bp. Skipping calculation at position 5091836 id: Gm05_5091836
+WARNING: Reached a gap of 659348bp > 200000bp. Skipping calculation at position 5112956 id: Gm05_5112956
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 4160569 id: Gm05_4160569
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5693713 id: Gm05_5693713
+WARNING: Reached a gap of 659348bp > 200000bp. Skipping calculation at position 5122379 id: Gm05_5122379
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5777276 id: Gm05_5777276
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5782830 id: Gm05_5782830
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5783155 id: Gm05_5783155
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5822567 id: Gm05_5822567
+WARNING: Reached a gap of 300000bp > 200000bp. Skipping calculation at position 4281877 id: Gm05_4281877
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5822963 id: Gm05_5822963
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5863159 id: Gm05_5863159
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5870563 id: Gm05_5870563
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5898822 id: Gm05_5898822
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5901657 id: Gm05_5901657
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5919348 id: Gm05_5919348
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5863518 id: Gm05_5863518
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5921509 id: Gm05_5921509
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5921673 id: Gm05_5921673
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5936440 id: Gm05_5936440
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5925435 id: Gm05_5925435
+WARNING: Reached a gap of 571334bp > 200000bp. Skipping calculation at position 5964502 id: Gm05_5964502
+WARNING: Reached a gap of 239719bp > 200000bp. Skipping calculation at position 6204221 id: Gm05_6204221
+WARNING: Reached a gap of 240545bp > 200000bp. Skipping calculation at position 6470710 id: Gm05_6470710
+WARNING: Reached a gap of 240545bp > 200000bp. Skipping calculation at position 6519201 id: Gm05_6519201
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 6888833 id: Gm05_6888833
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 6995752 id: Gm05_6995752
+WARNING: Reached a gap of 239719bp > 200000bp. Skipping calculation at position 6230165 id: Gm05_6230165
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7019161 id: Gm05_7019161
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7089924 id: Gm05_7089924
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7158221 id: Gm05_7158221
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7192575 id: Gm05_7192575
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7172782 id: Gm05_7172782
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7251605 id: Gm05_7251605
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7310079 id: Gm05_7310079
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7251885 id: Gm05_7251885
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7541451 id: Gm05_7541451
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7499553 id: Gm05_7499553
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7659791 id: Gm05_7659791
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7667820 id: Gm05_7667820
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7668047 id: Gm05_7668047
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7717187 id: Gm05_7717187
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7749612 id: Gm05_7749612
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7822282 id: Gm05_7822282
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7822294 id: Gm05_7822294
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7822062 id: Gm05_7822062
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7861223 id: Gm05_7861223
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7849234 id: Gm05_7849234
+WARNING: Reached a gap of 369632bp > 200000bp. Skipping calculation at position 7862889 id: Gm05_7862889
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8270215 id: Gm05_8270215
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8270860 id: Gm05_8270860
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8345061 id: Gm05_8345061
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8457691 id: Gm05_8457691
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8395748 id: Gm05_8395748
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8492394 id: Gm05_8492394
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8492435 id: Gm05_8492435
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8547513 id: Gm05_8547513
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8493686 id: Gm05_8493686
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8547522 id: Gm05_8547522
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8547531 id: Gm05_8547531
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8547555 id: Gm05_8547555
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8558230 id: Gm05_8558230
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8558255 id: Gm05_8558255
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8564791 id: Gm05_8564791
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8595144 id: Gm05_8595144
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8698912 id: Gm05_8698912
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8838772 id: Gm05_8838772
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8708071 id: Gm05_8708071
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8916720 id: Gm05_8916720
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8849319 id: Gm05_8849319
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8922163 id: Gm05_8922163
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8930577 id: Gm05_8930577
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8930596 id: Gm05_8930596
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8994451 id: Gm05_8994451
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 8956616 id: Gm05_8956616
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9022885 id: Gm05_9022885
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9035952 id: Gm05_9035952
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9036656 id: Gm05_9036656
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9104083 id: Gm05_9104083
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9107394 id: Gm05_9107394
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9107656 id: Gm05_9107656
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9112046 id: Gm05_9112046
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9112061 id: Gm05_9112061
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9124107 id: Gm05_9124107
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9124094 id: Gm05_9124094
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9462320 id: Gm05_9462320
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9589248 id: Gm05_9589248
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9727495 id: Gm05_9727495
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9781249 id: Gm05_9781249
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9258053 id: Gm05_9258053
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9827211 id: Gm05_9827211
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9243846 id: Gm05_9243846
+WARNING: Reached a gap of 204267bp > 200000bp. Skipping calculation at position 9226553 id: Gm05_9226553
+WARNING: Reached a gap of 252045bp > 200000bp. Skipping calculation at position 10271259 id: Gm05_10271259
+WARNING: Reached a gap of 252045bp > 200000bp. Skipping calculation at position 10271465 id: Gm05_10271465
+WARNING: Reached a gap of 252045bp > 200000bp. Skipping calculation at position 10079256 id: Gm05_10079256
+WARNING: Reached a gap of 252045bp > 200000bp. Skipping calculation at position 10301064 id: Gm05_10301064
+WARNING: Reached a gap of 252045bp > 200000bp. Skipping calculation at position 10359284 id: Gm05_10359284
+WARNING: Reached a gap of 231842bp > 200000bp. Skipping calculation at position 10657525 id: Gm05_10657525
+WARNING: Reached a gap of 252045bp > 200000bp. Skipping calculation at position 10425683 id: Gm05_10425683
+WARNING: Reached a gap of 344697bp > 200000bp. Skipping calculation at position 11002222 id: Gm05_11002222
+WARNING: Reached a gap of 344697bp > 200000bp. Skipping calculation at position 11003404 id: Gm05_11003404
+WARNING: Reached a gap of 344697bp > 200000bp. Skipping calculation at position 11088881 id: Gm05_11088881
+WARNING: Reached a gap of 549724bp > 200000bp. Skipping calculation at position 11693016 id: Gm05_11693016
+WARNING: Reached a gap of 344697bp > 200000bp. Skipping calculation at position 11143292 id: Gm05_11143292
+WARNING: Reached a gap of 549724bp > 200000bp. Skipping calculation at position 11824211 id: Gm05_11824211
+WARNING: Reached a gap of 549724bp > 200000bp. Skipping calculation at position 11837788 id: Gm05_11837788
+WARNING: Reached a gap of 228696bp > 200000bp. Skipping calculation at position 12318846 id: Gm05_12318846
+WARNING: Reached a gap of 246826bp > 200000bp. Skipping calculation at position 12090150 id: Gm05_12090150
+WARNING: Reached a gap of 246826bp > 200000bp. Skipping calculation at position 12084614 id: Gm05_12084614
+WARNING: Reached a gap of 228696bp > 200000bp. Skipping calculation at position 12321244 id: Gm05_12321244
+WARNING: Reached a gap of 387057bp > 200000bp. Skipping calculation at position 12708301 id: Gm05_12708301
+WARNING: Reached a gap of 387057bp > 200000bp. Skipping calculation at position 12826596 id: Gm05_12826596
+WARNING: Reached a gap of 480103bp > 200000bp. Skipping calculation at position 13306975 id: Gm05_13306975
+WARNING: Reached a gap of 387057bp > 200000bp. Skipping calculation at position 12826872 id: Gm05_12826872
+WARNING: Reached a gap of 480103bp > 200000bp. Skipping calculation at position 13311350 id: Gm05_13311350
+WARNING: Reached a gap of 480103bp > 200000bp. Skipping calculation at position 13324988 id: Gm05_13324988
+WARNING: Reached a gap of 223539bp > 200000bp. Skipping calculation at position 13967392 id: Gm05_13967392
+WARNING: Reached a gap of 480103bp > 200000bp. Skipping calculation at position 13372916 id: Gm05_13372916
+WARNING: Reached a gap of 223539bp > 200000bp. Skipping calculation at position 14041443 id: Gm05_14041443
+WARNING: Reached a gap of 370937bp > 200000bp. Skipping calculation at position 13743853 id: Gm05_13743853
+WARNING: Reached a gap of 223539bp > 200000bp. Skipping calculation at position 14214713 id: Gm05_14214713
+WARNING: Reached a gap of 223539bp > 200000bp. Skipping calculation at position 14268199 id: Gm05_14268199
+WARNING: Reached a gap of 223539bp > 200000bp. Skipping calculation at position 14311560 id: Gm05_14311560
+WARNING: Reached a gap of 234520bp > 200000bp. Skipping calculation at position 14546080 id: Gm05_14546080
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 14806124 id: Gm05_14806124
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 14753130 id: Gm05_14753130
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 14826608 id: Gm05_14826608
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 14935524 id: Gm05_14935524
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 15068251 id: Gm05_15068251
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 14949848 id: Gm05_14949848
+WARNING: Reached a gap of 204117bp > 200000bp. Skipping calculation at position 15272638 id: Gm05_15272638
+WARNING: Reached a gap of 399505bp > 200000bp. Skipping calculation at position 15672143 id: Gm05_15672143
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 15068521 id: Gm05_15068521
+WARNING: Reached a gap of 441057bp > 200000bp. Skipping calculation at position 16262866 id: Gm05_16262866
+WARNING: Reached a gap of 441057bp > 200000bp. Skipping calculation at position 16319285 id: Gm05_16319285
+WARNING: Reached a gap of 241351bp > 200000bp. Skipping calculation at position 16560636 id: Gm05_16560636
+WARNING: Reached a gap of 441057bp > 200000bp. Skipping calculation at position 16113200 id: Gm05_16113200
+WARNING: Reached a gap of 241351bp > 200000bp. Skipping calculation at position 16706680 id: Gm05_16706680
+WARNING: Reached a gap of 276188bp > 200000bp. Skipping calculation at position 16982868 id: Gm05_16982868
+WARNING: Reached a gap of 276188bp > 200000bp. Skipping calculation at position 16982902 id: Gm05_16982902
+WARNING: Reached a gap of 276188bp > 200000bp. Skipping calculation at position 17144069 id: Gm05_17144069
+WARNING: Reached a gap of 276188bp > 200000bp. Skipping calculation at position 17145180 id: Gm05_17145180
+WARNING: Reached a gap of 352358bp > 200000bp. Skipping calculation at position 17497538 id: Gm05_17497538
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18097029 id: Gm05_18097029
+WARNING: Reached a gap of 352358bp > 200000bp. Skipping calculation at position 17664077 id: Gm05_17664077
+WARNING: Reached a gap of 207050bp > 200000bp. Skipping calculation at position 15068259 id: Gm05_15068259
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18108510 id: Gm05_18108510
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18225087 id: Gm05_18225087
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18363474 id: Gm05_18363474
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18108561 id: Gm05_18108561
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18519936 id: Gm05_18519936
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18540670 id: Gm05_18540670
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18637172 id: Gm05_18637172
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18661029 id: Gm05_18661029
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18687999 id: Gm05_18687999
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18800106 id: Gm05_18800106
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18783133 id: Gm05_18783133
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18932932 id: Gm05_18932932
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 18992086 id: Gm05_18992086
+WARNING: Reached a gap of 432952bp > 200000bp. Skipping calculation at position 19013473 id: Gm05_19013473
+WARNING: Reached a gap of 353458bp > 200000bp. Skipping calculation at position 19486251 id: Gm05_19486251
+WARNING: Reached a gap of 353458bp > 200000bp. Skipping calculation at position 19132793 id: Gm05_19132793
+WARNING: Reached a gap of 353458bp > 200000bp. Skipping calculation at position 19629728 id: Gm05_19629728
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 19851020 id: Gm05_19851020
+WARNING: Reached a gap of 353458bp > 200000bp. Skipping calculation at position 19548672 id: Gm05_19548672
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20049576 id: Gm05_20049576
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20209005 id: Gm05_20209005
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20049733 id: Gm05_20049733
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20297085 id: Gm05_20297085
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20320748 id: Gm05_20320748
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20320788 id: Gm05_20320788
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20512162 id: Gm05_20512162
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20592135 id: Gm05_20592135
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20669192 id: Gm05_20669192
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20630577 id: Gm05_20630577
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20737871 id: Gm05_20737871
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20744063 id: Gm05_20744063
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20747686 id: Gm05_20747686
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20773335 id: Gm05_20773335
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20842100 id: Gm05_20842100
+WARNING: Reached a gap of 221292bp > 200000bp. Skipping calculation at position 20811535 id: Gm05_20811535
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 20902729 id: Gm05_20902729
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 20865211 id: Gm05_20865211
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21057684 id: Gm05_21057684
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21288995 id: Gm05_21288995
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21436321 id: Gm05_21436321
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21421223 id: Gm05_21421223
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21462686 id: Gm05_21462686
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21589987 id: Gm05_21589987
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21702224 id: Gm05_21702224
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22009160 id: Gm05_22009160
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22061104 id: Gm05_22061104
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22196519 id: Gm05_22196519
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22123760 id: Gm05_22123760
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 21842167 id: Gm05_21842167
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22196532 id: Gm05_22196532
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22232057 id: Gm05_22232057
+WARNING: Reached a gap of 302648bp > 200000bp. Skipping calculation at position 22535015 id: Gm05_22535015
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22232367 id: Gm05_22232367
+WARNING: Reached a gap of 231311bp > 200000bp. Skipping calculation at position 22232101 id: Gm05_22232101
+WARNING: Reached a gap of 302648bp > 200000bp. Skipping calculation at position 22720499 id: Gm05_22720499
+WARNING: Reached a gap of 302648bp > 200000bp. Skipping calculation at position 22627264 id: Gm05_22627264
+WARNING: Reached a gap of 302648bp > 200000bp. Skipping calculation at position 22889093 id: Gm05_22889093
+WARNING: Reached a gap of 302648bp > 200000bp. Skipping calculation at position 23048475 id: Gm05_23048475
+WARNING: Reached a gap of 428748bp > 200000bp. Skipping calculation at position 23579991 id: Gm05_23579991
+WARNING: Reached a gap of 302648bp > 200000bp. Skipping calculation at position 23151243 id: Gm05_23151243
+WARNING: Reached a gap of 428748bp > 200000bp. Skipping calculation at position 23653644 id: Gm05_23653644
+WARNING: Reached a gap of 428748bp > 200000bp. Skipping calculation at position 23756929 id: Gm05_23756929
+WARNING: Reached a gap of 428748bp > 200000bp. Skipping calculation at position 23846753 id: Gm05_23846753
+WARNING: Reached a gap of 428748bp > 200000bp. Skipping calculation at position 23963768 id: Gm05_23963768
+WARNING: Reached a gap of 230797bp > 200000bp. Skipping calculation at position 24264217 id: Gm05_24264217
+WARNING: Reached a gap of 230797bp > 200000bp. Skipping calculation at position 24219507 id: Gm05_24219507
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24684421 id: Gm05_24684421
+WARNING: Reached a gap of 203112bp > 200000bp. Skipping calculation at position 24467329 id: Gm05_24467329
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24718492 id: Gm05_24718492
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24718514 id: Gm05_24718514
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24718556 id: Gm05_24718556
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24718764 id: Gm05_24718764
+WARNING: Reached a gap of 428748bp > 200000bp. Skipping calculation at position 23988710 id: Gm05_23988710
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24758407 id: Gm05_24758407
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24782593 id: Gm05_24782593
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24758684 id: Gm05_24758684
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24783379 id: Gm05_24783379
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24784696 id: Gm05_24784696
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24784734 id: Gm05_24784734
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24786605 id: Gm05_24786605
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24795711 id: Gm05_24795711
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24800789 id: Gm05_24800789
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24872477 id: Gm05_24872477
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24801223 id: Gm05_24801223
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24880890 id: Gm05_24880890
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24884084 id: Gm05_24884084
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24884419 id: Gm05_24884419
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24884335 id: Gm05_24884335
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24907062 id: Gm05_24907062
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24919211 id: Gm05_24919211
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24907081 id: Gm05_24907081
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24919203 id: Gm05_24919203
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24919235 id: Gm05_24919235
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24965529 id: Gm05_24965529
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 24997166 id: Gm05_24997166
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25042763 id: Gm05_25042763
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25043914 id: Gm05_25043914
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25065294 id: Gm05_25065294
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25065326 id: Gm05_25065326
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25077750 id: Gm05_25077750
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25094724 id: Gm05_25094724
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25094675 id: Gm05_25094675
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25095143 id: Gm05_25095143
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25112301 id: Gm05_25112301
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25119836 id: Gm05_25119836
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25153736 id: Gm05_25153736
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25153776 id: Gm05_25153776
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25153954 id: Gm05_25153954
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25154104 id: Gm05_25154104
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25156952 id: Gm05_25156952
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25154291 id: Gm05_25154291
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25157222 id: Gm05_25157222
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25163901 id: Gm05_25163901
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25163736 id: Gm05_25163736
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25163928 id: Gm05_25163928
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25169085 id: Gm05_25169085
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25168790 id: Gm05_25168790
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25169112 id: Gm05_25169112
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25201712 id: Gm05_25201712
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25201733 id: Gm05_25201733
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25201741 id: Gm05_25201741
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25201947 id: Gm05_25201947
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25206904 id: Gm05_25206904
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25206917 id: Gm05_25206917
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25213105 id: Gm05_25213105
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25213130 id: Gm05_25213130
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25221945 id: Gm05_25221945
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25221975 id: Gm05_25221975
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25222142 id: Gm05_25222142
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25235855 id: Gm05_25235855
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25236020 id: Gm05_25236020
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25236025 id: Gm05_25236025
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25236083 id: Gm05_25236083
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25251061 id: Gm05_25251061
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25236047 id: Gm05_25236047
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25251253 id: Gm05_25251253
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25266312 id: Gm05_25266312
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25271743 id: Gm05_25271743
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25271748 id: Gm05_25271748
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25291864 id: Gm05_25291864
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25294263 id: Gm05_25294263
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25294551 id: Gm05_25294551
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25295131 id: Gm05_25295131
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25346937 id: Gm05_25346937
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25356830 id: Gm05_25356830
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25356698 id: Gm05_25356698
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25360269 id: Gm05_25360269
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25360312 id: Gm05_25360312
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25362126 id: Gm05_25362126
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25438780 id: Gm05_25438780
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25419385 id: Gm05_25419385
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25439049 id: Gm05_25439049
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25439069 id: Gm05_25439069
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25440347 id: Gm05_25440347
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25440545 id: Gm05_25440545
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25441239 id: Gm05_25441239
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25441256 id: Gm05_25441256
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25441263 id: Gm05_25441263
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25441520 id: Gm05_25441520
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25441277 id: Gm05_25441277
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25457144 id: Gm05_25457144
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25457172 id: Gm05_25457172
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25457740 id: Gm05_25457740
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25458815 id: Gm05_25458815
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25458871 id: Gm05_25458871
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25459234 id: Gm05_25459234
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25459168 id: Gm05_25459168
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25460881 id: Gm05_25460881
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25464994 id: Gm05_25464994
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25460838 id: Gm05_25460838
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25465036 id: Gm05_25465036
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25488476 id: Gm05_25488476
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25488736 id: Gm05_25488736
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25473069 id: Gm05_25473069
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25499874 id: Gm05_25499874
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25528953 id: Gm05_25528953
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25532201 id: Gm05_25532201
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25533020 id: Gm05_25533020
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25554799 id: Gm05_25554799
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25533093 id: Gm05_25533093
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25558013 id: Gm05_25558013
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25555082 id: Gm05_25555082
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25623299 id: Gm05_25623299
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25634302 id: Gm05_25634302
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25634344 id: Gm05_25634344
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25634635 id: Gm05_25634635
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25634580 id: Gm05_25634580
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25638324 id: Gm05_25638324
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25638297 id: Gm05_25638297
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25638332 id: Gm05_25638332
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25641282 id: Gm05_25641282
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25641511 id: Gm05_25641511
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25640880 id: Gm05_25640880
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25651873 id: Gm05_25651873
+WARNING: Reached a gap of 217092bp > 200000bp. Skipping calculation at position 25651878 id: Gm05_25651878
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26050112 id: Gm05_26050112
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26050402 id: Gm05_26050402
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26050508 id: Gm05_26050508
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26050619 id: Gm05_26050619
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26050626 id: Gm05_26050626
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26051560 id: Gm05_26051560
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26051283 id: Gm05_26051283
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26052848 id: Gm05_26052848
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26052896 id: Gm05_26052896
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26053106 id: Gm05_26053106
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26082969 id: Gm05_26082969
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26082984 id: Gm05_26082984
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26081954 id: Gm05_26081954
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26083008 id: Gm05_26083008
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26089979 id: Gm05_26089979
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26099525 id: Gm05_26099525
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26124324 id: Gm05_26124324
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26169136 id: Gm05_26169136
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26099590 id: Gm05_26099590
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26169926 id: Gm05_26169926
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26178100 id: Gm05_26178100
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26178111 id: Gm05_26178111
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26205499 id: Gm05_26205499
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26249047 id: Gm05_26249047
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26289770 id: Gm05_26289770
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26205726 id: Gm05_26205726
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26299106 id: Gm05_26299106
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26317782 id: Gm05_26317782
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26311770 id: Gm05_26311770
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26378420 id: Gm05_26378420
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26377928 id: Gm05_26377928
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26317790 id: Gm05_26317790
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26398192 id: Gm05_26398192
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26404460 id: Gm05_26404460
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26429819 id: Gm05_26429819
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26429554 id: Gm05_26429554
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26431414 id: Gm05_26431414
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26429781 id: Gm05_26429781
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26462656 id: Gm05_26462656
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26478134 id: Gm05_26478134
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26476635 id: Gm05_26476635
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26476891 id: Gm05_26476891
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26478392 id: Gm05_26478392
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26478440 id: Gm05_26478440
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26514737 id: Gm05_26514737
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26514228 id: Gm05_26514228
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26513343 id: Gm05_26513343
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26536330 id: Gm05_26536330
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26550431 id: Gm05_26550431
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26513937 id: Gm05_26513937
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26550752 id: Gm05_26550752
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26550789 id: Gm05_26550789
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26550827 id: Gm05_26550827
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26551080 id: Gm05_26551080
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26550881 id: Gm05_26550881
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26571570 id: Gm05_26571570
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26598381 id: Gm05_26598381
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26599251 id: Gm05_26599251
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26599446 id: Gm05_26599446
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26599525 id: Gm05_26599525
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26599464 id: Gm05_26599464
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26599781 id: Gm05_26599781
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26600495 id: Gm05_26600495
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26600517 id: Gm05_26600517
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26604309 id: Gm05_26604309
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26612588 id: Gm05_26612588
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26612640 id: Gm05_26612640
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26612934 id: Gm05_26612934
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26612948 id: Gm05_26612948
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26615863 id: Gm05_26615863
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26615840 id: Gm05_26615840
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26634820 id: Gm05_26634820
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26635118 id: Gm05_26635118
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26635082 id: Gm05_26635082
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26637200 id: Gm05_26637200
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26745681 id: Gm05_26745681
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26722525 id: Gm05_26722525
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26745687 id: Gm05_26745687
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26745701 id: Gm05_26745701
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26770939 id: Gm05_26770939
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26770957 id: Gm05_26770957
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26771163 id: Gm05_26771163
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26771174 id: Gm05_26771174
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26771724 id: Gm05_26771724
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26771765 id: Gm05_26771765
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26773753 id: Gm05_26773753
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26773982 id: Gm05_26773982
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26799907 id: Gm05_26799907
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26773972 id: Gm05_26773972
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26800169 id: Gm05_26800169
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26810743 id: Gm05_26810743
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26824664 id: Gm05_26824664
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26829742 id: Gm05_26829742
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26826913 id: Gm05_26826913
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26829911 id: Gm05_26829911
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26830053 id: Gm05_26830053
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26830235 id: Gm05_26830235
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26884174 id: Gm05_26884174
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26884220 id: Gm05_26884220
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26830285 id: Gm05_26830285
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26884238 id: Gm05_26884238
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26888432 id: Gm05_26888432
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26888447 id: Gm05_26888447
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26888472 id: Gm05_26888472
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26888464 id: Gm05_26888464
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26888509 id: Gm05_26888509
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26909744 id: Gm05_26909744
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26931074 id: Gm05_26931074
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26954233 id: Gm05_26954233
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26931086 id: Gm05_26931086
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26954442 id: Gm05_26954442
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26954247 id: Gm05_26954247
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26957284 id: Gm05_26957284
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26957336 id: Gm05_26957336
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26957550 id: Gm05_26957550
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26957559 id: Gm05_26957559
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26959181 id: Gm05_26959181
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26959186 id: Gm05_26959186
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26959207 id: Gm05_26959207
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26961159 id: Gm05_26961159
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26961645 id: Gm05_26961645
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 26961829 id: Gm05_26961829
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27229069 id: Gm05_27229069
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27229382 id: Gm05_27229382
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27229358 id: Gm05_27229358
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27229418 id: Gm05_27229418
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27266111 id: Gm05_27266111
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27229411 id: Gm05_27229411
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27005718 id: Gm05_27005718
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27011280 id: Gm05_27011280
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27277454 id: Gm05_27277454
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27278250 id: Gm05_27278250
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27278269 id: Gm05_27278269
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27278467 id: Gm05_27278467
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27278514 id: Gm05_27278514
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27292467 id: Gm05_27292467
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27292427 id: Gm05_27292427
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27328976 id: Gm05_27328976
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27328997 id: Gm05_27328997
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27329049 id: Gm05_27329049
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27329108 id: Gm05_27329108
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27329276 id: Gm05_27329276
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27342961 id: Gm05_27342961
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27342672 id: Gm05_27342672
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27355888 id: Gm05_27355888
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27343076 id: Gm05_27343076
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27417059 id: Gm05_27417059
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27444390 id: Gm05_27444390
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27444167 id: Gm05_27444167
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27505616 id: Gm05_27505616
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27543725 id: Gm05_27543725
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27544002 id: Gm05_27544002
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27545523 id: Gm05_27545523
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27552068 id: Gm05_27552068
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27556305 id: Gm05_27556305
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27552304 id: Gm05_27552304
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27561425 id: Gm05_27561425
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27565250 id: Gm05_27565250
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27566670 id: Gm05_27566670
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27566704 id: Gm05_27566704
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27567011 id: Gm05_27567011
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27568408 id: Gm05_27568408
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570191 id: Gm05_27570191
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570227 id: Gm05_27570227
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570498 id: Gm05_27570498
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570437 id: Gm05_27570437
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570530 id: Gm05_27570530
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570567 id: Gm05_27570567
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570873 id: Gm05_27570873
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27581702 id: Gm05_27581702
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27570933 id: Gm05_27570933
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27581716 id: Gm05_27581716
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27581886 id: Gm05_27581886
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27581996 id: Gm05_27581996
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27582029 id: Gm05_27582029
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27582292 id: Gm05_27582292
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27582489 id: Gm05_27582489
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27583127 id: Gm05_27583127
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27583343 id: Gm05_27583343
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27585852 id: Gm05_27585852
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27586158 id: Gm05_27586158
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27583349 id: Gm05_27583349
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27586170 id: Gm05_27586170
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27586222 id: Gm05_27586222
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27603901 id: Gm05_27603901
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27607121 id: Gm05_27607121
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27664601 id: Gm05_27664601
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27621033 id: Gm05_27621033
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27692036 id: Gm05_27692036
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27692072 id: Gm05_27692072
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27692079 id: Gm05_27692079
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27692945 id: Gm05_27692945
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27733457 id: Gm05_27733457
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27733794 id: Gm05_27733794
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27693175 id: Gm05_27693175
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27768462 id: Gm05_27768462
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27794816 id: Gm05_27794816
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27803510 id: Gm05_27803510
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27827258 id: Gm05_27827258
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27834465 id: Gm05_27834465
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27834740 id: Gm05_27834740
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27803518 id: Gm05_27803518
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27835110 id: Gm05_27835110
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27835410 id: Gm05_27835410
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27835580 id: Gm05_27835580
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27835895 id: Gm05_27835895
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27847964 id: Gm05_27847964
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27837817 id: Gm05_27837817
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27847992 id: Gm05_27847992
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27883660 id: Gm05_27883660
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27884277 id: Gm05_27884277
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27884569 id: Gm05_27884569
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27960087 id: Gm05_27960087
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27963533 id: Gm05_27963533
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27997506 id: Gm05_27997506
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 27997834 id: Gm05_27997834
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28006871 id: Gm05_28006871
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28007030 id: Gm05_28007030
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28022700 id: Gm05_28022700
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28022663 id: Gm05_28022663
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28022708 id: Gm05_28022708
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28022740 id: Gm05_28022740
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28023264 id: Gm05_28023264
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28029661 id: Gm05_28029661
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28031568 id: Gm05_28031568
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28035818 id: Gm05_28035818
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28056689 id: Gm05_28056689
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28056700 id: Gm05_28056700
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28056736 id: Gm05_28056736
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28070476 id: Gm05_28070476
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28090993 id: Gm05_28090993
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28097778 id: Gm05_28097778
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28188009 id: Gm05_28188009
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28212137 id: Gm05_28212137
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28187985 id: Gm05_28187985
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28212150 id: Gm05_28212150
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28212429 id: Gm05_28212429
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28212443 id: Gm05_28212443
+WARNING: Reached a gap of 217789bp > 200000bp. Skipping calculation at position 28212453 id: Gm05_28212453
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28278839 id: Gm05_28278839
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28308931 id: Gm05_28308931
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28308342 id: Gm05_28308342
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28311151 id: Gm05_28311151
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28327893 id: Gm05_28327893
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28452301 id: Gm05_28452301
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28454569 id: Gm05_28454569
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28454878 id: Gm05_28454878
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28471812 id: Gm05_28471812
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28454540 id: Gm05_28454540
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28471851 id: Gm05_28471851
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28481096 id: Gm05_28481096
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28504765 id: Gm05_28504765
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28519788 id: Gm05_28519788
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28519953 id: Gm05_28519953
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28569079 id: Gm05_28569079
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28520004 id: Gm05_28520004
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28605502 id: Gm05_28605502
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28605537 id: Gm05_28605537
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28605560 id: Gm05_28605560
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28606234 id: Gm05_28606234
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28989369 id: Gm05_28989369
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29134064 id: Gm05_29134064
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29116804 id: Gm05_29116804
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29136896 id: Gm05_29136896
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29159464 id: Gm05_29159464
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29161864 id: Gm05_29161864
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29161882 id: Gm05_29161882
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29201625 id: Gm05_29201625
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28618573 id: Gm05_28618573
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 28617319 id: Gm05_28617319
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29222547 id: Gm05_29222547
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29231822 id: Gm05_29231822
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29201813 id: Gm05_29201813
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29266819 id: Gm05_29266819
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29296626 id: Gm05_29296626
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29296849 id: Gm05_29296849
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29296886 id: Gm05_29296886
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29305057 id: Gm05_29305057
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29305308 id: Gm05_29305308
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29416758 id: Gm05_29416758
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29416964 id: Gm05_29416964
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29423224 id: Gm05_29423224
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29416894 id: Gm05_29416894
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29423240 id: Gm05_29423240
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29424851 id: Gm05_29424851
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29429306 id: Gm05_29429306
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29428888 id: Gm05_29428888
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29430498 id: Gm05_29430498
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29430578 id: Gm05_29430578
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29430588 id: Gm05_29430588
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29442350 id: Gm05_29442350
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29433239 id: Gm05_29433239
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29442359 id: Gm05_29442359
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29442548 id: Gm05_29442548
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29442624 id: Gm05_29442624
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29444446 id: Gm05_29444446
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29444452 id: Gm05_29444452
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29444689 id: Gm05_29444689
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29444704 id: Gm05_29444704
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29480430 id: Gm05_29480430
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29496514 id: Gm05_29496514
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29506016 id: Gm05_29506016
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29516951 id: Gm05_29516951
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29506293 id: Gm05_29506293
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29516987 id: Gm05_29516987
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29519373 id: Gm05_29519373
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29517167 id: Gm05_29517167
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29519379 id: Gm05_29519379
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29529107 id: Gm05_29529107
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29529293 id: Gm05_29529293
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29530451 id: Gm05_29530451
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29530217 id: Gm05_29530217
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29534006 id: Gm05_29534006
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29562068 id: Gm05_29562068
+WARNING: Reached a gap of 528752bp > 200000bp. Skipping calculation at position 30152636 id: Gm05_30152636
+WARNING: Reached a gap of 528752bp > 200000bp. Skipping calculation at position 30152673 id: Gm05_30152673
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29578911 id: Gm05_29578911
+WARNING: Reached a gap of 313827bp > 200000bp. Skipping calculation at position 30466510 id: Gm05_30466510
+WARNING: Reached a gap of 370796bp > 200000bp. Skipping calculation at position 29623884 id: Gm05_29623884
+WARNING: Reached a gap of 313827bp > 200000bp. Skipping calculation at position 30466540 id: Gm05_30466540
+WARNING: Reached a gap of 263712bp > 200000bp. Skipping calculation at position 30730252 id: Gm05_30730252
+WARNING: Reached a gap of 313827bp > 200000bp. Skipping calculation at position 30466500 id: Gm05_30466500
+WARNING: Reached a gap of 263712bp > 200000bp. Skipping calculation at position 30745874 id: Gm05_30745874
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30951942 id: Gm05_30951942
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30951989 id: Gm05_30951989
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30964920 id: Gm05_30964920
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30974271 id: Gm05_30974271
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30986281 id: Gm05_30986281
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30974473 id: Gm05_30974473
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31036192 id: Gm05_31036192
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 30992938 id: Gm05_30992938
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31143541 id: Gm05_31143541
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31143772 id: Gm05_31143772
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31068017 id: Gm05_31068017
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31225431 id: Gm05_31225431
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31225493 id: Gm05_31225493
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31226664 id: Gm05_31226664
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31225507 id: Gm05_31225507
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31226959 id: Gm05_31226959
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31245117 id: Gm05_31245117
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31245534 id: Gm05_31245534
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31244707 id: Gm05_31244707
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31281204 id: Gm05_31281204
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31276548 id: Gm05_31276548
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31281436 id: Gm05_31281436
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31308219 id: Gm05_31308219
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31310028 id: Gm05_31310028
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31308395 id: Gm05_31308395
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31308352 id: Gm05_31308352
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31310620 id: Gm05_31310620
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31315288 id: Gm05_31315288
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31311428 id: Gm05_31311428
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31315547 id: Gm05_31315547
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31317143 id: Gm05_31317143
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31317136 id: Gm05_31317136
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31317177 id: Gm05_31317177
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31317189 id: Gm05_31317189
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31333785 id: Gm05_31333785
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31333826 id: Gm05_31333826
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31333832 id: Gm05_31333832
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31333794 id: Gm05_31333794
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31333992 id: Gm05_31333992
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31378765 id: Gm05_31378765
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31334001 id: Gm05_31334001
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31385140 id: Gm05_31385140
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31416332 id: Gm05_31416332
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31385283 id: Gm05_31385283
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31416849 id: Gm05_31416849
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31416819 id: Gm05_31416819
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31416879 id: Gm05_31416879
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31417920 id: Gm05_31417920
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31417892 id: Gm05_31417892
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31419486 id: Gm05_31419486
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31419557 id: Gm05_31419557
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31420432 id: Gm05_31420432
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31420444 id: Gm05_31420444
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31420466 id: Gm05_31420466
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31464538 id: Gm05_31464538
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31465073 id: Gm05_31465073
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31466433 id: Gm05_31466433
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31581611 id: Gm05_31581611
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31498291 id: Gm05_31498291
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31599605 id: Gm05_31599605
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31618599 id: Gm05_31618599
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31618619 id: Gm05_31618619
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31650625 id: Gm05_31650625
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31660162 id: Gm05_31660162
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31679179 id: Gm05_31679179
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31732536 id: Gm05_31732536
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31756552 id: Gm05_31756552
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31759205 id: Gm05_31759205
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31773874 id: Gm05_31773874
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31807728 id: Gm05_31807728
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31841937 id: Gm05_31841937
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31841957 id: Gm05_31841957
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32088968 id: Gm05_32088968
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32099856 id: Gm05_32099856
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32100069 id: Gm05_32100069
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32102938 id: Gm05_32102938
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32100101 id: Gm05_32100101
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32109116 id: Gm05_32109116
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32109360 id: Gm05_32109360
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32109435 id: Gm05_32109435
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32128888 id: Gm05_32128888
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31875035 id: Gm05_31875035
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32129939 id: Gm05_32129939
+WARNING: Reached a gap of 206068bp > 200000bp. Skipping calculation at position 31843923 id: Gm05_31843923
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32150599 id: Gm05_32150599
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32248729 id: Gm05_32248729
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32129897 id: Gm05_32129897
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32249032 id: Gm05_32249032
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32327497 id: Gm05_32327497
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32622375 id: Gm05_32622375
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32327530 id: Gm05_32327530
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32642277 id: Gm05_32642277
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32333325 id: Gm05_32333325
+WARNING: Reached a gap of 213933bp > 200000bp. Skipping calculation at position 32333284 id: Gm05_32333284
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32642321 id: Gm05_32642321
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32654742 id: Gm05_32654742
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32654956 id: Gm05_32654956
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32654943 id: Gm05_32654943
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32673031 id: Gm05_32673031
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32673056 id: Gm05_32673056
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32673061 id: Gm05_32673061
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32678778 id: Gm05_32678778
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32681093 id: Gm05_32681093
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32705278 id: Gm05_32705278
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32717987 id: Gm05_32717987
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32723715 id: Gm05_32723715
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32723781 id: Gm05_32723781
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32725466 id: Gm05_32725466
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32767043 id: Gm05_32767043
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32798635 id: Gm05_32798635
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32868991 id: Gm05_32868991
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32869296 id: Gm05_32869296
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32935960 id: Gm05_32935960
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 32995085 id: Gm05_32995085
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33092171 id: Gm05_33092171
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33092321 id: Gm05_33092321
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33113097 id: Gm05_33113097
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33120501 id: Gm05_33120501
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33120511 id: Gm05_33120511
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33122703 id: Gm05_33122703
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33130695 id: Gm05_33130695
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33131922 id: Gm05_33131922
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33159763 id: Gm05_33159763
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33210203 id: Gm05_33210203
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33210233 id: Gm05_33210233
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33210393 id: Gm05_33210393
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33210439 id: Gm05_33210439
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33297588 id: Gm05_33297588
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33327715 id: Gm05_33327715
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33327774 id: Gm05_33327774
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33343838 id: Gm05_33343838
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33343855 id: Gm05_33343855
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33356042 id: Gm05_33356042
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33359244 id: Gm05_33359244
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33359252 id: Gm05_33359252
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33359275 id: Gm05_33359275
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33393056 id: Gm05_33393056
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33385713 id: Gm05_33385713
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33444422 id: Gm05_33444422
+WARNING: Reached a gap of 289050bp > 200000bp. Skipping calculation at position 33564088 id: Gm05_33564088
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34589138 id: Gm05_34589138
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34589194 id: Gm05_34589194
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34623535 id: Gm05_34623535
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34623842 id: Gm05_34623842
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34642957 id: Gm05_34642957
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34676212 id: Gm05_34676212
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34858399 id: Gm05_34858399
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34858737 id: Gm05_34858737
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34860560 id: Gm05_34860560
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34887933 id: Gm05_34887933
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34887949 id: Gm05_34887949
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34888074 id: Gm05_34888074
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34888180 id: Gm05_34888180
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34888505 id: Gm05_34888505
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34888510 id: Gm05_34888510
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34888584 id: Gm05_34888584
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34888900 id: Gm05_34888900
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34894187 id: Gm05_34894187
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34953853 id: Gm05_34953853
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34953812 id: Gm05_34953812
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 34912653 id: Gm05_34912653
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35010943 id: Gm05_35010943
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35010990 id: Gm05_35010990
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35012970 id: Gm05_35012970
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35016114 id: Gm05_35016114
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35016128 id: Gm05_35016128
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35016362 id: Gm05_35016362
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35016339 id: Gm05_35016339
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35016389 id: Gm05_35016389
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35044944 id: Gm05_35044944
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35027895 id: Gm05_35027895
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35044955 id: Gm05_35044955
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35045164 id: Gm05_35045164
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35055140 id: Gm05_35055140
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35055163 id: Gm05_35055163
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35076487 id: Gm05_35076487
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35091047 id: Gm05_35091047
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35091067 id: Gm05_35091067
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35091229 id: Gm05_35091229
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35250129 id: Gm05_35250129
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35343290 id: Gm05_35343290
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35355622 id: Gm05_35355622
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35789885 id: Gm05_35789885
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35808934 id: Gm05_35808934
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35808715 id: Gm05_35808715
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35810004 id: Gm05_35810004
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35811465 id: Gm05_35811465
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35811579 id: Gm05_35811579
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35813445 id: Gm05_35813445
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35549037 id: Gm05_35549037
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35870943 id: Gm05_35870943
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35561664 id: Gm05_35561664
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35891329 id: Gm05_35891329
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35912206 id: Gm05_35912206
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35971319 id: Gm05_35971319
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35971330 id: Gm05_35971330
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35971589 id: Gm05_35971589
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36016754 id: Gm05_36016754
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 35990938 id: Gm05_35990938
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36031386 id: Gm05_36031386
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36119709 id: Gm05_36119709
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36119939 id: Gm05_36119939
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36120004 id: Gm05_36120004
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36140851 id: Gm05_36140851
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36140866 id: Gm05_36140866
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36140892 id: Gm05_36140892
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36210020 id: Gm05_36210020
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36210361 id: Gm05_36210361
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36226528 id: Gm05_36226528
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36226507 id: Gm05_36226507
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36226535 id: Gm05_36226535
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36240098 id: Gm05_36240098
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36269654 id: Gm05_36269654
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36270366 id: Gm05_36270366
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36273666 id: Gm05_36273666
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36273725 id: Gm05_36273725
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36293359 id: Gm05_36293359
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36293551 id: Gm05_36293551
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36282252 id: Gm05_36282252
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36300085 id: Gm05_36300085
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36322199 id: Gm05_36322199
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36326550 id: Gm05_36326550
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36329547 id: Gm05_36329547
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36378192 id: Gm05_36378192
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36425149 id: Gm05_36425149
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36427762 id: Gm05_36427762
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36434128 id: Gm05_36434128
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36434363 id: Gm05_36434363
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36434378 id: Gm05_36434378
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36451724 id: Gm05_36451724
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36461099 id: Gm05_36461099
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36503705 id: Gm05_36503705
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36484763 id: Gm05_36484763
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36543497 id: Gm05_36543497
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36543510 id: Gm05_36543510
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36558457 id: Gm05_36558457
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36558442 id: Gm05_36558442
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588305 id: Gm05_36588305
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588358 id: Gm05_36588358
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588553 id: Gm05_36588553
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588750 id: Gm05_36588750
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588773 id: Gm05_36588773
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588786 id: Gm05_36588786
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36588872 id: Gm05_36588872
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36589063 id: Gm05_36589063
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36611290 id: Gm05_36611290
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36655726 id: Gm05_36655726
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36660554 id: Gm05_36660554
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36726866 id: Gm05_36726866
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36744783 id: Gm05_36744783
+WARNING: Reached a gap of 228221bp > 200000bp. Skipping calculation at position 36745137 id: Gm05_36745137
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 40929557 id: Gm05_40929557Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 40930476 id: Gm05_40930476Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 40984736 id: Gm05_40984736Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 40977560 id: Gm05_40977560Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 40984995 id: Gm05_40984995Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41051663 id: Gm05_41051663Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 40997483 id: Gm05_40997483Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41052013 id: Gm05_41052013WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41066074 id: Gm05_41066074Skipping calculation.
+Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41078599 id: Gm05_41078599Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41051708 id: Gm05_41051708Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41079125 id: Gm05_41079125Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41111291 id: Gm05_41111291Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41150006 id: Gm05_41150006Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41160466 id: Gm05_41160466WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41175562 id: Gm05_41175562Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41180792 id: Gm05_41180792Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41180996 id: Gm05_41180996Skipping calculation.
+Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41181026 id: Gm05_41181026Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41186595 id: Gm05_41186595Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41186641 id: Gm05_41186641Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41186986 id: Gm05_41186986Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41217372 id: Gm05_41217372Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41217398 id: Gm05_41217398Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41230088 id: Gm05_41230088Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41242448 id: Gm05_41242448Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41287710 id: Gm05_41287710Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41278752 id: Gm05_41278752Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41242437 id: Gm05_41242437Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41296054 id: Gm05_41296054Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41296191 id: Gm05_41296191Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41296417 id: Gm05_41296417Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41296683 id: Gm05_41296683Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41296450 id: Gm05_41296450Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41301513 id: Gm05_41301513Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41305717 id: Gm05_41305717Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41316415 id: Gm05_41316415Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41333514 id: Gm05_41333514Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41381441 id: Gm05_41381441Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41333152 id: Gm05_41333152Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41381743 id: Gm05_41381743Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41381804 id: Gm05_41381804Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41381966 id: Gm05_41381966Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41395232 id: Gm05_41395232Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41414516 id: Gm05_41414516Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41391359 id: Gm05_41391359Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41420944 id: Gm05_41420944Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41421471 id: Gm05_41421471Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41447360 id: Gm05_41447360Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41503945 id: Gm05_41503945Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41507501 id: Gm05_41507501Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41453711 id: Gm05_41453711Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41542433 id: Gm05_41542433Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41542750 id: Gm05_41542750Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41542763 id: Gm05_41542763Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41788288 id: Gm05_41788288Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41788513 id: Gm05_41788513Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41734242 id: Gm05_41734242Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41821943 id: Gm05_41821943Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41895021 id: Gm05_41895021Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41903705 id: Gm05_41903705Skipping calculation.
+WARNING: Reached chromosome edge before EHH decayed below 0.05. position: 41908401 id: Gm05_41908401Skipping calculation.
+Program took 0.115364 seconds to complete. Total CPU time: 0.162308 s. 

@@ -1,0 +1,11 @@
+selscan v3.0.1
+/home/ww/biosoft/selscan --ehh Gm09_17111 --unphased --pmap --vcf work/chr/chr9.vcf.gz --map work/chr/chr9.map --out work/results/chr9 --threads 4 
+Opening work/chr/chr9.vcf.gz to count number of haplotypes and loci...
+--skip-low-freq set. Removing all variants < 0.05.
+
+Loading 304 haplotypes and 3568 loci. Skipped 0 loci 
+
+Removed 0 low frequency variants from haplotype data.
+====
+Input file loaded in 0.031019 s.
+=====

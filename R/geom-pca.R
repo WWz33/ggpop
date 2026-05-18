@@ -51,7 +51,7 @@ geom_pca <- function(mapping = ggplot2::aes(x = .data$pc1, y = .data$pc2),
     ),
     if (!is.null(labels)) ggplot2::labs(x = labels$x, y = labels$y),
     if (.pca_should_add_colour_scale(layer_data, pop_group = pop_group)) scale_colour_ggpop(palette = palette %||% "population"),
-    .theme_tidyplot(fontsize = base_size, base_family = base_family)
+    .theme_tidyplot(base_size = base_size, base_family = base_family)
   )
 }
 

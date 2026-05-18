@@ -1,0 +1,11 @@
+selscan v3.0.1
+/home/ww/biosoft/selscan --ehh Gm20_23405 --unphased --pmap --vcf work/chr/chr20.vcf.gz --map work/chr/chr20.map --out work/results/chr20 --threads 4 
+Opening work/chr/chr20.vcf.gz to count number of haplotypes and loci...
+--skip-low-freq set. Removing all variants < 0.05.
+
+Loading 304 haplotypes and 1982 loci. Skipped 0 loci 
+
+Removed 0 low frequency variants from haplotype data.
+====
+Input file loaded in 0.016908 s.
+=====

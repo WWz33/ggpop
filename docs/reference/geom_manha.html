@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/admixture.html">Admixture plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/stats.html">Population genomics statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/guides/selection.html">Selective sweep scans</a></li>
     <li><a class="dropdown-item" href="../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -57,9 +58,10 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geom_manha</span><span class="op">(</span>mapping <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>chr <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">chr</span>, pos <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">pos</span>, p <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">p</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="cn">NULL</span>, geom <span class="op">=</span> <span class="st">"point"</span>, position <span class="op">=</span> <span class="st">"identity"</span>, <span class="va">...</span>, threshold <span class="op">=</span> <span class="fl">5e-8</span>,</span>
-<span>  suggestive <span class="op">=</span> <span class="fl">1e-5</span>, threshold_color <span class="op">=</span> <span class="fu">.gwas_threshold_color</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  suggestive_color <span class="op">=</span> <span class="fu">.gwas_suggestive_color</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  size <span class="op">=</span> <span class="fl">1.404</span>, shape <span class="op">=</span> <span class="fl">20</span>, speedup <span class="op">=</span> <span class="cn">TRUE</span>, logp <span class="op">=</span> <span class="cn">TRUE</span>, maxP <span class="op">=</span> <span class="fl">14</span>,</span>
+<span>  suggestive <span class="op">=</span> <span class="fl">1e-5</span>, threshold_colour <span class="op">=</span> <span class="fu">.gwas_threshold_color</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  suggestive_colour <span class="op">=</span> <span class="fu">.gwas_suggestive_color</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  threshold_color <span class="op">=</span> <span class="cn">NULL</span>, suggestive_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  size <span class="op">=</span> <span class="fl">1.5</span>, shape <span class="op">=</span> <span class="fl">20</span>, speedup <span class="op">=</span> <span class="cn">TRUE</span>, logp <span class="op">=</span> <span class="cn">TRUE</span>, maxP <span class="op">=</span> <span class="fl">14</span>,</span>
 <span>  bybp <span class="op">=</span> <span class="cn">FALSE</span>, palette <span class="op">=</span> <span class="st">"manhattan"</span>, binary <span class="op">=</span> <span class="cn">FALSE</span>, base_size <span class="op">=</span> <span class="fl">11</span>,</span>
 <span>  base_family <span class="op">=</span> <span class="st">""</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, show.legend <span class="op">=</span> <span class="cn">FALSE</span>, inherit.aes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -113,8 +115,11 @@
 <dt id="arg-base-family">base_family<a class="anchor" aria-label="anchor" href="#arg-base-family"></a></dt>
 <dd><p>Base font family for the default module theme.</p></dd>
 
-<dt id="arg-threshold-color-suggestive-color">threshold_color, suggestive_color<a class="anchor" aria-label="anchor" href="#arg-threshold-color-suggestive-color"></a></dt>
+<dt id="arg-threshold-colour-suggestive-colour">threshold_colour, suggestive_colour<a class="anchor" aria-label="anchor" href="#arg-threshold-colour-suggestive-colour"></a></dt>
 <dd><p>Reference-line colours. Defaults use the unified ggpop publication palette and can be overridden explicitly.</p></dd>
+
+<dt id="arg-threshold-color-suggestive-color">threshold_color, suggestive_color<a class="anchor" aria-label="anchor" href="#arg-threshold-color-suggestive-color"></a></dt>
+<dd><p>Compatibility aliases for `threshold_colour` and `suggestive_colour`.</p></dd>
 
 <dt id="arg-na-rm">na.rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
 <dd><p>Remove missing values.</p></dd>

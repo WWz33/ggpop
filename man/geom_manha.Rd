@@ -4,9 +4,10 @@
 \usage{
 geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),
   data = NULL, geom = "point", position = "identity", ..., threshold = 5e-8,
-  suggestive = 1e-5, threshold_color = .gwas_threshold_color(),
-  suggestive_color = .gwas_suggestive_color(),
-  size = 1.404, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
+  suggestive = 1e-5, threshold_colour = .gwas_threshold_color(),
+  suggestive_colour = .gwas_suggestive_color(),
+  threshold_color = NULL, suggestive_color = NULL,
+  size = 1.5, shape = 20, speedup = TRUE, logp = TRUE, maxP = 14,
   bybp = FALSE, palette = "manhattan", binary = FALSE, base_size = 11,
   base_family = "", na.rm = FALSE, show.legend = FALSE, inherit.aes = TRUE)
 }
@@ -26,7 +27,8 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
 \item{binary}{If `TRUE`, repeat two colours across chromosomes for a binary alternating Manhattan palette. If `FALSE`, assign one discrete colour per chromosome.}
 \item{base_size}{Base font size for the default module theme.}
 \item{base_family}{Base font family for the default module theme.}
-\item{threshold_color, suggestive_color}{Reference-line colours. Defaults use the unified ggpop publication palette and can be overridden explicitly.}
+\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use the unified ggpop publication palette and can be overridden explicitly.}
+\item{threshold_color, suggestive_color}{Compatibility aliases for `threshold_colour` and `suggestive_colour`.}
 \item{na.rm}{Remove missing values.}
 \item{show.legend}{Legend display.}
 \item{inherit.aes}{Inherit plot aesthetics.}

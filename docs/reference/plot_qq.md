@@ -9,7 +9,7 @@ High-level publication-oriented Q-Q plot builder. The direct path is
 ``` r
 plot_qq(data, title = NULL, subtitle = NULL, caption = NULL,
   show_lambda = TRUE, point_size = 0.8,
-  diagonal_color = .gwas_threshold_color(), diagonal_colour = NULL,
+  diagonal_colour = .gwas_threshold_color(), diagonal_color = NULL,
   point_alpha = 0.8, base_size = 11, base_family = "",
   legend_position = "none", ...)
 ```
@@ -28,14 +28,14 @@ plot_qq(data, title = NULL, subtitle = NULL, caption = NULL,
 
   Display genomic inflation factor on Q-Q plots.
 
-- diagonal_color:
+- diagonal_colour:
 
   Diagonal line colour. Defaults to the unified ggpop publication
   threshold colour and can be overridden explicitly.
 
-- diagonal_colour:
+- diagonal_color:
 
-  Deprecated spelling kept for compatibility. Prefer \`diagonal_color\`.
+  Compatibility alias for \`diagonal_colour\`.
 
 - point_size, point_alpha:
 
