@@ -46,6 +46,7 @@
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/admixture.html">Admixture plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/stats.html">Population genomics statistics</a></li>
+    <li><a class="dropdown-item" href="../articles/guides/ld-decay.html">LD decay</a></li>
     <li><a class="dropdown-item" href="../articles/guides/selection.html">Selective sweep scans</a></li>
     <li><a class="dropdown-item" href="../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../articles/guides/full-extdata.html">Full extdata gallery</a></li>
@@ -153,6 +154,13 @@ original-package behavior.</li>
 <td>pixy and vcftools summaries</td>
 </tr>
 <tr class="even">
+<td>LD decay</td>
+<td><code><a href="../reference/import_ld_decay.html">import_ld_decay()</a></code></td>
+<td><code><a href="../reference/geom_ld_decay.html">plot_ld_decay()</a></code></td>
+<td><code>ggpop() + geom_ld_decay()</code></td>
+<td>PopLDdecay and PLINK summaries</td>
+</tr>
+<tr class="odd">
 <td>Selective sweeps</td>
 <td><code><a href="../reference/import_selection.html">import_selection()</a></code></td>
 <td><code><a href="../reference/geom_selection.html">plot_selection()</a></code></td>
@@ -183,6 +191,10 @@ original-package behavior.</li>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"Population_genomics_statistics"</span>, <span class="st">"pixy"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"pixy"</span></span>
 <span><span class="op">)</span></span>
+<span><span class="va">ld_decay</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ld_decay"</span>, <span class="st">"PopLDdecay"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"poplddecay"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="va">selscan_chr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_selection.html">import_selection</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"selective_sweep"</span>, <span class="st">"selscan"</span><span class="op">)</span>,</span>
 <span>  ihs <span class="op">=</span> <span class="st">"chr1.ihs.out.100bins.norm"</span>,</span>
@@ -201,6 +213,8 @@ original-package behavior.</li>
 <span><span class="co">#&gt; [1] "ggpop_admix" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">stats</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_stats" "data.frame"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ld_decay</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ggpop_ld_decay" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">selscan_chr1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_selection" "data.frame"</span></span></code></pre></div>
 </div>
@@ -279,6 +293,24 @@ summaries from pixy or vcftools outputs:</p>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="Layered two-panel line plot of population genomics statistics. The ggpop object supplies imported pixy statistics and geom_stats draws only the selected FST and pi facets for chr2L." width="700"></p>
 </div>
 <div class="section level2">
+<h2 id="ld-decay">LD decay<a class="anchor" aria-label="anchor" href="#ld-decay"></a>
+</h2>
+<p>LD decay summaries use the same direct and layered plotting shape.
+PopLDdecay <code>*.stat.gz</code> files are imported directly, while
+PLINK pairwise LD files can be summarized into distance bins. Population
+labels follow the package-wide <code>pop_group.txt</code> convention
+when file labels need to be mapped to groups.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ld_decay</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." width="700"></p>
+<p>The same data can be drawn as a curve:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ld_decay</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern." width="700"></p>
+</div>
+<div class="section level2">
 <h2 id="selective-sweep-scans">Selective sweep scans<a class="anchor" aria-label="anchor" href="#selective-sweep-scans"></a>
 </h2>
 <p>Selection scan outputs use the same direct and layered plotting
@@ -287,13 +319,13 @@ magnitude, and thresholds can be fixed values or filtered-data
 quantiles. Genome-wide calls default to a Manhattan-like chromosome
 axis; calls with <code>chr</code>, <code>start</code>, or
 <code>end</code> default to a single-region view.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selscan_chr1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/geom_selection.html">plot_selection</a></span><span class="op">(</span></span>
 <span>    stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ihs"</span>, <span class="st">"nsl"</span>, <span class="st">"xpehh"</span>, <span class="st">"xpnsl"</span><span class="op">)</span>,</span>
 <span>    chr <span class="op">=</span> <span class="st">"1"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="what-to-use">What to use<a class="anchor" aria-label="anchor" href="#what-to-use"></a>
@@ -310,6 +342,8 @@ for PCA plots.</li>
 <li>Use <code><a href="../reference/geom_stats.html">plot_stats()</a></code> and
 <code>ggpop() + geom_stats()</code> for windowed population
 statistics.</li>
+<li>Use <code><a href="../reference/geom_ld_decay.html">plot_ld_decay()</a></code> and
+<code>ggpop() + geom_ld_decay()</code> for LD decay summaries.</li>
 <li>Use <code><a href="../reference/geom_selection.html">plot_selection()</a></code> and
 <code>ggpop() + geom_selection()</code> for selective sweep scans.</li>
 <li>Treat the direct <code>plot_*()</code> functions as the reference

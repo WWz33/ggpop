@@ -25,3 +25,10 @@ ggpop.ggpop_stats <- function(data, mapping = ggplot2::aes(), ..., module = NULL
 ggpop.ggpop_selection <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
   ggplot2::ggplot(data = data, mapping = mapping)
 }
+
+ggpop.ggpop_ld_decay <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
+  if ("pop" %in% names(data) && is.null(mapping$colour) && is.null(mapping$color)) {
+    mapping$colour <- rlang::expr(.data$pop)
+  }
+  ggplot2::ggplot(data = data, mapping = mapping)
+}

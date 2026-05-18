@@ -43,6 +43,7 @@ articles:
   - guides/pca
   - guides/admixture
   - guides/stats
+  - guides/ld-decay
   - guides/selection
   - guides/color-schemes
   - guides/full-extdata
@@ -84,6 +85,12 @@ reference:
   - import_stats
   - plot_stats
   - geom_stats
+- title: LD Decay
+  desc: LD decay summaries from PopLDdecay and PLINK pairwise LD files.
+  contents:
+  - import_ld_decay
+  - plot_ld_decay
+  - geom_ld_decay
 - title: Selective Sweep Scans
   desc: Selscan and XPCLR imports with chromosome and region plotting.
   contents:

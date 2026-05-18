@@ -13,8 +13,8 @@ The goal of `ggpop` is to streamline publication-ready population-genomics
 visualization in R. It combines typed import helpers, direct plotting functions,
 and composable `ggplot2` extension layers for GWAS, PCA, and admixture results.
 It also includes a population genomics statistics module for windowed FST, pi,
-Tajima's D, Dxy, and Watterson's theta summaries, plus selective sweep scan
-plots for selscan and XPCLR outputs.
+Tajima's D, Dxy, and Watterson's theta summaries, LD decay curves, plus
+selective sweep scan plots for selscan and XPCLR outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -151,6 +151,15 @@ import_stats("vcftools_results/", type = "vcftools") |>
 ```
 
 ``` r
+ld_decay <- import_ld_decay("PopLDdecay_results/", type = "poplddecay")
+
+plot_ld_decay(ld_decay, style = "point")
+plot_ld_decay(ld_decay, style = "line")
+```
+
+<p align="center"><img src="man/figures/readme-ld-decay.png" width="60%" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." /></p>
+
+``` r
 selscan_chr1 <- import_selection(
   "selscan_results/",
   ihs = "chr1.ihs.out.100bins.norm",
@@ -186,6 +195,7 @@ The recommended user-facing API is intentionally small.
 | PCA | `import_pca()` / `compute_pca()` | `plot_pca()` | `ggpop() + geom_pca()` |
 | Admixture | `import_admix()` | `plot_admix()` | `ggpop() + geom_admix()` |
 | Population statistics | `import_stats()` | `plot_stats()` | `ggpop() + geom_stats()` |
+| LD decay | `import_ld_decay()` | `plot_ld_decay()` | `ggpop() + geom_ld_decay()` |
 | Selective sweeps | `import_selection()` | `plot_selection()` | `ggpop() + geom_selection()` |
 | Population groups | `import_pop_group()` | used by plot functions | used by geom layers |
 
@@ -224,6 +234,8 @@ This version includes dependency fixes needed for reliable source installation:
   ADMIXTURE/STRUCTURE imports, group labels, and sorting
 - [Population statistics guide](https://wwz33.github.io/ggpop/articles/guides/stats.html)
   Windowed FST, pi, Tajima's D, Dxy, and Watterson's theta plotting
+- [LD decay guide](https://wwz33.github.io/ggpop/articles/guides/ld-decay.html)
+  PopLDdecay imports with point and line plot styles
 - [Selective sweep guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
   selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds
 

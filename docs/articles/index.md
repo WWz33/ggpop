@@ -13,6 +13,7 @@
   plots](https://wwz33.github.io/ggpop/articles/guides/admixture.md):
 - [Population genomics
   statistics](https://wwz33.github.io/ggpop/articles/guides/stats.md):
+- [LD decay](https://wwz33.github.io/ggpop/articles/guides/ld-decay.md):
 - [Selective sweep
   scans](https://wwz33.github.io/ggpop/articles/guides/selection.md):
 - [Discrete color

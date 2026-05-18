@@ -1,0 +1,92 @@
+---
+title: "LD decay"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 4.5
+vignette: >
+  %\VignetteIndexEntry{LD decay}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+
+ggpop_extdata <- function(...) {
+  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+}
+```
+
+`ggpop` imports LD decay summaries into a typed `ggpop_ld_decay` object. The
+module supports PopLDdecay `*.stat.gz` summaries and PLINK pairwise LD tables
+summarized into distance bins.
+
+## API summary
+
+| Task | API | Notes |
+|---|---|---|
+| Import PopLDdecay summaries | `import_ld_decay(dir, type = "poplddecay")` | Reads `*.stat.gz` files directly |
+| Import PLINK LD pairs | `import_ld_decay(file, type = "plink")` | Summarizes pairwise LD into distance bins |
+| Direct plot | `plot_ld_decay(data, style = "point")` | Returns a `ggplot` object |
+| Layered plot | `ggpop(data) + geom_ld_decay(...)` | Tidy ggplot extension path |
+| Plot style | `style = "point"` / `"line"` | Point summaries or continuous decay curves |
+| Population labels | `pop_group` | Uses the package-wide two-column `sample pop` file |
+
+## Import PopLDdecay results
+
+The bundled example contains a PopLDdecay `final_ld.stat.gz` result file. The
+importer standardizes `Dist` to `dist`, `Mean_r^2` to `r2`, and `NumberPairs`
+to `n_pairs`.
+
+```{r}
+ld_dir <- ggpop_extdata("ld_decay", "PopLDdecay")
+ld_decay <- import_ld_decay(ld_dir, type = "poplddecay")
+class(ld_decay)
+head(ld_decay)
+```
+
+Population grouping follows the same `pop_group.txt` convention used by PCA and
+admixture. The LD decay file label is stored as `sample_id`; if a matching
+`sample` appears in `pop_group`, the corresponding `pop` value is used for
+colouring.
+
+```{r}
+ld_grouped <- import_ld_decay(
+  ld_dir,
+  pop = "P001",
+  pop_group = ggpop_extdata("pop_group.txt"),
+  type = "poplddecay"
+)
+unique(ld_grouped$pop)
+```
+
+## Point style
+
+The point style follows the common LD summary plot: pairwise distance in Kb on
+the x-axis and mean LD \(r^2\) on the y-axis, with population labels mapped to
+colour.
+
+```{r, fig.alt = "LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label."}
+plot_ld_decay(ld_decay, style = "point")
+```
+
+## Line style
+
+The line style uses the same data and population colour mapping, but draws a
+continuous decay curve.
+
+```{r, fig.alt = "LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern."}
+plot_ld_decay(ld_decay, style = "line")
+```
+
+## Layered path
+
+Use `ggpop()` plus `geom_ld_decay()` when composing with other ggplot layers.
+
+```{r, fig.alt = "Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis."}
+ld_decay |>
+  ggpop() +
+  geom_ld_decay(style = "point")
+```

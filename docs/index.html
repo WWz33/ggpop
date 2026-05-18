@@ -13,8 +13,8 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Extensions for Population Genetics Plots">
-<meta name="description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, and Q-Q plots.">
-<meta property="og:description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, and Q-Q plots.">
+<meta name="description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, and windowed population statistics plots.">
+<meta property="og:description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, and windowed population statistics plots.">
 <script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-hide-below="1200" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
@@ -48,6 +48,7 @@
     <li><a class="dropdown-item" href="articles/guides/pca.html">PCA plots</a></li>
     <li><a class="dropdown-item" href="articles/guides/admixture.html">Admixture plots</a></li>
     <li><a class="dropdown-item" href="articles/guides/stats.html">Population genomics statistics</a></li>
+    <li><a class="dropdown-item" href="articles/guides/ld-decay.html">LD decay</a></li>
     <li><a class="dropdown-item" href="articles/guides/selection.html">Selective sweep scans</a></li>
     <li><a class="dropdown-item" href="articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="articles/guides/full-extdata.html">Full extdata gallery</a></li>
@@ -74,7 +75,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>ggpop</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, plus selective sweep scan plots for selscan and XPCLR outputs.</p>
+<p>The goal of <code>ggpop</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, LD decay curves, plus selective sweep scan plots for selscan and XPCLR outputs.</p>
 <p><code>ggpop</code> focuses on a tidy workflow:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -174,6 +175,13 @@ P002    PopB</code></pre>
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_stats.html">import_stats</a></span><span class="op">(</span><span class="st">"vcftools_results/"</span>, type <span class="op">=</span> <span class="st">"vcftools"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/geom_stats.html">plot_stats</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"all"</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ld_decay</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span><span class="st">"PopLDdecay_results/"</span>, type <span class="op">=</span> <span class="st">"poplddecay"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span><span class="va">ld_decay</span>, style <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span><span class="va">ld_decay</span>, style <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></code></pre></div>
+<p align="center">
+<img src="reference/figures/readme-ld-decay.png" width="60%" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label."></p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selscan_chr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_selection.html">import_selection</a></span><span class="op">(</span></span>
 <span>  <span class="st">"selscan_results/"</span>,</span>
 <span>  ihs <span class="op">=</span> <span class="st">"chr1.ihs.out.100bins.norm"</span>,</span>
@@ -243,6 +251,12 @@ P002    PopB</code></pre>
 <td><code>ggpop() + geom_stats()</code></td>
 </tr>
 <tr>
+<td>LD decay</td>
+<td><code><a href="reference/import_ld_decay.html">import_ld_decay()</a></code></td>
+<td><code><a href="reference/geom_ld_decay.html">plot_ld_decay()</a></code></td>
+<td><code>ggpop() + geom_ld_decay()</code></td>
+</tr>
+<tr>
 <td>Selective sweeps</td>
 <td><code><a href="reference/import_selection.html">import_selection()</a></code></td>
 <td><code><a href="reference/geom_selection.html">plot_selection()</a></code></td>
@@ -262,7 +276,7 @@ P002    PopB</code></pre>
 <h2 id="color-schemes">Color Schemes<a class="anchor" aria-label="anchor" href="#color-schemes"></a>
 </h2>
 <p><code>ggpop</code> provides a unified discrete palette entry for population-genomics categorical variables. PCA population colours and admixture cluster fills use the same publication-oriented palette system by default.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"population"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span></span>
@@ -290,6 +304,8 @@ P002    PopB</code></pre>
 <a href="https://wwz33.github.io/ggpop/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</li>
 <li>
 <a href="https://wwz33.github.io/ggpop/articles/guides/stats.html">Population statistics guide</a> Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting</li>
+<li>
+<a href="https://wwz33.github.io/ggpop/articles/guides/ld-decay.html">LD decay guide</a> PopLDdecay imports with point and line plot styles</li>
 <li>
 <a href="https://wwz33.github.io/ggpop/articles/guides/selection.html">Selective sweep guide</a> selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds</li>
 </ul>

@@ -82,6 +82,28 @@
   data
 }
 
+.new_ggpop_ld_decay <- function(data, source) {
+  .require_columns(data, c("dist", "dist_kb", "r2"), "LD decay data")
+  data$dist <- as.numeric(data$dist)
+  data$dist_kb <- as.numeric(data$dist_kb)
+  data$r2 <- as.numeric(data$r2)
+  if (!"pop" %in% names(data)) {
+    data$pop <- "LD"
+  }
+  data$pop <- as.character(data$pop)
+  if (!"n_pairs" %in% names(data)) {
+    data$n_pairs <- NA_integer_
+  }
+  data$n_pairs <- as.integer(data$n_pairs)
+  data$source <- source
+  data$.group <- interaction(data$pop, drop = TRUE, sep = ":")
+  if (any(!is.finite(data$dist) | !is.finite(data$dist_kb), na.rm = TRUE)) {
+    stop("LD decay distances must be finite numeric values.", call. = FALSE)
+  }
+  class(data) <- unique(c("ggpop_ld_decay", class(data)))
+  data
+}
+
 .stats_group_id <- function(data) {
   parts <- list(data$stat)
   if ("pop1" %in% names(data)) {

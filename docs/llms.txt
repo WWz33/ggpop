@@ -5,8 +5,8 @@ population-genomics visualization in R. It combines typed import
 helpers, direct plotting functions, and composable `ggplot2` extension
 layers for GWAS, PCA, and admixture results. It also includes a
 population genomics statistics module for windowed FST, pi, Tajima’s D,
-Dxy, and Watterson’s theta summaries, plus selective sweep scan plots
-for selscan and XPCLR outputs.
+Dxy, and Watterson’s theta summaries, LD decay curves, plus selective
+sweep scan plots for selscan and XPCLR outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -159,6 +159,17 @@ import_stats("vcftools_results/", type = "vcftools") |>
 ```
 
 ``` r
+ld_decay <- import_ld_decay("PopLDdecay_results/", type = "poplddecay")
+
+plot_ld_decay(ld_decay, style = "point")
+plot_ld_decay(ld_decay, style = "line")
+```
+
+![LD decay point plot. Pairwise distance in kilobases is on the x-axis
+and mean LD r squared is on the y-axis, with points coloured by
+population label.](reference/figures/readme-ld-decay.png)
+
+``` r
 selscan_chr1 <- import_selection(
   "selscan_results/",
   ihs = "chr1.ihs.out.100bins.norm",
@@ -197,6 +208,7 @@ The recommended user-facing API is intentionally small.
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` |
 | Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
+| LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
@@ -243,6 +255,9 @@ installation:
 - [Population statistics
   guide](https://wwz33.github.io/ggpop/articles/guides/stats.html)
   Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting
+- [LD decay
+  guide](https://wwz33.github.io/ggpop/articles/guides/ld-decay.html)
+  PopLDdecay imports with point and line plot styles
 - [Selective sweep
   guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
   selscan and XPCLR imports, signed or absolute score plots, and
@@ -321,6 +336,16 @@ vcftools.
 - [`geom_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
   [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
   : Population genomics statistics plots
+
+## LD Decay
+
+LD decay summaries from PopLDdecay and PLINK pairwise LD files.
+
+- [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md)
+  : Import LD decay results
+- [`geom_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+  [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+  : LD decay plots
 
 ## Selective Sweep Scans
 
@@ -401,6 +426,7 @@ Exported integration hooks and original-package compatibility layers.
   plots](https://wwz33.github.io/ggpop/articles/guides/admixture.md):
 - [Population genomics
   statistics](https://wwz33.github.io/ggpop/articles/guides/stats.md):
+- [LD decay](https://wwz33.github.io/ggpop/articles/guides/ld-decay.md):
 - [Selective sweep
   scans](https://wwz33.github.io/ggpop/articles/guides/selection.md):
 - [Discrete color

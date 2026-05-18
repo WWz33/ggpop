@@ -1,0 +1,106 @@
+# LD decay plots
+
+Plot LD decay summaries as either point or line plots. The x-axis is
+pairwise distance in kilobases and the y-axis is mean LD \\r^2\\. All
+styles support population colouring through the package-wide `pop`
+column.
+
+## Usage
+
+``` r
+geom_ld_decay(
+  mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2),
+  data = NULL,
+  ...,
+  pop = NULL,
+  style = c("point", "line"),
+  colour_by = c("pop", "file"),
+  size = NULL,
+  alpha = NULL,
+  base_size = 11,
+  base_family = "",
+  palette = "population",
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+
+plot_ld_decay(
+  data,
+  pop = NULL,
+  style = c("point", "line"),
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  base_size = 11,
+  base_family = "",
+  palette = "population",
+  ...
+)
+```
+
+## Arguments
+
+- mapping:
+
+  Aesthetic mapping. Defaults to pairwise distance in Kb and mean LD
+  \\r^2\\.
+
+- data:
+
+  A `ggpop_ld_decay` object from
+  [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md).
+
+- ...:
+
+  Additional geom parameters.
+
+- pop:
+
+  Optional population labels to keep.
+
+- style:
+
+  Draw `"point"` or `"line"` layers.
+
+- colour_by:
+
+  Colour by population or source file.
+
+- size, alpha:
+
+  Layer appearance. Point plots default to size 1, matching common LD
+  decay summaries.
+
+- base_size, base_family:
+
+  Base theme font controls.
+
+- palette:
+
+  ggpop discrete palette.
+
+- na.rm, show.legend, inherit.aes:
+
+  Standard ggplot2 layer arguments.
+
+- title, subtitle, caption:
+
+  Optional plot labels. No default title is added.
+
+## Value
+
+`geom_ld_decay()` returns a list of ggplot layers. `plot_ld_decay()`
+returns a ggplot object.
+
+## Examples
+
+``` r
+ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
+ld <- import_ld_decay(ld_dir, type = "poplddecay")
+ld |> plot_ld_decay(style = "point")
+
+ld |> plot_ld_decay(style = "line")
+
+ld |> ggpop() + geom_ld_decay(style = "point")
+```

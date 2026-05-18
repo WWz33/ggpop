@@ -64,6 +64,16 @@ vcftools.
   [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
   : Population genomics statistics plots
 
+## LD Decay
+
+LD decay summaries from PopLDdecay and PLINK pairwise LD files.
+
+- [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md)
+  : Import LD decay results
+- [`geom_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+  [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+  : LD decay plots
+
 ## Selective Sweep Scans
 
 Selscan and XPCLR imports with chromosome and region plotting.

@@ -19,6 +19,7 @@ workflows. The package keeps each module in the same tidy shape:
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
 | Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
+| LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` | selscan and XPCLR scans |
 
 ## Core pattern
@@ -41,6 +42,10 @@ stats <- import_stats(
   ggpop_extdata("Population_genomics_statistics", "pixy"),
   type = "pixy"
 )
+ld_decay <- import_ld_decay(
+  ggpop_extdata("ld_decay", "PopLDdecay"),
+  type = "poplddecay"
+)
 selscan_chr1 <- import_selection(
   ggpop_extdata("selective_sweep", "selscan"),
   ihs = "chr1.ihs.out.100bins.norm",
@@ -62,6 +67,8 @@ class(admix)
 #> [1] "ggpop_admix" "data.frame"
 class(stats)
 #> [1] "ggpop_stats" "data.frame"
+class(ld_decay)
+#> [1] "ggpop_ld_decay" "data.frame"
 class(selscan_chr1)
 #> [1] "ggpop_selection" "data.frame"
 ```
@@ -198,6 +205,34 @@ ggpop object supplies imported pixy statistics and geom_stats draws only
 the selected FST and pi facets for
 chr2L.](ggpop_files/figure-html/unnamed-chunk-10-1.png)
 
+## LD decay
+
+LD decay summaries use the same direct and layered plotting shape.
+PopLDdecay `*.stat.gz` files are imported directly, while PLINK pairwise
+LD files can be summarized into distance bins. Population labels follow
+the package-wide `pop_group.txt` convention when file labels need to be
+mapped to groups.
+
+``` r
+ld_decay |>
+  plot_ld_decay(style = "point")
+```
+
+![LD decay point plot. Pairwise distance in kilobases is on the x-axis
+and mean LD r squared is on the y-axis, with points coloured by
+population label.](ggpop_files/figure-html/unnamed-chunk-11-1.png)
+
+The same data can be drawn as a curve:
+
+``` r
+ld_decay |>
+  plot_ld_decay(style = "line")
+```
+
+![LD decay line plot. Pairwise distance in kilobases is on the x-axis
+and mean LD r squared is on the y-axis, with a continuous curve showing
+the decay pattern.](ggpop_files/figure-html/unnamed-chunk-12-1.png)
+
 ## Selective sweep scans
 
 Selection scan outputs use the same direct and layered plotting shape.
@@ -216,7 +251,7 @@ selscan_chr1 |>
 
 ![Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL
 are stacked vertically with genomic position in megabases on the
-x-axis.](ggpop_files/figure-html/unnamed-chunk-11-1.png)
+x-axis.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
 
 ## What to use
 
@@ -234,6 +269,9 @@ x-axis.](ggpop_files/figure-html/unnamed-chunk-11-1.png)
 - Use
   [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
   and `ggpop() + geom_stats()` for windowed population statistics.
+- Use
+  [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+  and `ggpop() + geom_ld_decay()` for LD decay summaries.
 - Use
   [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
   and `ggpop() + geom_selection()` for selective sweep scans.
