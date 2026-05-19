@@ -5,7 +5,7 @@ Authors@R:
     person("ggpop", "Authors", email = "maintainer@example.com", role = c("aut", "cre"))
 Author: ggpop Authors
 Maintainer: ggpop Authors <maintainer@example.com>
-Description: Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, and windowed population statistics plots.
+Description: Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, and windowed population statistics plots.
 License: MIT + file LICENSE
 URL: https://wwz33.github.io/ggpop/, https://github.com/WWz33/ggpop
 Encoding: UTF-8

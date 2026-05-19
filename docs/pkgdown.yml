@@ -8,11 +8,12 @@ articles:
   guides/full-extdata: guides/full-extdata.html
   ggpop: ggpop.html
   guides/gwas: guides/gwas.html
+  guides/introgression: guides/introgression.html
   guides/ld-decay: guides/ld-decay.html
   guides/pca: guides/pca.html
   guides/selection: guides/selection.html
   guides/stats: guides/stats.html
-last_built: 2026-05-18T20:27Z
+last_built: 2026-05-18T21:45Z
 urls:
   reference: https://wwz33.github.io/ggpop/reference
   article: https://wwz33.github.io/ggpop/articles

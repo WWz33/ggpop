@@ -45,6 +45,7 @@ articles:
   - guides/stats
   - guides/ld-decay
   - guides/selection
+  - guides/introgression
   - guides/color-schemes
   - guides/full-extdata
 - title: Advanced
@@ -97,6 +98,12 @@ reference:
   - import_selection
   - plot_selection
   - geom_selection
+- title: Introgression
+  desc: Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plots.
+  contents:
+  - import_introgression
+  - plot_introgression
+  - geom_introgression
 - title: Styling
   desc: Shared palettes, scales, and publication theme helpers.
   contents:

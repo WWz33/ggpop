@@ -48,6 +48,7 @@
     <li><a class="dropdown-item" href="../articles/guides/stats.html">Population genomics statistics</a></li>
     <li><a class="dropdown-item" href="../articles/guides/ld-decay.html">LD decay</a></li>
     <li><a class="dropdown-item" href="../articles/guides/selection.html">Selective sweep scans</a></li>
+    <li><a class="dropdown-item" href="../articles/guides/introgression.html">Introgression</a></li>
     <li><a class="dropdown-item" href="../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -167,6 +168,13 @@ original-package behavior.</li>
 <td><code>ggpop() + geom_selection()</code></td>
 <td>selscan and XPCLR scans</td>
 </tr>
+<tr class="even">
+<td>Introgression</td>
+<td><code><a href="../reference/import_introgression.html">import_introgression()</a></code></td>
+<td><code><a href="../reference/geom_introgression.html">plot_introgression()</a></code></td>
+<td><code>ggpop() + geom_introgression()</code></td>
+<td>Dsuite, genomics_general, TreeMix, and qpGraph summaries</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -202,6 +210,10 @@ original-package behavior.</li>
 <span>  xpehh <span class="op">=</span> <span class="st">"chr1.xpehh.out.norm"</span>,</span>
 <span>  xpnsl <span class="op">=</span> <span class="st">"chr1.xpnsl.out.norm"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"selscan"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">introgression</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"genomics_general"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"genomics_general"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Each importer returns a typed object:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -216,7 +228,9 @@ original-package behavior.</li>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ld_decay</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_ld_decay" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">selscan_chr1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ggpop_selection" "data.frame"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "ggpop_selection" "data.frame"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">introgression</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ggpop_introgression" "data.frame"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="tidy-plotting-style">Tidy plotting style<a class="anchor" aria-label="anchor" href="#tidy-plotting-style"></a>
@@ -328,6 +342,24 @@ axis; calls with <code>chr</code>, <code>start</code>, or
 <p><img src="ggpop_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis." width="700"></p>
 </div>
 <div class="section level2">
+<h2 id="introgression">Introgression<a class="anchor" aria-label="anchor" href="#introgression"></a>
+</h2>
+<p>Introgression summaries use the same direct and layered plotting
+shape. Windowed Dsuite and genomics_general outputs default to a
+Manhattan-like chromosome axis; Dsuite Dtrios summaries use a trio-level
+dot plot; graph edge tables use a compact edge diagram.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">introgression</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes, with points coloured by chromosome." width="700"></p>
+<p>The layered path follows the same grammar:</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">introgression</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="../reference/geom_introgression.html">geom_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are shown over the genome with a Manhattan-like chromosome axis." width="700"></p>
+</div>
+<div class="section level2">
 <h2 id="what-to-use">What to use<a class="anchor" aria-label="anchor" href="#what-to-use"></a>
 </h2>
 <ul>
@@ -346,6 +378,9 @@ statistics.</li>
 <code>ggpop() + geom_ld_decay()</code> for LD decay summaries.</li>
 <li>Use <code><a href="../reference/geom_selection.html">plot_selection()</a></code> and
 <code>ggpop() + geom_selection()</code> for selective sweep scans.</li>
+<li>Use <code><a href="../reference/geom_introgression.html">plot_introgression()</a></code> and
+<code>ggpop() + geom_introgression()</code> for introgression
+summaries.</li>
 <li>Treat the direct <code>plot_*()</code> functions as the reference
 style; <code>geom_*()</code> is the same look inside a ggplot
 composition.</li>

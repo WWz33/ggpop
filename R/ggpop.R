@@ -32,3 +32,7 @@ ggpop.ggpop_ld_decay <- function(data, mapping = ggplot2::aes(), ..., module = N
   }
   ggplot2::ggplot(data = data, mapping = mapping)
 }
+
+ggpop.ggpop_introgression <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
+  ggplot2::ggplot(data = data, mapping = mapping)
+}

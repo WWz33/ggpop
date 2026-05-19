@@ -21,6 +21,7 @@ workflows. The package keeps each module in the same tidy shape:
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
 | LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` | selscan and XPCLR scans |
+| Introgression | [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md) | `ggpop() + geom_introgression()` | Dsuite, genomics_general, TreeMix, and qpGraph summaries |
 
 ## Core pattern
 
@@ -54,6 +55,10 @@ selscan_chr1 <- import_selection(
   xpnsl = "chr1.xpnsl.out.norm",
   type = "selscan"
 )
+introgression <- import_introgression(
+  ggpop_extdata("introgression", "genomics_general"),
+  type = "genomics_general"
+)
 ```
 
 Each importer returns a typed object:
@@ -71,6 +76,8 @@ class(ld_decay)
 #> [1] "ggpop_ld_decay" "data.frame"
 class(selscan_chr1)
 #> [1] "ggpop_selection" "data.frame"
+class(introgression)
+#> [1] "ggpop_introgression" "data.frame"
 ```
 
 ## Tidy plotting style
@@ -253,6 +260,34 @@ selscan_chr1 |>
 are stacked vertically with genomic position in megabases on the
 x-axis.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
 
+## Introgression
+
+Introgression summaries use the same direct and layered plotting shape.
+Windowed Dsuite and genomics_general outputs default to a Manhattan-like
+chromosome axis; Dsuite Dtrios summaries use a trio-level dot plot;
+graph edge tables use a compact edge diagram.
+
+``` r
+introgression |>
+  plot_introgression(stat = c("D", "fdM"))
+```
+
+![Manhattan-like introgression plot. D and fdM window statistics are
+shown in stacked panels over chromosomes, with points coloured by
+chromosome.](ggpop_files/figure-html/unnamed-chunk-14-1.png)
+
+The layered path follows the same grammar:
+
+``` r
+introgression |>
+  ggpop() +
+  geom_introgression(stat = "D")
+```
+
+![Layered introgression plot using ggpop plus geom_introgression. D
+statistic windows are shown over the genome with a Manhattan-like
+chromosome axis.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
+
 ## What to use
 
 - Use
@@ -275,6 +310,9 @@ x-axis.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
 - Use
   [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
   and `ggpop() + geom_selection()` for selective sweep scans.
+- Use
+  [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
+  and `ggpop() + geom_introgression()` for introgression summaries.
 - Treat the direct `plot_*()` functions as the reference style;
   `geom_*()` is the same look inside a ggplot composition.
 - Use the compatibility article only when you need original `pophelper`

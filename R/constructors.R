@@ -104,6 +104,29 @@
   data
 }
 
+.new_ggpop_introgression <- function(data, source) {
+  .require_columns(data, c("analysis", "stat", "value"), "Introgression data")
+  data$analysis <- as.character(data$analysis)
+  data$stat <- as.character(data$stat)
+  data$value <- as.numeric(data$value)
+  if ("chr" %in% names(data)) {
+    data$chr <- as.character(data$chr)
+  }
+  if ("start" %in% names(data)) {
+    data$start <- as.numeric(data$start)
+  }
+  if ("end" %in% names(data)) {
+    data$end <- as.numeric(data$end)
+  }
+  if ("pos" %in% names(data)) {
+    data$pos <- as.numeric(data$pos)
+  }
+  data$source <- source
+  data$.group <- .introgression_group_id(data)
+  class(data) <- unique(c("ggpop_introgression", class(data)))
+  data
+}
+
 .stats_group_id <- function(data) {
   parts <- list(data$stat)
   if ("pop1" %in% names(data)) {
@@ -119,6 +142,16 @@
   parts <- list(data$stat)
   if ("score_type" %in% names(data)) {
     parts <- c(parts, list(data$score_type))
+  }
+  do.call(interaction, c(parts, list(drop = TRUE, sep = ":")))
+}
+
+.introgression_group_id <- function(data) {
+  parts <- list(data$analysis, data$stat)
+  for (column in c("pop1", "pop2", "pop3", "trio", "file")) {
+    if (column %in% names(data)) {
+      parts <- c(parts, list(data[[column]]))
+    }
   }
   do.call(interaction, c(parts, list(drop = TRUE, sep = ":")))
 }

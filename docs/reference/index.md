@@ -84,6 +84,17 @@ Selscan and XPCLR imports with chromosome and region plotting.
   [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
   : Selective sweep scan plots
 
+## Introgression
+
+Dsuite, genomics_general, TreeMix-style, and qpGraph introgression
+plots.
+
+- [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md)
+  : Import introgression results
+- [`geom_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
+  [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
+  : Introgression plots
+
 ## Styling
 
 Shared palettes, scales, and publication theme helpers.

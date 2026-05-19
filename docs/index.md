@@ -6,7 +6,9 @@ helpers, direct plotting functions, and composable `ggplot2` extension
 layers for GWAS, PCA, and admixture results. It also includes a
 population genomics statistics module for windowed FST, pi, Tajima’s D,
 Dxy, and Watterson’s theta summaries, LD decay curves, plus selective
-sweep scan plots for selscan and XPCLR outputs.
+sweep scan plots for selscan and XPCLR outputs, and introgression
+summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
+ADMIXTOOLS2 qpGraph outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -197,6 +199,30 @@ the filtered scan values. Genome-wide calls default to a Manhattan-like
 chromosome axis; calls with `chr`, `start`, or `end` default to a
 single-region view.
 
+``` r
+intro <- import_introgression(
+  "introgression/genomics_general/",
+  type = "genomics_general"
+)
+
+plot_introgression(intro, stat = c("D", "fdM"))
+```
+
+![Manhattan-like introgression plot. D and fdM window statistics are
+shown in stacked panels over chromosomes, with points coloured by
+chromosome.](reference/figures/readme-introgression.png)
+
+Trio-level D-statistics and graph edge tables use the same import and
+direct plot shape:
+
+``` r
+import_introgression("Dtrios.tsv", type = "dsuite_dtrios") |>
+  plot_introgression()
+
+import_introgression("qpgraph_edges.tsv", type = "qpgraph") |>
+  plot_introgression()
+```
+
 ## Interface
 
 The recommended user-facing API is intentionally small.
@@ -210,6 +236,7 @@ The recommended user-facing API is intentionally small.
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
 | LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` |
+| Introgression | [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md) | `ggpop() + geom_introgression()` |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need
@@ -262,6 +289,10 @@ installation:
   guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
   selscan and XPCLR imports, signed or absolute score plots, and
   quantile thresholds
+- [Introgression
+  guide](https://wwz33.github.io/ggpop/articles/guides/introgression.html)
+  Dsuite, genomics_general, TreeMix-style, and qpGraph introgression
+  plotting
 
 ## Acknowledgements
 

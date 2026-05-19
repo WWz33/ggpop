@@ -38,6 +38,7 @@ The package keeps each module in the same tidy shape:
 | Population statistics | `import_stats()` | `plot_stats()` | `ggpop() + geom_stats()` | pixy and vcftools summaries |
 | LD decay | `import_ld_decay()` | `plot_ld_decay()` | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
 | Selective sweeps | `import_selection()` | `plot_selection()` | `ggpop() + geom_selection()` | selscan and XPCLR scans |
+| Introgression | `import_introgression()` | `plot_introgression()` | `ggpop() + geom_introgression()` | Dsuite, genomics_general, TreeMix, and qpGraph summaries |
 
 ## Core pattern
 
@@ -71,6 +72,10 @@ selscan_chr1 <- import_selection(
   xpnsl = "chr1.xpnsl.out.norm",
   type = "selscan"
 )
+introgression <- import_introgression(
+  ggpop_extdata("introgression", "genomics_general"),
+  type = "genomics_general"
+)
 ```
 
 Each importer returns a typed object:
@@ -82,6 +87,7 @@ class(admix)
 class(stats)
 class(ld_decay)
 class(selscan_chr1)
+class(introgression)
 ```
 
 ## Tidy plotting style
@@ -188,6 +194,26 @@ selscan_chr1 |>
   )
 ```
 
+## Introgression
+
+Introgression summaries use the same direct and layered plotting shape.
+Windowed Dsuite and genomics_general outputs default to a Manhattan-like
+chromosome axis; Dsuite Dtrios summaries use a trio-level dot plot; graph edge
+tables use a compact edge diagram.
+
+```{r, fig.alt = "Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes, with points coloured by chromosome."}
+introgression |>
+  plot_introgression(stat = c("D", "fdM"))
+```
+
+The layered path follows the same grammar:
+
+```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are shown over the genome with a Manhattan-like chromosome axis."}
+introgression |>
+  ggpop() +
+  geom_introgression(stat = "D")
+```
+
 ## What to use
 
 - Use `plot_manha()` and `ggpop() + geom_manha()` for Manhattan plots.
@@ -197,5 +223,6 @@ selscan_chr1 |>
 - Use `plot_stats()` and `ggpop() + geom_stats()` for windowed population statistics.
 - Use `plot_ld_decay()` and `ggpop() + geom_ld_decay()` for LD decay summaries.
 - Use `plot_selection()` and `ggpop() + geom_selection()` for selective sweep scans.
+- Use `plot_introgression()` and `ggpop() + geom_introgression()` for introgression summaries.
 - Treat the direct `plot_*()` functions as the reference style; `geom_*()` is the same look inside a ggplot composition.
 - Use the compatibility article only when you need original `pophelper` workflows.

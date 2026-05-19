@@ -14,7 +14,9 @@ visualization in R. It combines typed import helpers, direct plotting functions,
 and composable `ggplot2` extension layers for GWAS, PCA, and admixture results.
 It also includes a population genomics statistics module for windowed FST, pi,
 Tajima's D, Dxy, and Watterson's theta summaries, LD decay curves, plus
-selective sweep scan plots for selscan and XPCLR outputs.
+selective sweep scan plots for selscan and XPCLR outputs, and introgression
+summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
+ADMIXTOOLS2 qpGraph outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -184,6 +186,28 @@ as `threshold = 2` draw score cutoffs directly, while
 filtered scan values. Genome-wide calls default to a Manhattan-like chromosome
 axis; calls with `chr`, `start`, or `end` default to a single-region view.
 
+``` r
+intro <- import_introgression(
+  "introgression/genomics_general/",
+  type = "genomics_general"
+)
+
+plot_introgression(intro, stat = c("D", "fdM"))
+```
+
+<p align="center"><img src="man/figures/readme-introgression.png" width="60%" alt="Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes, with points coloured by chromosome." /></p>
+
+Trio-level D-statistics and graph edge tables use the same import and direct
+plot shape:
+
+``` r
+import_introgression("Dtrios.tsv", type = "dsuite_dtrios") |>
+  plot_introgression()
+
+import_introgression("qpgraph_edges.tsv", type = "qpgraph") |>
+  plot_introgression()
+```
+
 ## Interface
 
 The recommended user-facing API is intentionally small.
@@ -197,6 +221,7 @@ The recommended user-facing API is intentionally small.
 | Population statistics | `import_stats()` | `plot_stats()` | `ggpop() + geom_stats()` |
 | LD decay | `import_ld_decay()` | `plot_ld_decay()` | `ggpop() + geom_ld_decay()` |
 | Selective sweeps | `import_selection()` | `plot_selection()` | `ggpop() + geom_selection()` |
+| Introgression | `import_introgression()` | `plot_introgression()` | `ggpop() + geom_introgression()` |
 | Population groups | `import_pop_group()` | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need direct
@@ -238,6 +263,8 @@ This version includes dependency fixes needed for reliable source installation:
   PopLDdecay imports with point and line plot styles
 - [Selective sweep guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
   selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds
+- [Introgression guide](https://wwz33.github.io/ggpop/articles/guides/introgression.html)
+  Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plotting
 
 ## Acknowledgements
 
