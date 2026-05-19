@@ -49,6 +49,7 @@
     <li><a class="dropdown-item" href="../../articles/guides/ld-decay.html">LD decay</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/selection.html">Selective sweep scans</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/introgression.html">Introgression</a></li>
+    <li><a class="dropdown-item" href="../../articles/guides/ne-history.html">Ne history</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/color-schemes.html">Discrete color schemes</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/full-extdata.html">Full extdata gallery</a></li>
     <li><hr class="dropdown-divider"></li>
@@ -86,7 +87,9 @@
 <p><code>ggpop</code> imports LD decay summaries into a typed
 <code>ggpop_ld_decay</code> object. The module supports PopLDdecay
 <code>*.stat.gz</code> summaries and PLINK pairwise LD tables summarized
-into distance bins.</p>
+into distance bins. PopLDdecay summaries can be left as-is or collapsed
+again with <code>method = "MeanBin"</code>, <code>MedianBin</code>, or
+<code>PercentileBin</code>.</p>
 <div class="section level2">
 <h2 id="api-summary">API summary<a class="anchor" aria-label="anchor" href="#api-summary"></a>
 </h2>
@@ -105,7 +108,8 @@ into distance bins.</p>
 <tr class="odd">
 <td>Import PopLDdecay summaries</td>
 <td><code>import_ld_decay(dir, type = "poplddecay")</code></td>
-<td>Reads <code>*.stat.gz</code> files directly</td>
+<td>Reads <code>*.stat.gz</code> and <code>*.bin.gz</code> files
+directly</td>
 </tr>
 <tr class="even">
 <td>Import PLINK LD pairs</td>
@@ -130,6 +134,15 @@ into distance bins.</p>
 <td>Point summaries or continuous decay curves</td>
 </tr>
 <tr class="even">
+<td>Measure view</td>
+<td>
+<code>measure = "r2"</code> / <code>"D"</code> /
+<code>"both"</code>
+</td>
+<td>
+<code>D'</code> needs PopLDdecay D output</td>
+</tr>
+<tr class="odd">
 <td>Population labels</td>
 <td><code>pop_group</code></td>
 <td>Uses the package-wide two-column <code>sample pop</code> file</td>
@@ -151,25 +164,50 @@ into distance bins.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ld_decay</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_ld_decay" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ld_decay</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   dist     r2        pop  sample_id dist_kb n_pairs             file</span></span>
-<span><span class="co">#&gt; 1    5 0.7569 PopLDdecay PopLDdecay   0.005     401 final_ld.stat.gz</span></span>
-<span><span class="co">#&gt; 2    6 0.7733 PopLDdecay PopLDdecay   0.006     425 final_ld.stat.gz</span></span>
-<span><span class="co">#&gt; 3    7 0.7564 PopLDdecay PopLDdecay   0.007     379 final_ld.stat.gz</span></span>
-<span><span class="co">#&gt; 4    8 0.7497 PopLDdecay PopLDdecay   0.008     370 final_ld.stat.gz</span></span>
-<span><span class="co">#&gt; 5    9 0.7755 PopLDdecay PopLDdecay   0.009     338 final_ld.stat.gz</span></span>
-<span><span class="co">#&gt; 6   10 0.7513 PopLDdecay PopLDdecay   0.010     344 final_ld.stat.gz</span></span>
-<span><span class="co">#&gt;       source     .group</span></span>
-<span><span class="co">#&gt; 1 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; 2 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; 3 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; 4 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; 5 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; 6 poplddecay PopLDdecay</span></span></code></pre></div>
+<span><span class="co">#&gt;                                    dist dist_kb        r2 d_prime</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0   10    0.01 0.7623450      NA</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1   20    0.02 0.7568097      NA</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2   30    0.03 0.7534708      NA</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3   40    0.04 0.7596488      NA</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4   50    0.05 0.7457370      NA</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5   60    0.06 0.7534852      NA</span></span>
+<span><span class="co">#&gt;                                      sum_r2 sum_d_prime n_pairs</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 1458.366          NA    1913</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 2479.309          NA    3276</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 2169.242          NA    2879</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 1838.350          NA    2420</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 1412.426          NA    1894</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 1104.609          NA    1466</span></span>
+<span><span class="co">#&gt;                                           pop  sample_id</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 PopLDdecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 PopLDdecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 PopLDdecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 PopLDdecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 PopLDdecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 PopLDdecay PopLDdecay</span></span>
+<span><span class="co">#&gt;                                               file ld_method</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 final_ld.bin.gz   MeanBin</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 final_ld.bin.gz   MeanBin</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 final_ld.bin.gz   MeanBin</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 final_ld.bin.gz   MeanBin</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 final_ld.bin.gz   MeanBin</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 final_ld.bin.gz   MeanBin</span></span>
+<span><span class="co">#&gt;                                        source     .group</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 poplddecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 poplddecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 poplddecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 poplddecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 poplddecay PopLDdecay</span></span>
+<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 poplddecay PopLDdecay</span></span></code></pre></div>
 <p>Population grouping follows the same <code>pop_group.txt</code>
 convention used by PCA and admixture. The LD decay file label is stored
 as <code>sample_id</code>; if a matching <code>sample</code> appears in
 <code>pop_group</code>, the corresponding <code>pop</code> value is used
 for colouring.</p>
+<p>The importer also accepts a single file path, and the
+<code>method</code> argument can be used to re-bin PopLDdecay summaries
+with the same mean-bin, median, or percentile behavior used by the
+legacy plotting scripts.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ld_grouped</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span></span>
 <span>  <span class="va">ld_dir</span>,</span>

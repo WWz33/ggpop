@@ -1,6 +1,7 @@
 geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2),
                           data = NULL, ..., pop = NULL,
                           style = c("point", "line"),
+                          measure = c("r2", "D", "both"),
                           colour_by = c("pop", "file"),
                           size = NULL, alpha = NULL,
                           base_size = 11, base_family = "",
@@ -8,8 +9,11 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
                           na.rm = FALSE, show.legend = NA,
                           inherit.aes = TRUE) {
   style <- match.arg(style)
+  measure <- match.arg(measure)
   colour_by <- match.arg(colour_by)
   layer_data <- .filter_ld_decay_data(data, pop = pop)
+  layer_data <- .ld_decay_measure_data(layer_data, measure = measure)
+  mapping <- .ld_decay_measure_mapping(mapping, measure = measure)
   if (.ld_decay_should_map_colour(layer_data, mapping, colour_by)) {
     mapping <- .add_ld_decay_colour_mapping(mapping, colour_by)
   }
@@ -33,7 +37,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
     if (colour_count > 0) scale_colour_ggpop(colour_count, palette),
     ggplot2::scale_x_continuous(expand = c(0, 0)),
     ggplot2::scale_y_continuous(expand = c(0, 0), limits = c(0, NA)),
-    ggplot2::labs(x = "Pairwise distance in Kb", y = .ld_decay_y_label(), colour = NULL),
+    ggplot2::labs(x = "Distance (Kb)", y = .ld_decay_y_label(measure), colour = NULL),
     .theme_tidyplot(base_size = base_size, base_family = base_family) +
       ggplot2::theme(
         legend.position = "top",
@@ -44,7 +48,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
     Filter(Negate(is.null), layers),
     class = c("ggpop_ld_decay_layers", "list"),
     ggpop_ld_decay_data = layer_data,
-    ggpop_ld_decay_filter = list(pop = pop)
+    ggpop_ld_decay_filter = list(pop = pop, measure = measure)
   )
 }
 
@@ -65,7 +69,7 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
   filter <- attr(object, "ggpop_ld_decay_filter", exact = TRUE)
   if (inherits(plot$data, "ggpop_ld_decay")) {
     plot$data <- if (is.function(layer_data)) {
-      .filter_ld_decay_data(plot$data, pop = filter$pop)
+      .ld_decay_measure_data(.filter_ld_decay_data(plot$data, pop = filter$pop), measure = filter$measure)
     } else {
       layer_data
     }
@@ -77,23 +81,26 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
 }
 
 plot_ld_decay <- function(data, pop = NULL, style = c("point", "line"),
+                          measure = c("r2", "D", "both"),
                           title = NULL, subtitle = NULL, caption = NULL,
                           base_size = 11, base_family = "",
                           palette = "population", ...) {
   .require_class(data, "ggpop_ld_decay", "LD decay data")
   style <- match.arg(style)
+  measure <- match.arg(measure)
   selected <- .filter_ld_decay_data(data, pop = pop)
   plot <- ggpop(selected) +
     geom_ld_decay(
       data = selected,
       pop = NULL,
       style = style,
+      measure = measure,
       base_size = base_size,
       base_family = base_family,
       palette = palette,
       ...
     )
-  .ggpop_apply_labels(plot, title, subtitle, caption, "Pairwise distance in Kb", .ld_decay_y_label())
+  .ggpop_apply_labels(plot, title, subtitle, caption, "Distance (Kb)", .ld_decay_y_label(measure))
 }
 
 .geom_ld_decay_layer <- function(mapping, data = NULL, style = "point", ..., size, alpha,
@@ -166,6 +173,43 @@ plot_ld_decay <- function(data, pop = NULL, style = c("point", "line"),
   1
 }
 
-.ld_decay_y_label <- function() {
+.ld_decay_measure_data <- function(data, measure = "r2") {
+  if (is.function(data)) {
+    force(measure)
+    return(function(plot_data) .ld_decay_measure_data(data(plot_data), measure = measure))
+  }
+  if (measure %in% c("D", "both") && (!"d_prime" %in% names(data) || !any(is.finite(data$d_prime)))) {
+    stop("D' is not available in this LD decay object. Re-run PopLDdecay with D' output or use `measure = \"r2\"`.", call. = FALSE)
+  }
+  if (measure == "D") {
+    data$y_value <- data$d_prime
+    data$measure <- "D'"
+  } else if (measure == "both") {
+    r2 <- data
+    r2$y_value <- r2$r2
+    r2$measure <- "r2"
+    d <- data
+    d$y_value <- d$d_prime
+    d$measure <- "D'"
+    data <- rbind(r2, d)
+  } else {
+    data$y_value <- data$r2
+    data$measure <- "r2"
+  }
+  data
+}
+
+.ld_decay_measure_mapping <- function(mapping, measure = "r2") {
+  values <- as.list(mapping)
+  values$y <- rlang::expr(.data$y_value)
+  if (measure == "both") {
+    values$linetype <- rlang::expr(.data$measure)
+  }
+  do.call(ggplot2::aes, values)
+}
+
+.ld_decay_y_label <- function(measure = "r2") {
+  if (measure == "D") return("D'")
+  if (measure == "both") return("LD")
   quote(LD~(r^2))
 }

@@ -17,6 +17,8 @@
 - [Selective sweep
   scans](https://wwz33.github.io/ggpop/articles/guides/selection.md):
 - [Introgression](https://wwz33.github.io/ggpop/articles/guides/introgression.md):
+- [Ne
+  history](https://wwz33.github.io/ggpop/articles/guides/ne-history.md):
 - [Discrete color
   schemes](https://wwz33.github.io/ggpop/articles/guides/color-schemes.md):
 - [Full extdata

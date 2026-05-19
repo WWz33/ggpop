@@ -2,8 +2,9 @@
 
 Import LD decay summaries into a typed tidy object for use with
 [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
-or `ggpop() + geom_ld_decay()`. PopLDdecay `*.stat.gz` files are read
-directly. PLINK pairwise `*.ld` files are summarized into distance bins.
+or `ggpop() + geom_ld_decay()`. PopLDdecay `*.stat.gz` and `*.bin.gz`
+files are read directly. PLINK pairwise `*.ld` files are summarized into
+distance bins.
 
 ## Usage
 
@@ -14,7 +15,12 @@ import_ld_decay(
   type = c("poplddecay", "plink", "auto"),
   pop = NULL,
   pop_group = NULL,
-  bin_size = 200
+  method = c("MeanBin", "none", "MedianBin", "PercentileBin"),
+  bin1 = 10,
+  bin2 = 100,
+  breakpoint = 100,
+  percent = 0.5,
+  bin_size = NULL
 )
 ```
 
@@ -42,9 +48,32 @@ import_ld_decay(
   Optional population group table or path to the standard two-column
   `sample pop` file. File labels are matched through `sample`.
 
+- method:
+
+  Binning method for PopLDdecay summaries and PLINK pairwise LD tables.
+  `"MeanBin"` matches the common PopLDdecay summary plot; `"MedianBin"`
+  and `"PercentileBin"` use pair-count weighted quantiles.
+
+- bin1:
+
+  Short-distance bin width in base pairs.
+
+- bin2:
+
+  Long-distance bin width in base pairs.
+
+- breakpoint:
+
+  Distance threshold that switches from `bin1` to `bin2`.
+
+- percent:
+
+  Percentile used by `"PercentileBin"`.
+
 - bin_size:
 
-  Distance bin width in base pairs for PLINK pairwise LD files.
+  Legacy alias for a single bin width. When supplied, `method` is
+  treated as `"MeanBin"` and both bin widths use the same size.
 
 ## Value
 

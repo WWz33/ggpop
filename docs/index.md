@@ -8,7 +8,8 @@ population genomics statistics module for windowed FST, pi, Tajima’s D,
 Dxy, and Watterson’s theta summaries, LD decay curves, plus selective
 sweep scan plots for selscan and XPCLR outputs, and introgression
 summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
-ADMIXTOOLS2 qpGraph outputs.
+ADMIXTOOLS2 qpGraph outputs. It also includes effective population size
+history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -223,6 +224,16 @@ import_introgression("qpgraph_edges.tsv", type = "qpgraph") |>
   plot_introgression()
 ```
 
+``` r
+ne_history <- import_ne_history("smcpp_model.csv", type = "smcpp")
+
+plot_ne_history(ne_history)
+```
+
+![Effective population size history line plot. Time before present is on
+the x-axis and effective population size is on the y-axis, with separate
+curves for two populations.](reference/figures/readme-ne-history.png)
+
 ## Interface
 
 The recommended user-facing API is intentionally small.
@@ -234,9 +245,10 @@ The recommended user-facing API is intentionally small.
 | PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` |
 | Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
 | Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
-| LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` |
+| LD decay | `import_ld_decay(method = ...)` | `plot_ld_decay(measure = ...)` | `ggpop() + geom_ld_decay(measure = ...)` |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` |
 | Introgression | [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md) | `ggpop() + geom_introgression()` |
+| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggpop/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need
@@ -293,6 +305,10 @@ installation:
   guide](https://wwz33.github.io/ggpop/articles/guides/introgression.html)
   Dsuite, genomics_general, TreeMix-style, and qpGraph introgression
   plotting
+- [Ne history
+  guide](https://wwz33.github.io/ggpop/articles/guides/ne-history.html)
+  PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size
+  histories
 
 ## Acknowledgements
 

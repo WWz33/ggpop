@@ -16,7 +16,8 @@ It also includes a population genomics statistics module for windowed FST, pi,
 Tajima's D, Dxy, and Watterson's theta summaries, LD decay curves, plus
 selective sweep scan plots for selscan and XPCLR outputs, and introgression
 summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
-ADMIXTOOLS2 qpGraph outputs.
+ADMIXTOOLS2 qpGraph outputs. It also includes effective population size history
+curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.
 
 `ggpop` focuses on a tidy workflow:
 
@@ -208,6 +209,14 @@ import_introgression("qpgraph_edges.tsv", type = "qpgraph") |>
   plot_introgression()
 ```
 
+``` r
+ne_history <- import_ne_history("smcpp_model.csv", type = "smcpp")
+
+plot_ne_history(ne_history)
+```
+
+<p align="center"><img src="man/figures/readme-ne-history.png" width="60%" alt="Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations." /></p>
+
 ## Interface
 
 The recommended user-facing API is intentionally small.
@@ -219,9 +228,10 @@ The recommended user-facing API is intentionally small.
 | PCA | `import_pca()` / `compute_pca()` | `plot_pca()` | `ggpop() + geom_pca()` |
 | Admixture | `import_admix()` | `plot_admix()` | `ggpop() + geom_admix()` |
 | Population statistics | `import_stats()` | `plot_stats()` | `ggpop() + geom_stats()` |
-| LD decay | `import_ld_decay()` | `plot_ld_decay()` | `ggpop() + geom_ld_decay()` |
+| LD decay | `import_ld_decay(method = ...)` | `plot_ld_decay(measure = ...)` | `ggpop() + geom_ld_decay(measure = ...)` |
 | Selective sweeps | `import_selection()` | `plot_selection()` | `ggpop() + geom_selection()` |
 | Introgression | `import_introgression()` | `plot_introgression()` | `ggpop() + geom_introgression()` |
+| Ne history | `import_ne_history()` | `plot_ne_history()` | `ggpop() + geom_ne_history()` |
 | Population groups | `import_pop_group()` | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need direct
@@ -265,6 +275,8 @@ This version includes dependency fixes needed for reliable source installation:
   selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds
 - [Introgression guide](https://wwz33.github.io/ggpop/articles/guides/introgression.html)
   Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plotting
+- [Ne history guide](https://wwz33.github.io/ggpop/articles/guides/ne-history.html)
+  PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size histories
 
 ## Acknowledgements
 

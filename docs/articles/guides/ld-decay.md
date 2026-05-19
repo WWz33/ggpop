@@ -2,17 +2,20 @@
 
 `ggpop` imports LD decay summaries into a typed `ggpop_ld_decay` object.
 The module supports PopLDdecay `*.stat.gz` summaries and PLINK pairwise
-LD tables summarized into distance bins.
+LD tables summarized into distance bins. PopLDdecay summaries can be
+left as-is or collapsed again with `method = "MeanBin"`, `MedianBin`, or
+`PercentileBin`.
 
 ## API summary
 
 | Task | API | Notes |
 |----|----|----|
-| Import PopLDdecay summaries | `import_ld_decay(dir, type = "poplddecay")` | Reads `*.stat.gz` files directly |
+| Import PopLDdecay summaries | `import_ld_decay(dir, type = "poplddecay")` | Reads `*.stat.gz` and `*.bin.gz` files directly |
 | Import PLINK LD pairs | `import_ld_decay(file, type = "plink")` | Summarizes pairwise LD into distance bins |
 | Direct plot | `plot_ld_decay(data, style = "point")` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ld_decay(...)` | Tidy ggplot extension path |
 | Plot style | `style = "point"` / `"line"` | Point summaries or continuous decay curves |
+| Measure view | `measure = "r2"` / `"D"` / `"both"` | `D'` needs PopLDdecay D output |
 | Population labels | `pop_group` | Uses the package-wide two-column `sample pop` file |
 
 ## Import PopLDdecay results
@@ -27,26 +30,51 @@ ld_decay <- import_ld_decay(ld_dir, type = "poplddecay")
 class(ld_decay)
 #> [1] "ggpop_ld_decay" "data.frame"
 head(ld_decay)
-#>   dist     r2        pop  sample_id dist_kb n_pairs             file
-#> 1    5 0.7569 PopLDdecay PopLDdecay   0.005     401 final_ld.stat.gz
-#> 2    6 0.7733 PopLDdecay PopLDdecay   0.006     425 final_ld.stat.gz
-#> 3    7 0.7564 PopLDdecay PopLDdecay   0.007     379 final_ld.stat.gz
-#> 4    8 0.7497 PopLDdecay PopLDdecay   0.008     370 final_ld.stat.gz
-#> 5    9 0.7755 PopLDdecay PopLDdecay   0.009     338 final_ld.stat.gz
-#> 6   10 0.7513 PopLDdecay PopLDdecay   0.010     344 final_ld.stat.gz
-#>       source     .group
-#> 1 poplddecay PopLDdecay
-#> 2 poplddecay PopLDdecay
-#> 3 poplddecay PopLDdecay
-#> 4 poplddecay PopLDdecay
-#> 5 poplddecay PopLDdecay
-#> 6 poplddecay PopLDdecay
+#>                                    dist dist_kb        r2 d_prime
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r0   10    0.01 0.7623450      NA
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r1   20    0.02 0.7568097      NA
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r2   30    0.03 0.7534708      NA
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r3   40    0.04 0.7596488      NA
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r4   50    0.05 0.7457370      NA
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r5   60    0.06 0.7534852      NA
+#>                                      sum_r2 sum_d_prime n_pairs
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 1458.366          NA    1913
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 2479.309          NA    3276
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 2169.242          NA    2879
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 1838.350          NA    2420
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 1412.426          NA    1894
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 1104.609          NA    1466
+#>                                           pop  sample_id
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 PopLDdecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 PopLDdecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 PopLDdecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 PopLDdecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 PopLDdecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 PopLDdecay PopLDdecay
+#>                                               file ld_method
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 final_ld.bin.gz   MeanBin
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 final_ld.bin.gz   MeanBin
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 final_ld.bin.gz   MeanBin
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 final_ld.bin.gz   MeanBin
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 final_ld.bin.gz   MeanBin
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 final_ld.bin.gz   MeanBin
+#>                                        source     .group
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 poplddecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 poplddecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 poplddecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 poplddecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 poplddecay PopLDdecay
+#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 poplddecay PopLDdecay
 ```
 
 Population grouping follows the same `pop_group.txt` convention used by
 PCA and admixture. The LD decay file label is stored as `sample_id`; if
 a matching `sample` appears in `pop_group`, the corresponding `pop`
 value is used for colouring.
+
+The importer also accepts a single file path, and the `method` argument
+can be used to re-bin PopLDdecay summaries with the same mean-bin,
+median, or percentile behavior used by the legacy plotting scripts.
 
 ``` r
 ld_grouped <- import_ld_decay(

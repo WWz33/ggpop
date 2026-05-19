@@ -21,17 +21,20 @@ ggpop_extdata <- function(...) {
 
 `ggpop` imports LD decay summaries into a typed `ggpop_ld_decay` object. The
 module supports PopLDdecay `*.stat.gz` summaries and PLINK pairwise LD tables
-summarized into distance bins.
+summarized into distance bins. PopLDdecay summaries can be left as-is or
+collapsed again with `method = "MeanBin"`, `MedianBin`, or
+`PercentileBin`.
 
 ## API summary
 
 | Task | API | Notes |
 |---|---|---|
-| Import PopLDdecay summaries | `import_ld_decay(dir, type = "poplddecay")` | Reads `*.stat.gz` files directly |
+| Import PopLDdecay summaries | `import_ld_decay(dir, type = "poplddecay")` | Reads `*.stat.gz` and `*.bin.gz` files directly |
 | Import PLINK LD pairs | `import_ld_decay(file, type = "plink")` | Summarizes pairwise LD into distance bins |
 | Direct plot | `plot_ld_decay(data, style = "point")` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ld_decay(...)` | Tidy ggplot extension path |
 | Plot style | `style = "point"` / `"line"` | Point summaries or continuous decay curves |
+| Measure view | `measure = "r2"` / `"D"` / `"both"` | `D'` needs PopLDdecay D output |
 | Population labels | `pop_group` | Uses the package-wide two-column `sample pop` file |
 
 ## Import PopLDdecay results
@@ -51,6 +54,10 @@ Population grouping follows the same `pop_group.txt` convention used by PCA and
 admixture. The LD decay file label is stored as `sample_id`; if a matching
 `sample` appears in `pop_group`, the corresponding `pop` value is used for
 colouring.
+
+The importer also accepts a single file path, and the `method` argument can be
+used to re-bin PopLDdecay summaries with the same mean-bin, median, or
+percentile behavior used by the legacy plotting scripts.
 
 ```{r}
 ld_grouped <- import_ld_decay(

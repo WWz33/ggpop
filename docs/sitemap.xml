@@ -8,6 +8,7 @@
 <url><loc>https://wwz33.github.io/ggpop/articles/guides/gwas.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/articles/guides/introgression.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/articles/guides/ld-decay.html</loc></url>
+<url><loc>https://wwz33.github.io/ggpop/articles/guides/ne-history.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/articles/guides/pca.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/articles/guides/selection.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/articles/guides/stats.html</loc></url>
@@ -22,6 +23,7 @@
 <url><loc>https://wwz33.github.io/ggpop/reference/geom_introgression.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/geom_ld_decay.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/geom_manha.html</loc></url>
+<url><loc>https://wwz33.github.io/ggpop/reference/geom_ne_history.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/geom_pca.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/geom_qq.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/geom_selection.html</loc></url>
@@ -31,6 +33,7 @@
 <url><loc>https://wwz33.github.io/ggpop/reference/import_gwas.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/import_introgression.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/import_ld_decay.html</loc></url>
+<url><loc>https://wwz33.github.io/ggpop/reference/import_ne_history.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/import_pca.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/import_pop_group.html</loc></url>
 <url><loc>https://wwz33.github.io/ggpop/reference/import_selection.html</loc></url>

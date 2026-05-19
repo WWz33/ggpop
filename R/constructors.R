@@ -87,14 +87,21 @@
   data$dist <- as.numeric(data$dist)
   data$dist_kb <- as.numeric(data$dist_kb)
   data$r2 <- as.numeric(data$r2)
+  if ("d_prime" %in% names(data)) {
+    data$d_prime <- as.numeric(data$d_prime)
+  }
   if (!"pop" %in% names(data)) {
     data$pop <- "LD"
   }
   data$pop <- as.character(data$pop)
   if (!"n_pairs" %in% names(data)) {
-    data$n_pairs <- NA_integer_
+    data$n_pairs <- NA_real_
   }
-  data$n_pairs <- as.integer(data$n_pairs)
+  data$n_pairs <- as.numeric(data$n_pairs)
+  if (!"ld_method" %in% names(data)) {
+    data$ld_method <- "none"
+  }
+  data$ld_method <- as.character(data$ld_method)
   data$source <- source
   data$.group <- interaction(data$pop, drop = TRUE, sep = ":")
   if (any(!is.finite(data$dist) | !is.finite(data$dist_kb), na.rm = TRUE)) {
@@ -124,6 +131,32 @@
   data$source <- source
   data$.group <- .introgression_group_id(data)
   class(data) <- unique(c("ggpop_introgression", class(data)))
+  data
+}
+
+.new_ggpop_ne_history <- function(data, source) {
+  .require_columns(data, c("method", "sample_id", "time", "ne"), "Ne history data")
+  data$method <- as.character(data$method)
+  data$sample_id <- as.character(data$sample_id)
+  data$time <- as.numeric(data$time)
+  data$ne <- as.numeric(data$ne)
+  if (!"time_unit" %in% names(data)) {
+    data$time_unit <- "generations"
+  }
+  if (!"scale" %in% names(data)) {
+    data$scale <- "absolute"
+  }
+  data$time_unit <- as.character(data$time_unit)
+  data$scale <- as.character(data$scale)
+  for (column in intersect(c("ne_lower", "ne_upper"), names(data))) {
+    data[[column]] <- as.numeric(data[[column]])
+  }
+  data$source <- source
+  data$.group <- interaction(data$method, data$sample_id, drop = TRUE, sep = ":")
+  if (any(!is.finite(data$time) | !is.finite(data$ne), na.rm = TRUE)) {
+    stop("Ne history time and Ne values must be finite numeric values.", call. = FALSE)
+  }
+  class(data) <- unique(c("ggpop_ne_history", class(data)))
   data
 }
 

@@ -95,6 +95,17 @@ plots.
   [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
   : Introgression plots
 
+## Ne History
+
+Effective population size histories from PSMC, MSMC2, SMC++, and
+Stairway Plot 2.
+
+- [`import_ne_history()`](https://wwz33.github.io/ggpop/reference/import_ne_history.md)
+  : Import effective population size history
+- [`geom_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+  [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+  : Effective population size history plots
+
 ## Styling
 
 Shared palettes, scales, and publication theme helpers.

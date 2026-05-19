@@ -46,6 +46,7 @@ articles:
   - guides/ld-decay
   - guides/selection
   - guides/introgression
+  - guides/ne-history
   - guides/color-schemes
   - guides/full-extdata
 - title: Advanced
@@ -104,6 +105,12 @@ reference:
   - import_introgression
   - plot_introgression
   - geom_introgression
+- title: Ne History
+  desc: Effective population size histories from PSMC, MSMC2, SMC++, and Stairway Plot 2.
+  contents:
+  - import_ne_history
+  - plot_ne_history
+  - geom_ne_history
 - title: Styling
   desc: Shared palettes, scales, and publication theme helpers.
   contents:

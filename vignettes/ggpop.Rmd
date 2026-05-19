@@ -39,6 +39,7 @@ The package keeps each module in the same tidy shape:
 | LD decay | `import_ld_decay()` | `plot_ld_decay()` | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
 | Selective sweeps | `import_selection()` | `plot_selection()` | `ggpop() + geom_selection()` | selscan and XPCLR scans |
 | Introgression | `import_introgression()` | `plot_introgression()` | `ggpop() + geom_introgression()` | Dsuite, genomics_general, TreeMix, and qpGraph summaries |
+| Ne history | `import_ne_history()` | `plot_ne_history()` | `ggpop() + geom_ne_history()` | PSMC, MSMC2, SMC++, and Stairway Plot 2 histories |
 
 ## Core pattern
 
@@ -76,6 +77,10 @@ introgression <- import_introgression(
   ggpop_extdata("introgression", "genomics_general"),
   type = "genomics_general"
 )
+ne_history <- import_ne_history(
+  ggpop_extdata("ne_history", "SMC++", "model.csv"),
+  type = "smcpp"
+)
 ```
 
 Each importer returns a typed object:
@@ -88,6 +93,7 @@ class(stats)
 class(ld_decay)
 class(selscan_chr1)
 class(introgression)
+class(ne_history)
 ```
 
 ## Tidy plotting style
@@ -214,6 +220,25 @@ introgression |>
   geom_introgression(stat = "D")
 ```
 
+## Ne history
+
+Effective population size histories from PSMC, MSMC2, SMC++, and Stairway Plot
+2 use the same direct and layered plotting shape. Curves default to log-scaled
+time and Ne axes.
+
+```{r, fig.alt = "Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."}
+ne_history |>
+  plot_ne_history()
+```
+
+The layered path follows the same grammar:
+
+```{r, fig.alt = "Layered Ne history plot using ggpop plus geom_ne_history. Population-specific SMC++ curves are drawn on log-scaled time and Ne axes."}
+ne_history |>
+  ggpop() +
+  geom_ne_history()
+```
+
 ## What to use
 
 - Use `plot_manha()` and `ggpop() + geom_manha()` for Manhattan plots.
@@ -224,5 +249,6 @@ introgression |>
 - Use `plot_ld_decay()` and `ggpop() + geom_ld_decay()` for LD decay summaries.
 - Use `plot_selection()` and `ggpop() + geom_selection()` for selective sweep scans.
 - Use `plot_introgression()` and `ggpop() + geom_introgression()` for introgression summaries.
+- Use `plot_ne_history()` and `ggpop() + geom_ne_history()` for effective population size histories.
 - Treat the direct `plot_*()` functions as the reference style; `geom_*()` is the same look inside a ggplot composition.
 - Use the compatibility article only when you need original `pophelper` workflows.

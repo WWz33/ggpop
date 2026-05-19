@@ -36,3 +36,10 @@ ggpop.ggpop_ld_decay <- function(data, mapping = ggplot2::aes(), ..., module = N
 ggpop.ggpop_introgression <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
   ggplot2::ggplot(data = data, mapping = mapping)
 }
+
+ggpop.ggpop_ne_history <- function(data, mapping = ggplot2::aes(), ..., module = NULL) {
+  if ("sample_id" %in% names(data) && is.null(mapping$colour) && is.null(mapping$color)) {
+    mapping$colour <- rlang::expr(.data$sample_id)
+  }
+  ggplot2::ggplot(data = data, mapping = mapping)
+}

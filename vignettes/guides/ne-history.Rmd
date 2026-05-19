@@ -1,0 +1,99 @@
+---
+title: "Ne history"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 4.5
+vignette: >
+  %\VignetteIndexEntry{Ne history}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(ggpop)
+
+ggpop_extdata <- function(...) {
+  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+}
+```
+
+`ggpop` imports effective population size histories into a typed
+`ggpop_ne_history` object. The module supports PSMC, MSMC2, SMC++, and
+Stairway Plot 2 outputs.
+
+## API summary
+
+| Task | API | Notes |
+|---|---|---|
+| Import PSMC | `import_ne_history(file, type = "psmc")` | Scaled by default; pass `mutation_rate` for absolute values |
+| Import MSMC2 | `import_ne_history(file, type = "msmc2")` | Reads final output with time boundaries and lambda columns |
+| Import SMC++ | `import_ne_history(file, type = "smcpp")` | Reads CSV output with time and Ne columns |
+| Import Stairway Plot 2 | `import_ne_history(file, type = "stairway")` | Keeps lower/upper intervals when present |
+| Direct plot | `plot_ne_history(data)` | Returns a `ggplot` object |
+| Layered plot | `ggpop(data) + geom_ne_history()` | Tidy ggplot extension path |
+
+## SMC++ curves
+
+```{r}
+smcpp <- import_ne_history(
+  ggpop_extdata("ne_history", "SMC++", "model.csv"),
+  type = "smcpp"
+)
+class(smcpp)
+head(smcpp)
+```
+
+```{r, fig.alt = "Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."}
+plot_ne_history(smcpp)
+```
+
+## Stairway Plot 2 intervals
+
+Stairway Plot 2 summaries often contain lower and upper interval estimates.
+When `ne_lower` and `ne_upper` are available, `plot_ne_history()` draws a light
+confidence ribbon.
+
+```{r, fig.alt = "Effective population size history with a confidence ribbon. The median Ne curve is shown through time and a translucent band marks lower and upper estimates."}
+stairway <- import_ne_history(
+  ggpop_extdata("ne_history", "StairwayPlot2", "summary.txt"),
+  type = "stairway",
+  sample_id = "Stairway"
+)
+plot_ne_history(stairway, ci = TRUE)
+```
+
+## PSMC and MSMC2 scaling
+
+PSMC and MSMC2 outputs are scaled unless a mutation rate is supplied. Passing
+`mutation_rate` converts to absolute Ne and time; `generation_time` can then
+convert generations to years.
+
+```{r}
+psmc_scaled <- import_ne_history(
+  ggpop_extdata("ne_history", "PSMC", "sample.psmc"),
+  type = "psmc",
+  sample_id = "PSMC"
+)
+unique(psmc_scaled$scale)
+
+msmc_absolute <- import_ne_history(
+  ggpop_extdata("ne_history", "MSMC2", "final.txt"),
+  type = "msmc2",
+  sample_id = "MSMC2",
+  mutation_rate = 1e-8
+)
+unique(msmc_absolute$scale)
+```
+
+## Layered path
+
+Use `ggpop()` plus `geom_ne_history()` when composing with additional ggplot
+layers.
+
+```{r, fig.alt = "Layered Ne history plot using ggpop plus geom_ne_history. Population-specific SMC++ curves are drawn on log-scaled time and Ne axes."}
+smcpp |>
+  ggpop() +
+  geom_ne_history()
+```

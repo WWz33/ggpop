@@ -22,6 +22,7 @@ workflows. The package keeps each module in the same tidy shape:
 | LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` | selscan and XPCLR scans |
 | Introgression | [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md) | `ggpop() + geom_introgression()` | Dsuite, genomics_general, TreeMix, and qpGraph summaries |
+| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggpop/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` | PSMC, MSMC2, SMC++, and Stairway Plot 2 histories |
 
 ## Core pattern
 
@@ -59,6 +60,10 @@ introgression <- import_introgression(
   ggpop_extdata("introgression", "genomics_general"),
   type = "genomics_general"
 )
+ne_history <- import_ne_history(
+  ggpop_extdata("ne_history", "SMC++", "model.csv"),
+  type = "smcpp"
+)
 ```
 
 Each importer returns a typed object:
@@ -78,6 +83,8 @@ class(selscan_chr1)
 #> [1] "ggpop_selection" "data.frame"
 class(introgression)
 #> [1] "ggpop_introgression" "data.frame"
+class(ne_history)
+#> [1] "ggpop_ne_history" "data.frame"
 ```
 
 ## Tidy plotting style
@@ -288,6 +295,34 @@ introgression |>
 statistic windows are shown over the genome with a Manhattan-like
 chromosome axis.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
 
+## Ne history
+
+Effective population size histories from PSMC, MSMC2, SMC++, and
+Stairway Plot 2 use the same direct and layered plotting shape. Curves
+default to log-scaled time and Ne axes.
+
+``` r
+ne_history |>
+  plot_ne_history()
+```
+
+![Effective population size history line plot. Time before present is on
+the x-axis and effective population size is on the y-axis, with separate
+curves for two
+populations.](ggpop_files/figure-html/unnamed-chunk-16-1.png)
+
+The layered path follows the same grammar:
+
+``` r
+ne_history |>
+  ggpop() +
+  geom_ne_history()
+```
+
+![Layered Ne history plot using ggpop plus geom_ne_history.
+Population-specific SMC++ curves are drawn on log-scaled time and Ne
+axes.](ggpop_files/figure-html/unnamed-chunk-17-1.png)
+
 ## What to use
 
 - Use
@@ -313,6 +348,10 @@ chromosome axis.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
 - Use
   [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
   and `ggpop() + geom_introgression()` for introgression summaries.
+- Use
+  [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+  and `ggpop() + geom_ne_history()` for effective population size
+  histories.
 - Treat the direct `plot_*()` functions as the reference style;
   `geom_*()` is the same look inside a ggplot composition.
 - Use the compatibility article only when you need original `pophelper`

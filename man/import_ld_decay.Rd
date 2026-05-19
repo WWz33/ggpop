@@ -8,7 +8,12 @@ import_ld_decay(
   type = c("poplddecay", "plink", "auto"),
   pop = NULL,
   pop_group = NULL,
-  bin_size = 200
+  method = c("MeanBin", "none", "MedianBin", "PercentileBin"),
+  bin1 = 10,
+  bin2 = 100,
+  breakpoint = 100,
+  percent = 0.5,
+  bin_size = NULL
 )
 }
 \arguments{
@@ -17,13 +22,18 @@ import_ld_decay(
 \item{type}{Input type. Supports \code{"poplddecay"} and \code{"plink"}.}
 \item{pop}{Optional sample or group labels for input files. A scalar is recycled across files; a vector is matched to file order.}
 \item{pop_group}{Optional population group table or path to the standard two-column \code{sample pop} file. File labels are matched through \code{sample}.}
-\item{bin_size}{Distance bin width in base pairs for PLINK pairwise LD files.}
+\item{method}{Binning method for PopLDdecay summaries and PLINK pairwise LD tables. \code{"MeanBin"} matches the common PopLDdecay summary plot; \code{"MedianBin"} and \code{"PercentileBin"} use pair-count weighted quantiles.}
+\item{bin1}{Short-distance bin width in base pairs.}
+\item{bin2}{Long-distance bin width in base pairs.}
+\item{breakpoint}{Distance threshold that switches from \code{bin1} to \code{bin2}.}
+\item{percent}{Percentile used by \code{"PercentileBin"}.}
+\item{bin_size}{Legacy alias for a single bin width. When supplied, \code{method} is treated as \code{"MeanBin"} and both bin widths use the same size.}
 }
 \value{
 A \code{ggpop_ld_decay} tidy S3 data frame with standardized columns including \code{dist}, \code{dist_kb}, \code{r2}, \code{pop}, and \code{n_pairs}.
 }
 \description{
-Import LD decay summaries into a typed tidy object for use with \code{plot_ld_decay()} or \code{ggpop() + geom_ld_decay()}. PopLDdecay \code{*.stat.gz} files are read directly. PLINK pairwise \code{*.ld} files are summarized into distance bins.
+Import LD decay summaries into a typed tidy object for use with \code{plot_ld_decay()} or \code{ggpop() + geom_ld_decay()}. PopLDdecay \code{*.stat.gz} and \code{*.bin.gz} files are read directly. PLINK pairwise \code{*.ld} files are summarized into distance bins.
 }
 \details{
 Population grouping follows the package-wide convention: \code{pop_group} is the standard two-column \code{sample pop} table used by PCA and admixture workflows. LD decay file labels are stored as \code{sample_id}; when \code{pop_group} is supplied, matching labels are mapped to \code{pop}.

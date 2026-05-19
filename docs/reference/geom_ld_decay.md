@@ -1,7 +1,8 @@
 # LD decay plots
 
 Plot LD decay summaries as either point or line plots. The x-axis is
-pairwise distance in kilobases and the y-axis is mean LD \\r^2\\. All
+pairwise distance in kilobases and the y-axis defaults to mean LD
+\\r^2\\, with optional D-prime or combined \\r^2\\/D-prime views. All
 styles support population colouring through the package-wide `pop`
 column.
 
@@ -14,6 +15,7 @@ geom_ld_decay(
   ...,
   pop = NULL,
   style = c("point", "line"),
+  measure = c("r2", "D", "both"),
   colour_by = c("pop", "file"),
   size = NULL,
   alpha = NULL,
@@ -29,6 +31,7 @@ plot_ld_decay(
   data,
   pop = NULL,
   style = c("point", "line"),
+  measure = c("r2", "D", "both"),
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -62,6 +65,10 @@ plot_ld_decay(
 - style:
 
   Draw `"point"` or `"line"` layers.
+
+- measure:
+
+  Plot `r^2`, D-prime, or both measures together.
 
 - colour_by:
 

@@ -9,6 +9,7 @@ geom_ld_decay(
   ...,
   pop = NULL,
   style = c("point", "line"),
+  measure = c("r2", "D", "both"),
   colour_by = c("pop", "file"),
   size = NULL,
   alpha = NULL,
@@ -24,6 +25,7 @@ plot_ld_decay(
   data,
   pop = NULL,
   style = c("point", "line"),
+  measure = c("r2", "D", "both"),
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -39,6 +41,7 @@ plot_ld_decay(
 \item{...}{Additional geom parameters.}
 \item{pop}{Optional population labels to keep.}
 \item{style}{Draw \code{"point"} or \code{"line"} layers.}
+\item{measure}{Plot \code{r^2}, D-prime, or both measures together.}
 \item{colour_by}{Colour by population or source file.}
 \item{size, alpha}{Layer appearance. Point plots default to size 1, matching common LD decay summaries.}
 \item{base_size, base_family}{Base theme font controls.}
@@ -50,7 +53,7 @@ plot_ld_decay(
 \code{geom_ld_decay()} returns a list of ggplot layers. \code{plot_ld_decay()} returns a ggplot object.
 }
 \description{
-Plot LD decay summaries as either point or line plots. The x-axis is pairwise distance in kilobases and the y-axis is mean LD \eqn{r^2}. All styles support population colouring through the package-wide \code{pop} column.
+Plot LD decay summaries as either point or line plots. The x-axis is pairwise distance in kilobases and the y-axis defaults to mean LD \eqn{r^2}, with optional D-prime or combined \eqn{r^2}/D-prime views. All styles support population colouring through the package-wide \code{pop} column.
 }
 \examples{
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")

@@ -5,5 +5,6 @@ utils::globalVariables(c(
   "expected", "observed", "sample_order", "sample_label",
   "dist", "dist_kb", "r2", "pop",
   "analysis", "stat", "value", "genome_pos",
-  "trio", "from", "to", "x", "y", "xend", "yend", "node"
+  "trio", "from", "to", "x", "y", "xend", "yend", "node",
+  "method", "time", "ne", "ne_lower", "ne_upper", "time_unit"
 ))
