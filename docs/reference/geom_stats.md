@@ -55,7 +55,7 @@ plot_stats(
 - data:
 
   A `ggpop_stats` object from
-  [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md).
+  [`import_stats()`](https://wwz33.github.io/ggPopi/reference/import_stats.md).
 
 - ...:
 

@@ -25,10 +25,10 @@ import_gwas("assoc.mlma", type = "gcta") |>
 Both paths return `ggplot` objects. The direct `plot_*()` functions
 define the publication-style visual contract, and the matching
 `geom_*()` layers follow the same defaults inside a
-[`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) pipeline.
+[`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) pipeline.
 
 The package name is `ggPopi`; the core layered constructor remains
-[`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) for API
+[`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) for API
 continuity.
 
 GWAS Manhattan plots support explicit palette control:
@@ -49,7 +49,7 @@ You can install the development version from
 
 ``` r
 # install.packages("pak")
-pak::pak("WWz33/ggpop")
+pak::pak("WWz33/ggPopi")
 ```
 
 The core package uses CRAN-available dependencies for native plotting.
@@ -74,8 +74,8 @@ Dependency repository policy:
 Here are the main workflows.
 
 Also have a look at the [getting started
-guide](https://wwz33.github.io/ggpop/articles/ggpop.html) and the [full
-documentation](https://wwz33.github.io/ggpop/reference/).
+guide](https://wwz33.github.io/ggPopi/articles/ggpop.html) and the [full
+documentation](https://wwz33.github.io/ggPopi/reference/).
 
 ``` r
 library(ggPopi)
@@ -248,16 +248,16 @@ The recommended user-facing API is intentionally small.
 
 | Module | Import | Direct plot | ggplot extension |
 |----|----|----|----|
-| GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop() + geom_manha()` |
-| GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + geom_qq()` |
-| PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` |
-| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` |
-| Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` |
+| GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggPopi/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggPopi/reference/plot_manha.md) | `ggpop() + geom_manha()` |
+| GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggPopi/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md) | `ggpop() + geom_qq()` |
+| PCA | [`import_pca()`](https://wwz33.github.io/ggPopi/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggPopi/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggPopi/reference/plot_pca.md) | `ggpop() + geom_pca()` |
+| Admixture | [`import_admix()`](https://wwz33.github.io/ggPopi/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md) | `ggpop() + geom_admix()` |
+| Population statistics | [`import_stats()`](https://wwz33.github.io/ggPopi/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggPopi/reference/geom_stats.md) | `ggpop() + geom_stats()` |
 | LD decay | `import_ld_decay(method = ...)` | `plot_ld_decay(measure = ...)` | `ggpop() + geom_ld_decay(measure = ...)` |
-| Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` |
-| Introgression | [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md) | `ggpop() + geom_introgression()` |
-| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggpop/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` |
-| Population groups | [`import_pop_group()`](https://wwz33.github.io/ggpop/reference/import_pop_group.md) | used by plot functions | used by geom layers |
+| Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggPopi/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md) | `ggpop() + geom_selection()` |
+| Introgression | [`import_introgression()`](https://wwz33.github.io/ggPopi/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggPopi/reference/geom_introgression.md) | `ggpop() + geom_introgression()` |
+| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` |
+| Population groups | [`import_pop_group()`](https://wwz33.github.io/ggPopi/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need
 direct backend behavior, but ordinary workflows should prefer the
@@ -292,29 +292,29 @@ installation:
 
 ## Documentation
 
-- [GWAS guide](https://wwz33.github.io/ggpop/articles/guides/gwas.html)
+- [GWAS guide](https://wwz33.github.io/ggPopi/articles/guides/gwas.html)
   Manhattan and Q-Q plotting workflows
-- [PCA guide](https://wwz33.github.io/ggpop/articles/guides/pca.html)
+- [PCA guide](https://wwz33.github.io/ggPopi/articles/guides/pca.html)
   PCA imports, population colours, and plotting
 - [Admixture
-  guide](https://wwz33.github.io/ggpop/articles/guides/admixture.html)
+  guide](https://wwz33.github.io/ggPopi/articles/guides/admixture.html)
   ADMIXTURE/STRUCTURE imports, group labels, and sorting
 - [Population statistics
-  guide](https://wwz33.github.io/ggpop/articles/guides/stats.html)
+  guide](https://wwz33.github.io/ggPopi/articles/guides/stats.html)
   Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting
 - [LD decay
-  guide](https://wwz33.github.io/ggpop/articles/guides/ld-decay.html)
+  guide](https://wwz33.github.io/ggPopi/articles/guides/ld-decay.html)
   PopLDdecay imports with point and line plot styles
 - [Selective sweep
-  guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
+  guide](https://wwz33.github.io/ggPopi/articles/guides/selection.html)
   selscan and XPCLR imports, signed or absolute score plots, and
   quantile thresholds
 - [Introgression
-  guide](https://wwz33.github.io/ggpop/articles/guides/introgression.html)
+  guide](https://wwz33.github.io/ggPopi/articles/guides/introgression.html)
   Dsuite, genomics_general, TreeMix-style, and qpGraph introgression
   plotting
 - [Ne history
-  guide](https://wwz33.github.io/ggpop/articles/guides/ne-history.html)
+  guide](https://wwz33.github.io/ggPopi/articles/guides/ne-history.html)
   PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size
   histories
 

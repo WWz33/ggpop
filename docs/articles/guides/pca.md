@@ -2,7 +2,7 @@
 
 `ggpop` reads PLINK and GCTA PCA output into a typed `ggpop_pca` object.
 The same object supports
-[`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) and
+[`plot_pca()`](https://wwz33.github.io/ggPopi/reference/plot_pca.md) and
 the layered `ggpop() + geom_pca()` style.
 
 ## API summary

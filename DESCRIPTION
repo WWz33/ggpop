@@ -7,7 +7,7 @@ Author: ggPopi Authors
 Maintainer: ggPopi Authors <maintainer@example.com>
 Description: Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, Ne history, and windowed population statistics plots.
 License: MIT + file LICENSE
-URL: https://wwz33.github.io/ggpop/, https://github.com/WWz33/ggpop
+URL: https://wwz33.github.io/ggPopi/, https://github.com/WWz33/ggPopi
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3

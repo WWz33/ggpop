@@ -50,7 +50,7 @@ unique(selscan_chr1$stat)
 
 ## Plot scan statistics
 
-[`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+[`plot_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md)
 stacks selected statistics vertically and keeps genomic position aligned
 on the x-axis. Region filters work on points for selscan and on
 overlapping windows for XPCLR. By default, genome-wide calls use a
@@ -203,6 +203,6 @@ points coloured by
 chromosome.](selection_files/figure-html/unnamed-chunk-10-1.png)
 
 Use
-[`geom_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+[`geom_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md)
 when the scan should be composed with additional ggplot layers or
 annotations.

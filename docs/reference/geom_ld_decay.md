@@ -54,7 +54,7 @@ plot_ld_decay(
 - data:
 
   A `ggpop_ld_decay` object from
-  [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md).
+  [`import_ld_decay()`](https://wwz33.github.io/ggPopi/reference/import_ld_decay.md).
 
 - ...:
 

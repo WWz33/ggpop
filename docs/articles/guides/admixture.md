@@ -2,9 +2,9 @@
 
 `ggpop` keeps the user-facing admixture API narrow:
 
-- [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md)
+- [`import_admix()`](https://wwz33.github.io/ggPopi/reference/import_admix.md)
   creates typed `ggpop_admix` objects;
-- [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+- [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
   returns a `ggplot` object;
 - `ggpop() + geom_admix()` gives the extension-style layered workflow.
 
@@ -16,7 +16,7 @@
 | Import STRUCTURE-style numeric Q matrix | `import_admix(file, type = "structure")` | Limited numeric Q support |
 | Direct plot | `plot_admix(data, k = ...)` | `k = "all"`, one K, or a vector |
 | Layered plot | `ggpop(data) + geom_admix(k = ...)` | Main ggplot extension path |
-| Original pophelper behavior | [`plot_pophelper_q()`](https://wwz33.github.io/ggpop/reference/pophelper_compat.md) | Advanced compatibility layer |
+| Original pophelper behavior | [`plot_pophelper_q()`](https://wwz33.github.io/ggPopi/reference/pophelper_compat.md) | Advanced compatibility layer |
 
 ## Full K results
 
@@ -111,12 +111,12 @@ plot_admix.](admixture_files/figure-html/unnamed-chunk-7-1.png)
 
 ## Direct vs layered use
 
-[`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+[`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
 is the direct plot wrapper.
-[`geom_admix()`](https://wwz33.github.io/ggpop/reference/geom_admix.md)
+[`geom_admix()`](https://wwz33.github.io/ggPopi/reference/geom_admix.md)
 is the layered interface when you want to build a larger `ggplot` object
 yourself. Both routes use the same visual defaults;
-[`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+[`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
 is the reference style, and `ggpop(admix) + geom_admix()` reproduces
 that publication-level look inside a ggplot composition.
 
@@ -138,7 +138,7 @@ path.](admixture_files/figure-html/unnamed-chunk-8-2.png)
 
 ## STRUCTURE-style input
 
-[`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md)
+[`import_admix()`](https://wwz33.github.io/ggPopi/reference/import_admix.md)
 also accepts limited STRUCTURE-style inputs. The importer always returns
 the same typed long-format object.
 

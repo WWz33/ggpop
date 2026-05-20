@@ -3,7 +3,7 @@
 Plot selective sweep scan statistics along chromosomes or selected
 genomic regions. Supports common selscan outputs such as iHS, nSL,
 iHH12, XP-EHH, and XP-nSL tables, plus XPCLR window tables imported with
-[`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md).
+[`import_selection()`](https://wwz33.github.io/ggPopi/reference/import_selection.md).
 
 ## Usage
 
@@ -68,7 +68,7 @@ plot_selection(
 - data:
 
   A `ggpop_selection` object from
-  [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md).
+  [`import_selection()`](https://wwz33.github.io/ggPopi/reference/import_selection.md).
 
 - ...:
 

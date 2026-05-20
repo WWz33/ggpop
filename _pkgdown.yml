@@ -1,4 +1,4 @@
-url: https://wwz33.github.io/ggpop/
+url: https://wwz33.github.io/ggPopi/
 
 template:
   package: tidytemplate
@@ -32,8 +32,8 @@ navbar:
   components:
     github_user:
       icon: fa-github
-      href: https://github.com/WWz33
-      aria-label: GitHub profile
+      href: https://github.com/WWz33/ggPopi
+      aria-label: GitHub repository
 
 articles:
 - title: Start Here

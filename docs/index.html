@@ -20,7 +20,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Extensions for Population Genetics Plots">
 <meta name="description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, Ne history, and windowed population statistics plots.">
 <meta property="og:description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, Ne history, and windowed population statistics plots.">
-<meta property="og:image" content="https://wwz33.github.io/ggpop/logo.png">
+<meta property="og:image" content="https://wwz33.github.io/ggPopi/logo.png">
 <!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
@@ -70,7 +70,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/WWz33" aria-label="GitHub profile"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/WWz33/ggPopi" aria-label="GitHub repository"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
 
@@ -109,7 +109,7 @@
 <p>You can install the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
-<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"WWz33/ggpop"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"WWz33/ggPopi"</span><span class="op">)</span></span></code></pre></div>
 <p>The core package uses CRAN-available dependencies for native plotting. The GWAS module includes internal fastman-style Manhattan and Q-Q plotting logic, so ordinary GWAS plots do not require installing <code>fastman</code>.</p>
 <ul>
 <li>
@@ -129,9 +129,9 @@
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Here are the main workflows.</p>
-<p>Also have a look at the <a href="https://wwz33.github.io/ggpop/articles/ggpop.html">getting started guide</a> and the <a href="https://wwz33.github.io/ggpop/reference/">full documentation</a>.</p>
+<p>Also have a look at the <a href="https://wwz33.github.io/ggPopi/articles/ggpop.html">getting started guide</a> and the <a href="https://wwz33.github.io/ggPopi/reference/">full documentation</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggpop/">ggPopi</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggPopi/">ggPopi</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -345,21 +345,21 @@ P002    PopB</code></pre>
 </h2>
 <ul>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/gwas.html">GWAS guide</a> Manhattan and Q-Q plotting workflows</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/gwas.html">GWAS guide</a> Manhattan and Q-Q plotting workflows</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/pca.html">PCA guide</a> PCA imports, population colours, and plotting</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/pca.html">PCA guide</a> PCA imports, population colours, and plotting</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/stats.html">Population statistics guide</a> Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/stats.html">Population statistics guide</a> Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/ld-decay.html">LD decay guide</a> PopLDdecay imports with point and line plot styles</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/ld-decay.html">LD decay guide</a> PopLDdecay imports with point and line plot styles</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/selection.html">Selective sweep guide</a> selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/selection.html">Selective sweep guide</a> selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/introgression.html">Introgression guide</a> Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plotting</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/introgression.html">Introgression guide</a> Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plotting</li>
 <li>
-<a href="https://wwz33.github.io/ggpop/articles/guides/ne-history.html">Ne history guide</a> PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size histories</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/ne-history.html">Ne history guide</a> PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size histories</li>
 </ul>
 </div>
 <div class="section level2">
@@ -371,7 +371,7 @@ P002    PopB</code></pre>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/WWz33/ggpop/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/WWz33/ggPopi/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
 
@@ -404,7 +404,7 @@ P002    PopB</code></pre>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/" class="external-link"><img src="https://img.shields.io/badge/R-%3E%3D%204.1-blue.svg" alt="R"></a></li>
 <li><a href="https://ggplot2.tidyverse.org/" class="external-link"><img src="https://img.shields.io/badge/ggplot2-extension-2C3E50.svg" alt="ggplot2"></a></li>
-<li><a href="https://wwz33.github.io/ggpop/"><img src="https://img.shields.io/badge/docs-pkgdown-75AADB.svg" alt="pkgdown"></a></li>
+<li><a href="https://wwz33.github.io/ggPopi/"><img src="https://img.shields.io/badge/docs-pkgdown-75AADB.svg" alt="pkgdown"></a></li>
 </ul>
 </div>
 

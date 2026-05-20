@@ -124,8 +124,8 @@ the decay pattern.](ld-decay_files/figure-html/unnamed-chunk-4-1.png)
 
 ## Layered path
 
-Use [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) plus
-[`geom_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+Use [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) plus
+[`geom_ld_decay()`](https://wwz33.github.io/ggPopi/reference/geom_ld_decay.md)
 when composing with other ggplot layers.
 
 ``` r

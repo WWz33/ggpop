@@ -17,7 +17,7 @@ Stairway Plot 2 outputs.
 
 ## Plot conventions
 
-[`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+[`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
 defaults to the plotting style used most often by each upstream
 workflow. SMC++ fitted histories are drawn as curves. PSMC, MSMC2, and
 Stairway Plot 2 histories are drawn as step curves because their native
@@ -64,7 +64,7 @@ populations.](ne-history_files/figure-html/unnamed-chunk-2-1.png)
 
 Stairway Plot 2 summaries often contain lower and upper interval
 estimates. When `ne_lower` and `ne_upper` are available,
-[`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+[`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
 draws a light confidence ribbon around the step curve, matching the
 usual Stairway Plot summary display of an estimate with interval bounds.
 
@@ -118,8 +118,8 @@ the y-axis.](ne-history_files/figure-html/unnamed-chunk-5-1.png)
 
 ## Layered path
 
-Use [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) plus
-[`geom_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+Use [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) plus
+[`geom_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
 when composing with additional ggplot layers.
 
 ``` r

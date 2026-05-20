@@ -1,12 +1,12 @@
 <!-- README.md is maintained directly for now. -->
 
-# ggPopi <a href="https://wwz33.github.io/ggpop/"><img src="man/figures/logo.png" align="right" height="170" alt="ggPopi hexagon sticker with a chromosome mascot and population-genomics plot marks." /></a>
+# ggPopi <a href="https://wwz33.github.io/ggPopi/"><img src="man/figures/logo.png" align="right" height="170" alt="ggPopi hexagon sticker with a chromosome mascot and population-genomics plot marks." /></a>
 
 <!-- badges: start -->
 
 [![R](https://img.shields.io/badge/R-%3E%3D%204.1-blue.svg)](https://www.r-project.org/)
 [![ggplot2](https://img.shields.io/badge/ggplot2-extension-2C3E50.svg)](https://ggplot2.tidyverse.org/)
-[![pkgdown](https://img.shields.io/badge/docs-pkgdown-75AADB.svg)](https://wwz33.github.io/ggpop/)
+[![pkgdown](https://img.shields.io/badge/docs-pkgdown-75AADB.svg)](https://wwz33.github.io/ggPopi/)
 <!-- badges: end -->
 
 The goal of `ggPopi` is to streamline publication-ready population-genomics
@@ -54,7 +54,7 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("WWz33/ggpop")
+pak::pak("WWz33/ggPopi")
 ```
 
 The core package uses CRAN-available dependencies for native plotting. The GWAS
@@ -75,8 +75,8 @@ Dependency repository policy:
 Here are the main workflows.
 
 Also have a look at the [getting started
-guide](https://wwz33.github.io/ggpop/articles/ggpop.html) and the [full
-documentation](https://wwz33.github.io/ggpop/reference/).
+guide](https://wwz33.github.io/ggPopi/articles/ggpop.html) and the [full
+documentation](https://wwz33.github.io/ggPopi/reference/).
 
 ``` r
 library(ggPopi)
@@ -268,21 +268,21 @@ This version includes dependency fixes needed for reliable source installation:
 
 ## Documentation
 
-- [GWAS guide](https://wwz33.github.io/ggpop/articles/guides/gwas.html)
+- [GWAS guide](https://wwz33.github.io/ggPopi/articles/guides/gwas.html)
   Manhattan and Q-Q plotting workflows
-- [PCA guide](https://wwz33.github.io/ggpop/articles/guides/pca.html)
+- [PCA guide](https://wwz33.github.io/ggPopi/articles/guides/pca.html)
   PCA imports, population colours, and plotting
-- [Admixture guide](https://wwz33.github.io/ggpop/articles/guides/admixture.html)
+- [Admixture guide](https://wwz33.github.io/ggPopi/articles/guides/admixture.html)
   ADMIXTURE/STRUCTURE imports, group labels, and sorting
-- [Population statistics guide](https://wwz33.github.io/ggpop/articles/guides/stats.html)
+- [Population statistics guide](https://wwz33.github.io/ggPopi/articles/guides/stats.html)
   Windowed FST, pi, Tajima's D, Dxy, and Watterson's theta plotting
-- [LD decay guide](https://wwz33.github.io/ggpop/articles/guides/ld-decay.html)
+- [LD decay guide](https://wwz33.github.io/ggPopi/articles/guides/ld-decay.html)
   PopLDdecay imports with point and line plot styles
-- [Selective sweep guide](https://wwz33.github.io/ggpop/articles/guides/selection.html)
+- [Selective sweep guide](https://wwz33.github.io/ggPopi/articles/guides/selection.html)
   selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds
-- [Introgression guide](https://wwz33.github.io/ggpop/articles/guides/introgression.html)
+- [Introgression guide](https://wwz33.github.io/ggPopi/articles/guides/introgression.html)
   Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plotting
-- [Ne history guide](https://wwz33.github.io/ggpop/articles/guides/ne-history.html)
+- [Ne history guide](https://wwz33.github.io/ggPopi/articles/guides/ne-history.html)
   PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size histories
 
 ## Acknowledgements

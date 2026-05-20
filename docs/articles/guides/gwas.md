@@ -5,8 +5,8 @@ intended flow is:
 
 1.  import a typed object;
 2.  plot with
-    [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
-    / [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md)
+    [`plot_manha()`](https://wwz33.github.io/ggPopi/reference/plot_manha.md)
+    / [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md)
     or `ggpop() + geom_*()`;
 3.  use internal fastman-style Manhattan and Q-Q plotting behavior
     without an external `fastman` dependency.
@@ -16,8 +16,8 @@ intended flow is:
 | Task | Direct API | Layer API | Notes |
 |----|----|----|----|
 | Import GCTA/GEMMA/EMMAX | `import_gwas(file, type = ...)` | \- | Returns `ggpop_gwas` |
-| Manhattan | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop(data) + geom_manha()` | Defaults are aligned |
-| Q-Q | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop(data) + ggpop::geom_qq()` | Use explicit namespace to avoid [`ggplot2::geom_qq()`](https://ggplot2.tidyverse.org/reference/geom_qq.html) |
+| Manhattan | [`plot_manha()`](https://wwz33.github.io/ggPopi/reference/plot_manha.md) | `ggpop(data) + geom_manha()` | Defaults are aligned |
+| Q-Q | [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md) | `ggpop(data) + ggpop::geom_qq()` | Use explicit namespace to avoid [`ggplot2::geom_qq()`](https://ggplot2.tidyverse.org/reference/geom_qq.html) |
 | Backend | internal fastman-style layout | native ggpop stat | Direct wrappers and geoms share one implementation |
 
 ## GCTA example
@@ -113,7 +113,7 @@ when needed.
 
 ## Alternative GWAS formats
 
-[`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md)
+[`import_gwas()`](https://wwz33.github.io/ggPopi/reference/import_gwas.md)
 accepts `type = "gcta"`, `type = "gemma"`, and `type = "emmax"`. GWAS
 plotting uses ggpop’s internal ggplot implementation in both direct and
 layered workflows.

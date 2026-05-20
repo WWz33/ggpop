@@ -1,7 +1,7 @@
 # Import LD decay results
 
 Import LD decay summaries into a typed tidy object for use with
-[`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+[`plot_ld_decay()`](https://wwz33.github.io/ggPopi/reference/geom_ld_decay.md)
 or `ggpop() + geom_ld_decay()`. PopLDdecay `*.stat.gz` and `*.bin.gz`
 files are read directly. PLINK pairwise `*.ld` files are summarized into
 distance bins.

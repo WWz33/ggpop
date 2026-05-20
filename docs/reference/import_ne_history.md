@@ -2,7 +2,7 @@
 
 Import demographic history outputs from PSMC, MSMC2, SMC++, or Stairway
 Plot 2 into a typed tidy object for
-[`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+[`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
 or `ggpop() + geom_ne_history()`.
 
 ## Usage

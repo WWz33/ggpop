@@ -134,8 +134,8 @@ head(qpgraph_edges)
 
 ## Layered path
 
-Use [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) plus
-[`geom_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
+Use [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) plus
+[`geom_introgression()`](https://wwz33.github.io/ggPopi/reference/geom_introgression.md)
 when composing with additional ggplot layers.
 
 ``` r

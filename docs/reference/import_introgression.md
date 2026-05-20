@@ -1,7 +1,7 @@
 # Import introgression results
 
 Import introgression summaries into a typed tidy object for use with
-[`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
+[`plot_introgression()`](https://wwz33.github.io/ggPopi/reference/geom_introgression.md)
 or `ggpop() + geom_introgression()`.
 
 ## Usage

@@ -8,28 +8,28 @@ workflows. The package keeps each module in the same tidy shape:
 
 - `import_*()` functions create typed S3 objects.
 - `plot_*()` functions return full `ggplot` objects.
-- [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) +
+- [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) +
   `geom_*()` build layered ggplot extensions.
 - Advanced compatibility helpers remain exported for users who need
   original-package behavior.
 
 The package name is `ggPopi`; the core layered constructor remains
-[`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) for API
+[`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) for API
 continuity.
 
 ## Module API map
 
 | Module | Import | Direct plot | ggplot extension path | Advanced / compatibility |
 |----|----|----|----|----|
-| GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md) | `ggpop() + geom_manha()` | internal fastman-style layout |
-| GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggpop/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md) | `ggpop() + ggpop::geom_qq()` | internal fastqq-style layout |
-| PCA | [`import_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggpop/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md) | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
-| Admixture | [`import_admix()`](https://wwz33.github.io/ggpop/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
-| Population statistics | [`import_stats()`](https://wwz33.github.io/ggpop/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
-| LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggpop/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
-| Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggpop/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md) | `ggpop() + geom_selection()` | selscan and XPCLR scans |
-| Introgression | [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md) | `ggpop() + geom_introgression()` | Dsuite, genomics_general, TreeMix, and qpGraph summaries |
-| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggpop/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` | PSMC, MSMC2, SMC++, and Stairway Plot 2 histories |
+| GWAS Manhattan | [`import_gwas()`](https://wwz33.github.io/ggPopi/reference/import_gwas.md) | [`plot_manha()`](https://wwz33.github.io/ggPopi/reference/plot_manha.md) | `ggpop() + geom_manha()` | internal fastman-style layout |
+| GWAS Q-Q | [`import_gwas()`](https://wwz33.github.io/ggPopi/reference/import_gwas.md) | [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md) | `ggpop() + ggpop::geom_qq()` | internal fastqq-style layout |
+| PCA | [`import_pca()`](https://wwz33.github.io/ggPopi/reference/import_pca.md) / [`compute_pca()`](https://wwz33.github.io/ggPopi/reference/import_pca.md) | [`plot_pca()`](https://wwz33.github.io/ggPopi/reference/plot_pca.md) | `ggpop() + geom_pca()` | `compute_pca(method = "flashpca")` |
+| Admixture | [`import_admix()`](https://wwz33.github.io/ggPopi/reference/import_admix.md) | [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md) | `ggpop() + geom_admix()` | see compatibility article |
+| Population statistics | [`import_stats()`](https://wwz33.github.io/ggPopi/reference/import_stats.md) | [`plot_stats()`](https://wwz33.github.io/ggPopi/reference/geom_stats.md) | `ggpop() + geom_stats()` | pixy and vcftools summaries |
+| LD decay | [`import_ld_decay()`](https://wwz33.github.io/ggPopi/reference/import_ld_decay.md) | [`plot_ld_decay()`](https://wwz33.github.io/ggPopi/reference/geom_ld_decay.md) | `ggpop() + geom_ld_decay()` | PopLDdecay and PLINK summaries |
+| Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggPopi/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md) | `ggpop() + geom_selection()` | selscan and XPCLR scans |
+| Introgression | [`import_introgression()`](https://wwz33.github.io/ggPopi/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggPopi/reference/geom_introgression.md) | `ggpop() + geom_introgression()` | Dsuite, genomics_general, TreeMix, and qpGraph summaries |
+| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` | PSMC, MSMC2, SMC++, and Stairway Plot 2 histories |
 
 ## Core pattern
 
@@ -98,7 +98,7 @@ class(ne_history)
 
 Every module has two user-facing plotting paths. Use the direct
 `plot_*()` function when you want the reference plot immediately, or use
-[`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) plus the
+[`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) plus the
 module `geom_*()` when you want to compose with other ggplot layers.
 
 The direct path:
@@ -338,30 +338,30 @@ axes.](ggpop_files/figure-html/unnamed-chunk-17-1.png)
 ## What to use
 
 - Use
-  [`plot_manha()`](https://wwz33.github.io/ggpop/reference/plot_manha.md)
+  [`plot_manha()`](https://wwz33.github.io/ggPopi/reference/plot_manha.md)
   and `ggpop() + geom_manha()` for Manhattan plots.
-- Use [`plot_qq()`](https://wwz33.github.io/ggpop/reference/plot_qq.md)
+- Use [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md)
   and `ggpop() + ggpop::geom_qq()` for Q-Q plots.
 - Use
-  [`plot_pca()`](https://wwz33.github.io/ggpop/reference/plot_pca.md)
+  [`plot_pca()`](https://wwz33.github.io/ggPopi/reference/plot_pca.md)
   and `ggpop() + geom_pca()` for PCA plots.
 - Use
-  [`plot_admix()`](https://wwz33.github.io/ggpop/reference/plot_admix.md)
+  [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
   and `ggpop() + geom_admix()` for admixture plots.
 - Use
-  [`plot_stats()`](https://wwz33.github.io/ggpop/reference/geom_stats.md)
+  [`plot_stats()`](https://wwz33.github.io/ggPopi/reference/geom_stats.md)
   and `ggpop() + geom_stats()` for windowed population statistics.
 - Use
-  [`plot_ld_decay()`](https://wwz33.github.io/ggpop/reference/geom_ld_decay.md)
+  [`plot_ld_decay()`](https://wwz33.github.io/ggPopi/reference/geom_ld_decay.md)
   and `ggpop() + geom_ld_decay()` for LD decay summaries.
 - Use
-  [`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+  [`plot_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md)
   and `ggpop() + geom_selection()` for selective sweep scans.
 - Use
-  [`plot_introgression()`](https://wwz33.github.io/ggpop/reference/geom_introgression.md)
+  [`plot_introgression()`](https://wwz33.github.io/ggPopi/reference/geom_introgression.md)
   and `ggpop() + geom_introgression()` for introgression summaries.
 - Use
-  [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+  [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
   and `ggpop() + geom_ne_history()` for effective population size
   histories.
 - Treat the direct `plot_*()` functions as the reference style;

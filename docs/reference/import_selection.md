@@ -2,7 +2,7 @@
 
 Import selective sweep scan results into a typed tidy object for use
 with
-[`plot_selection()`](https://wwz33.github.io/ggpop/reference/geom_selection.md)
+[`plot_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md)
 or `ggpop() + geom_selection()`.
 
 ## Usage

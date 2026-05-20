@@ -54,7 +54,7 @@ plot_ne_history(
 - data:
 
   A `ggpop_ne_history` object from
-  [`import_ne_history()`](https://wwz33.github.io/ggpop/reference/import_ne_history.md).
+  [`import_ne_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md).
 
 - ...:
 

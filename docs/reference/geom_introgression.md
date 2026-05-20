@@ -60,7 +60,7 @@ plot_introgression(
 - data:
 
   A `ggpop_introgression` object from
-  [`import_introgression()`](https://wwz33.github.io/ggpop/reference/import_introgression.md).
+  [`import_introgression()`](https://wwz33.github.io/ggPopi/reference/import_introgression.md).
 
 - ...:
 
