@@ -30,16 +30,14 @@ test_that("introgression imports window statistics from Dsuite and genomics_gene
 
 test_that("introgression imports VCF/pop-derived genomics_general-style example", {
   data <- import_introgression(
-    extdata_path("introgression/vcf_pop_example/ABBABABA_window.tsv"),
+    extdata_path("introgression/vcf_pop_example/ABBABABA_window.csv"),
     type = "genomics_general"
   )
 
   expect_s3_class(data, "ggpop_introgression")
   expect_equal(unique(data$analysis), "window")
   expect_true(all(c("D", "fd", "fdM") %in% unique(data$stat)))
-  expect_equal(unique(data$pop1), "PopA")
-  expect_equal(unique(data$pop2), "PopB")
-  expect_equal(unique(data$pop3), "PopC")
+  expect_true(all(c("sites", "sitesused", "abba", "baba") %in% names(data)))
   expect_true(all(data$sitesused > 0))
 })
 

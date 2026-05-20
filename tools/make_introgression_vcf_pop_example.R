@@ -11,7 +11,7 @@ root <- normalizePath(file.path(script_dir, ".."), mustWork = TRUE)
 vcf_file <- file.path(root, "inst", "extdata", "snp", "finalsnp_ld.vcf")
 pop_file <- file.path(root, "inst", "extdata", "pop_group.txt")
 out_dir <- file.path(root, "inst", "extdata", "introgression", "vcf_pop_example")
-out_file <- file.path(out_dir, "ABBABABA_window.tsv")
+out_file <- file.path(out_dir, "ABBABABA_window.csv")
 
 pop_group <- utils::read.table(pop_file, header = TRUE, stringsAsFactors = FALSE)
 pop_group$sample <- as.character(pop_group$sample)
@@ -70,19 +70,16 @@ windows <- stats::aggregate(
   sum
 )
 windows <- windows[order(as.numeric(windows$scaffold), windows$start), , drop = FALSE]
+windows$mid <- (windows$start + windows$end) / 2
 denom <- windows$ABBA + windows$BABA
 delta <- windows$ABBA - windows$BABA
 windows$D <- ifelse(denom > 0, delta / denom, NA_real_)
 windows$fd <- ifelse(windows$ABBA > windows$BABA & windows$ABBA > 0, delta / windows$ABBA, 0)
 windows$fdM <- ifelse(pmax(windows$ABBA, windows$BABA) > 0, delta / pmax(windows$ABBA, windows$BABA), NA_real_)
-windows$pop1 <- "PopA"
-windows$pop2 <- "PopB"
-windows$pop3 <- "PopC"
-windows$outgroup <- "PopD"
 windows <- windows[
   ,
-  c("scaffold", "start", "end", "sites", "sitesUsed", "ABBA", "BABA", "D", "fd", "fdM", "pop1", "pop2", "pop3", "outgroup")
+  c("scaffold", "start", "end", "mid", "sites", "sitesUsed", "ABBA", "BABA", "D", "fd", "fdM")
 ]
 
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
-utils::write.table(windows, out_file, sep = "\t", quote = FALSE, row.names = FALSE)
+utils::write.csv(windows, out_file, quote = FALSE, row.names = FALSE)

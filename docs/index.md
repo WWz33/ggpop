@@ -210,7 +210,7 @@ single-region view.
 
 ``` r
 intro <- import_introgression(
-  "introgression/vcf_pop_example/ABBABABA_window.tsv",
+  "introgression/vcf_pop_example/ABBABABA_window.csv",
   type = "genomics_general"
 )
 

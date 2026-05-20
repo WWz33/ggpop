@@ -27,7 +27,7 @@ genomic window.
 
 ``` r
 intro <- import_introgression(
-  ggpop_extdata("introgression", "vcf_pop_example", "ABBABABA_window.tsv"),
+  ggpop_extdata("introgression", "vcf_pop_example", "ABBABABA_window.csv"),
   type = "genomics_general"
 )
 class(intro)

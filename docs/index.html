@@ -215,7 +215,7 @@ P002    PopB</code></pre>
 <p>Selection plots support signed or absolute score views. Fixed thresholds such as <code>threshold = 2</code> draw score cutoffs directly, while <code>threshold = 0.95, threshold_type = "quantile"</code> derives a cutoff from the filtered scan values. Genome-wide calls default to a Manhattan-like chromosome axis; calls with <code>chr</code>, <code>start</code>, or <code>end</code> default to a single-region view.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="st">"introgression/vcf_pop_example/ABBABABA_window.tsv"</span>,</span>
+<span>  <span class="st">"introgression/vcf_pop_example/ABBABABA_window.csv"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"genomics_general"</span></span>
 <span><span class="op">)</span></span>
 <span></span>

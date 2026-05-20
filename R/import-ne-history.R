@@ -195,8 +195,8 @@ import_ne_history <- function(dir = NULL, ..., type = c("auto", "psmc", "msmc2",
   pop_col <- .first_existing(raw, c("population", "pop", "sample", "sample_id"))
   time_col <- .ne_history_required_column(raw, c("time", "generation", "generations", "year", "years"), file, "time")
   ne_col <- .ne_history_required_column(raw, c("ne", "median", "ne_median", "popsize", "population_size"), file, "Ne")
-  lower_col <- .first_existing(raw, c("ne_lower", "lower", "low", "ci_lower", "ne_2_5", "x2_5"))
-  upper_col <- .first_existing(raw, c("ne_upper", "upper", "high", "ci_upper", "ne_97_5", "x97_5"))
+  lower_col <- .first_existing(raw, c("ne_lower", "lower", "low", "ci_lower", "ne_2_5", "ne_2_5_", "x2_5"))
+  upper_col <- .first_existing(raw, c("ne_upper", "upper", "high", "ci_upper", "ne_97_5", "ne_97_5_", "x97_5"))
   data <- data.frame(
     method = "Stairway Plot 2",
     sample_id = if (is.null(pop_col)) sample_id else as.character(raw[[pop_col]]),

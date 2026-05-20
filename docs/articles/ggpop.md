@@ -64,7 +64,7 @@ selscan_chr1 <- import_selection(
   type = "selscan"
 )
 introgression <- import_introgression(
-  ggpop_extdata("introgression", "vcf_pop_example", "ABBABABA_window.tsv"),
+  ggpop_extdata("introgression", "vcf_pop_example", "ABBABABA_window.csv"),
   type = "genomics_general"
 )
 ne_history <- import_ne_history(

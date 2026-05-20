@@ -33,8 +33,8 @@ estimate Ne histories directly from VCF.
 |---|---|---|
 | Import PSMC | `import_ne_history(file, type = "psmc")` | Scaled by default; pass `mutation_rate` for absolute values |
 | Import MSMC2 | `import_ne_history(file, type = "msmc2")` | Reads final output with time boundaries and lambda columns |
-| Import SMC++ | `import_ne_history(file, type = "smcpp")` | Reads CSV output with time and Ne columns |
-| Import Stairway Plot 2 | `import_ne_history(file, type = "stairway")` | Keeps lower/upper intervals when present |
+| Import SMC++ | `import_ne_history(file, type = "smcpp")` | Reads `smc++ plot --csv` output (`label,x,y,plot_type,plot_num`) |
+| Import Stairway Plot 2 | `import_ne_history(file, type = "stairway")` | Reads `.summary` output with `year`, `Ne_median`, and percentile columns |
 | Direct plot | `plot_ne_history(data)` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ne_history()` | Tidy ggplot extension path |
 

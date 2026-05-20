@@ -125,12 +125,14 @@ values</td>
 <tr class="odd">
 <td>Import SMC++</td>
 <td><code>import_ne_history(file, type = "smcpp")</code></td>
-<td>Reads CSV output with time and Ne columns</td>
+<td>Reads <code>smc++ plot --csv</code> output
+(<code>label,x,y,plot_type,plot_num</code>)</td>
 </tr>
 <tr class="even">
 <td>Import Stairway Plot 2</td>
 <td><code>import_ne_history(file, type = "stairway")</code></td>
-<td>Keeps lower/upper intervals when present</td>
+<td>Reads <code>.summary</code> output with <code>year</code>,
+<code>Ne_median</code>, and percentile columns</td>
 </tr>
 <tr class="odd">
 <td>Direct plot</td>
