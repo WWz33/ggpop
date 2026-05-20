@@ -21,7 +21,8 @@ outputs.
 
 genomics_general ABBA-BABA windows are imported in long form, with one
 row per statistic per window. Genome-wide calls default to a
-Manhattan-like chromosome axis.
+chromosome-wise window curve, matching the usual Dsuite Dinvestigate
+style of following D, fd, and fdM across genomic windows.
 
 ``` r
 intro <- import_introgression(
@@ -38,10 +39,9 @@ unique(intro$stat)
 plot_introgression(intro, stat = c("D", "fdM"))
 ```
 
-![Manhattan-like introgression plot. D and fdM window statistics are
-shown in stacked panels over chromosomes 1 and 2, with small points
-coloured by
-chromosome.](introgression_files/figure-html/unnamed-chunk-2-1.png)
+![Window introgression plot. D and fdM statistics are shown as
+chromosome-wise curves in stacked panels over chromosomes 1 and
+2.](introgression_files/figure-html/unnamed-chunk-2-1.png)
 
 When a chromosome or region is supplied, the direct plot uses a local
 position axis in megabases.
@@ -51,7 +51,7 @@ plot_introgression(intro, stat = "D", chr = "1")
 ```
 
 ![Regional introgression plot. D statistic windows on chromosome 1 are
-shown as points over genomic position in
+shown as a point-and-line trace over genomic position in
 megabases.](introgression_files/figure-html/unnamed-chunk-3-1.png)
 
 Dsuite `Dinvestigate` / localFstats files use the same plotting path.
@@ -143,6 +143,5 @@ intro |>
 ```
 
 ![Layered introgression plot using ggpop plus geom_introgression. D
-statistic windows are shown over the genome with the same Manhattan-like
-chromosome axis as the direct
-plot.](introgression_files/figure-html/unnamed-chunk-8-1.png)
+statistic windows are drawn as chromosome-wise curves over the
+genome.](introgression_files/figure-html/unnamed-chunk-8-1.png)

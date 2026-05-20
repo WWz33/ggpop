@@ -1,7 +1,7 @@
 geom_introgression <- function(mapping = NULL, data = NULL, ..., stat = "all",
                                analysis = c("auto", "window", "trio", "graph"),
                                chr = NULL, start = NULL, end = NULL,
-                               style = c("auto", "manhattan", "region", "trio", "graph"),
+                               style = c("auto", "window", "manhattan", "region", "trio", "graph"),
                                colour_by = c("stat", "chr"),
                                point_size = NULL, point_alpha = 0.9,
                                base_size = 11, base_family = "",
@@ -49,7 +49,7 @@ ggplot_add.ggpop_introgression_layers <- function(object, plot, object_name) {
 plot_introgression <- function(data, stat = "all",
                                analysis = c("auto", "window", "trio", "graph"),
                                chr = NULL, start = NULL, end = NULL,
-                               style = c("auto", "manhattan", "region", "trio", "graph"),
+                               style = c("auto", "window", "manhattan", "region", "trio", "graph"),
                                title = NULL, subtitle = NULL, caption = NULL,
                                base_size = 11, base_family = "",
                                palette = "publication", point_size = NULL,
@@ -87,25 +87,29 @@ plot_introgression <- function(data, stat = "all",
   style <- .introgression_resolve_style(selected, style, chr = chr, start = start, end = end)
   switch(
     style,
-    manhattan = .introgression_manhattan_layers(selected, dots, point_size %||% 1.5, point_alpha, base_size, base_family, palette, na.rm, show.legend),
-    region = .introgression_region_layers(selected, mapping, dots, colour_by, point_size %||% 0.9, point_alpha, base_size, base_family, palette, na.rm, show.legend, inherit.aes),
+    window = .introgression_window_layers(selected, dots, point_size %||% 0.35, point_alpha, base_size, base_family, palette, na.rm, show.legend),
+    manhattan = .introgression_window_layers(selected, dots, point_size %||% 0.35, point_alpha, base_size, base_family, palette, na.rm, show.legend),
+    region = .introgression_region_layers(selected, mapping, dots, colour_by, point_size %||% 0.8, point_alpha, base_size, base_family, palette, na.rm, show.legend, inherit.aes),
     trio = .introgression_trio_layers(selected, mapping, dots, point_size %||% 2, point_alpha, base_size, base_family, palette, na.rm, show.legend, inherit.aes),
     graph = .introgression_graph_layers(selected, dots, base_size, base_family, palette, na.rm, show.legend)
   )
 }
 
-.introgression_manhattan_layers <- function(data, dots, point_size, point_alpha, base_size, base_family, palette, na.rm, show.legend) {
+.introgression_window_layers <- function(data, dots, point_size, point_alpha, base_size, base_family, palette, na.rm, show.legend) {
+  data <- .introgression_order_window_data(data)
   layout <- .selection_genome_layout(data)
-  point_args <- c(list(size = point_size, alpha = point_alpha, na.rm = na.rm, show.legend = show.legend), dots)
+  layout$data$.window_group <- interaction(layout$data$.group, layout$data$chr, drop = TRUE, sep = ":")
+  line_args <- c(list(linewidth = point_size, alpha = point_alpha, na.rm = na.rm, show.legend = show.legend), dots)
+  line_args$size <- NULL
   colour_count <- max(length(unique(layout$data$chr_group)), 2)
   list(
     do.call(
-      ggplot2::geom_point,
+      ggplot2::geom_line,
       c(list(
-        mapping = ggplot2::aes(x = .data$genome_pos, y = .data$value, colour = .data$chr_group, group = .data$.group),
+        mapping = ggplot2::aes(x = .data$genome_pos, y = .data$value, colour = .data$chr_group, group = .data$.window_group),
         data = layout$data,
         inherit.aes = FALSE
-      ), point_args)
+      ), line_args)
     ),
     ggplot2::geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey70", inherit.aes = FALSE),
     ggplot2::scale_x_continuous(
@@ -129,14 +133,24 @@ plot_introgression <- function(data, stat = "all",
 
 .introgression_region_layers <- function(data, mapping, dots, colour_by, point_size, point_alpha,
                                          base_size, base_family, palette, na.rm, show.legend, inherit.aes) {
+  data <- .introgression_order_window_data(data)
+  data$.window_group <- interaction(data$.group, data$chr, drop = TRUE, sep = ":")
   mapping <- mapping %||% ggplot2::aes(x = .data$pos / 1e6, y = .data$value)
   if (is.null(mapping$colour) && is.null(mapping$color) && colour_by %in% names(data)) {
     values <- as.list(mapping)
     values$colour <- rlang::expr(.data[[colour_by]])
     mapping <- do.call(ggplot2::aes, values)
   }
+  if (is.null(mapping$group)) {
+    values <- as.list(mapping)
+    values$group <- rlang::expr(.data[[".window_group"]])
+    mapping <- do.call(ggplot2::aes, values)
+  }
   point_args <- c(list(size = point_size, alpha = point_alpha, na.rm = na.rm, show.legend = show.legend, inherit.aes = inherit.aes), dots)
+  line_args <- c(list(linewidth = max(point_size / 2, 0.2), alpha = point_alpha, na.rm = na.rm, show.legend = FALSE, inherit.aes = inherit.aes), dots)
+  line_args$size <- NULL
   list(
+    do.call(ggplot2::geom_line, c(list(mapping = mapping, data = data), line_args)),
     do.call(ggplot2::geom_point, c(list(mapping = mapping, data = data), point_args)),
     ggplot2::geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey70", inherit.aes = FALSE),
     scale_colour_ggpop(max(length(unique(data[[colour_by]])), 1), palette, guide = "none"),
@@ -235,11 +249,19 @@ plot_introgression <- function(data, stat = "all",
   analyses <- unique(data$analysis)
   if ("graph" %in% analyses) return("graph")
   if ("trio" %in% analyses) return("trio")
-  if (is.null(chr) && is.null(start) && is.null(end)) "manhattan" else "region"
+  if (is.null(chr) && is.null(start) && is.null(end)) "window" else "region"
 }
 
 .introgression_facet <- function(data) {
   ggplot2::facet_grid(stat ~ ., scales = "free_y", switch = "x")
+}
+
+.introgression_order_window_data <- function(data) {
+  if (all(c("chr", "pos") %in% names(data))) {
+    data[order(factor(data$chr, levels = .gwas_chr_levels(data$chr)), data$pos), , drop = FALSE]
+  } else {
+    data
+  }
 }
 
 .introgression_graph_layout <- function(data) {
@@ -267,6 +289,7 @@ plot_introgression <- function(data, stat = "all",
   style <- .introgression_resolve_style(data, style, chr = chr, start = start, end = end)
   switch(
     style,
+    window = list(x = "Chromosome", y = "Introgression statistic"),
     manhattan = list(x = "Chromosome", y = "Introgression statistic"),
     region = list(x = "Position (Mb)", y = "Introgression statistic"),
     trio = list(x = "Trio", y = "Introgression statistic"),

@@ -146,7 +146,8 @@ tables</td>
 </h2>
 <p>genomics_general ABBA-BABA windows are imported in long form, with
 one row per statistic per window. Genome-wide calls default to a
-Manhattan-like chromosome axis.</p>
+chromosome-wise window curve, matching the usual Dsuite Dinvestigate
+style of following D, fd, and fdM across genomic windows.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"genomics_general"</span><span class="op">)</span>,</span>
@@ -158,12 +159,12 @@ Manhattan-like chromosome axis.</p>
 <span><span class="co">#&gt; [1] "D"   "fd"  "fdM"</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes 1 and 2, with small points coloured by chromosome." width="700"></p>
+<p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise curves in stacked panels over chromosomes 1 and 2." width="700"></p>
 <p>When a chromosome or region is supplied, the direct plot uses a local
 position axis in megabases.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="st">"D"</span>, chr <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Regional introgression plot. D statistic windows on chromosome 1 are shown as points over genomic position in megabases." width="700"></p>
+<p><img src="introgression_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Regional introgression plot. D statistic windows on chromosome 1 are shown as a point-and-line trace over genomic position in megabases." width="700"></p>
 <p>Dsuite <code>Dinvestigate</code> / localFstats files use the same
 plotting path.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -237,7 +238,7 @@ composing with additional ggplot layers.</p>
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_introgression.html">geom_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are shown over the genome with the same Manhattan-like chromosome axis as the direct plot." width="700"></p>
+<p><img src="introgression_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise curves over the genome." width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

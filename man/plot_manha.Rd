@@ -16,7 +16,7 @@ plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
 \item{data}{A `ggpop_gwas` object.}
 \item{title, subtitle, caption}{Plot text.}
 \item{threshold, suggestive}{Manhattan reference p-value thresholds.}
-\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use orange for the genome-wide threshold and grey for the suggestive baseline.}
+\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use the publication palette.}
 \item{threshold_color, suggestive_color}{Compatibility aliases for `threshold_colour` and `suggestive_colour`.}
 \item{point_size, point_alpha}{Point appearance.}
 \item{base_size, base_family, legend_position}{Publication theme settings.}

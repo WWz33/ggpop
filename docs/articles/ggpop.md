@@ -270,18 +270,18 @@ x-axis.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
 ## Introgression
 
 Introgression summaries use the same direct and layered plotting shape.
-Windowed Dsuite and genomics_general outputs default to a Manhattan-like
-chromosome axis; Dsuite Dtrios summaries use a trio-level dot plot;
-graph edge tables use a compact edge diagram.
+Windowed Dsuite and genomics_general outputs default to chromosome-wise
+window curves; Dsuite Dtrios summaries use a trio-level dot plot; graph
+edge tables use a compact edge diagram.
 
 ``` r
 introgression |>
   plot_introgression(stat = c("D", "fdM"))
 ```
 
-![Manhattan-like introgression plot. D and fdM window statistics are
-shown in stacked panels over chromosomes, with points coloured by
-chromosome.](ggpop_files/figure-html/unnamed-chunk-14-1.png)
+![Window introgression plot. D and fdM statistics are shown as
+chromosome-wise curves in stacked panels over the
+genome.](ggpop_files/figure-html/unnamed-chunk-14-1.png)
 
 The layered path follows the same grammar:
 
@@ -292,8 +292,8 @@ introgression |>
 ```
 
 ![Layered introgression plot using ggpop plus geom_introgression. D
-statistic windows are shown over the genome with a Manhattan-like
-chromosome axis.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
+statistic windows are drawn as chromosome-wise curves over the
+genome.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
 
 ## Ne history
 

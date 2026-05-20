@@ -200,7 +200,7 @@ intro <- import_introgression(
 plot_introgression(intro, stat = c("D", "fdM"))
 ```
 
-<p align="center"><img src="man/figures/readme-introgression.png" width="60%" alt="Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes, with points coloured by chromosome." /></p>
+<p align="center"><img src="man/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise window curves in stacked panels over a genome axis." /></p>
 
 Trio-level D-statistics and graph edge tables use the same import and direct
 plot shape:

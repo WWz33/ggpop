@@ -12,7 +12,7 @@ geom_introgression(
   chr = NULL,
   start = NULL,
   end = NULL,
-  style = c("auto", "manhattan", "region", "trio", "graph"),
+  style = c("auto", "window", "manhattan", "region", "trio", "graph"),
   colour_by = c("stat", "chr"),
   point_size = NULL,
   point_alpha = 0.9,
@@ -31,7 +31,7 @@ plot_introgression(
   chr = NULL,
   start = NULL,
   end = NULL,
-  style = c("auto", "manhattan", "region", "trio", "graph"),
+  style = c("auto", "window", "manhattan", "region", "trio", "graph"),
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -51,9 +51,9 @@ plot_introgression(
 \item{analysis}{Optional analysis class filter: \code{"window"}, \code{"trio"}, or \code{"graph"}.}
 \item{chr}{Optional chromosome vector for windowed results.}
 \item{start, end}{Optional genomic region boundaries in base pairs for windowed results.}
-\item{style}{Plot layout. \code{"auto"} uses a Manhattan-like chromosome axis for genome-wide window statistics, a single-region axis for local window calls, a trio dot plot for Dtrios-style summaries, and an edge diagram for graph data.}
+\item{style}{Plot layout. \code{"auto"} uses chromosome-wise window curves for genome-wide window statistics, a point-and-line regional axis for local window calls, a trio dot plot for Dtrios-style summaries, and an edge diagram for graph data. \code{"manhattan"} is accepted as a compatibility alias for \code{"window"}.}
 \item{colour_by}{Colour window plots by statistic or chromosome.}
-\item{point_size, point_alpha}{Point appearance. Manhattan-like window plots default to size 1.5; region plots use smaller points.}
+\item{point_size, point_alpha}{Layer appearance. Genome-wide window plots use this value as line width; region plots use it as point size and draw a thinner connecting line.}
 \item{base_size, base_family}{Base theme font controls.}
 \item{palette}{ggpop discrete palette.}
 \item{na.rm, show.legend, inherit.aes}{Standard ggplot2 layer arguments.}
@@ -63,7 +63,7 @@ plot_introgression(
 \code{geom_introgression()} returns a list of ggplot layers. \code{plot_introgression()} returns a ggplot object.
 }
 \description{
-Plot introgression summaries from Dsuite, genomics_general, TreeMix-style edge summaries, or ADMIXTOOLS2 qpGraph edge tables. Windowed statistics use Manhattan-like or regional genomic axes, trio summaries use a horizontal dot plot, and graph inputs use a compact edge diagram.
+Plot introgression summaries from Dsuite, genomics_general, TreeMix-style edge summaries, or ADMIXTOOLS2 qpGraph edge tables. Windowed statistics use chromosome-wise window curves or regional point-and-line traces, trio summaries use a horizontal dot plot, and graph inputs use a compact edge diagram.
 }
 \examples{
 intro_dir <- system.file("extdata", "introgression", "genomics_general", package = "ggpop")

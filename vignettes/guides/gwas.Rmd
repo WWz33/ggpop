@@ -85,9 +85,8 @@ plot_manha(
 )
 ```
 
-Reference-line colours use orange for the genome-wide threshold and grey for
-the suggestive baseline by default. Override them with `threshold_color` and
-`suggestive_color` when needed.
+Reference-line colours continue to use the publication palette by default.
+Override them with `threshold_color` and `suggestive_color` when needed.
 
 ## Alternative GWAS formats
 

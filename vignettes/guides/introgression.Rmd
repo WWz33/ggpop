@@ -38,8 +38,9 @@ TreeMix-style migration summaries or ADMIXTOOLS2 qpGraph outputs.
 ## Window introgression statistics
 
 genomics_general ABBA-BABA windows are imported in long form, with one row per
-statistic per window. Genome-wide calls default to a Manhattan-like chromosome
-axis.
+statistic per window. Genome-wide calls default to a chromosome-wise window
+curve, matching the usual Dsuite Dinvestigate style of following D, fd, and fdM
+across genomic windows.
 
 ```{r}
 intro <- import_introgression(
@@ -50,14 +51,14 @@ class(intro)
 unique(intro$stat)
 ```
 
-```{r, fig.alt = "Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes 1 and 2, with small points coloured by chromosome."}
+```{r, fig.alt = "Window introgression plot. D and fdM statistics are shown as chromosome-wise curves in stacked panels over chromosomes 1 and 2."}
 plot_introgression(intro, stat = c("D", "fdM"))
 ```
 
 When a chromosome or region is supplied, the direct plot uses a local position
 axis in megabases.
 
-```{r, fig.alt = "Regional introgression plot. D statistic windows on chromosome 1 are shown as points over genomic position in megabases."}
+```{r, fig.alt = "Regional introgression plot. D statistic windows on chromosome 1 are shown as a point-and-line trace over genomic position in megabases."}
 plot_introgression(intro, stat = "D", chr = "1")
 ```
 
@@ -116,7 +117,7 @@ head(qpgraph_edges)
 Use `ggpop()` plus `geom_introgression()` when composing with additional ggplot
 layers.
 
-```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are shown over the genome with the same Manhattan-like chromosome axis as the direct plot."}
+```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise curves over the genome."}
 intro |>
   ggpop() +
   geom_introgression(stat = "D")

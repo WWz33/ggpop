@@ -332,9 +332,9 @@ geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$p
 }
 
 .gwas_threshold_color <- function() {
-  "#D55E00"
+  ggpop_palette(4, "publication")[4]
 }
 
 .gwas_suggestive_color <- function() {
-  "grey70"
+  ggpop_palette(1, "publication")
 }

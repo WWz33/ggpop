@@ -2,9 +2,9 @@
 
 Plot introgression summaries from Dsuite, genomics_general,
 TreeMix-style edge summaries, or ADMIXTOOLS2 qpGraph edge tables.
-Windowed statistics use Manhattan-like or regional genomic axes, trio
-summaries use a horizontal dot plot, and graph inputs use a compact edge
-diagram.
+Windowed statistics use chromosome-wise window curves or regional
+point-and-line traces, trio summaries use a horizontal dot plot, and
+graph inputs use a compact edge diagram.
 
 ## Usage
 
@@ -18,7 +18,7 @@ geom_introgression(
   chr = NULL,
   start = NULL,
   end = NULL,
-  style = c("auto", "manhattan", "region", "trio", "graph"),
+  style = c("auto", "window", "manhattan", "region", "trio", "graph"),
   colour_by = c("stat", "chr"),
   point_size = NULL,
   point_alpha = 0.9,
@@ -37,7 +37,7 @@ plot_introgression(
   chr = NULL,
   start = NULL,
   end = NULL,
-  style = c("auto", "manhattan", "region", "trio", "graph"),
+  style = c("auto", "window", "manhattan", "region", "trio", "graph"),
   title = NULL,
   subtitle = NULL,
   caption = NULL,
@@ -85,10 +85,11 @@ plot_introgression(
 
 - style:
 
-  Plot layout. `"auto"` uses a Manhattan-like chromosome axis for
-  genome-wide window statistics, a single-region axis for local window
-  calls, a trio dot plot for Dtrios-style summaries, and an edge diagram
-  for graph data.
+  Plot layout. `"auto"` uses chromosome-wise window curves for
+  genome-wide window statistics, a point-and-line regional axis for
+  local window calls, a trio dot plot for Dtrios-style summaries, and an
+  edge diagram for graph data. `"manhattan"` is accepted as a
+  compatibility alias for `"window"`.
 
 - colour_by:
 
@@ -96,8 +97,9 @@ plot_introgression(
 
 - point_size, point_alpha:
 
-  Point appearance. Manhattan-like window plots default to size 1.5;
-  region plots use smaller points.
+  Layer appearance. Genome-wide window plots use this value as line
+  width; region plots use it as point size and draw a thinner connecting
+  line.
 
 - base_size, base_family:
 

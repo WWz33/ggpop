@@ -34,8 +34,7 @@ plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
 
 - threshold_colour, suggestive_colour:
 
-  Reference-line colours. Defaults use orange for the genome-wide
-  threshold and grey for the suggestive baseline.
+  Reference-line colours. Defaults use the publication palette.
 
 - threshold_color, suggestive_color:
 

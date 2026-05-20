@@ -131,7 +131,7 @@ test_that("selective sweep plots support absolute values and quantile thresholds
   expect_equal(absolute_built$plot$labels$y, "|Selection score|")
   expect_equal(absolute_thresholds, expected_quantile, tolerance = 1e-8)
   expect_setequal(signed_thresholds, c(-2, 2))
-  expect_true(all(get_threshold_colours(signed_built) == "#D55E00"))
+  expect_true(all(get_threshold_colours(signed_built) == ggpop_palette(4, "publication")[4]))
   expect_equal(signed_built$data[[1]]$size[1], absolute_built$data[[1]]$size[1])
   expect_equal(absolute_built$data[[1]]$size[1], 0.75)
 })

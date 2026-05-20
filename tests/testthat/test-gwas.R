@@ -48,8 +48,8 @@ test_that("plot_manha and geom_manha share the same internal fastman visual cont
   expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
   expect_equal(plot_points$size[1], 1.5)
   expect_equal(plot_points$alpha[1], 0.9)
-  expect_equal(plot$data[[2]]$colour, "grey70")
-  expect_equal(plot$data[[3]]$colour, "#D55E00")
+  expect_equal(plot$data[[2]]$colour, ggpop_palette(1, "publication"))
+  expect_equal(plot$data[[3]]$colour, ggpop_palette(4, "publication")[4])
 })
 
 test_that("Manhattan geom exposes core fastman controls", {

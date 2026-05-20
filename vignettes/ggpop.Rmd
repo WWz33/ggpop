@@ -203,18 +203,18 @@ selscan_chr1 |>
 ## Introgression
 
 Introgression summaries use the same direct and layered plotting shape.
-Windowed Dsuite and genomics_general outputs default to a Manhattan-like
-chromosome axis; Dsuite Dtrios summaries use a trio-level dot plot; graph edge
-tables use a compact edge diagram.
+Windowed Dsuite and genomics_general outputs default to chromosome-wise window
+curves; Dsuite Dtrios summaries use a trio-level dot plot; graph edge tables use
+a compact edge diagram.
 
-```{r, fig.alt = "Manhattan-like introgression plot. D and fdM window statistics are shown in stacked panels over chromosomes, with points coloured by chromosome."}
+```{r, fig.alt = "Window introgression plot. D and fdM statistics are shown as chromosome-wise curves in stacked panels over the genome."}
 introgression |>
   plot_introgression(stat = c("D", "fdM"))
 ```
 
 The layered path follows the same grammar:
 
-```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are shown over the genome with a Manhattan-like chromosome axis."}
+```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise curves over the genome."}
 introgression |>
   ggpop() +
   geom_introgression(stat = "D")

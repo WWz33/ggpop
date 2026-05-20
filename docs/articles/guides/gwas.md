@@ -104,9 +104,9 @@ chromosomes alternate between the two supplied colours, emphasizing
 chromosome separation without changing the p-value scale or
 thresholds.](gwas_files/figure-html/unnamed-chunk-6-1.png)
 
-Reference-line colours use orange for the genome-wide threshold and grey
-for the suggestive baseline by default. Override them with
-`threshold_color` and `suggestive_color` when needed.
+Reference-line colours continue to use the publication palette by
+default. Override them with `threshold_color` and `suggestive_color`
+when needed.
 
 ## Alternative GWAS formats
 
