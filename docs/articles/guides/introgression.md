@@ -27,7 +27,7 @@ genomic window.
 
 ``` r
 intro <- import_introgression(
-  ggpop_extdata("introgression", "genomics_general"),
+  ggpop_extdata("introgression", "vcf_pop_example", "ABBABABA_window.tsv"),
   type = "genomics_general"
 )
 class(intro)
@@ -35,6 +35,12 @@ class(intro)
 unique(intro$stat)
 #> [1] "D"   "fd"  "fdM"
 ```
+
+This bundled file is a compact genomics_general-style ABBA-BABA window
+table derived from the package VCF and `pop_group.txt` metadata. It is
+included so the examples share the same population labels as the other
+modules; for real analyses, import the output produced by
+genomics_general or Dsuite.
 
 ``` r
 plot_introgression(intro, stat = c("D", "fdM"))

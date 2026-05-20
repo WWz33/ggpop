@@ -210,7 +210,7 @@ single-region view.
 
 ``` r
 intro <- import_introgression(
-  "introgression/genomics_general/",
+  "introgression/vcf_pop_example/ABBABABA_window.tsv",
   type = "genomics_general"
 )
 
@@ -220,6 +220,10 @@ plot_introgression(intro, stat = c("D", "fdM"))
 ![Window introgression plot. D and fdM statistics are shown as
 chromosome-wise Manhattan-like points in stacked panels over a genome
 axis.](reference/figures/readme-introgression.png)
+
+The bundled `vcf_pop_example` table is a compact genomics_general-style
+window summary derived from the package VCF and the shared
+`pop_group.txt` metadata for examples and tests.
 
 Trio-level D-statistics and graph edge tables use the same import and
 direct plot shape:
@@ -241,6 +245,10 @@ plot_ne_history(ne_history)
 ![Effective population size history plot. Time before present is on the
 x-axis and effective population size is on the y-axis, with separate
 curves for two populations.](reference/figures/readme-ne-history.png)
+
+Ne history plots read output from PSMC, MSMC2, SMC++, or Stairway Plot
+2. Raw VCF and `pop_group.txt` files are upstream inputs to those tools,
+not direct Ne history curves.
 
 ## Interface
 

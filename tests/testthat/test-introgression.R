@@ -28,6 +28,21 @@ test_that("introgression imports window statistics from Dsuite and genomics_gene
   expect_true(all(is.finite(genomics$value)))
 })
 
+test_that("introgression imports VCF/pop-derived genomics_general-style example", {
+  data <- import_introgression(
+    extdata_path("introgression/vcf_pop_example/ABBABABA_window.tsv"),
+    type = "genomics_general"
+  )
+
+  expect_s3_class(data, "ggpop_introgression")
+  expect_equal(unique(data$analysis), "window")
+  expect_true(all(c("D", "fd", "fdM") %in% unique(data$stat)))
+  expect_equal(unique(data$pop1), "PopA")
+  expect_equal(unique(data$pop2), "PopB")
+  expect_equal(unique(data$pop3), "PopC")
+  expect_true(all(data$sitesused > 0))
+})
+
 test_that("introgression imports graph edge lists", {
   treemix <- import_introgression(
     extdata_path("introgression/TreeMix/migration_edges.tsv"),
@@ -80,6 +95,7 @@ test_that("introgression plots build across data styles", {
   built_window <- ggplot2::ggplot_build(window_plot)
   built_region <- ggplot2::ggplot_build(region_plot)
   expect_true("size" %in% names(built_window$data[[1]]))
+  expect_equal(built_window$data[[1]]$size[1], 1.5)
   expect_true(all(unique(built_window$data[[1]]$colour) %in% c("#4E79A7", "#C4E2F3")))
   expect_true("linewidth" %in% names(built_region$data[[1]]))
   expect_true("size" %in% names(built_region$data[[2]]))

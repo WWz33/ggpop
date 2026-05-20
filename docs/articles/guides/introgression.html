@@ -156,13 +156,18 @@ matching common ABBA-BABA/fdM window summaries where each point is one
 genomic window.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"genomics_general"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"vcf_pop_example"</span>, <span class="st">"ABBABABA_window.tsv"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"genomics_general"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">intro</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_introgression" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">intro</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "D"   "fd"  "fdM"</span></span></code></pre></div>
+<p>This bundled file is a compact genomics_general-style ABBA-BABA
+window table derived from the package VCF and <code>pop_group.txt</code>
+metadata. It is included so the examples share the same population
+labels as the other modules; for real analyses, import the output
+produced by genomics_general or Dsuite.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over chromosomes 1 and 2." width="700"></p>

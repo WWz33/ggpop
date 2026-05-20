@@ -64,7 +64,7 @@ selscan_chr1 <- import_selection(
   type = "selscan"
 )
 introgression <- import_introgression(
-  ggpop_extdata("introgression", "genomics_general"),
+  ggpop_extdata("introgression", "vcf_pop_example", "ABBABABA_window.tsv"),
   type = "genomics_general"
 )
 ne_history <- import_ne_history(
@@ -284,6 +284,11 @@ Windowed Dsuite and genomics_general outputs default to chromosome-wise
 window points on a Manhattan-like genome axis; Dsuite Dtrios summaries
 use a trio-level dot plot; graph edge tables use a compact edge diagram.
 
+The bundled example below is a compact genomics_general-style window
+table derived from the package VCF and `pop_group.txt` metadata. It is
+meant for plotting examples; production analyses should import the real
+Dsuite or genomics_general output files.
+
 ``` r
 introgression |>
   plot_introgression(stat = c("D", "fdM"))
@@ -312,6 +317,11 @@ Stairway Plot 2 use the same direct and layered plotting shape. SMC++
 histories are drawn as curves, while PSMC, MSMC2, and Stairway Plot 2
 interval histories default to step curves. Time and Ne axes are
 log-scaled by default.
+
+Raw VCF and `pop_group.txt` metadata are inputs to external demographic
+inference workflows. `ggPopi` imports the resulting PSMC, MSMC2, SMC++,
+or Stairway Plot 2 outputs; it does not infer Ne histories directly from
+VCF.
 
 ``` r
 ne_history |>

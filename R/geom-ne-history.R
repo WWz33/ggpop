@@ -1,4 +1,4 @@
-geom_ne_history <- function(mapping = ggplot2::aes(x = .data$time, y = .data$ne, colour = .data$sample_id),
+geom_ne_history <- function(mapping = ggplot2::aes(x = .data$time, y = .data$ne),
                             data = NULL, ..., sample_id = NULL, method = NULL,
                             style = c("auto", "step", "line", "point"), ci = TRUE,
                             colour_by = c("sample_id", "method"),

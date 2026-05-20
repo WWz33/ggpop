@@ -87,8 +87,8 @@ plot_introgression <- function(data, stat = "all",
   style <- .introgression_resolve_style(selected, style, chr = chr, start = start, end = end)
   switch(
     style,
-    window = .introgression_window_layers(selected, dots, point_size %||% 0.35, point_alpha, base_size, base_family, palette, na.rm, show.legend),
-    manhattan = .introgression_window_layers(selected, dots, point_size %||% 0.35, point_alpha, base_size, base_family, palette, na.rm, show.legend),
+    window = .introgression_window_layers(selected, dots, point_size %||% 1.5, point_alpha, base_size, base_family, palette, na.rm, show.legend),
+    manhattan = .introgression_window_layers(selected, dots, point_size %||% 1.5, point_alpha, base_size, base_family, palette, na.rm, show.legend),
     region = .introgression_region_layers(selected, mapping, dots, colour_by, point_size %||% 0.8, point_alpha, base_size, base_family, palette, na.rm, show.legend, inherit.aes),
     trio = .introgression_trio_layers(selected, mapping, dots, point_size %||% 2, point_alpha, base_size, base_family, palette, na.rm, show.legend, inherit.aes),
     graph = .introgression_graph_layers(selected, dots, base_size, base_family, palette, na.rm, show.legend)

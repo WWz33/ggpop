@@ -4,6 +4,10 @@
 `ggpop_ne_history` object. The module supports PSMC, MSMC2, SMC++, and
 Stairway Plot 2 outputs.
 
+Raw VCF and `pop_group.txt` metadata are upstream inputs for these
+external demographic inference tools. `ggPopi` reads their output
+tables; it does not estimate Ne histories directly from VCF.
+
 ## API summary
 
 | Task | API | Notes |

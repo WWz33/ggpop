@@ -84,3 +84,22 @@ test_that("Ne history plots build for direct and layered paths", {
   expect_equal(.ne_history_resolve_style(stairway, "auto"), "step")
   expect_equal(.ne_history_resolve_style(smcpp, "point"), "point")
 })
+
+test_that("Ne history colour_by can override the default sample mapping", {
+  data <- .new_ggpop_ne_history(
+    data.frame(
+      method = rep(c("SMC++", "MSMC2"), each = 3),
+      sample_id = rep(c("PopA", "PopB"), each = 3),
+      time = rep(c(1000, 5000, 20000), 2),
+      ne = c(20000, 28000, 16000, 18000, 24000, 14000),
+      stringsAsFactors = FALSE
+    ),
+    source = "example"
+  )
+
+  plot <- plot_ne_history(data, colour_by = "method")
+  built <- ggplot2::ggplot_build(plot)
+
+  expect_silent(ggplot2::ggplot_build(plot))
+  expect_equal(length(unique(built$data[[1]]$colour)), 2)
+})
