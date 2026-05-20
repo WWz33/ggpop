@@ -94,7 +94,7 @@ palette is supplied:
 ``` r
 plot_manha(
   gwas,
-  palette = c("#55AEDB", "#C4E2F3"),
+  palette = c("#4E79A7", "#C4E2F3"),
   binary = TRUE
 )
 ```

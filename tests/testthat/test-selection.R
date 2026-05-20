@@ -164,6 +164,6 @@ test_that("selective sweep plots support Manhattan-like genome style", {
   expect_equal(explicit$labels$x, "Chromosome")
   expect_equal(automatic$labels$x, "Chromosome")
   expect_true(all(built$data[[1]]$y >= 0, na.rm = TRUE))
-  expect_true(all(unique(built$data[[1]]$colour) %in% c("#55AEDB", "#C4E2F3")))
+  expect_true(all(unique(built$data[[1]]$colour) %in% c("#4E79A7", "#C4E2F3")))
   expect_true(length(built$layout$panel_params[[1]]$x$get_breaks()) >= 2)
 })

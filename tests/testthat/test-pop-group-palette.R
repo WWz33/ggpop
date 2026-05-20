@@ -25,7 +25,7 @@ test_that("discrete population palettes downsample and interpolate", {
   expect_s3_class(colors_pop_okabeito, "ggpop_palette_scheme")
   expect_length(ggpop_palette(3, "population"), 3)
   expect_length(ggpop_palette(20, "population"), 20)
-  expect_identical(unname(ggpop_palette(4, "manhattan")), c("#55AEDB", "#C4E2F3", "#55AEDB", "#C4E2F3"))
+  expect_identical(unname(ggpop_palette(4, "manhattan")), c("#4E79A7", "#C4E2F3", "#4E79A7", "#C4E2F3"))
   expect_s3_class(scale_colour_ggpop("population"), "ScaleDiscrete")
   expect_s3_class(scale_fill_ggpop("admixture"), "ScaleDiscrete")
 })

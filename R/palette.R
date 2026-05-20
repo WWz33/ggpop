@@ -49,7 +49,7 @@ colors_pop_paper <- new_pop_palette(
 )
 
 colors_pop_manhattan <- new_pop_palette(
-  c("#55AEDB", "#C4E2F3"),
+  c("#4E79A7", "#C4E2F3"),
   "colors_pop_manhattan"
 )
 

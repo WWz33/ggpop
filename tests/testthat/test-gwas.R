@@ -71,11 +71,11 @@ test_that("Manhattan geom accepts explicit chromosomal and binary palettes", {
   data <- import_gwas(extdata_path("gwas/gcta.mlma"), type = "gcta")
 
   chromosomal <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = "publication"))
-  binary <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = c("#55AEDB", "#C4E2F3"), binary = TRUE))
+  binary <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data, palette = c("#4E79A7", "#C4E2F3"), binary = TRUE))
 
   expect_gt(length(unique(chromosomal$data[[1]]$colour)), 2)
-  expect_true(all(unique(binary$data[[1]]$colour) %in% c("#55AEDB", "#C4E2F3")))
-  expect_identical(unname(ggpop_palette(5, "manhattan")), c("#55AEDB", "#C4E2F3", "#55AEDB", "#C4E2F3", "#55AEDB"))
+  expect_true(all(unique(binary$data[[1]]$colour) %in% c("#4E79A7", "#C4E2F3")))
+  expect_identical(unname(ggpop_palette(5, "manhattan")), c("#4E79A7", "#C4E2F3", "#4E79A7", "#C4E2F3", "#4E79A7"))
 })
 
 test_that("QQ geom follows fastqq defaults for native ggplot path", {

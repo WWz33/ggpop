@@ -14,7 +14,7 @@ ggpop_palette(8, "admixture")
 #> [1] "#4E79A7" "#F28E2B" "#E15759" "#76B7B2" "#EDC948" "#9C755F"
 #> [7] "#2F4B7C" "#FF7C43"
 ggpop_palette(5, "manhattan")
-#> [1] "#55AEDB" "#C4E2F3" "#55AEDB" "#C4E2F3" "#55AEDB"
+#> [1] "#4E79A7" "#C4E2F3" "#4E79A7" "#C4E2F3" "#4E79A7"
 ```
 
 ## ggplot scales

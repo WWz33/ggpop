@@ -38,11 +38,11 @@ GWAS Manhattan plots support explicit palette control:
 
 ``` r
 plot_manha(gwas, palette = "publication")
-plot_manha(gwas, palette = c("#55AEDB", "#C4E2F3"), binary = TRUE)
+plot_manha(gwas, palette = c("#4E79A7", "#C4E2F3"), binary = TRUE)
 plot_manha(gwas, threshold_color = "#D55E00", suggestive_color = "grey70")
 ```
 
-Manhattan-like genome views use the same alternating `#55AEDB` / `#C4E2F3`
+Manhattan-like genome views use the same alternating `#4E79A7` / `#C4E2F3`
 chromosome palette by default.
 
 ## Installation

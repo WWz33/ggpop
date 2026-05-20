@@ -122,7 +122,7 @@ plot_selection(
 - binary:
 
   Use two alternating chromosome colours for Manhattan-like selection
-  plots. The default `"manhattan"` palette alternates `#55AEDB` and
+  plots. The default `"manhattan"` palette alternates `#4E79A7` and
   `#C4E2F3`.
 
 - threshold_color, threshold_linetype:
