@@ -59,10 +59,10 @@ plot_ld_decay(
 Plot LD decay summaries as either point or line plots. The x-axis is pairwise distance in kilobases and the y-axis defaults to mean LD \eqn{r^2}, with optional D-prime or combined \eqn{r^2}/D-prime views. All styles support population colouring through the package-wide \code{pop} column, and \code{pop_group} can relabel and regroup imported files.
 }
 \examples{
-ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
-ld <- import_ld_decay(ld_dir, type = "poplddecay")
-groups <- import_pop_group(system.file("extdata", "pop_group.txt", package = "ggpop"))
-ld |> plot_ld_decay(pop_group = groups, style = "point")
-ld |> plot_ld_decay(pop_group = groups, style = "line")
-ld |> ggpop() + geom_ld_decay(pop_group = groups, style = "point")
+ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay_grouped", package = "ggPopi")
+groups <- system.file("extdata", "pop_group.txt", package = "ggPopi")
+ld <- import_ld_decay(ld_dir, type = "poplddecay", pop_group = groups)
+ld |> plot_ld_decay(style = "point")
+ld |> plot_ld_decay(style = "line")
+ld |> ggpop() + geom_ld_decay(style = "point")
 }

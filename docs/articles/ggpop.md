@@ -55,6 +55,11 @@ ld_decay <- import_ld_decay(
   ggpop_extdata("ld_decay", "PopLDdecay"),
   type = "poplddecay"
 )
+ld_grouped <- import_ld_decay(
+  ggpop_extdata("ld_decay", "PopLDdecay_grouped"),
+  type = "poplddecay",
+  pop_group = ggpop_extdata("pop_group.txt")
+)
 selscan_chr1 <- import_selection(
   ggpop_extdata("selective_sweep", "selscan"),
   ihs = "chr1.ihs.out.100bins.norm",
@@ -85,6 +90,8 @@ class(admix)
 class(stats)
 #> [1] "ggpop_stats" "data.frame"
 class(ld_decay)
+#> [1] "ggpop_ld_decay" "data.frame"
+class(ld_grouped)
 #> [1] "ggpop_ld_decay" "data.frame"
 class(selscan_chr1)
 #> [1] "ggpop_selection" "data.frame"
@@ -131,7 +138,7 @@ The same pattern applies across modules:
 ``` r
 gwas |> ggpop() + ggpop::geom_qq()
 #> Registered S3 method overwritten by 'ggpop':
-#>   method                     from
+#>   method                     from  
 #>   print.ggpop_palette_scheme ggPopi
 ```
 
@@ -235,10 +242,11 @@ LD decay summaries use the same direct and layered plotting shape.
 PopLDdecay `*.stat.gz` files are imported directly, while PLINK pairwise
 LD files can be summarized into distance bins. Population labels follow
 the package-wide `pop_group.txt` convention when file labels need to be
-mapped to groups.
+mapped to groups. When sample-level summaries map to populations, the
+plot layer draws population summaries before rendering points or lines.
 
 ``` r
-ld_decay |>
+ld_grouped |>
   plot_ld_decay(style = "point")
 ```
 
@@ -249,7 +257,7 @@ population label.](ggpop_files/figure-html/unnamed-chunk-11-1.png)
 The same data can be drawn as a curve:
 
 ``` r
-ld_decay |>
+ld_grouped |>
   plot_ld_decay(style = "line")
 ```
 

@@ -160,11 +160,14 @@ import_stats("vcftools_results/", type = "vcftools") |>
 ```
 
 ``` r
-ld_decay <- import_ld_decay("PopLDdecay_results/", type = "poplddecay")
-ld_group <- import_pop_group("pop_group.txt")
+ld_decay <- import_ld_decay(
+  "PopLDdecay_results/",
+  type = "poplddecay",
+  pop_group = "pop_group.txt"
+)
 
-plot_ld_decay(ld_decay, pop_group = ld_group, style = "point")
-plot_ld_decay(ld_decay, pop_group = ld_group, style = "line")
+plot_ld_decay(ld_decay, style = "point")
+plot_ld_decay(ld_decay, style = "line")
 ```
 
 <p align="center"><img src="man/figures/readme-ld-decay.png" width="60%" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." /></p>

@@ -70,6 +70,11 @@ ld_decay <- import_ld_decay(
   ggpop_extdata("ld_decay", "PopLDdecay"),
   type = "poplddecay"
 )
+ld_grouped <- import_ld_decay(
+  ggpop_extdata("ld_decay", "PopLDdecay_grouped"),
+  type = "poplddecay",
+  pop_group = ggpop_extdata("pop_group.txt")
+)
 selscan_chr1 <- import_selection(
   ggpop_extdata("selective_sweep", "selscan"),
   ihs = "chr1.ihs.out.100bins.norm",
@@ -96,6 +101,7 @@ class(pca)
 class(admix)
 class(stats)
 class(ld_decay)
+class(ld_grouped)
 class(selscan_chr1)
 class(introgression)
 class(ne_history)
@@ -175,17 +181,19 @@ stats |>
 LD decay summaries use the same direct and layered plotting shape. PopLDdecay
 `*.stat.gz` files are imported directly, while PLINK pairwise LD files can be
 summarized into distance bins. Population labels follow the package-wide
-`pop_group.txt` convention when file labels need to be mapped to groups.
+`pop_group.txt` convention when file labels need to be mapped to groups. When
+sample-level summaries map to populations, the plot layer draws population
+summaries before rendering points or lines.
 
 ```{r, fig.alt = "LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label."}
-ld_decay |>
+ld_grouped |>
   plot_ld_decay(style = "point")
 ```
 
 The same data can be drawn as a curve:
 
 ```{r, fig.alt = "LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern."}
-ld_decay |>
+ld_grouped |>
   plot_ld_decay(style = "line")
 ```
 

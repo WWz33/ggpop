@@ -14,6 +14,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
   colour_by <- match.arg(colour_by)
   layer_data <- .filter_ld_decay_data(data, pop = pop)
   layer_data <- .ld_decay_pop_group_data(layer_data, pop_group = pop_group)
+  layer_data <- .ld_decay_summarise_pop_group(layer_data)
   layer_data <- .ld_decay_group_data(layer_data)
   layer_data <- .ld_decay_measure_data(layer_data, measure = measure)
   mapping <- .ld_decay_measure_mapping(mapping, measure = measure)
@@ -74,9 +75,11 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
     plot$data <- if (is.function(layer_data)) {
       .ld_decay_measure_data(
         .ld_decay_group_data(
-          .ld_decay_pop_group_data(
-            .filter_ld_decay_data(plot$data, pop = filter$pop),
-            pop_group = filter$pop_group
+          .ld_decay_summarise_pop_group(
+            .ld_decay_pop_group_data(
+              .filter_ld_decay_data(plot$data, pop = filter$pop),
+              pop_group = filter$pop_group
+            )
           )
         ),
         measure = filter$measure
@@ -101,6 +104,7 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
   measure <- match.arg(measure)
   selected <- .filter_ld_decay_data(data, pop = pop)
   selected <- .ld_decay_pop_group_data(selected, pop_group = pop_group)
+  selected <- .ld_decay_summarise_pop_group(selected)
   selected <- .ld_decay_group_data(selected)
   plot <- ggpop(selected) +
     geom_ld_decay(
@@ -169,6 +173,65 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
   .join_ld_decay_pop_group(data, pop_group = pop_group)
 }
 
+.ld_decay_summarise_pop_group <- function(data) {
+  if (is.null(data)) {
+    return(function(plot_data) .ld_decay_summarise_pop_group(plot_data))
+  }
+  if (is.function(data)) {
+    return(function(plot_data) .ld_decay_summarise_pop_group(data(plot_data)))
+  }
+  .require_class(data, "ggpop_ld_decay", "LD decay data")
+  if (!".pop_grouped" %in% names(data) || !any(data$.pop_grouped %in% TRUE)) {
+    return(data)
+  }
+  source_group <- ifelse(
+    data$.pop_grouped %in% TRUE,
+    as.character(data$pop),
+    paste(as.character(data$pop), as.character(data$file %||% data$sample_id), sep = ":")
+  )
+  keys <- interaction(source_group, data$dist, data$ld_method, drop = TRUE, sep = "\r")
+  rows <- lapply(split(data, keys), .ld_decay_pop_group_row)
+  out <- .stats_bind_rows(rows)
+  class(out) <- class(data)
+  attr(out, "source") <- attr(data, "source", exact = TRUE)
+  out[order(out$pop, out$dist), , drop = FALSE]
+}
+
+.ld_decay_pop_group_row <- function(group) {
+  weight <- suppressWarnings(as.numeric(group$n_pairs))
+  if (all(!is.finite(weight)) || sum(weight, na.rm = TRUE) <= 0) {
+    weight <- rep(1, nrow(group))
+  }
+  has_d <- "d_prime" %in% names(group)
+  out <- group[1, , drop = FALSE]
+  out$r2 <- .ld_decay_weighted_mean_value(group$r2, weight)
+  if (has_d) {
+    out$d_prime <- .ld_decay_weighted_mean_value(group$d_prime, weight)
+  }
+  out$n_pairs <- sum(weight[is.finite(weight)], na.rm = TRUE)
+  if ("sum_r2" %in% names(group)) {
+    out$sum_r2 <- sum(suppressWarnings(as.numeric(group$sum_r2)), na.rm = TRUE)
+  }
+  if ("sum_d_prime" %in% names(group)) {
+    out$sum_d_prime <- sum(suppressWarnings(as.numeric(group$sum_d_prime)), na.rm = TRUE)
+  }
+  out$sample_id <- paste(unique(as.character(group$sample_id)), collapse = ",")
+  if ("file" %in% names(group)) {
+    out$file <- paste(unique(as.character(group$file)), collapse = ",")
+  }
+  out$.pop_grouped <- all(group$.pop_grouped %in% TRUE)
+  out
+}
+
+.ld_decay_weighted_mean_value <- function(x, weight) {
+  x <- suppressWarnings(as.numeric(x))
+  ok <- is.finite(x) & is.finite(weight) & weight > 0
+  if (!any(ok)) {
+    return(NA_real_)
+  }
+  stats::weighted.mean(x[ok], weight[ok])
+}
+
 .ld_decay_group_data <- function(data) {
   if (is.null(data)) {
     return(function(plot_data) .ld_decay_group_data(plot_data))
@@ -177,7 +240,14 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
     return(function(plot_data) .ld_decay_group_data(data(plot_data)))
   }
   .require_class(data, "ggpop_ld_decay", "LD decay data")
-  if ("file" %in% names(data)) {
+  if (".pop_grouped" %in% names(data) && any(data$.pop_grouped %in% TRUE)) {
+    source_group <- ifelse(
+      data$.pop_grouped %in% TRUE,
+      as.character(data$pop),
+      paste(as.character(data$pop), as.character(data$file %||% data$sample_id), sep = ":")
+    )
+    data$.group <- interaction(source_group, drop = TRUE, sep = ":")
+  } else if ("file" %in% names(data)) {
     data$.group <- interaction(data$pop, data$file, drop = TRUE, sep = ":")
   } else {
     data$.group <- interaction(data$pop, drop = TRUE, sep = ":")

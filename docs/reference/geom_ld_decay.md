@@ -111,14 +111,12 @@ returns a ggplot object.
 ## Examples
 
 ``` r
-ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
-ld <- import_ld_decay(ld_dir, type = "poplddecay")
-#> Error: `dir` must point to an existing directory.
-groups <- import_pop_group(system.file("extdata", "pop_group.txt", package = "ggpop"))
-ld |> plot_ld_decay(pop_group = groups, style = "point")
-#> Error: object 'ld' not found
-ld |> plot_ld_decay(pop_group = groups, style = "line")
-#> Error: object 'ld' not found
-ld |> ggpop() + geom_ld_decay(pop_group = groups, style = "point")
-#> Error: object 'ld' not found
+ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay_grouped", package = "ggPopi")
+groups <- system.file("extdata", "pop_group.txt", package = "ggPopi")
+ld <- import_ld_decay(ld_dir, type = "poplddecay", pop_group = groups)
+ld |> plot_ld_decay(style = "point")
+
+ld |> plot_ld_decay(style = "line")
+
+ld |> ggpop() + geom_ld_decay(style = "point")
 ```

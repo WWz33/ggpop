@@ -145,7 +145,7 @@ test_that("LD decay plots regroup lines after pop_group mapping", {
   expect_s3_class(plot, "ggplot")
   expect_silent(ggplot2::ggplot_build(plot))
   expect_true("PopA" %in% unique(built$plot$data$pop))
-  expect_true(all(grepl("^PopA:", unique(built$plot$data$.group))))
+  expect_equal(unique(as.character(built$plot$data$.group)), "PopA")
 })
 
 test_that("LD decay layered plots keep grouped colouring", {
@@ -161,4 +161,62 @@ test_that("LD decay layered plots keep grouped colouring", {
   expect_silent(ggplot2::ggplot_build(plot))
   expect_true(length(unique(built$data[[1]]$colour)) >= 2)
   expect_true(all(c("PopA", "PopB") %in% unique(built$plot$data$pop)))
+})
+
+test_that("LD decay pop_group summaries are drawn per population", {
+  data <- .new_ggpop_ld_decay(data.frame(
+    dist = rep(c(10, 20), 3),
+    dist_kb = rep(c(0.01, 0.02), 3),
+    r2 = c(0.7, 0.5, 0.5, 0.3, 0.2, 0.1),
+    n_pairs = rep(10, 6),
+    pop = rep(c("P001", "P004", "P009"), each = 2),
+    sample_id = rep(c("P001", "P004", "P009"), each = 2),
+    file = rep(c("P001.stat", "P004.stat", "P009.stat"), each = 2)
+  ), source = "poplddecay")
+  group <- data.frame(
+    sample = c("P001", "P004", "P009"),
+    pop = c("PopC", "PopB", "PopA")
+  )
+
+  point_plot <- plot_ld_decay(data, pop_group = group, style = "point")
+  line_plot <- ggpop(data) + geom_ld_decay(pop_group = group, style = "line")
+  point_built <- ggplot2::ggplot_build(point_plot)
+  line_built <- ggplot2::ggplot_build(line_plot)
+
+  expect_equal(sort(unique(point_built$plot$data$pop)), c("PopA", "PopB", "PopC"))
+  expect_equal(length(unique(point_built$data[[1]]$colour)), 3)
+  expect_equal(length(unique(line_built$data[[1]]$group)), 3)
+})
+
+test_that("LD decay bundled grouped example maps through shared pop_group", {
+  ld_dir <- extdata_dir("ld_decay/PopLDdecay_grouped")
+  data <- import_ld_decay(
+    ld_dir,
+    pop_group = extdata_path("pop_group.txt"),
+    type = "poplddecay"
+  )
+  built <- ggplot2::ggplot_build(plot_ld_decay(data, style = "point"))
+
+  expect_equal(sort(unique(data$sample_id)), c("P001", "P004", "P009"))
+  expect_equal(sort(unique(data$pop)), c("PopA", "PopB", "PopC"))
+  expect_equal(length(unique(built$data[[1]]$colour)), 3)
+})
+
+test_that("LD decay pop_group does not collapse unmatched file labels", {
+  data <- .new_ggpop_ld_decay(data.frame(
+    dist = rep(c(10, 20), 3),
+    dist_kb = rep(c(0.01, 0.02), 3),
+    r2 = c(0.7, 0.5, 0.5, 0.3, 0.2, 0.1),
+    n_pairs = rep(10, 6),
+    pop = rep(c("sample_a", "unknown", "unknown"), each = 2),
+    sample_id = rep(c("sample_a", "unknown_1", "unknown_2"), each = 2),
+    file = rep(c("sample_a.stat", "unknown_1.stat", "unknown_2.stat"), each = 2)
+  ), source = "poplddecay")
+  group <- data.frame(sample = "sample_a", pop = "PopA")
+
+  plot <- ggpop(data) + geom_ld_decay(pop_group = group, style = "line")
+  built <- ggplot2::ggplot_build(plot)
+
+  expect_true("PopA" %in% unique(built$plot$data$pop))
+  expect_equal(length(unique(built$data[[1]]$group)), 3)
 })

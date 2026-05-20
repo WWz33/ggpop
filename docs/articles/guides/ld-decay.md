@@ -70,21 +70,23 @@ head(ld_decay)
 Population grouping follows the same `pop_group.txt` convention used by
 PCA and admixture. The LD decay file label is stored as `sample_id`; if
 a matching `sample` appears in `pop_group`, the corresponding `pop`
-value is used for colouring.
+value is used for colouring. When multiple sample-level summaries map to
+populations, the plot layer draws population-level summaries for both
+point and line styles.
 
 The importer also accepts a single file path, and the `method` argument
 can be used to re-bin PopLDdecay summaries with the same mean-bin,
 median, or percentile behavior used by the legacy plotting scripts.
 
 ``` r
+ld_group_dir <- ggpop_extdata("ld_decay", "PopLDdecay_grouped")
 ld_grouped <- import_ld_decay(
-  ld_dir,
-  pop = "P001",
+  ld_group_dir,
   pop_group = ggpop_extdata("pop_group.txt"),
   type = "poplddecay"
 )
 unique(ld_grouped$pop)
-#> [1] "PopC"
+#> [1] "PopC" "PopB" "PopA"
 ```
 
 ## Point style
@@ -95,8 +97,7 @@ labels mapped to colour.
 
 ``` r
 plot_ld_decay(
-  ld_decay,
-  pop_group = ggpop_extdata("pop_group.txt"),
+  ld_grouped,
   style = "point"
 )
 ```
@@ -112,8 +113,7 @@ draws a continuous decay curve.
 
 ``` r
 plot_ld_decay(
-  ld_decay,
-  pop_group = ggpop_extdata("pop_group.txt"),
+  ld_grouped,
   style = "line"
 )
 ```
@@ -129,9 +129,9 @@ Use [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) plus
 when composing with other ggplot layers.
 
 ``` r
-ld_decay |>
+ld_grouped |>
   ggpop() +
-  geom_ld_decay(pop_group = ggpop_extdata("pop_group.txt"), style = "point")
+  geom_ld_decay(style = "point")
 ```
 
 ![Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise

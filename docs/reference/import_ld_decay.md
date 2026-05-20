@@ -86,17 +86,16 @@ Population grouping follows the package-wide convention: `pop_group` is
 the standard two-column `sample pop` table used by PCA and admixture
 workflows. LD decay file labels are stored as `sample_id`; when
 `pop_group` is supplied, matching labels are mapped to `pop`. The
-plotting helpers then regroup the mapped LD decay rows by population
-label so line layers stay population-specific after relabeling.
+plotting helpers then summarize mapped LD decay rows by population label
+so point and line layers stay population-specific after relabeling.
 
 ## Examples
 
 ``` r
-ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
-ld <- import_ld_decay(ld_dir, type = "poplddecay")
-#> Error: `dir` must point to an existing directory.
+ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay_grouped", package = "ggPopi")
+groups <- system.file("extdata", "pop_group.txt", package = "ggPopi")
+ld <- import_ld_decay(ld_dir, type = "poplddecay", pop_group = groups)
 ld |> plot_ld_decay(style = "point")
-#> Error: object 'ld' not found
+
 ld |> plot_ld_decay(style = "line")
-#> Error: object 'ld' not found
 ```

@@ -276,6 +276,7 @@ import_ld_decay <- function(dir = NULL, ..., type = c("poplddecay", "plink", "au
   matched <- match(as.character(data$sample_id), group$sample_id)
   has_match <- !is.na(matched)
   data$pop[has_match] <- group$pop[matched[has_match]]
+  data$.pop_grouped <- has_match
   data
 }
 
@@ -307,8 +308,18 @@ import_ld_decay <- function(dir = NULL, ..., type = c("poplddecay", "plink", "au
     return(file_name)
   }
   parent <- basename(dirname(files[[index]]))
+  same_parent <- dirname(files) == dirname(files[[index]])
+  if (sum(same_parent) > 1) {
+    return(.ld_decay_file_stem(files[[index]]))
+  }
   if (nzchar(parent) && parent != ".") {
     return(parent)
   }
-  tools::file_path_sans_ext(basename(files[[index]]))
+  .ld_decay_file_stem(files[[index]])
+}
+
+.ld_decay_file_stem <- function(file) {
+  stem <- basename(file)
+  stem <- sub("\\.gz$", "", stem, ignore.case = TRUE)
+  sub("\\.[^.]+$", "", stem)
 }
