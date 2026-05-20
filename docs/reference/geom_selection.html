@@ -72,7 +72,7 @@
 <span>  value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"signed"</span>, <span class="st">"absolute"</span><span class="op">)</span>,</span>
 <span>  threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  threshold_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"value"</span>, <span class="st">"quantile"</span><span class="op">)</span>,</span>
-<span>  threshold_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"publication"</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,</span>
+<span>  threshold_color <span class="op">=</span> <span class="st">"#D55E00"</span>,</span>
 <span>  threshold_linetype <span class="op">=</span> <span class="st">"dashed"</span>,</span>
 <span>  size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -102,7 +102,7 @@
 <span>  threshold_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"value"</span>, <span class="st">"quantile"</span><span class="op">)</span>,</span>
 <span>  style <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"single"</span>, <span class="st">"manhattan"</span><span class="op">)</span>,</span>
 <span>  binary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  threshold_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"publication"</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>,</span>
+<span>  threshold_color <span class="op">=</span> <span class="st">"#D55E00"</span>,</span>
 <span>  threshold_linetype <span class="op">=</span> <span class="st">"dashed"</span>,</span>
 <span>  point_size <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  point_alpha <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -151,7 +151,7 @@
 <dd><p>Direct plot layout. <code>"auto"</code> uses a Manhattan-like chromosome axis unless <code>chr</code>, <code>start</code>, or <code>end</code> is supplied; local calls use the single-region position axis. Use <code>"manhattan"</code> or <code>"single"</code> to force a layout.</p></dd>
 
 <dt id="arg-binary">binary<a class="anchor" aria-label="anchor" href="#arg-binary"></a></dt>
-<dd><p>Use two alternating chromosome colours for Manhattan-like selection plots.</p></dd>
+<dd><p>Use two alternating chromosome colours for Manhattan-like selection plots. The default <code>"manhattan"</code> palette alternates <code>#55AEDB</code> and <code>#C4E2F3</code>.</p></dd>
 
 <dt id="arg-threshold-color-threshold-linetype">threshold_color, threshold_linetype<a class="anchor" aria-label="anchor" href="#arg-threshold-color-threshold-linetype"></a></dt>
 <dd><p>Threshold line appearance.</p></dd>

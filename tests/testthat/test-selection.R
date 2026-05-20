@@ -119,6 +119,11 @@ test_that("selective sweep plots support absolute values and quantile thresholds
       if ("yintercept" %in% names(layer)) layer$yintercept else numeric()
     }), use.names = FALSE)
   }
+  get_threshold_colours <- function(built) {
+    unlist(lapply(built$data, function(layer) {
+      if ("yintercept" %in% names(layer)) layer$colour else character()
+    }), use.names = FALSE)
+  }
   absolute_thresholds <- get_thresholds(absolute_built)
   signed_thresholds <- get_thresholds(signed_built)
 
@@ -126,6 +131,7 @@ test_that("selective sweep plots support absolute values and quantile thresholds
   expect_equal(absolute_built$plot$labels$y, "|Selection score|")
   expect_equal(absolute_thresholds, expected_quantile, tolerance = 1e-8)
   expect_setequal(signed_thresholds, c(-2, 2))
+  expect_true(all(get_threshold_colours(signed_built) == "#D55E00"))
   expect_equal(signed_built$data[[1]]$size[1], absolute_built$data[[1]]$size[1])
   expect_equal(absolute_built$data[[1]]$size[1], 0.75)
 })
@@ -158,5 +164,6 @@ test_that("selective sweep plots support Manhattan-like genome style", {
   expect_equal(explicit$labels$x, "Chromosome")
   expect_equal(automatic$labels$x, "Chromosome")
   expect_true(all(built$data[[1]]$y >= 0, na.rm = TRUE))
+  expect_true(all(unique(built$data[[1]]$colour) %in% c("#55AEDB", "#C4E2F3")))
   expect_true(length(built$layout$panel_params[[1]]$x$get_breaks()) >= 2)
 })

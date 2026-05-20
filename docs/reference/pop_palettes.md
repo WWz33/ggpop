@@ -3,7 +3,8 @@
 Unified discrete-only palette API for population-genomics categorical
 variables. Palettes follow tidyplots-style behavior: extra colours can
 be downsampled, and short palettes are interpolated when more categories
-are requested.
+are requested. The `"manhattan"` palette is the exception: it repeats
+two chromosome colours for alternating genome-wide plots.
 
 ## Usage
 

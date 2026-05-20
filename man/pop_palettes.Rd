@@ -25,7 +25,7 @@ scale_fill_ggpop(palette = c("admixture", "population", "publication", "manhatta
   downsample = c("evenly", "first", "last", "middle"), ...)
 }
 \description{
-Unified discrete-only palette API for population-genomics categorical variables. Palettes follow tidyplots-style behavior: extra colours can be downsampled, and short palettes are interpolated when more categories are requested.
+Unified discrete-only palette API for population-genomics categorical variables. Palettes follow tidyplots-style behavior: extra colours can be downsampled, and short palettes are interpolated when more categories are requested. The \code{"manhattan"} palette is the exception: it repeats two chromosome colours for alternating genome-wide plots.
 }
 \examples{
 ggpop_palette(4, "population")

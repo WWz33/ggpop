@@ -76,4 +76,5 @@ test_that("introgression plots build across data styles", {
   expect_silent(ggplot2::ggplot_build(geom_plot))
   expect_equal(region_plot$labels$x, "Position (Mb)")
   expect_equal(manhattan_plot$labels$x, "Chromosome")
+  expect_true(all(unique(ggplot2::ggplot_build(manhattan_plot)$data[[1]]$colour) %in% c("#55AEDB", "#C4E2F3")))
 })

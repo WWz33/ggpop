@@ -76,25 +76,25 @@ default threshold and suggestive reference lines.
 ## GWAS colour palettes
 
 The GWAS module uses the same unified discrete palette entry as the rest
-of `ggpop`. Manhattan plots default to one discrete colour per
-chromosome:
+of `ggpop`. Manhattan plots default to a two-colour alternating
+chromosome palette:
 
 ``` r
 plot_manha(gwas, palette = "manhattan")
 ```
 
-![Manhattan plot with one discrete colour per chromosome. Alternating
-chromosome colour bands make chromosome boundaries easier to distinguish
-while preserving the same p-value threshold
-lines.](gwas_files/figure-html/unnamed-chunk-5-1.png)
+![Manhattan plot with a two-colour alternating palette. Adjacent
+chromosomes alternate between blue and pale blue, preserving the same
+p-value threshold lines.](gwas_files/figure-html/unnamed-chunk-5-1.png)
 
-For a two-colour alternating Manhattan plot, set `binary = TRUE` and
-pass either a ggpop palette name or two explicit colours:
+To override the Manhattan colours, pass two explicit colours.
+`binary = TRUE` keeps the two-colour alternation even when a longer
+palette is supplied:
 
 ``` r
 plot_manha(
   gwas,
-  palette = c("#4E79A7", "#F28E2B"),
+  palette = c("#55AEDB", "#C4E2F3"),
   binary = TRUE
 )
 ```
@@ -104,9 +104,9 @@ chromosomes alternate between the two supplied colours, emphasizing
 chromosome separation without changing the p-value scale or
 thresholds.](gwas_files/figure-html/unnamed-chunk-6-1.png)
 
-Reference-line colours use the same publication palette by default, and
-can be overridden explicitly with `threshold_color` and
-`suggestive_color`.
+Reference-line colours use orange for the genome-wide threshold and grey
+for the suggestive baseline by default. Override them with
+`threshold_color` and `suggestive_color` when needed.
 
 ## Alternative GWAS formats
 

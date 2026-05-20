@@ -4,7 +4,7 @@ geom_selection <- function(mapping = ggplot2::aes(x = .data$pos / 1e6, y = .data
                            colour_by = c("stat", "chr"),
                            value = c("signed", "absolute"),
                            threshold = NULL, threshold_type = c("value", "quantile"),
-                           threshold_color = ggpop_palette(4, "publication")[4],
+                           threshold_color = "#D55E00",
                            threshold_linetype = "dashed",
                            size = NULL, alpha = NULL, base_size = 11,
                            base_family = "", palette = "publication",
@@ -96,7 +96,7 @@ plot_selection <- function(data, stat = "all", chr = NULL, start = NULL, end = N
                            palette = "publication", value = c("signed", "absolute"),
                            threshold = NULL, threshold_type = c("value", "quantile"),
                            style = c("auto", "single", "manhattan"), binary = FALSE,
-                           threshold_color = ggpop_palette(4, "publication")[4],
+                           threshold_color = "#D55E00",
                            threshold_linetype = "dashed", point_size = NULL,
                            point_alpha = NULL, ...) {
   .require_class(data, "ggpop_selection", "Selective sweep scan data")
@@ -159,7 +159,7 @@ plot_selection <- function(data, stat = "all", chr = NULL, start = NULL, end = N
                                       palette = "manhattan", binary = FALSE,
                                       value = c("signed", "absolute"),
                                       threshold = NULL, threshold_type = c("value", "quantile"),
-                                      threshold_color = ggpop_palette(4, "publication")[4],
+                                      threshold_color = "#D55E00",
                                       threshold_linetype = "dashed",
                                       point_size = 1.5, point_alpha = 0.9, dots = list()) {
   value <- match.arg(value)

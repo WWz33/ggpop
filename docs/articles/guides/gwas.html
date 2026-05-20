@@ -173,24 +173,25 @@ and suggestive reference lines.</p>
 <h2 id="gwas-colour-palettes">GWAS colour palettes<a class="anchor" aria-label="anchor" href="#gwas-colour-palettes"></a>
 </h2>
 <p>The GWAS module uses the same unified discrete palette entry as the
-rest of <code>ggpop</code>. Manhattan plots default to one discrete
-colour per chromosome:</p>
+rest of <code>ggpop</code>. Manhattan plots default to a two-colour
+alternating chromosome palette:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, palette <span class="op">=</span> <span class="st">"manhattan"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="gwas_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Manhattan plot with one discrete colour per chromosome. Alternating chromosome colour bands make chromosome boundaries easier to distinguish while preserving the same p-value threshold lines." width="700"></p>
-<p>For a two-colour alternating Manhattan plot, set
-<code>binary = TRUE</code> and pass either a ggpop palette name or two
-explicit colours:</p>
+<p><img src="gwas_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Manhattan plot with a two-colour alternating palette. Adjacent chromosomes alternate between blue and pale blue, preserving the same p-value threshold lines." width="700"></p>
+<p>To override the Manhattan colours, pass two explicit colours.
+<code>binary = TRUE</code> keeps the two-colour alternation even when a
+longer palette is supplied:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_manha.html">plot_manha</a></span><span class="op">(</span></span>
 <span>  <span class="va">gwas</span>,</span>
-<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#4E79A7"</span>, <span class="st">"#F28E2B"</span><span class="op">)</span>,</span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#55AEDB"</span>, <span class="st">"#C4E2F3"</span><span class="op">)</span>,</span>
 <span>  binary <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="gwas_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Manhattan plot with a two-colour alternating palette. Adjacent chromosomes alternate between the two supplied colours, emphasizing chromosome separation without changing the p-value scale or thresholds." width="700"></p>
-<p>Reference-line colours use the same publication palette by default,
-and can be overridden explicitly with <code>threshold_color</code> and
-<code>suggestive_color</code>.</p>
+<p>Reference-line colours use orange for the genome-wide threshold and
+grey for the suggestive baseline by default. Override them with
+<code>threshold_color</code> and <code>suggestive_color</code> when
+needed.</p>
 </div>
 <div class="section level2">
 <h2 id="alternative-gwas-formats">Alternative GWAS formats<a class="anchor" aria-label="anchor" href="#alternative-gwas-formats"></a>

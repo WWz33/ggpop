@@ -24,10 +24,10 @@ geom_manha(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p)
 \item{maxP}{Maximum displayed transformed value.}
 \item{bybp}{Display position in Mb rather than combined chromosome scale.}
 \item{palette}{A ggpop palette name or a character vector of hex colours.}
-\item{binary}{If `TRUE`, repeat two colours across chromosomes for a binary alternating Manhattan palette. If `FALSE`, assign one discrete colour per chromosome.}
+\item{binary}{If `TRUE`, repeat two colours across chromosomes for a binary alternating Manhattan palette. The default \code{"manhattan"} palette already alternates two colours.}
 \item{base_size}{Base font size for the default module theme.}
 \item{base_family}{Base font family for the default module theme.}
-\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use the unified ggpop publication palette and can be overridden explicitly.}
+\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use orange for the genome-wide threshold and grey for the suggestive baseline.}
 \item{threshold_color, suggestive_color}{Compatibility aliases for `threshold_colour` and `suggestive_colour`.}
 \item{na.rm}{Remove missing values.}
 \item{show.legend}{Legend display.}

@@ -16,7 +16,7 @@ geom_selection(
   value = c("signed", "absolute"),
   threshold = NULL,
   threshold_type = c("value", "quantile"),
-  threshold_color = ggpop_palette(4, "publication")[4],
+  threshold_color = "#D55E00",
   threshold_linetype = "dashed",
   size = NULL,
   alpha = NULL,
@@ -46,7 +46,7 @@ plot_selection(
   threshold_type = c("value", "quantile"),
   style = c("auto", "single", "manhattan"),
   binary = FALSE,
-  threshold_color = ggpop_palette(4, "publication")[4],
+  threshold_color = "#D55E00",
   threshold_linetype = "dashed",
   point_size = NULL,
   point_alpha = NULL,
@@ -66,7 +66,7 @@ plot_selection(
 \item{threshold}{Optional threshold. With \code{threshold_type = "value"}, this is a score cutoff such as \code{2}. With \code{threshold_type = "quantile"}, values between 0 and 1 are interpreted as quantile probabilities such as \code{0.95}.}
 \item{threshold_type}{Interpret \code{threshold} as fixed score values or quantile probabilities. Quantiles are computed from absolute scores after statistic, chromosome, and region filtering.}
 \item{style}{Direct plot layout. \code{"auto"} uses a Manhattan-like chromosome axis unless \code{chr}, \code{start}, or \code{end} is supplied; local calls use the single-region position axis. Use \code{"manhattan"} or \code{"single"} to force a layout.}
-\item{binary}{Use two alternating chromosome colours for Manhattan-like selection plots.}
+\item{binary}{Use two alternating chromosome colours for Manhattan-like selection plots. The default \code{"manhattan"} palette alternates \code{#55AEDB} and \code{#C4E2F3}.}
 \item{threshold_color, threshold_linetype}{Threshold line appearance.}
 \item{size, alpha}{Layer appearance for \code{geom_selection()}.}
 \item{point_size, point_alpha}{Point appearance for \code{plot_selection()}. Single-region plots default to smaller points; Manhattan-like plots default to the GWAS Manhattan point style.}

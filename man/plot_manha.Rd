@@ -16,13 +16,13 @@ plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
 \item{data}{A `ggpop_gwas` object.}
 \item{title, subtitle, caption}{Plot text.}
 \item{threshold, suggestive}{Manhattan reference p-value thresholds.}
-\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use the unified ggpop publication palette and can be overridden explicitly.}
+\item{threshold_colour, suggestive_colour}{Reference-line colours. Defaults use orange for the genome-wide threshold and grey for the suggestive baseline.}
 \item{threshold_color, suggestive_color}{Compatibility aliases for `threshold_colour` and `suggestive_colour`.}
 \item{point_size, point_alpha}{Point appearance.}
 \item{base_size, base_family, legend_position}{Publication theme settings.}
 \item{logp, maxP, bybp}{Core fastman-style controls forwarded by `plot_manha()` and mirrored by `geom_manha()`.}
 \item{palette}{A ggpop palette name or a character vector of hex colours for Manhattan plots.}
-\item{binary}{If `TRUE`, repeat two palette colours across chromosomes for a binary alternating Manhattan plot. If `FALSE`, use one discrete colour per chromosome.}
+\item{binary}{If `TRUE`, repeat two palette colours across chromosomes for a binary alternating Manhattan plot. The default \code{"manhattan"} palette already alternates two colours.}
 \item{...}{Additional layer or backend arguments.}
 }
 \description{

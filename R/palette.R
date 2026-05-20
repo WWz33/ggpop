@@ -49,7 +49,7 @@ colors_pop_paper <- new_pop_palette(
 )
 
 colors_pop_manhattan <- new_pop_palette(
-  c("#4E79A7", "#F28E2B", "#59A14F", "#E15759", "#76B7B2", "#B07AA1", "#EDC948"),
+  c("#55AEDB", "#C4E2F3"),
   "colors_pop_manhattan"
 )
 
@@ -124,6 +124,7 @@ scale_fill_ggpop <- function(palette = c("admixture", "population", "publication
 
 .palette_n <- function(palette, n, downsample = c("evenly", "first", "last", "middle")) {
   downsample <- match.arg(downsample)
+  palette_name <- attr(palette, "ggpop_palette_name", exact = TRUE)
   palette <- unclass(palette)
   if (!is.null(names(palette))) {
     return(palette)
@@ -136,6 +137,9 @@ scale_fill_ggpop <- function(palette = c("admixture", "population", "publication
   }
   if (length(palette) > n) {
     return(.downsample_vector(palette, n, downsample = downsample))
+  }
+  if (identical(palette_name, "colors_pop_manhattan")) {
+    return(rep_len(palette, n))
   }
   grDevices::colorRampPalette(palette)(n)
 }

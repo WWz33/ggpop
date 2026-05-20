@@ -1,6 +1,6 @@
 plot_qq <- function(data, title = NULL, subtitle = NULL, caption = NULL,
                     show_lambda = TRUE, point_size = 0.8,
-                    diagonal_colour = .gwas_threshold_color(),
+                    diagonal_colour = .gwas_qq_diagonal_color(),
                     diagonal_color = NULL,
                     point_alpha = 0.8, base_size = 11, base_family = "",
                     legend_position = "none", ...) {
@@ -204,7 +204,7 @@ StatQQLambda <- ggplot2::ggproto(
 geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
                     geom = "point", position = "identity", ..., size = 0.8,
                     alpha = 0.8, colour = "black", diagonal = TRUE,
-                    diagonal_colour = .gwas_threshold_color(),
+                    diagonal_colour = .gwas_qq_diagonal_color(),
                     diagonal_color = NULL, show_lambda = TRUE,
                     maxP = 14, fix_zero = TRUE, speedup = TRUE,
                     base_size = 11, base_family = "",
@@ -266,7 +266,7 @@ geom_qq <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
 geom_qq_pub <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
                         ..., size = 0.8, alpha = 0.8,
                         diagonal = TRUE,
-                        diagonal_colour = .gwas_threshold_color(),
+                        diagonal_colour = .gwas_qq_diagonal_color(),
                         diagonal_color = NULL,
                         show_lambda = TRUE, maxP = 14, fix_zero = TRUE,
                         speedup = TRUE, base_size = 11, base_family = "",
@@ -293,4 +293,8 @@ geom_qq_pub <- function(mapping = ggplot2::aes(p = .data$p), data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes
   )
+}
+
+.gwas_qq_diagonal_color <- function() {
+  ggpop_palette(4, "publication")[4]
 }

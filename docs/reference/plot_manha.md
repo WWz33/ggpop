@@ -34,8 +34,8 @@ plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
 
 - threshold_colour, suggestive_colour:
 
-  Reference-line colours. Defaults use the unified ggpop publication
-  palette and can be overridden explicitly.
+  Reference-line colours. Defaults use orange for the genome-wide
+  threshold and grey for the suggestive baseline.
 
 - threshold_color, suggestive_color:
 
@@ -63,8 +63,8 @@ plot_manha(data, title = NULL, subtitle = NULL, caption = NULL,
 - binary:
 
   If \`TRUE\`, repeat two palette colours across chromosomes for a
-  binary alternating Manhattan plot. If \`FALSE\`, use one discrete
-  colour per chromosome.
+  binary alternating Manhattan plot. The default `"manhattan"` palette
+  already alternates two colours.
 
 - ...:
 

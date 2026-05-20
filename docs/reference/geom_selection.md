@@ -21,7 +21,7 @@ geom_selection(
   value = c("signed", "absolute"),
   threshold = NULL,
   threshold_type = c("value", "quantile"),
-  threshold_color = ggpop_palette(4, "publication")[4],
+  threshold_color = "#D55E00",
   threshold_linetype = "dashed",
   size = NULL,
   alpha = NULL,
@@ -51,7 +51,7 @@ plot_selection(
   threshold_type = c("value", "quantile"),
   style = c("auto", "single", "manhattan"),
   binary = FALSE,
-  threshold_color = ggpop_palette(4, "publication")[4],
+  threshold_color = "#D55E00",
   threshold_linetype = "dashed",
   point_size = NULL,
   point_alpha = NULL,
@@ -122,7 +122,8 @@ plot_selection(
 - binary:
 
   Use two alternating chromosome colours for Manhattan-like selection
-  plots.
+  plots. The default `"manhattan"` palette alternates `#55AEDB` and
+  `#C4E2F3`.
 
 - threshold_color, threshold_linetype:
 
