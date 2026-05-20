@@ -85,7 +85,9 @@ including `dist`, `dist_kb`, `r2`, `pop`, and `n_pairs`.
 Population grouping follows the package-wide convention: `pop_group` is
 the standard two-column `sample pop` table used by PCA and admixture
 workflows. LD decay file labels are stored as `sample_id`; when
-`pop_group` is supplied, matching labels are mapped to `pop`.
+`pop_group` is supplied, matching labels are mapped to `pop`. The
+plotting helpers then regroup the mapped LD decay rows by population
+label so line layers stay population-specific after relabeling.
 
 ## Examples
 

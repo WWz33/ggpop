@@ -8,6 +8,7 @@ geom_ld_decay(
   data = NULL,
   ...,
   pop = NULL,
+  pop_group = NULL,
   style = c("point", "line"),
   measure = c("r2", "D", "both"),
   colour_by = c("pop", "file"),
@@ -24,6 +25,7 @@ geom_ld_decay(
 plot_ld_decay(
   data,
   pop = NULL,
+  pop_group = NULL,
   style = c("point", "line"),
   measure = c("r2", "D", "both"),
   title = NULL,
@@ -40,6 +42,7 @@ plot_ld_decay(
 \item{data}{A \code{ggpop_ld_decay} object from \code{import_ld_decay()}.}
 \item{...}{Additional geom parameters.}
 \item{pop}{Optional population labels to keep.}
+\item{pop_group}{Optional population group table or path to the standard two-column \code{sample pop} file. File labels are matched through \code{sample}, then regrouped by the mapped population labels.}
 \item{style}{Draw \code{"point"} or \code{"line"} layers.}
 \item{measure}{Plot \code{r^2}, D-prime, or both measures together.}
 \item{colour_by}{Colour by population or source file.}
@@ -53,12 +56,13 @@ plot_ld_decay(
 \code{geom_ld_decay()} returns a list of ggplot layers. \code{plot_ld_decay()} returns a ggplot object.
 }
 \description{
-Plot LD decay summaries as either point or line plots. The x-axis is pairwise distance in kilobases and the y-axis defaults to mean LD \eqn{r^2}, with optional D-prime or combined \eqn{r^2}/D-prime views. All styles support population colouring through the package-wide \code{pop} column.
+Plot LD decay summaries as either point or line plots. The x-axis is pairwise distance in kilobases and the y-axis defaults to mean LD \eqn{r^2}, with optional D-prime or combined \eqn{r^2}/D-prime views. All styles support population colouring through the package-wide \code{pop} column, and \code{pop_group} can relabel and regroup imported files.
 }
 \examples{
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
 ld <- import_ld_decay(ld_dir, type = "poplddecay")
-ld |> plot_ld_decay(style = "point")
-ld |> plot_ld_decay(style = "line")
-ld |> ggpop() + geom_ld_decay(style = "point")
+groups <- import_pop_group(system.file("extdata", "pop_group.txt", package = "ggpop"))
+ld |> plot_ld_decay(pop_group = groups, style = "point")
+ld |> plot_ld_decay(pop_group = groups, style = "line")
+ld |> ggpop() + geom_ld_decay(pop_group = groups, style = "point")
 }

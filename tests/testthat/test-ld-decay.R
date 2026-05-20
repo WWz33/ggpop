@@ -133,3 +133,32 @@ test_that("LD decay imports map file labels through pop_group", {
   expect_equal(unique(data$sample_id), "sample_a")
   expect_equal(unique(data$pop), "PopA")
 })
+
+test_that("LD decay plots regroup lines after pop_group mapping", {
+  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
+  group <- data.frame(sample = "sample_a", pop = "PopA")
+  data <- import_ld_decay(ld_dir, pop = "sample_a", pop_group = group, type = "poplddecay")
+
+  plot <- plot_ld_decay(data, pop_group = group, style = "line")
+  built <- ggplot2::ggplot_build(plot)
+
+  expect_s3_class(plot, "ggplot")
+  expect_silent(ggplot2::ggplot_build(plot))
+  expect_true("PopA" %in% unique(built$plot$data$pop))
+  expect_true(all(grepl("^PopA:", unique(built$plot$data$.group))))
+})
+
+test_that("LD decay layered plots keep grouped colouring", {
+  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
+  group <- data.frame(sample = c("sample_a", "sample_b"), pop = c("PopA", "PopB"))
+  a <- import_ld_decay(ld_dir, pop = "sample_a", pop_group = group, type = "poplddecay")
+  b <- import_ld_decay(ld_dir, pop = "sample_b", pop_group = group, type = "poplddecay")
+  data <- .new_ggpop_ld_decay(rbind(as.data.frame(a), as.data.frame(b)), source = "poplddecay")
+
+  plot <- ggpop(data) + geom_ld_decay(pop_group = group, style = "point")
+  built <- ggplot2::ggplot_build(plot)
+
+  expect_silent(ggplot2::ggplot_build(plot))
+  expect_true(length(unique(built$data[[1]]$colour)) >= 2)
+  expect_true(all(c("PopA", "PopB") %in% unique(built$plot$data$pop)))
+})

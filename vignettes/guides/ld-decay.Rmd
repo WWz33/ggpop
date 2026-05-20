@@ -76,7 +76,11 @@ the x-axis and mean LD \(r^2\) on the y-axis, with population labels mapped to
 colour.
 
 ```{r, fig.alt = "LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label."}
-plot_ld_decay(ld_decay, style = "point")
+plot_ld_decay(
+  ld_decay,
+  pop_group = ggpop_extdata("pop_group.txt"),
+  style = "point"
+)
 ```
 
 ## Line style
@@ -85,7 +89,11 @@ The line style uses the same data and population colour mapping, but draws a
 continuous decay curve.
 
 ```{r, fig.alt = "LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern."}
-plot_ld_decay(ld_decay, style = "line")
+plot_ld_decay(
+  ld_decay,
+  pop_group = ggpop_extdata("pop_group.txt"),
+  style = "line"
+)
 ```
 
 ## Layered path
@@ -95,5 +103,5 @@ Use `ggpop()` plus `geom_ld_decay()` when composing with other ggplot layers.
 ```{r, fig.alt = "Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis."}
 ld_decay |>
   ggpop() +
-  geom_ld_decay(style = "point")
+  geom_ld_decay(pop_group = ggpop_extdata("pop_group.txt"), style = "point")
 ```

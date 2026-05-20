@@ -37,6 +37,7 @@ Import LD decay summaries into a typed tidy object for use with \code{plot_ld_de
 }
 \details{
 Population grouping follows the package-wide convention: \code{pop_group} is the standard two-column \code{sample pop} table used by PCA and admixture workflows. LD decay file labels are stored as \code{sample_id}; when \code{pop_group} is supplied, matching labels are mapped to \code{pop}.
+The plotting helpers then regroup the mapped LD decay rows by population label so line layers stay population-specific after relabeling.
 }
 \examples{
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")

@@ -4,7 +4,7 @@ Plot LD decay summaries as either point or line plots. The x-axis is
 pairwise distance in kilobases and the y-axis defaults to mean LD
 \\r^2\\, with optional D-prime or combined \\r^2\\/D-prime views. All
 styles support population colouring through the package-wide `pop`
-column.
+column, and `pop_group` can relabel and regroup imported files.
 
 ## Usage
 
@@ -14,6 +14,7 @@ geom_ld_decay(
   data = NULL,
   ...,
   pop = NULL,
+  pop_group = NULL,
   style = c("point", "line"),
   measure = c("r2", "D", "both"),
   colour_by = c("pop", "file"),
@@ -30,6 +31,7 @@ geom_ld_decay(
 plot_ld_decay(
   data,
   pop = NULL,
+  pop_group = NULL,
   style = c("point", "line"),
   measure = c("r2", "D", "both"),
   title = NULL,
@@ -61,6 +63,12 @@ plot_ld_decay(
 - pop:
 
   Optional population labels to keep.
+
+- pop_group:
+
+  Optional population group table or path to the standard two-column
+  `sample pop` file. File labels are matched through `sample`, then
+  regrouped by the mapped population labels.
 
 - style:
 
@@ -105,9 +113,10 @@ returns a ggplot object.
 ``` r
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
 ld <- import_ld_decay(ld_dir, type = "poplddecay")
-ld |> plot_ld_decay(style = "point")
+groups <- import_pop_group(system.file("extdata", "pop_group.txt", package = "ggpop"))
+ld |> plot_ld_decay(pop_group = groups, style = "point")
 
-ld |> plot_ld_decay(style = "line")
+ld |> plot_ld_decay(pop_group = groups, style = "line")
 
-ld |> ggpop() + geom_ld_decay(style = "point")
+ld |> ggpop() + geom_ld_decay(pop_group = groups, style = "point")
 ```

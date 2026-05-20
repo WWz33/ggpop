@@ -118,7 +118,8 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Population grouping follows the package-wide convention: <code>pop_group</code> is the standard two-column <code>sample pop</code> table used by PCA and admixture workflows. LD decay file labels are stored as <code>sample_id</code>; when <code>pop_group</code> is supplied, matching labels are mapped to <code>pop</code>.</p>
+    <p>Population grouping follows the package-wide convention: <code>pop_group</code> is the standard two-column <code>sample pop</code> table used by PCA and admixture workflows. LD decay file labels are stored as <code>sample_id</code>; when <code>pop_group</code> is supplied, matching labels are mapped to <code>pop</code>.
+The plotting helpers then regroup the mapped LD decay rows by population label so line layers stay population-specific after relabeling.</p>
     </div>
 
     <div class="section level2">

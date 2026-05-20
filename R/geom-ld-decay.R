@@ -1,5 +1,6 @@
 geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2),
                           data = NULL, ..., pop = NULL,
+                          pop_group = NULL,
                           style = c("point", "line"),
                           measure = c("r2", "D", "both"),
                           colour_by = c("pop", "file"),
@@ -12,6 +13,8 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
   measure <- match.arg(measure)
   colour_by <- match.arg(colour_by)
   layer_data <- .filter_ld_decay_data(data, pop = pop)
+  layer_data <- .ld_decay_pop_group_data(layer_data, pop_group = pop_group)
+  layer_data <- .ld_decay_group_data(layer_data)
   layer_data <- .ld_decay_measure_data(layer_data, measure = measure)
   mapping <- .ld_decay_measure_mapping(mapping, measure = measure)
   if (.ld_decay_should_map_colour(layer_data, mapping, colour_by)) {
@@ -48,7 +51,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
     Filter(Negate(is.null), layers),
     class = c("ggpop_ld_decay_layers", "list"),
     ggpop_ld_decay_data = layer_data,
-    ggpop_ld_decay_filter = list(pop = pop, measure = measure)
+    ggpop_ld_decay_filter = list(pop = pop, pop_group = pop_group, measure = measure)
   )
 }
 
@@ -69,7 +72,15 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
   filter <- attr(object, "ggpop_ld_decay_filter", exact = TRUE)
   if (inherits(plot$data, "ggpop_ld_decay")) {
     plot$data <- if (is.function(layer_data)) {
-      .ld_decay_measure_data(.filter_ld_decay_data(plot$data, pop = filter$pop), measure = filter$measure)
+      .ld_decay_measure_data(
+        .ld_decay_group_data(
+          .ld_decay_pop_group_data(
+            .filter_ld_decay_data(plot$data, pop = filter$pop),
+            pop_group = filter$pop_group
+          )
+        ),
+        measure = filter$measure
+      )
     } else {
       layer_data
     }
@@ -80,7 +91,7 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
   plot
 }
 
-plot_ld_decay <- function(data, pop = NULL, style = c("point", "line"),
+plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point", "line"),
                           measure = c("r2", "D", "both"),
                           title = NULL, subtitle = NULL, caption = NULL,
                           base_size = 11, base_family = "",
@@ -89,10 +100,13 @@ plot_ld_decay <- function(data, pop = NULL, style = c("point", "line"),
   style <- match.arg(style)
   measure <- match.arg(measure)
   selected <- .filter_ld_decay_data(data, pop = pop)
+  selected <- .ld_decay_pop_group_data(selected, pop_group = pop_group)
+  selected <- .ld_decay_group_data(selected)
   plot <- ggpop(selected) +
     geom_ld_decay(
       data = selected,
       pop = NULL,
+      pop_group = NULL,
       style = style,
       measure = measure,
       base_size = base_size,
@@ -137,6 +151,38 @@ plot_ld_decay <- function(data, pop = NULL, style = c("point", "line"),
     stop("No LD decay rows remain after filtering.", call. = FALSE)
   }
   out
+}
+
+.ld_decay_pop_group_data <- function(data, pop_group = NULL) {
+  if (is.null(data)) {
+    force(pop_group)
+    return(function(plot_data) .ld_decay_pop_group_data(plot_data, pop_group = pop_group))
+  }
+  if (is.function(data)) {
+    force(pop_group)
+    return(function(plot_data) .ld_decay_pop_group_data(data(plot_data), pop_group = pop_group))
+  }
+  if (is.null(pop_group)) {
+    return(data)
+  }
+  .require_class(data, "ggpop_ld_decay", "LD decay data")
+  .join_ld_decay_pop_group(data, pop_group = pop_group)
+}
+
+.ld_decay_group_data <- function(data) {
+  if (is.null(data)) {
+    return(function(plot_data) .ld_decay_group_data(plot_data))
+  }
+  if (is.function(data)) {
+    return(function(plot_data) .ld_decay_group_data(data(plot_data)))
+  }
+  .require_class(data, "ggpop_ld_decay", "LD decay data")
+  if ("file" %in% names(data)) {
+    data$.group <- interaction(data$pop, data$file, drop = TRUE, sep = ":")
+  } else {
+    data$.group <- interaction(data$pop, drop = TRUE, sep = ":")
+  }
+  data
 }
 
 .ld_decay_should_map_colour <- function(data, mapping, colour_by) {
