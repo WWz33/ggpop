@@ -5,7 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Introgression • ggpop</title>
+<title>Introgression • ggPopi</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../../favicon.ico">
+<link rel="manifest" href="../../site.webmanifest">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../../deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
@@ -13,7 +18,7 @@
 <link href="../../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../../deps/headroom-0.11.0/headroom.min.js"></script><script src="../../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../../deps/search-1.0.0/fuse.min.js"></script><script src="../../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="Introgression">
-<script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-hide-below="1200" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
+<!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script><script async src="https://widget.kapa.ai/kapa-widget.bundle.js" data-button-hide="true" data-modal-disclaimer="This is a custom LLM for answering questions about dplyr, tidyr, and ggplot2. Answers are based on the contents of the documentation. Rate the answers to let us know what you think!" data-modal-ask-ai-input-placeholder="Ask me a question about dplyr, tidyr, or ggplot2." data-modal-header-bg-color="#f9f9f9" data-modal-override-open-class="open-kapa-widget" data-project-color="#365a7a" data-project-name="dplyr" data-user-analytics-fingerprint-enabled="false" data-user-analytics-cookie-enabled="false" data-bot-protection-mechanism="hcaptcha" data-website-id="44ae76c6-2ae5-4899-ab42-de9f17f07c7b"></script>
@@ -24,7 +29,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../../index.html">ggpop</a>
+    <a class="navbar-brand me-2" href="../../index.html">ggPopi</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
@@ -35,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../../articles/ggpop.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -62,6 +67,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/WWz33" aria-label="GitHub profile"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
 
@@ -74,8 +80,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Introgression</h1>
+      <img src="../../logo.png" class="logo" alt=""><h1>Introgression</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/WWz33/ggpop/blob/HEAD/vignettes/guides/introgression.Rmd" class="external-link"><code>vignettes/guides/introgression.Rmd</code></a></small>
@@ -146,8 +151,9 @@ tables</td>
 </h2>
 <p>genomics_general ABBA-BABA windows are imported in long form, with
 one row per statistic per window. Genome-wide calls default to a
-chromosome-wise window curve, matching the usual Dsuite Dinvestigate
-style of following D, fd, and fdM across genomic windows.</p>
+chromosome-wise window point plot on a Manhattan-like genome axis,
+matching common ABBA-BABA/fdM window summaries where each point is one
+genomic window.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"genomics_general"</span><span class="op">)</span>,</span>
@@ -159,7 +165,7 @@ style of following D, fd, and fdM across genomic windows.</p>
 <span><span class="co">#&gt; [1] "D"   "fd"  "fdM"</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise curves in stacked panels over chromosomes 1 and 2." width="700"></p>
+<p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over chromosomes 1 and 2." width="700"></p>
 <p>When a chromosome or region is supplied, the direct plot uses a local
 position axis in megabases.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -197,7 +203,9 @@ model fitting. <code>ggpop</code> reads a compact edge table with
 <code>from</code> and <code>to</code> columns, plus optional weights or
 bounds. TreeMix internal <code>*.edges.gz</code> files are not treated
 as a stable public schema; convert migration edges from the user-facing
-<code>treeout.gz</code> summary or provide an explicit edge table.</p>
+<code>treeout.gz</code> summary or provide an explicit edge table. Full
+TreeMix-style <code>plot_tree()</code> plus residual heatmap support
+belongs to a dedicated TreeMix view.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">treemix_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"TreeMix"</span>, <span class="st">"migration_edges.tsv"</span><span class="op">)</span>,</span>
@@ -238,7 +246,7 @@ composing with additional ggplot layers.</p>
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_introgression.html">geom_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise curves over the genome." width="700"></p>
+<p><img src="introgression_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise Manhattan-like points over the genome." width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -249,7 +257,7 @@ composing with additional ggplot layers.</p>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by ggpop Authors.</p>
+  <p>Developed by ggPopi Authors.</p>
 </div>
 
 <div class="pkgdown-footer-right">

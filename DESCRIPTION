@@ -1,10 +1,10 @@
-Package: ggpop
+Package: ggPopi
 Title: ggplot2 Extensions for Population Genetics Plots
 Version: 0.0.0.9000
 Authors@R: 
-    person("ggpop", "Authors", email = "maintainer@example.com", role = c("aut", "cre"))
-Author: ggpop Authors
-Maintainer: ggpop Authors <maintainer@example.com>
+    person("ggPopi", "Authors", email = "maintainer@example.com", role = c("aut", "cre"))
+Author: ggPopi Authors
+Maintainer: ggPopi Authors <maintainer@example.com>
 Description: Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, Ne history, and windowed population statistics plots.
 License: MIT + file LICENSE
 URL: https://wwz33.github.io/ggpop/, https://github.com/WWz33/ggpop

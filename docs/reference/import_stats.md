@@ -35,5 +35,7 @@ A `ggpop_stats` data frame with normalized columns: `stat`, `chr`,
 ``` r
 pixy_dir <- system.file("extdata", "Population_genomics_statistics", "pixy", package = "ggpop")
 stats <- import_stats(pixy_dir, type = "pixy")
+#> Error: `dir` must point to an existing directory.
 stats |> plot_stats(stat = c("fst", "pi"), chr = "chr2L")
+#> Error: object 'stats' not found
 ```

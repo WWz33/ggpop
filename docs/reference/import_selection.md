@@ -35,9 +35,12 @@ including `stat`, `chr`, `pos`, `value`, and `score_type`.
 ``` r
 selscan_dir <- system.file("extdata", "selective_sweep", "selscan", package = "ggpop")
 selection <- import_selection(selscan_dir, type = "selscan")
+#> Error: `dir` must point to an existing directory.
 selection |> plot_selection(stat = "ihs", chr = "1")
-
+#> Error: object 'selection' not found
 xpclr_dir <- system.file("extdata", "selective_sweep", "xpclr", package = "ggpop")
 xpclr <- import_selection(xpclr_dir, type = "xpclr")
+#> Error: `dir` must point to an existing directory.
 xpclr |> plot_selection(stat = "xpclr", chr = "1", start = 1, end = 1600000)
+#> Error: object 'xpclr' not found
 ```

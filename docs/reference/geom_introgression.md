@@ -2,9 +2,9 @@
 
 Plot introgression summaries from Dsuite, genomics_general,
 TreeMix-style edge summaries, or ADMIXTOOLS2 qpGraph edge tables.
-Windowed statistics use chromosome-wise window curves or regional
-point-and-line traces, trio summaries use a horizontal dot plot, and
-graph inputs use a compact edge diagram.
+Windowed statistics use chromosome-wise Manhattan-like points or
+regional point-and-line traces, trio summaries use a horizontal dot
+plot, and graph inputs use a compact edge diagram.
 
 ## Usage
 
@@ -85,7 +85,7 @@ plot_introgression(
 
 - style:
 
-  Plot layout. `"auto"` uses chromosome-wise window curves for
+  Plot layout. `"auto"` uses chromosome-wise Manhattan-like points for
   genome-wide window statistics, a point-and-line regional axis for
   local window calls, a trio dot plot for Dtrios-style summaries, and an
   edge diagram for graph data. `"manhattan"` is accepted as a
@@ -97,8 +97,8 @@ plot_introgression(
 
 - point_size, point_alpha:
 
-  Layer appearance. Genome-wide window plots use this value as line
-  width; region plots use it as point size and draw a thinner connecting
+  Layer appearance. Genome-wide window plots use this value as point
+  size; region plots use it as point size and draw a thinner connecting
   line.
 
 - base_size, base_family:
@@ -127,9 +127,11 @@ plot_introgression(
 ``` r
 intro_dir <- system.file("extdata", "introgression", "genomics_general", package = "ggpop")
 intro <- import_introgression(intro_dir, type = "genomics_general")
+#> Error: `dir` must point to an existing directory.
 intro |> plot_introgression(stat = c("D", "fdM"))
-
+#> Error: object 'intro' not found
 intro |> plot_introgression(stat = "D", chr = "1")
-
+#> Error: object 'intro' not found
 intro |> ggpop() + geom_introgression(stat = "D")
+#> Error: object 'intro' not found
 ```

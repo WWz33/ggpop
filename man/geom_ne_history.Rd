@@ -9,7 +9,7 @@ geom_ne_history(
   ...,
   sample_id = NULL,
   method = NULL,
-  style = c("line", "point"),
+  style = c("auto", "step", "line", "point"),
   ci = TRUE,
   colour_by = c("sample_id", "method"),
   size = NULL,
@@ -28,7 +28,7 @@ plot_ne_history(
   data,
   sample_id = NULL,
   method = NULL,
-  style = c("line", "point"),
+  style = c("auto", "step", "line", "point"),
   ci = TRUE,
   title = NULL,
   subtitle = NULL,
@@ -46,7 +46,7 @@ plot_ne_history(
 \item{data}{A \code{ggpop_ne_history} object from \code{import_ne_history()}.}
 \item{...}{Additional geom parameters.}
 \item{sample_id, method}{Optional sample/population or method filters.}
-\item{style}{Draw \code{"line"} or \code{"point"} layers.}
+\item{style}{Draw \code{"auto"}, \code{"step"}, \code{"line"}, or \code{"point"} layers. \code{"auto"} follows common tool conventions: SMC++ histories use lines, while PSMC, MSMC2, and Stairway Plot 2 histories use step curves.}
 \item{ci}{Draw confidence interval ribbons when \code{ne_lower} and \code{ne_upper} are available.}
 \item{colour_by}{Colour by sample or method.}
 \item{size, alpha}{Layer appearance.}

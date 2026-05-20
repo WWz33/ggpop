@@ -165,12 +165,14 @@ returns a ggplot object.
 ``` r
 selscan_dir <- system.file("extdata", "selective_sweep", "selscan", package = "ggpop")
 selection <- import_selection(selscan_dir, type = "selscan")
+#> Error: `dir` must point to an existing directory.
 selection |> plot_selection(stat = "ihs", value = "absolute")
-
+#> Error: object 'selection' not found
 selection |> plot_selection(stat = c("ihs", "xpehh"), chr = "1")
-
+#> Error: object 'selection' not found
 selection |> ggpop() + geom_selection(stat = "ihs", chr = "1", threshold = 2)
-
+#> Error: object 'selection' not found
 selection |> plot_selection(stat = "ihs", chr = "1", value = "absolute",
   threshold = 0.95, threshold_type = "quantile")
+#> Error: object 'selection' not found
 ```

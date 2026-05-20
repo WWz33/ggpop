@@ -5,7 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Ne history • ggpop</title>
+<title>Ne history • ggPopi</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../../favicon.ico">
+<link rel="manifest" href="../../site.webmanifest">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../../deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
@@ -13,7 +18,7 @@
 <link href="../../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../../deps/headroom-0.11.0/headroom.min.js"></script><script src="../../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../../deps/search-1.0.0/fuse.min.js"></script><script src="../../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="Ne history">
-<script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-hide-below="1200" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
+<!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script><script async src="https://widget.kapa.ai/kapa-widget.bundle.js" data-button-hide="true" data-modal-disclaimer="This is a custom LLM for answering questions about dplyr, tidyr, and ggplot2. Answers are based on the contents of the documentation. Rate the answers to let us know what you think!" data-modal-ask-ai-input-placeholder="Ask me a question about dplyr, tidyr, or ggplot2." data-modal-header-bg-color="#f9f9f9" data-modal-override-open-class="open-kapa-widget" data-project-color="#365a7a" data-project-name="dplyr" data-user-analytics-fingerprint-enabled="false" data-user-analytics-cookie-enabled="false" data-bot-protection-mechanism="hcaptcha" data-website-id="44ae76c6-2ae5-4899-ab42-de9f17f07c7b"></script>
@@ -24,7 +29,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../../index.html">ggpop</a>
+    <a class="navbar-brand me-2" href="../../index.html">ggPopi</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
@@ -35,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../../articles/ggpop.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -62,6 +67,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/WWz33" aria-label="GitHub profile"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
 
@@ -74,8 +80,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Ne history</h1>
+      <img src="../../logo.png" class="logo" alt=""><h1>Ne history</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/WWz33/ggpop/blob/HEAD/vignettes/guides/ne-history.Rmd" class="external-link"><code>vignettes/guides/ne-history.Rmd</code></a></small>
@@ -137,6 +142,17 @@ values</td>
 </table>
 </div>
 <div class="section level2">
+<h2 id="plot-conventions">Plot conventions<a class="anchor" aria-label="anchor" href="#plot-conventions"></a>
+</h2>
+<p><code><a href="../../reference/geom_ne_history.html">plot_ne_history()</a></code> defaults to the plotting style used
+most often by each upstream workflow. SMC++ fitted histories are drawn
+as curves. PSMC, MSMC2, and Stairway Plot 2 histories are drawn as step
+curves because their native outputs represent piecewise time intervals.
+Time and Ne axes are log-scaled by default, matching the usual
+demographic-history presentation; pass <code>log_x = FALSE</code> or
+<code>log_y = FALSE</code> for linear axes.</p>
+</div>
+<div class="section level2">
 <h2 id="smc-curves">SMC++ curves<a class="anchor" aria-label="anchor" href="#smc-curves"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -171,7 +187,8 @@ values</td>
 <p>Stairway Plot 2 summaries often contain lower and upper interval
 estimates. When <code>ne_lower</code> and <code>ne_upper</code> are
 available, <code><a href="../../reference/geom_ne_history.html">plot_ne_history()</a></code> draws a light confidence
-ribbon.</p>
+ribbon around the step curve, matching the usual Stairway Plot summary
+display of an estimate with interval bounds.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stairway</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ne_history.html">import_ne_history</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ne_history"</span>, <span class="st">"StairwayPlot2"</span>, <span class="st">"summary.txt"</span><span class="op">)</span>,</span>
@@ -186,7 +203,10 @@ ribbon.</p>
 </h2>
 <p>PSMC and MSMC2 outputs are scaled unless a mutation rate is supplied.
 Passing <code>mutation_rate</code> converts to absolute Ne and time;
-<code>generation_time</code> can then convert generations to years.</p>
+<code>generation_time</code> can then convert generations to years.
+Their default plot style is a step curve, which matches the
+interval-based output used by <code>psmc_plot.pl</code> and MSMC
+plotting helpers.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">psmc_scaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ne_history.html">import_ne_history</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ne_history"</span>, <span class="st">"PSMC"</span>, <span class="st">"sample.psmc"</span><span class="op">)</span>,</span>
@@ -204,17 +224,20 @@ Passing <code>mutation_rate</code> converts to absolute Ne and time;
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">msmc_absolute</span><span class="op">$</span><span class="va">scale</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "absolute"</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_ne_history.html">plot_ne_history</a></span><span class="op">(</span><span class="va">msmc_absolute</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ne-history_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="MSMC2 effective population size history as a step curve. Time before present is log-scaled on the x-axis and effective population size is on the y-axis." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="layered-path">Layered path<a class="anchor" aria-label="anchor" href="#layered-path"></a>
 </h2>
 <p>Use <code><a href="../../reference/ggpop.html">ggpop()</a></code> plus <code><a href="../../reference/geom_ne_history.html">geom_ne_history()</a></code> when
 composing with additional ggplot layers.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">smcpp</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_ne_history.html">geom_ne_history</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ne-history_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Layered Ne history plot using ggpop plus geom_ne_history. Population-specific SMC++ curves are drawn on log-scaled time and Ne axes." width="700"></p>
+<p><img src="ne-history_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Layered Ne history plot using ggpop plus geom_ne_history. Population-specific SMC++ curves are drawn on log-scaled time and Ne axes." width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -225,7 +248,7 @@ composing with additional ggplot layers.</p>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by ggpop Authors.</p>
+  <p>Developed by ggPopi Authors.</p>
 </div>
 
 <div class="pkgdown-footer-right">

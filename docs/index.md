@@ -1,6 +1,6 @@
-# ggpop [![Scatter chart of PCA results with samples grouped by population colour.](reference/figures/readme-pca.png)](https://wwz33.github.io/ggpop/)
+# ggPopi
 
-The goal of `ggpop` is to streamline publication-ready
+The goal of `ggPopi` is to streamline publication-ready
 population-genomics visualization in R. It combines typed import
 helpers, direct plotting functions, and composable `ggplot2` extension
 layers for GWAS, PCA, and admixture results. It also includes a
@@ -11,7 +11,7 @@ summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
 ADMIXTOOLS2 qpGraph outputs. It also includes effective population size
 history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.
 
-`ggpop` focuses on a tidy workflow:
+`ggPopi` focuses on a tidy workflow:
 
 ``` r
 import_gwas("assoc.mlma", type = "gcta") |>
@@ -26,6 +26,10 @@ Both paths return `ggplot` objects. The direct `plot_*()` functions
 define the publication-style visual contract, and the matching
 `geom_*()` layers follow the same defaults inside a
 [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) pipeline.
+
+The package name is `ggPopi`; the core layered constructor remains
+[`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) for API
+continuity.
 
 GWAS Manhattan plots support explicit palette control:
 
@@ -74,7 +78,7 @@ guide](https://wwz33.github.io/ggpop/articles/ggpop.html) and the [full
 documentation](https://wwz33.github.io/ggpop/reference/).
 
 ``` r
-library(ggpop)
+library(ggPopi)
 
 import_gwas("assoc.mlma", type = "gcta") |>
   plot_manha()
@@ -214,7 +218,7 @@ plot_introgression(intro, stat = c("D", "fdM"))
 ```
 
 ![Window introgression plot. D and fdM statistics are shown as
-chromosome-wise window curves in stacked panels over a genome
+chromosome-wise Manhattan-like points in stacked panels over a genome
 axis.](reference/figures/readme-introgression.png)
 
 Trio-level D-statistics and graph edge tables use the same import and
@@ -234,8 +238,8 @@ ne_history <- import_ne_history("smcpp_model.csv", type = "smcpp")
 plot_ne_history(ne_history)
 ```
 
-![Effective population size history line plot. Time before present is on
-the x-axis and effective population size is on the y-axis, with separate
+![Effective population size history plot. Time before present is on the
+x-axis and effective population size is on the y-axis, with separate
 curves for two populations.](reference/figures/readme-ne-history.png)
 
 ## Interface

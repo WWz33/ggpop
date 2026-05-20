@@ -1,6 +1,6 @@
 geom_ne_history <- function(mapping = ggplot2::aes(x = .data$time, y = .data$ne, colour = .data$sample_id),
                             data = NULL, ..., sample_id = NULL, method = NULL,
-                            style = c("line", "point"), ci = TRUE,
+                            style = c("auto", "step", "line", "point"), ci = TRUE,
                             colour_by = c("sample_id", "method"),
                             size = NULL, alpha = NULL, base_size = 11,
                             base_family = "", palette = "population",
@@ -10,6 +10,7 @@ geom_ne_history <- function(mapping = ggplot2::aes(x = .data$time, y = .data$ne,
   style <- match.arg(style)
   colour_by <- match.arg(colour_by)
   layer_data <- .filter_ne_history_data(data, sample_id = sample_id, method = method)
+  style <- .ne_history_resolve_style(layer_data, style)
   if (.ne_history_should_map_colour(layer_data, mapping, colour_by)) {
     mapping <- .add_ne_history_colour_mapping(mapping, colour_by)
   }
@@ -66,7 +67,7 @@ ggplot_add.ggpop_ne_history_layers <- function(object, plot, object_name) {
 }
 
 plot_ne_history <- function(data, sample_id = NULL, method = NULL,
-                            style = c("line", "point"), ci = TRUE,
+                            style = c("auto", "step", "line", "point"), ci = TRUE,
                             title = NULL, subtitle = NULL, caption = NULL,
                             base_size = 11, base_family = "",
                             palette = "population", log_x = TRUE,
@@ -93,7 +94,12 @@ plot_ne_history <- function(data, sample_id = NULL, method = NULL,
 
 .geom_ne_history_layer <- function(mapping, data = NULL, style = "line", ..., size, alpha,
                                    na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {
-  layer_fun <- if (style == "point") ggplot2::geom_point else ggplot2::geom_line
+  layer_fun <- switch(
+    style,
+    point = ggplot2::geom_point,
+    step = ggplot2::geom_step,
+    ggplot2::geom_line
+  )
   args <- list(
     mapping = mapping,
     data = data,
@@ -103,10 +109,10 @@ plot_ne_history <- function(data, sample_id = NULL, method = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes
   )
-  if (style == "line") {
-    args$linewidth <- size
-  } else {
+  if (style == "point") {
     args$size <- size
+  } else {
+    args$linewidth <- size
   }
   do.call(layer_fun, args)
 }
@@ -184,8 +190,22 @@ plot_ne_history <- function(data, sample_id = NULL, method = NULL,
 }
 
 .ne_history_default_size <- function(style, base_size = 11) {
-  if (style == "line") return(base_size / 22)
+  if (style %in% c("line", "step")) return(base_size / 22)
   1
+}
+
+.ne_history_resolve_style <- function(data, style) {
+  if (style != "auto") {
+    return(style)
+  }
+  if (is.function(data)) {
+    return("step")
+  }
+  methods <- unique(data$method)
+  if (length(methods) == 1 && identical(methods, "SMC++")) {
+    return("line")
+  }
+  "step"
 }
 
 .ne_history_x_label <- function(data) {

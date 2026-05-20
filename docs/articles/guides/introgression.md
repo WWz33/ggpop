@@ -21,8 +21,9 @@ outputs.
 
 genomics_general ABBA-BABA windows are imported in long form, with one
 row per statistic per window. Genome-wide calls default to a
-chromosome-wise window curve, matching the usual Dsuite Dinvestigate
-style of following D, fd, and fdM across genomic windows.
+chromosome-wise window point plot on a Manhattan-like genome axis,
+matching common ABBA-BABA/fdM window summaries where each point is one
+genomic window.
 
 ``` r
 intro <- import_introgression(
@@ -40,8 +41,8 @@ plot_introgression(intro, stat = c("D", "fdM"))
 ```
 
 ![Window introgression plot. D and fdM statistics are shown as
-chromosome-wise curves in stacked panels over chromosomes 1 and
-2.](introgression_files/figure-html/unnamed-chunk-2-1.png)
+chromosome-wise Manhattan-like points in stacked panels over chromosomes
+1 and 2.](introgression_files/figure-html/unnamed-chunk-2-1.png)
 
 When a chromosome or region is supplied, the direct plot uses a local
 position axis in megabases.
@@ -90,7 +91,8 @@ fitting. `ggpop` reads a compact edge table with `from` and `to`
 columns, plus optional weights or bounds. TreeMix internal `*.edges.gz`
 files are not treated as a stable public schema; convert migration edges
 from the user-facing `treeout.gz` summary or provide an explicit edge
-table.
+table. Full TreeMix-style `plot_tree()` plus residual heatmap support
+belongs to a dedicated TreeMix view.
 
 ``` r
 treemix_edges <- import_introgression(
@@ -143,5 +145,5 @@ intro |>
 ```
 
 ![Layered introgression plot using ggpop plus geom_introgression. D
-statistic windows are drawn as chromosome-wise curves over the
-genome.](introgression_files/figure-html/unnamed-chunk-8-1.png)
+statistic windows are drawn as chromosome-wise Manhattan-like points
+over the genome.](introgression_files/figure-html/unnamed-chunk-8-1.png)

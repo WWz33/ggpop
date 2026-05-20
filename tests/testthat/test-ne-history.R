@@ -53,6 +53,12 @@ test_that("Ne history plots build for direct and layered paths", {
     extdata_path("ne_history/SMC++/model.csv"),
     type = "smcpp"
   )
+  msmc <- import_ne_history(
+    extdata_path("ne_history/MSMC2/final.txt"),
+    type = "msmc2",
+    sample_id = "msmc_a",
+    mutation_rate = 1e-8
+  )
   stairway <- import_ne_history(
     extdata_path("ne_history/StairwayPlot2/summary.txt"),
     type = "stairway",
@@ -73,4 +79,8 @@ test_that("Ne history plots build for direct and layered paths", {
   expect_silent(ggplot2::ggplot_build(ci_plot))
   expect_silent(ggplot2::ggplot_build(geom_plot))
   expect_equal(line_plot$labels$x, "Time before present (generations)")
+  expect_equal(.ne_history_resolve_style(smcpp, "auto"), "line")
+  expect_equal(.ne_history_resolve_style(msmc, "auto"), "step")
+  expect_equal(.ne_history_resolve_style(stairway, "auto"), "step")
+  expect_equal(.ne_history_resolve_style(smcpp, "point"), "point")
 })

@@ -52,12 +52,15 @@ qpGraph edge data frames.
 ``` r
 gg_dir <- system.file("extdata", "introgression", "genomics_general", package = "ggpop")
 intro <- import_introgression(gg_dir, type = "genomics_general")
+#> Error: `dir` must point to an existing directory.
 intro |> plot_introgression(stat = c("D", "fdM"))
-
+#> Error: object 'intro' not found
 
 trios <- import_introgression(
   system.file("extdata", "introgression", "Dsuite", "Dtrios.tsv", package = "ggpop"),
   type = "dsuite_dtrios"
 )
+#> Error: `dir` must point to an existing directory.
 trios |> plot_introgression()
+#> Error: object 'trios' not found
 ```

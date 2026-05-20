@@ -70,5 +70,7 @@ smcpp <- import_ne_history(
   system.file("extdata", "ne_history", "SMC++", "model.csv", package = "ggpop"),
   type = "smcpp"
 )
+#> Error: `dir` must point to an existing directory or file.
 smcpp |> plot_ne_history()
+#> Error: object 'smcpp' not found
 ```

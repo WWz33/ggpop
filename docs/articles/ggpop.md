@@ -1,6 +1,9 @@
-# Getting Started with ggpop
+# Getting Started with ggPopi
 
-`ggpop` is a ggplot2 extension package for population genetics
+![ggPopi hexagon sticker with a chromosome mascot and
+population-genomics plot marks.](../reference/figures/logo.png)
+
+`ggPopi` is a ggplot2 extension package for population genetics
 workflows. The package keeps each module in the same tidy shape:
 
 - `import_*()` functions create typed S3 objects.
@@ -9,6 +12,10 @@ workflows. The package keeps each module in the same tidy shape:
   `geom_*()` build layered ggplot extensions.
 - Advanced compatibility helpers remain exported for users who need
   original-package behavior.
+
+The package name is `ggPopi`; the core layered constructor remains
+[`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) for API
+continuity.
 
 ## Module API map
 
@@ -123,6 +130,9 @@ The same pattern applies across modules:
 
 ``` r
 gwas |> ggpop() + ggpop::geom_qq()
+#> Registered S3 method overwritten by 'ggpop':
+#>   method                     from
+#>   print.ggpop_palette_scheme ggPopi
 ```
 
 ![Q-Q scatter plot. Expected minus log10 p-values are on the x-axis and
@@ -271,8 +281,8 @@ x-axis.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
 
 Introgression summaries use the same direct and layered plotting shape.
 Windowed Dsuite and genomics_general outputs default to chromosome-wise
-window curves; Dsuite Dtrios summaries use a trio-level dot plot; graph
-edge tables use a compact edge diagram.
+window points on a Manhattan-like genome axis; Dsuite Dtrios summaries
+use a trio-level dot plot; graph edge tables use a compact edge diagram.
 
 ``` r
 introgression |>
@@ -280,7 +290,7 @@ introgression |>
 ```
 
 ![Window introgression plot. D and fdM statistics are shown as
-chromosome-wise curves in stacked panels over the
+chromosome-wise Manhattan-like points in stacked panels over the
 genome.](ggpop_files/figure-html/unnamed-chunk-14-1.png)
 
 The layered path follows the same grammar:
@@ -292,22 +302,24 @@ introgression |>
 ```
 
 ![Layered introgression plot using ggpop plus geom_introgression. D
-statistic windows are drawn as chromosome-wise curves over the
-genome.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
+statistic windows are drawn as chromosome-wise Manhattan-like points
+over the genome.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
 
 ## Ne history
 
 Effective population size histories from PSMC, MSMC2, SMC++, and
-Stairway Plot 2 use the same direct and layered plotting shape. Curves
-default to log-scaled time and Ne axes.
+Stairway Plot 2 use the same direct and layered plotting shape. SMC++
+histories are drawn as curves, while PSMC, MSMC2, and Stairway Plot 2
+interval histories default to step curves. Time and Ne axes are
+log-scaled by default.
 
 ``` r
 ne_history |>
   plot_ne_history()
 ```
 
-![Effective population size history line plot. Time before present is on
-the x-axis and effective population size is on the y-axis, with separate
+![Effective population size history plot. Time before present is on the
+x-axis and effective population size is on the y-axis, with separate
 curves for two
 populations.](ggpop_files/figure-html/unnamed-chunk-16-1.png)
 

@@ -15,6 +15,16 @@ Stairway Plot 2 outputs.
 | Direct plot | `plot_ne_history(data)` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ne_history()` | Tidy ggplot extension path |
 
+## Plot conventions
+
+[`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
+defaults to the plotting style used most often by each upstream
+workflow. SMC++ fitted histories are drawn as curves. PSMC, MSMC2, and
+Stairway Plot 2 histories are drawn as step curves because their native
+outputs represent piecewise time intervals. Time and Ne axes are
+log-scaled by default, matching the usual demographic-history
+presentation; pass `log_x = FALSE` or `log_y = FALSE` for linear axes.
+
 ## SMC++ curves
 
 ``` r
@@ -55,7 +65,8 @@ populations.](ne-history_files/figure-html/unnamed-chunk-2-1.png)
 Stairway Plot 2 summaries often contain lower and upper interval
 estimates. When `ne_lower` and `ne_upper` are available,
 [`plot_ne_history()`](https://wwz33.github.io/ggpop/reference/geom_ne_history.md)
-draws a light confidence ribbon.
+draws a light confidence ribbon around the step curve, matching the
+usual Stairway Plot summary display of an estimate with interval bounds.
 
 ``` r
 stairway <- import_ne_history(
@@ -74,7 +85,9 @@ upper estimates.](ne-history_files/figure-html/unnamed-chunk-3-1.png)
 
 PSMC and MSMC2 outputs are scaled unless a mutation rate is supplied.
 Passing `mutation_rate` converts to absolute Ne and time;
-`generation_time` can then convert generations to years.
+`generation_time` can then convert generations to years. Their default
+plot style is a step curve, which matches the interval-based output used
+by `psmc_plot.pl` and MSMC plotting helpers.
 
 ``` r
 psmc_scaled <- import_ne_history(
@@ -95,6 +108,14 @@ unique(msmc_absolute$scale)
 #> [1] "absolute"
 ```
 
+``` r
+plot_ne_history(msmc_absolute)
+```
+
+![MSMC2 effective population size history as a step curve. Time before
+present is log-scaled on the x-axis and effective population size is on
+the y-axis.](ne-history_files/figure-html/unnamed-chunk-5-1.png)
+
 ## Layered path
 
 Use [`ggpop()`](https://wwz33.github.io/ggpop/reference/ggpop.md) plus
@@ -109,4 +130,4 @@ smcpp |>
 
 ![Layered Ne history plot using ggpop plus geom_ne_history.
 Population-specific SMC++ curves are drawn on log-scaled time and Ne
-axes.](ne-history_files/figure-html/unnamed-chunk-5-1.png)
+axes.](ne-history_files/figure-html/unnamed-chunk-6-1.png)

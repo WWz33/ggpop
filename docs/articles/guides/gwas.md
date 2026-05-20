@@ -63,6 +63,9 @@ lines.](gwas_files/figure-html/unnamed-chunk-4-1.png)
 gwas |>
   ggpop() +
   ggpop::geom_qq()
+#> Registered S3 method overwritten by 'ggpop':
+#>   method                     from
+#>   print.ggpop_palette_scheme ggPopi
 ```
 
 ![Q-Q scatter plot from the layered ggplot workflow. Expected minus

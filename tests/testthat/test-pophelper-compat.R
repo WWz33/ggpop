@@ -34,7 +34,7 @@ test_that("pophelper plotting wrappers call plotQ and plotQMultiline", {
 
 test_that("pophelper plotQ join interface works with native qlist input", {
   skip_if_not_installed("pophelper")
-  admix_dir <- system.file("extdata", "admixture", package = "ggpop")
+  admix_dir <- system.file("extdata", "admixture", package = "ggPopi")
   q2 <- pophelper::readQ(file.path(admix_dir, "finalsnp_ld.2.Q"))
   q3 <- pophelper::readQ(file.path(admix_dir, "finalsnp_ld.3.Q"))
   slist1 <- c(q2, q3)

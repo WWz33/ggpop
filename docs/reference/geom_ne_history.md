@@ -12,7 +12,7 @@ geom_ne_history(
   ...,
   sample_id = NULL,
   method = NULL,
-  style = c("line", "point"),
+  style = c("auto", "step", "line", "point"),
   ci = TRUE,
   colour_by = c("sample_id", "method"),
   size = NULL,
@@ -31,7 +31,7 @@ plot_ne_history(
   data,
   sample_id = NULL,
   method = NULL,
-  style = c("line", "point"),
+  style = c("auto", "step", "line", "point"),
   ci = TRUE,
   title = NULL,
   subtitle = NULL,
@@ -66,7 +66,9 @@ plot_ne_history(
 
 - style:
 
-  Draw `"line"` or `"point"` layers.
+  Draw `"auto"`, `"step"`, `"line"`, or `"point"` layers. `"auto"`
+  follows common tool conventions: SMC++ histories use lines, while
+  PSMC, MSMC2, and Stairway Plot 2 histories use step curves.
 
 - ci:
 
@@ -113,7 +115,9 @@ smcpp <- import_ne_history(
   system.file("extdata", "ne_history", "SMC++", "model.csv", package = "ggpop"),
   type = "smcpp"
 )
+#> Error: `dir` must point to an existing directory or file.
 smcpp |> plot_ne_history()
-
+#> Error: object 'smcpp' not found
 smcpp |> ggpop() + geom_ne_history()
+#> Error: object 'smcpp' not found
 ```

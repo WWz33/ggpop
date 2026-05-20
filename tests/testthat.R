@@ -1,4 +1,4 @@
 library(testthat)
-library(ggpop)
+library(ggPopi)
 
-test_check("ggpop")
+test_check("ggPopi")

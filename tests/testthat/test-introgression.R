@@ -79,7 +79,7 @@ test_that("introgression plots build across data styles", {
 
   built_window <- ggplot2::ggplot_build(window_plot)
   built_region <- ggplot2::ggplot_build(region_plot)
-  expect_true("linewidth" %in% names(built_window$data[[1]]))
+  expect_true("size" %in% names(built_window$data[[1]]))
   expect_true(all(unique(built_window$data[[1]]$colour) %in% c("#4E79A7", "#C4E2F3")))
   expect_true("linewidth" %in% names(built_region$data[[1]]))
   expect_true("size" %in% names(built_region$data[[2]]))

@@ -1,6 +1,6 @@
 <!-- README.md is maintained directly for now. -->
 
-# ggpop <a href="https://wwz33.github.io/ggpop/"><img src="man/figures/readme-pca.png" align="right" height="139" alt="Scatter chart of PCA results with samples grouped by population colour." /></a>
+# ggPopi <a href="https://wwz33.github.io/ggpop/"><img src="man/figures/logo.png" align="right" height="170" alt="ggPopi hexagon sticker with a chromosome mascot and population-genomics plot marks." /></a>
 
 <!-- badges: start -->
 
@@ -9,7 +9,7 @@
 [![pkgdown](https://img.shields.io/badge/docs-pkgdown-75AADB.svg)](https://wwz33.github.io/ggpop/)
 <!-- badges: end -->
 
-The goal of `ggpop` is to streamline publication-ready population-genomics
+The goal of `ggPopi` is to streamline publication-ready population-genomics
 visualization in R. It combines typed import helpers, direct plotting functions,
 and composable `ggplot2` extension layers for GWAS, PCA, and admixture results.
 It also includes a population genomics statistics module for windowed FST, pi,
@@ -19,7 +19,7 @@ summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
 ADMIXTOOLS2 qpGraph outputs. It also includes effective population size history
 curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.
 
-`ggpop` focuses on a tidy workflow:
+`ggPopi` focuses on a tidy workflow:
 
 ``` r
 import_gwas("assoc.mlma", type = "gcta") |>
@@ -33,6 +33,9 @@ import_gwas("assoc.mlma", type = "gcta") |>
 Both paths return `ggplot` objects. The direct `plot_*()` functions define the
 publication-style visual contract, and the matching `geom_*()` layers follow the
 same defaults inside a `ggpop()` pipeline.
+
+The package name is `ggPopi`; the core layered constructor remains `ggpop()` for
+API continuity.
 
 GWAS Manhattan plots support explicit palette control:
 
@@ -76,7 +79,7 @@ guide](https://wwz33.github.io/ggpop/articles/ggpop.html) and the [full
 documentation](https://wwz33.github.io/ggpop/reference/).
 
 ``` r
-library(ggpop)
+library(ggPopi)
 
 import_gwas("assoc.mlma", type = "gcta") |>
   plot_manha()
@@ -200,7 +203,7 @@ intro <- import_introgression(
 plot_introgression(intro, stat = c("D", "fdM"))
 ```
 
-<p align="center"><img src="man/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise window curves in stacked panels over a genome axis." /></p>
+<p align="center"><img src="man/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over a genome axis." /></p>
 
 Trio-level D-statistics and graph edge tables use the same import and direct
 plot shape:
@@ -219,7 +222,7 @@ ne_history <- import_ne_history("smcpp_model.csv", type = "smcpp")
 plot_ne_history(ne_history)
 ```
 
-<p align="center"><img src="man/figures/readme-ne-history.png" width="60%" alt="Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations." /></p>
+<p align="center"><img src="man/figures/readme-ne-history.png" width="60%" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations." /></p>
 
 ## Interface
 

@@ -5,7 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ggplot2 Extensions for Population Genetics Plots • ggpop</title>
+<title>ggplot2 Extensions for Population Genetics Plots • ggPopi</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
@@ -15,7 +20,8 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="ggplot2 Extensions for Population Genetics Plots">
 <meta name="description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, Ne history, and windowed population statistics plots.">
 <meta property="og:description" content="Imports and visualizes population genetics data with tidy ggplot2 workflows, including admixture, PCA, Manhattan, Q-Q, LD decay, selection scan, introgression, Ne history, and windowed population statistics plots.">
-<script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-hide-below="1200" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script><!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
+<meta property="og:image" content="https://wwz33.github.io/ggpop/logo.png">
+<!-- Privacy-friendly analytics by Plausible --><script async src="https://plausible.io/js/pa-kPp_Wsi8svrwXL8PWiqz-.js"></script><script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
 </script><script async src="https://widget.kapa.ai/kapa-widget.bundle.js" data-button-hide="true" data-modal-disclaimer="This is a custom LLM for answering questions about dplyr, tidyr, and ggplot2. Answers are based on the contents of the documentation. Rate the answers to let us know what you think!" data-modal-ask-ai-input-placeholder="Ask me a question about dplyr, tidyr, or ggplot2." data-modal-header-bg-color="#f9f9f9" data-modal-override-open-class="open-kapa-widget" data-project-color="#365a7a" data-project-name="dplyr" data-user-analytics-fingerprint-enabled="false" data-user-analytics-cookie-enabled="false" data-bot-protection-mechanism="hcaptcha" data-website-id="44ae76c6-2ae5-4899-ab42-de9f17f07c7b"></script>
@@ -26,7 +32,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">ggpop</a>
+    <a class="navbar-brand me-2" href="index.html">ggPopi</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
 
@@ -37,12 +43,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/ggpop.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" href="articles/ggpop.html">Getting Started with ggPopi</a></li>
+    <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="articles/guides/pca.html">PCA plots</a></li>
@@ -64,6 +70,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/WWz33" aria-label="GitHub profile"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
 
@@ -72,13 +79,15 @@
 </nav><div class="container template-home" id="container">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="ggpop-">ggpop <a href="https://wwz33.github.io/ggpop/"><img src="reference/figures/readme-pca.png" align="right" height="139" alt="Scatter chart of PCA results with samples grouped by population colour."></a>
-<a class="anchor" aria-label="anchor" href="#ggpop-"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="ggpopi-">ggPopi
+<a class="anchor" aria-label="anchor" href="#ggpopi-"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
-<p>The goal of <code>ggpop</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, LD decay curves, plus selective sweep scan plots for selscan and XPCLR outputs, and introgression summaries from Dsuite, genomics_general, TreeMix-style edge tables, and ADMIXTOOLS2 qpGraph outputs. It also includes effective population size history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.</p>
-<p><code>ggpop</code> focuses on a tidy workflow:</p>
+<p>The goal of <code>ggPopi</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, LD decay curves, plus selective sweep scan plots for selscan and XPCLR outputs, and introgression summaries from Dsuite, genomics_general, TreeMix-style edge tables, and ADMIXTOOLS2 qpGraph outputs. It also includes effective population size history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.</p>
+<p><code>ggPopi</code> focuses on a tidy workflow:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -87,6 +96,7 @@
 <span>  <span class="fu"><a href="reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/geom_manha.html">geom_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Both paths return <code>ggplot</code> objects. The direct <code>plot_*()</code> functions define the publication-style visual contract, and the matching <code>geom_*()</code> layers follow the same defaults inside a <code><a href="reference/ggpop.html">ggpop()</a></code> pipeline.</p>
+<p>The package name is <code>ggPopi</code>; the core layered constructor remains <code><a href="reference/ggpop.html">ggpop()</a></code> for API continuity.</p>
 <p>GWAS Manhattan plots support explicit palette control:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, palette <span class="op">=</span> <span class="st">"publication"</span><span class="op">)</span></span>
@@ -121,7 +131,7 @@
 <p>Here are the main workflows.</p>
 <p>Also have a look at the <a href="https://wwz33.github.io/ggpop/articles/ggpop.html">getting started guide</a> and the <a href="https://wwz33.github.io/ggpop/reference/">full documentation</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggpop/">ggpop</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggpop/">ggPopi</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -211,7 +221,7 @@ P002    PopB</code></pre>
 <span></span>
 <span><span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p align="center">
-<img src="reference/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise window curves in stacked panels over a genome axis."></p>
+<img src="reference/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over a genome axis."></p>
 <p>Trio-level D-statistics and graph edge tables use the same import and direct plot shape:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"Dtrios.tsv"</span>, type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -224,7 +234,7 @@ P002    PopB</code></pre>
 <span></span>
 <span><span class="fu"><a href="reference/geom_ne_history.html">plot_ne_history</a></span><span class="op">(</span><span class="va">ne_history</span><span class="op">)</span></span></code></pre></div>
 <p align="center">
-<img src="reference/figures/readme-ne-history.png" width="60%" alt="Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."></p>
+<img src="reference/figures/readme-ne-history.png" width="60%" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."></p>
 </div>
 <div class="section level2">
 <h2 id="interface">Interface<a class="anchor" aria-label="anchor" href="#interface"></a>
@@ -315,10 +325,10 @@ P002    PopB</code></pre>
 </h2>
 <p><code>ggpop</code> provides a unified discrete palette entry for population-genomics categorical variables. PCA population colours and admixture cluster fills use the same publication-oriented palette system by default.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"population"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/pop_palettes.html" class="external-link">scale_fill_ggpop</a></span><span class="op">(</span><span class="st">"admixture"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"population"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">scale_fill_ggpop</a></span><span class="op">(</span><span class="st">"admixture"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="fixed-installation-issues">Fixed Installation Issues<a class="anchor" aria-label="anchor" href="#fixed-installation-issues"></a>
@@ -361,7 +371,6 @@ P002    PopB</code></pre>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://cloud.r-project.org/package=ggpop" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/WWz33/ggpop/" class="external-link">Browse source code</a></li>
 </ul>
 </div>
@@ -379,14 +388,14 @@ P002    PopB</code></pre>
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing ggpop</a></li>
+<li><a href="authors.html#citation">Citing ggPopi</a></li>
 </ul>
 </div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>ggpop Authors <br><small class="roles"> Author, maintainer </small>   </li>
+<li>ggPopi Authors <br><small class="roles"> Author, maintainer </small>   </li>
 </ul>
 </div>
 
@@ -406,7 +415,7 @@ P002    PopB</code></pre>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by ggpop Authors.</p>
+  <p>Developed by ggPopi Authors.</p>
 </div>
 
 <div class="pkgdown-footer-right">

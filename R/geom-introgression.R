@@ -99,17 +99,16 @@ plot_introgression <- function(data, stat = "all",
   data <- .introgression_order_window_data(data)
   layout <- .selection_genome_layout(data)
   layout$data$.window_group <- interaction(layout$data$.group, layout$data$chr, drop = TRUE, sep = ":")
-  line_args <- c(list(linewidth = point_size, alpha = point_alpha, na.rm = na.rm, show.legend = show.legend), dots)
-  line_args$size <- NULL
+  point_args <- c(list(size = point_size, alpha = point_alpha, na.rm = na.rm, show.legend = show.legend), dots)
   colour_count <- max(length(unique(layout$data$chr_group)), 2)
   list(
     do.call(
-      ggplot2::geom_line,
+      ggplot2::geom_point,
       c(list(
-        mapping = ggplot2::aes(x = .data$genome_pos, y = .data$value, colour = .data$chr_group, group = .data$.window_group),
+        mapping = ggplot2::aes(x = .data$genome_pos, y = .data$value, colour = .data$chr_group),
         data = layout$data,
         inherit.aes = FALSE
-      ), line_args)
+      ), point_args)
     ),
     ggplot2::geom_hline(yintercept = 0, linewidth = 0.3, colour = "grey70", inherit.aes = FALSE),
     ggplot2::scale_x_continuous(

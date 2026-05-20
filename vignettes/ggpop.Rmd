@@ -1,31 +1,36 @@
 ---
-title: "Getting Started with ggpop"
+title: "Getting Started with ggPopi"
 output:
   rmarkdown::html_vignette:
     fig_width: 6
     fig_height: 4
 vignette: >
-  %\VignetteIndexEntry{Getting Started with ggpop}
+  %\VignetteIndexEntry{Getting Started with ggPopi}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-library(ggpop)
+library(ggPopi)
 
 ggpop_extdata <- function(...) {
-  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+  system.file("extdata", ..., package = "ggPopi", mustWork = TRUE)
 }
 ```
 
-`ggpop` is a ggplot2 extension package for population genetics workflows.
+<p align="center"><img src="../man/figures/logo.png" width="32%" alt="ggPopi hexagon sticker with a chromosome mascot and population-genomics plot marks." /></p>
+
+`ggPopi` is a ggplot2 extension package for population genetics workflows.
 The package keeps each module in the same tidy shape:
 
 - `import_*()` functions create typed S3 objects.
 - `plot_*()` functions return full `ggplot` objects.
 - `ggpop()` + `geom_*()` build layered ggplot extensions.
 - Advanced compatibility helpers remain exported for users who need original-package behavior.
+
+The package name is `ggPopi`; the core layered constructor remains `ggpop()` for
+API continuity.
 
 ## Module API map
 
@@ -204,17 +209,17 @@ selscan_chr1 |>
 
 Introgression summaries use the same direct and layered plotting shape.
 Windowed Dsuite and genomics_general outputs default to chromosome-wise window
-curves; Dsuite Dtrios summaries use a trio-level dot plot; graph edge tables use
-a compact edge diagram.
+points on a Manhattan-like genome axis; Dsuite Dtrios summaries use a trio-level
+dot plot; graph edge tables use a compact edge diagram.
 
-```{r, fig.alt = "Window introgression plot. D and fdM statistics are shown as chromosome-wise curves in stacked panels over the genome."}
+```{r, fig.alt = "Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over the genome."}
 introgression |>
   plot_introgression(stat = c("D", "fdM"))
 ```
 
 The layered path follows the same grammar:
 
-```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise curves over the genome."}
+```{r, fig.alt = "Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise Manhattan-like points over the genome."}
 introgression |>
   ggpop() +
   geom_introgression(stat = "D")
@@ -223,10 +228,11 @@ introgression |>
 ## Ne history
 
 Effective population size histories from PSMC, MSMC2, SMC++, and Stairway Plot
-2 use the same direct and layered plotting shape. Curves default to log-scaled
-time and Ne axes.
+2 use the same direct and layered plotting shape. SMC++ histories are drawn as
+curves, while PSMC, MSMC2, and Stairway Plot 2 interval histories default to
+step curves. Time and Ne axes are log-scaled by default.
 
-```{r, fig.alt = "Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."}
+```{r, fig.alt = "Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."}
 ne_history |>
   plot_ne_history()
 ```

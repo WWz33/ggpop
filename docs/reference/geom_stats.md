@@ -112,9 +112,11 @@ ggplot object.
 ``` r
 pixy_dir <- system.file("extdata", "Population_genomics_statistics", "pixy", package = "ggpop")
 stats <- import_stats(pixy_dir, type = "pixy")
+#> Error: `dir` must point to an existing directory.
 stats |> plot_stats(stat = c("fst", "pi"), chr = "chr2L")
-
+#> Error: object 'stats' not found
 stats |> plot_stats(chr = "chr2L", start = 1, end = 20000)
-
+#> Error: object 'stats' not found
 stats |> ggpop() + geom_stats(stat = "all", chr = c("chr2L", "chr3L"))
+#> Error: object 'stats' not found
 ```

@@ -1,5 +1,5 @@
 library(ggplot2)
-library(ggpop)
+library(ggPopi)
 
 out_dir <- file.path("inst", "examples", "figures")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)

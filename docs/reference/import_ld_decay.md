@@ -94,7 +94,9 @@ label so line layers stay population-specific after relabeling.
 ``` r
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay", package = "ggpop")
 ld <- import_ld_decay(ld_dir, type = "poplddecay")
+#> Error: `dir` must point to an existing directory.
 ld |> plot_ld_decay(style = "point")
-
+#> Error: object 'ld' not found
 ld |> plot_ld_decay(style = "line")
+#> Error: object 'ld' not found
 ```

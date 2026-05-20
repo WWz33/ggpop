@@ -12,10 +12,10 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
-library(ggpop)
+library(ggPopi)
 
 ggpop_extdata <- function(...) {
-  system.file("extdata", ..., package = "ggpop", mustWork = TRUE)
+  system.file("extdata", ..., package = "ggPopi", mustWork = TRUE)
 }
 ```
 
