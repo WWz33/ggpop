@@ -168,6 +168,7 @@ ld_decay <- import_ld_decay(
 
 plot_ld_decay(ld_decay, style = "point")
 plot_ld_decay(ld_decay, style = "line")
+plot_ld_decay(ld_decay, style = "fit")
 ```
 
 <p align="center"><img src="man/figures/readme-ld-decay.png" width="60%" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." /></p>

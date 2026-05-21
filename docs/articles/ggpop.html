@@ -346,18 +346,23 @@ summaries from pixy or vcftools outputs:</p>
 PopLDdecay <code>*.stat.gz</code> files are imported directly, while
 PLINK pairwise LD files can be summarized into distance bins. Population
 labels follow the package-wide <code>pop_group.txt</code> convention
-when file labels need to be mapped to groups. When sample-level
-summaries map to populations, the plot layer draws population summaries
-before rendering points or lines.</p>
+when file labels need to be mapped to groups. Point and line styles keep
+the imported summary rows; <code>style = "fit"</code> draws
+population-level fitted curves.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ld_grouped</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." width="700"></p>
-<p>The same data can be drawn as a curve:</p>
+<p>The same data can be drawn as a connected curve:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ld_grouped</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="ggpop_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern." width="700"></p>
+<p>Or as population-level fitted curves:</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ld_grouped</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"fit"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="LD decay fitted line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with fitted curves coloured by population label." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="selective-sweep-scans">Selective sweep scans<a class="anchor" aria-label="anchor" href="#selective-sweep-scans"></a>
@@ -368,13 +373,13 @@ magnitude, and thresholds can be fixed values or filtered-data
 quantiles. Genome-wide calls default to a Manhattan-like chromosome
 axis; calls with <code>chr</code>, <code>start</code>, or
 <code>end</code> default to a single-region view.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">selscan_chr1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/geom_selection.html">plot_selection</a></span><span class="op">(</span></span>
 <span>    stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ihs"</span>, <span class="st">"nsl"</span>, <span class="st">"xpehh"</span>, <span class="st">"xpnsl"</span><span class="op">)</span>,</span>
 <span>    chr <span class="op">=</span> <span class="st">"1"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="introgression">Introgression<a class="anchor" aria-label="anchor" href="#introgression"></a>
@@ -388,16 +393,16 @@ compact edge diagram.</p>
 table derived from the package VCF and <code>pop_group.txt</code>
 metadata. It is meant for plotting examples; production analyses should
 import the real Dsuite or genomics_general output files.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">introgression</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over the genome." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over the genome." width="700"></p>
 <p>The layered path follows the same grammar:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">introgression</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_introgression.html">geom_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise Manhattan-like points over the genome." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise Manhattan-like points over the genome." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="ne-history">Ne history<a class="anchor" aria-label="anchor" href="#ne-history"></a>
@@ -411,16 +416,16 @@ log-scaled by default.</p>
 external demographic inference workflows. <code>ggPopi</code> imports
 the resulting PSMC, MSMC2, SMC++, or Stairway Plot 2 outputs; it does
 not infer Ne histories directly from VCF.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ne_history</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/geom_ne_history.html">plot_ne_history</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations." width="700"></p>
 <p>The layered path follows the same grammar:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ne_history</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../reference/geom_ne_history.html">geom_ne_history</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggpop_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="Layered Ne history plot using ggpop plus geom_ne_history. Population-specific SMC++ curves are drawn on log-scaled time and Ne axes." width="700"></p>
+<p><img src="ggpop_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="Layered Ne history plot using ggpop plus geom_ne_history. Population-specific SMC++ curves are drawn on log-scaled time and Ne axes." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="what-to-use">What to use<a class="anchor" aria-label="anchor" href="#what-to-use"></a>

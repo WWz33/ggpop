@@ -9,7 +9,7 @@ geom_ld_decay(
   ...,
   pop = NULL,
   pop_group = NULL,
-  style = c("point", "line"),
+  style = c("point", "line", "fit"),
   measure = c("r2", "D", "both"),
   colour_by = c("pop", "file"),
   size = NULL,
@@ -26,7 +26,7 @@ plot_ld_decay(
   data,
   pop = NULL,
   pop_group = NULL,
-  style = c("point", "line"),
+  style = c("point", "line", "fit"),
   measure = c("r2", "D", "both"),
   title = NULL,
   subtitle = NULL,
@@ -43,7 +43,7 @@ plot_ld_decay(
 \item{...}{Additional geom parameters.}
 \item{pop}{Optional population labels to keep.}
 \item{pop_group}{Optional population group table or path to the standard two-column \code{sample pop} file. File labels are matched through \code{sample}, then regrouped by the mapped population labels.}
-\item{style}{Draw \code{"point"} or \code{"line"} layers.}
+\item{style}{Draw raw summary \code{"point"} layers, raw connected \code{"line"} layers, or population-level fitted \code{"fit"} curves.}
 \item{measure}{Plot \code{r^2}, D-prime, or both measures together.}
 \item{colour_by}{Colour by population or source file.}
 \item{size, alpha}{Layer appearance. Point plots default to size 1, matching common LD decay summaries.}
@@ -56,7 +56,7 @@ plot_ld_decay(
 \code{geom_ld_decay()} returns a list of ggplot layers. \code{plot_ld_decay()} returns a ggplot object.
 }
 \description{
-Plot LD decay summaries as either point or line plots. The x-axis is pairwise distance in kilobases and the y-axis defaults to mean LD \eqn{r^2}, with optional D-prime or combined \eqn{r^2}/D-prime views. All styles support population colouring through the package-wide \code{pop} column, and \code{pop_group} can relabel and regroup imported files.
+Plot LD decay summaries as point, connected line, or fitted line plots. The x-axis is pairwise distance in kilobases and the y-axis defaults to mean LD \eqn{r^2}, with optional D-prime or combined \eqn{r^2}/D-prime views. All styles support population colouring through the package-wide \code{pop} column. \code{pop_group} relabels imported file/sample labels; \code{"point"} and \code{"line"} keep the imported summaries, while \code{"fit"} draws population-level fitted curves.
 }
 \examples{
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay_grouped", package = "ggPopi")
@@ -64,5 +64,6 @@ groups <- system.file("extdata", "pop_group.txt", package = "ggPopi")
 ld <- import_ld_decay(ld_dir, type = "poplddecay", pop_group = groups)
 ld |> plot_ld_decay(style = "point")
 ld |> plot_ld_decay(style = "line")
+ld |> plot_ld_decay(style = "fit")
 ld |> ggpop() + geom_ld_decay(style = "point")
 }

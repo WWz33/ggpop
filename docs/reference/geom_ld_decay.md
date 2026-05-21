@@ -1,10 +1,12 @@
 # LD decay plots
 
-Plot LD decay summaries as either point or line plots. The x-axis is
-pairwise distance in kilobases and the y-axis defaults to mean LD
-\\r^2\\, with optional D-prime or combined \\r^2\\/D-prime views. All
-styles support population colouring through the package-wide `pop`
-column, and `pop_group` can relabel and regroup imported files.
+Plot LD decay summaries as point, connected line, or fitted line plots.
+The x-axis is pairwise distance in kilobases and the y-axis defaults to
+mean LD \\r^2\\, with optional D-prime or combined \\r^2\\/D-prime
+views. All styles support population colouring through the package-wide
+`pop` column. `pop_group` relabels imported file/sample labels;
+`"point"` and `"line"` keep the imported summaries, while `"fit"` draws
+population-level fitted curves.
 
 ## Usage
 
@@ -15,7 +17,7 @@ geom_ld_decay(
   ...,
   pop = NULL,
   pop_group = NULL,
-  style = c("point", "line"),
+  style = c("point", "line", "fit"),
   measure = c("r2", "D", "both"),
   colour_by = c("pop", "file"),
   size = NULL,
@@ -32,7 +34,7 @@ plot_ld_decay(
   data,
   pop = NULL,
   pop_group = NULL,
-  style = c("point", "line"),
+  style = c("point", "line", "fit"),
   measure = c("r2", "D", "both"),
   title = NULL,
   subtitle = NULL,
@@ -72,7 +74,8 @@ plot_ld_decay(
 
 - style:
 
-  Draw `"point"` or `"line"` layers.
+  Draw raw summary `"point"` layers, raw connected `"line"` layers, or
+  population-level fitted `"fit"` curves.
 
 - measure:
 
@@ -117,6 +120,8 @@ ld <- import_ld_decay(ld_dir, type = "poplddecay", pop_group = groups)
 ld |> plot_ld_decay(style = "point")
 
 ld |> plot_ld_decay(style = "line")
+
+ld |> plot_ld_decay(style = "fit")
 
 ld |> ggpop() + geom_ld_decay(style = "point")
 ```

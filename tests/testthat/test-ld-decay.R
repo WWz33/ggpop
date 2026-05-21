@@ -163,7 +163,7 @@ test_that("LD decay layered plots keep grouped colouring", {
   expect_true(all(c("PopA", "PopB") %in% unique(built$plot$data$pop)))
 })
 
-test_that("LD decay pop_group summaries are drawn per population", {
+test_that("LD decay point and line keep sample-level summaries after pop_group mapping", {
   data <- .new_ggpop_ld_decay(data.frame(
     dist = rep(c(10, 20), 3),
     dist_kb = rep(c(0.01, 0.02), 3),
@@ -183,9 +183,33 @@ test_that("LD decay pop_group summaries are drawn per population", {
   point_built <- ggplot2::ggplot_build(point_plot)
   line_built <- ggplot2::ggplot_build(line_plot)
 
+  expect_equal(nrow(point_built$plot$data), nrow(data))
   expect_equal(sort(unique(point_built$plot$data$pop)), c("PopA", "PopB", "PopC"))
   expect_equal(length(unique(point_built$data[[1]]$colour)), 3)
   expect_equal(length(unique(line_built$data[[1]]$group)), 3)
+})
+
+test_that("LD decay fit style draws population summaries", {
+  data <- .new_ggpop_ld_decay(data.frame(
+    dist = rep(c(10, 20), 3),
+    dist_kb = rep(c(0.01, 0.02), 3),
+    r2 = c(0.7, 0.5, 0.5, 0.3, 0.2, 0.1),
+    n_pairs = rep(10, 6),
+    pop = rep(c("P001", "P004", "P009"), each = 2),
+    sample_id = rep(c("P001", "P004", "P009"), each = 2),
+    file = rep(c("P001.stat", "P004.stat", "P009.stat"), each = 2)
+  ), source = "poplddecay")
+  group <- data.frame(
+    sample = c("P001", "P004", "P009"),
+    pop = c("PopC", "PopB", "PopA")
+  )
+
+  plot <- plot_ld_decay(data, pop_group = group, style = "fit", method = "lm")
+  built <- ggplot2::ggplot_build(plot)
+
+  expect_equal(sort(unique(built$plot$data$pop)), c("PopA", "PopB", "PopC"))
+  expect_equal(nrow(built$plot$data), 6)
+  expect_equal(length(unique(built$data[[1]]$group)), 3)
 })
 
 test_that("LD decay bundled grouped example maps through shared pop_group", {

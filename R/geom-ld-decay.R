@@ -1,7 +1,7 @@
 geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2),
                           data = NULL, ..., pop = NULL,
                           pop_group = NULL,
-                          style = c("point", "line"),
+                          style = c("point", "line", "fit"),
                           measure = c("r2", "D", "both"),
                           colour_by = c("pop", "file"),
                           size = NULL, alpha = NULL,
@@ -14,7 +14,9 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
   colour_by <- match.arg(colour_by)
   layer_data <- .filter_ld_decay_data(data, pop = pop)
   layer_data <- .ld_decay_pop_group_data(layer_data, pop_group = pop_group)
-  layer_data <- .ld_decay_summarise_pop_group(layer_data)
+  if (style == "fit") {
+    layer_data <- .ld_decay_summarise_pop_group(layer_data)
+  }
   layer_data <- .ld_decay_group_data(layer_data)
   layer_data <- .ld_decay_measure_data(layer_data, measure = measure)
   mapping <- .ld_decay_measure_mapping(mapping, measure = measure)
@@ -32,7 +34,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
       style = style,
       ...,
       size = size %||% .ld_decay_default_size(style, base_size),
-      alpha = alpha %||% if (style == "line") NA else 0.9,
+      alpha = alpha %||% if (style %in% c("line", "fit")) NA else 0.9,
       na.rm = na.rm,
       show.legend = show.legend,
       inherit.aes = inherit.aes
@@ -52,7 +54,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
     Filter(Negate(is.null), layers),
     class = c("ggpop_ld_decay_layers", "list"),
     ggpop_ld_decay_data = layer_data,
-    ggpop_ld_decay_filter = list(pop = pop, pop_group = pop_group, measure = measure)
+    ggpop_ld_decay_filter = list(pop = pop, pop_group = pop_group, measure = measure, style = style)
   )
 }
 
@@ -75,12 +77,16 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
     plot$data <- if (is.function(layer_data)) {
       .ld_decay_measure_data(
         .ld_decay_group_data(
-          .ld_decay_summarise_pop_group(
-            .ld_decay_pop_group_data(
+          {
+            data <- .ld_decay_pop_group_data(
               .filter_ld_decay_data(plot$data, pop = filter$pop),
               pop_group = filter$pop_group
             )
-          )
+            if (identical(filter$style, "fit")) {
+              data <- .ld_decay_summarise_pop_group(data)
+            }
+            data
+          }
         ),
         measure = filter$measure
       )
@@ -94,7 +100,7 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
   plot
 }
 
-plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point", "line"),
+plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point", "line", "fit"),
                           measure = c("r2", "D", "both"),
                           title = NULL, subtitle = NULL, caption = NULL,
                           base_size = 11, base_family = "",
@@ -104,7 +110,9 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
   measure <- match.arg(measure)
   selected <- .filter_ld_decay_data(data, pop = pop)
   selected <- .ld_decay_pop_group_data(selected, pop_group = pop_group)
-  selected <- .ld_decay_summarise_pop_group(selected)
+  if (style == "fit") {
+    selected <- .ld_decay_summarise_pop_group(selected)
+  }
   selected <- .ld_decay_group_data(selected)
   plot <- ggpop(selected) +
     geom_ld_decay(
@@ -123,7 +131,12 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
 
 .geom_ld_decay_layer <- function(mapping, data = NULL, style = "point", ..., size, alpha,
                                  na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {
-  layer_fun <- if (style == "line") ggplot2::geom_line else ggplot2::geom_point
+  layer_fun <- switch(
+    style,
+    line = ggplot2::geom_line,
+    fit = ggplot2::geom_smooth,
+    ggplot2::geom_point
+  )
   args <- list(
     mapping = mapping,
     data = data,
@@ -133,7 +146,12 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
     show.legend = show.legend,
     inherit.aes = inherit.aes
   )
-  if (style == "line") {
+  if (style == "fit") {
+    args$method <- args$method %||% "loess"
+    args$formula <- args$formula %||% stats::as.formula("y ~ x")
+    args$se <- args$se %||% FALSE
+  }
+  if (style %in% c("line", "fit")) {
     args$linewidth <- size
   } else {
     args$size <- size
@@ -283,7 +301,7 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
 }
 
 .ld_decay_default_size <- function(style, base_size = 11) {
-  if (style == "line") {
+  if (style %in% c("line", "fit")) {
     return(base_size / 22)
   }
   1

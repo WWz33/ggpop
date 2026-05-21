@@ -14,7 +14,7 @@ left as-is or collapsed again with `method = "MeanBin"`, `MedianBin`, or
 | Import PLINK LD pairs | `import_ld_decay(file, type = "plink")` | Summarizes pairwise LD into distance bins |
 | Direct plot | `plot_ld_decay(data, style = "point")` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ld_decay(...)` | Tidy ggplot extension path |
-| Plot style | `style = "point"` / `"line"` | Point summaries or continuous decay curves |
+| Plot style | `style = "point"` / `"line"` / `"fit"` | Raw summary points, connected summary lines, or fitted curves |
 | Measure view | `measure = "r2"` / `"D"` / `"both"` | `D'` needs PopLDdecay D output |
 | Population labels | `pop_group` | Uses the package-wide two-column `sample pop` file |
 
@@ -70,9 +70,9 @@ head(ld_decay)
 Population grouping follows the same `pop_group.txt` convention used by
 PCA and admixture. The LD decay file label is stored as `sample_id`; if
 a matching `sample` appears in `pop_group`, the corresponding `pop`
-value is used for colouring. When multiple sample-level summaries map to
-populations, the plot layer draws population-level summaries for both
-point and line styles.
+value is used for colouring. The `point` and `line` styles keep the
+imported summary rows; `fit` draws population-level fitted curves after
+mapping sample labels to groups.
 
 The importer also accepts a single file path, and the `method` argument
 can be used to re-bin PopLDdecay summaries with the same mean-bin,
@@ -122,6 +122,23 @@ plot_ld_decay(
 and mean LD r squared is on the y-axis, with a continuous curve showing
 the decay pattern.](ld-decay_files/figure-html/unnamed-chunk-4-1.png)
 
+## Fitted line style
+
+Use `style = "fit"` when you want a smoothed population-level decay
+curve.
+
+``` r
+plot_ld_decay(
+  ld_grouped,
+  style = "fit"
+)
+```
+
+![LD decay fitted line plot. Pairwise distance in kilobases is on the
+x-axis and mean LD r squared is on the y-axis, with fitted curves
+coloured by population
+label.](ld-decay_files/figure-html/unnamed-chunk-5-1.png)
+
 ## Layered path
 
 Use [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) plus
@@ -136,4 +153,4 @@ ld_grouped |>
 
 ![Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise
 distance in kilobases is on the x-axis and mean LD r squared is on the
-y-axis.](ld-decay_files/figure-html/unnamed-chunk-5-1.png)
+y-axis.](ld-decay_files/figure-html/unnamed-chunk-6-1.png)

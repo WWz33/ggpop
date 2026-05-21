@@ -177,6 +177,7 @@ ld_decay <- import_ld_decay(
 
 plot_ld_decay(ld_decay, style = "point")
 plot_ld_decay(ld_decay, style = "line")
+plot_ld_decay(ld_decay, style = "fit")
 ```
 
 ![LD decay point plot. Pairwise distance in kilobases is on the x-axis

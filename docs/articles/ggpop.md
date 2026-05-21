@@ -242,8 +242,8 @@ LD decay summaries use the same direct and layered plotting shape.
 PopLDdecay `*.stat.gz` files are imported directly, while PLINK pairwise
 LD files can be summarized into distance bins. Population labels follow
 the package-wide `pop_group.txt` convention when file labels need to be
-mapped to groups. When sample-level summaries map to populations, the
-plot layer draws population summaries before rendering points or lines.
+mapped to groups. Point and line styles keep the imported summary rows;
+`style = "fit"` draws population-level fitted curves.
 
 ``` r
 ld_grouped |>
@@ -254,7 +254,7 @@ ld_grouped |>
 and mean LD r squared is on the y-axis, with points coloured by
 population label.](ggpop_files/figure-html/unnamed-chunk-11-1.png)
 
-The same data can be drawn as a curve:
+The same data can be drawn as a connected curve:
 
 ``` r
 ld_grouped |>
@@ -264,6 +264,18 @@ ld_grouped |>
 ![LD decay line plot. Pairwise distance in kilobases is on the x-axis
 and mean LD r squared is on the y-axis, with a continuous curve showing
 the decay pattern.](ggpop_files/figure-html/unnamed-chunk-12-1.png)
+
+Or as population-level fitted curves:
+
+``` r
+ld_grouped |>
+  plot_ld_decay(style = "fit")
+```
+
+![LD decay fitted line plot. Pairwise distance in kilobases is on the
+x-axis and mean LD r squared is on the y-axis, with fitted curves
+coloured by population
+label.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
 
 ## Selective sweep scans
 
@@ -283,7 +295,7 @@ selscan_chr1 |>
 
 ![Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL
 are stacked vertically with genomic position in megabases on the
-x-axis.](ggpop_files/figure-html/unnamed-chunk-13-1.png)
+x-axis.](ggpop_files/figure-html/unnamed-chunk-14-1.png)
 
 ## Introgression
 
@@ -304,7 +316,7 @@ introgression |>
 
 ![Window introgression plot. D and fdM statistics are shown as
 chromosome-wise Manhattan-like points in stacked panels over the
-genome.](ggpop_files/figure-html/unnamed-chunk-14-1.png)
+genome.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
 
 The layered path follows the same grammar:
 
@@ -316,7 +328,7 @@ introgression |>
 
 ![Layered introgression plot using ggpop plus geom_introgression. D
 statistic windows are drawn as chromosome-wise Manhattan-like points
-over the genome.](ggpop_files/figure-html/unnamed-chunk-15-1.png)
+over the genome.](ggpop_files/figure-html/unnamed-chunk-16-1.png)
 
 ## Ne history
 
@@ -339,7 +351,7 @@ ne_history |>
 ![Effective population size history plot. Time before present is on the
 x-axis and effective population size is on the y-axis, with separate
 curves for two
-populations.](ggpop_files/figure-html/unnamed-chunk-16-1.png)
+populations.](ggpop_files/figure-html/unnamed-chunk-17-1.png)
 
 The layered path follows the same grammar:
 
@@ -351,7 +363,7 @@ ne_history |>
 
 ![Layered Ne history plot using ggpop plus geom_ne_history.
 Population-specific SMC++ curves are drawn on log-scaled time and Ne
-axes.](ggpop_files/figure-html/unnamed-chunk-17-1.png)
+axes.](ggpop_files/figure-html/unnamed-chunk-18-1.png)
 
 ## What to use
 

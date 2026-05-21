@@ -119,7 +119,7 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Population grouping follows the package-wide convention: <code>pop_group</code> is the standard two-column <code>sample pop</code> table used by PCA and admixture workflows. LD decay file labels are stored as <code>sample_id</code>; when <code>pop_group</code> is supplied, matching labels are mapped to <code>pop</code>.
-The plotting helpers then summarize mapped LD decay rows by population label so point and line layers stay population-specific after relabeling.</p>
+The plotting helpers use the mapped population label for colour. Point and line styles keep the imported summaries; the fitted style summarizes mapped rows by population before drawing fitted curves.</p>
     </div>
 
     <div class="section level2">
@@ -131,6 +131,8 @@ The plotting helpers then summarize mapped LD decay rows by population label so 
 <span class="r-plt img"><img src="import_ld_decay-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">ld</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="import_ld_decay-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="va">ld</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"fit"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="import_ld_decay-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

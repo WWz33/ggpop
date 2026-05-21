@@ -181,20 +181,27 @@ stats |>
 LD decay summaries use the same direct and layered plotting shape. PopLDdecay
 `*.stat.gz` files are imported directly, while PLINK pairwise LD files can be
 summarized into distance bins. Population labels follow the package-wide
-`pop_group.txt` convention when file labels need to be mapped to groups. When
-sample-level summaries map to populations, the plot layer draws population
-summaries before rendering points or lines.
+`pop_group.txt` convention when file labels need to be mapped to groups.
+Point and line styles keep the imported summary rows; `style = "fit"` draws
+population-level fitted curves.
 
 ```{r, fig.alt = "LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label."}
 ld_grouped |>
   plot_ld_decay(style = "point")
 ```
 
-The same data can be drawn as a curve:
+The same data can be drawn as a connected curve:
 
 ```{r, fig.alt = "LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern."}
 ld_grouped |>
   plot_ld_decay(style = "line")
+```
+
+Or as population-level fitted curves:
+
+```{r, fig.alt = "LD decay fitted line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with fitted curves coloured by population label."}
+ld_grouped |>
+  plot_ld_decay(style = "fit")
 ```
 
 ## Selective sweep scans
