@@ -1,0 +1,12 @@
+﻿{
+  "id": "publication-introgression-visuals",
+  "title": "Improve introgression publication visual defaults",
+  "status": "completed",
+  "complexity": "M",
+  "risk": "medium",
+  "domain": "r-package",
+  "currentPhase": "completed",
+  "nextAction": "Archived after local completion audit",
+  "createdAt": "2026-05-25T00:00:00+08:00",
+  "branch": "main"
+}
