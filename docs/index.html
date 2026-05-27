@@ -86,303 +86,163 @@
 </div>
 <!-- badges: start -->
 
-<p>The goal of <code>ggPopi</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, LD decay curves, plus selective sweep scan plots for selscan and XPCLR outputs, and introgression summaries from Dsuite local and trio statistics, ADMIXTOOLS f-stat tables, and TreeMix lightweight graph summaries. It also includes effective population size history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.</p>
-<p><code>ggPopi</code> focuses on a tidy workflow:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/geom_manha.html">geom_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Both paths return <code>ggplot</code> objects. The direct <code>plot_*()</code> functions define the publication-style visual contract, and the matching <code>geom_*()</code> layers follow the same defaults inside a <code><a href="reference/ggpop.html">ggpop()</a></code> pipeline.</p>
-<p>The package name is <code>ggPopi</code>; the core layered constructor remains <code><a href="reference/ggpop.html">ggpop()</a></code> for API continuity.</p>
-<p>GWAS Manhattan plots support explicit palette control:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, palette <span class="op">=</span> <span class="st">"publication"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#4E79A7"</span>, <span class="st">"#C4E2F3"</span><span class="op">)</span>, binary <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span>, threshold_color <span class="op">=</span> <span class="st">"#D55E00"</span>, suggestive_color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span></span></code></pre></div>
-<p>Manhattan-like genome views use the same alternating <code>#4E79A7</code> / <code>#C4E2F3</code> chromosome palette by default.</p>
+<p><code>ggPopi</code> provides tidy, publication-oriented <code>ggplot2</code> workflows for common population-genomics plots. It combines typed import helpers, direct <code>plot_*()</code> functions, and composable <code>ggpop() + geom_*()</code> layers.</p>
+<p>Supported modules include GWAS Manhattan and Q-Q plots, PCA, admixture, population statistics, LD decay, selective sweep scans, introgression summaries, and demographic / effective population size histories.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>Install the development version from GitHub:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"WWz33/ggPopi"</span><span class="op">)</span></span></code></pre></div>
-<p>The core package uses CRAN-available dependencies for native plotting. The GWAS module includes internal fastman-style Manhattan and Q-Q plotting logic, so ordinary GWAS plots do not require installing <code>fastman</code>.</p>
+<p>Core plotting uses CRAN-available dependencies. Optional integrations use:</p>
 <ul>
 <li>
 <a href="https://github.com/WWz33/flashpca/tree/master/flashpcaR" class="external-link"><code>flashpcaR</code></a> for <code>compute_pca(method = "flashpca")</code>;</li>
 <li>
 <a href="https://github.com/royfrancis/pophelper" class="external-link"><code>pophelper</code></a> for direct <code>plotQ()</code> compatibility helpers.</li>
 </ul>
-<p>Dependency repository policy:</p>
-<ul>
-<li>
-<code>pophelper</code> is unmodified and points to the original upstream repository.</li>
-<li>
-<code>flashpcaR</code> required Windows source-install fixes and points to <a href="https://github.com/WWz33/flashpca" class="external-link uri">https://github.com/WWz33/flashpca</a>.</li>
-</ul>
 </div>
 <div class="section level2">
-<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>Here are the main workflows.</p>
-<p>Also have a look at the <a href="https://wwz33.github.io/ggPopi/articles/ggPopi.html">getting started guide</a> and the <a href="https://wwz33.github.io/ggPopi/reference/">full documentation</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggPopi/">ggPopi</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">gwas</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"gwas"</span>, <span class="st">"gcta.mlma"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"gcta"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/plot_manha.html">plot_manha</a></span><span class="op">(</span><span class="va">gwas</span><span class="op">)</span></span></code></pre></div>
 <p align="center">
-<img src="reference/figures/readme-manhattan.png" width="75%" alt="Manhattan plot. Chromosomes are arranged along the x-axis and minus log10 p-values are on the y-axis, with alternating chromosome colours and horizontal genome-wide threshold lines."></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<img src="reference/figures/readme-manhattan.png" width="75%" alt="Manhattan plot with chromosomes on the x-axis and minus log10 p-values on the y-axis."></p>
+<p>The same imported object can be used through the layered ggplot extension path:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/geom_manha.html">geom_manha</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_pca.html">import_pca</a></span><span class="op">(</span></span>
-<span>  <span class="st">"plink.eigenvec"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"plink"</span>,</span>
-<span>  pop_group <span class="op">=</span> <span class="st">"pop_group.txt"</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-pca.png" width="60%" alt="Scatter chart. Principal component 1 is on the x-axis and principal component 2 is on the y-axis, with point colour encoding population group."></p>
-<p><code>pop_group</code> is optional at plot time:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_pca.html">plot_pca</a></span><span class="op">(</span><span class="va">pca</span>, pop_group <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_admix.html">import_admix</a></span><span class="op">(</span></span>
-<span>  <span class="st">"admixture_results/"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"admixture"</span>,</span>
-<span>  ind <span class="op">=</span> <span class="st">"samples.fam"</span>,</span>
-<span>  pop_group <span class="op">=</span> <span class="st">"pop_group.txt"</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/plot_admix.html">plot_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, sort <span class="op">=</span> <span class="st">"all"</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-admixture.png" width="60%" alt="Stacked bar chart. Individuals are arranged along the x-axis and ancestry proportions fill each bar, with group labels separating population groups."></p>
-<p><code>pop_group</code> is optional at plot time:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fl">3</span>, pop_group <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_admix.html">import_admix</a></span><span class="op">(</span></span>
-<span>  <span class="st">"admixture_results/"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"admixture"</span>,</span>
-<span>  ind <span class="op">=</span> <span class="st">"samples.fam"</span>,</span>
-<span>  pop_group <span class="op">=</span> <span class="st">"pop_group.txt"</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span>, sort <span class="op">=</span> <span class="st">"all"</span>, order_group <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p>Population groups use a simple two-column <code>sample pop</code> file:</p>
-<pre class="text"><code>sample  pop
-P001    PopA
-P002    PopB</code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_stats.html">import_stats</a></span><span class="op">(</span><span class="st">"pixy_results/"</span>, type <span class="op">=</span> <span class="st">"pixy"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/geom_stats.html">plot_stats</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"all"</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-stats.png" width="60%" alt="Faceted line plot. Population genomics statistics are stacked vertically for chromosome chr2L, genomic position in megabases is on the shared x-axis, and each panel has its own statistic value scale."></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_stats.html">import_stats</a></span><span class="op">(</span><span class="st">"vcftools_results/"</span>, type <span class="op">=</span> <span class="st">"vcftools"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/geom_stats.html">plot_stats</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"all"</span>, chr <span class="op">=</span> <span class="st">"chr2L"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ld_decay</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span></span>
-<span>  <span class="st">"PopLDdecay_results/"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"poplddecay"</span>,</span>
-<span>  pop_group <span class="op">=</span> <span class="st">"pop_group.txt"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span><span class="va">ld_decay</span>, style <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span><span class="va">ld_decay</span>, style <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span><span class="va">ld_decay</span>, style <span class="op">=</span> <span class="st">"fit"</span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-ld-decay.png" width="60%" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label."></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">selscan_chr1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_selection.html">import_selection</a></span><span class="op">(</span></span>
-<span>  <span class="st">"selscan_results/"</span>,</span>
-<span>  ihs <span class="op">=</span> <span class="st">"chr1.ihs.out.100bins.norm"</span>,</span>
-<span>  nsl <span class="op">=</span> <span class="st">"chr1.nsl.out.100bins.norm"</span>,</span>
-<span>  xpehh <span class="op">=</span> <span class="st">"chr1.xpehh.out.norm"</span>,</span>
-<span>  xpnsl <span class="op">=</span> <span class="st">"chr1.xpnsl.out.norm"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"selscan"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/geom_selection.html">plot_selection</a></span><span class="op">(</span></span>
-<span>  <span class="va">selscan_chr1</span>,</span>
-<span>  stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ihs"</span>, <span class="st">"nsl"</span>, <span class="st">"xpehh"</span>, <span class="st">"xpnsl"</span><span class="op">)</span>,</span>
-<span>  chr <span class="op">=</span> <span class="st">"1"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-selection.png" width="60%" alt="Faceted selection scan on chromosome 1. iHS, nSL, XP-EHH, and XP-nSL are stacked vertically with genomic position in megabases on the x-axis."></p>
-<p>Selection plots support signed or absolute score views. Fixed thresholds such as <code>threshold = 2</code> draw score cutoffs directly, while <code>threshold = 0.95, threshold_type = "quantile"</code> derives a cutoff from the filtered scan values. Genome-wide calls default to a Manhattan-like chromosome axis; calls with <code>chr</code>, <code>start</code>, or <code>end</code> default to a single-region view.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="st">"introgression/Dsuite/PopB_PopC_PopA_localFstats_run1_100_50.txt"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"dsuite_dinvestigate"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fd"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over a genome axis."></p>
-<p>The bundled Dsuite localFstats table is a compact window scan for examples and tests. The trio/statistic examples use a small highland/lowland/hybrid toy system so non-window plots have meaningful positive, negative, and near-zero signals. The same importer also reads Dsuite BBAA/Dmin trio summaries, ADMIXTOOLS qpdstat/f3/f4ratio tables, and TreeMix internal edge/treeout summaries. For TreeMix <code>*.edges.gz</code>, a matching <code>*.vertices.gz</code> file is used when present to preserve the drift-coordinate layout.</p>
-<p>Dsuite trio-level D-statistics default to a P2-by-P3 matrix, which is the more useful publication view for BBAA/Dmin-style summaries. The same table can still be shown as an ordered forest/lollipop summary with <code>style = "trio"</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"introgression/Dsuite/dsuite_results_BBAA.txt"</span>, type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"introgression/Dsuite/dsuite_results_BBAA.txt"</span>, type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"trio"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ne_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_ne_history.html">import_demographic_history</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ne_history"</span>, <span class="st">"SMC++"</span>, <span class="st">"model.csv"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"smcpp"</span>,</span>
-<span>  mutation_rate <span class="op">=</span> <span class="fl">1.2e-8</span>,</span>
-<span>  generation_time <span class="op">=</span> <span class="fl">5</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="reference/geom_ne_history.html">plot_demographic_history</a></span><span class="op">(</span><span class="va">ne_history</span><span class="op">)</span></span></code></pre></div>
-<p align="center">
-<img src="reference/figures/readme-ne-history.png" width="60%" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for four populations and faint bootstrap trajectories behind the main curves."></p>
-<p>Ne history plots read output from PSMC, MSMC2, SMC++, or Stairway Plot 2. <code><a href="reference/import_ne_history.html">import_demographic_history()</a></code>, <code><a href="reference/geom_ne_history.html">plot_demographic_history()</a></code>, and <code><a href="reference/geom_ne_history.html">geom_demographic_history()</a></code> are aliases for users who think in demographic history terms. The bundled SMC++ CSV is an Acropora-style output-shaped example using the package <code>pop_group.txt</code> population labels (<code>PopA</code>-<code>PopD</code>) and biologically plausible bottleneck/recovery histories; raw VCF and <code>pop_group</code> metadata are upstream inputs to the external inference tools, not direct Ne history curves inferred inside <code>ggPopi</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="interface">Interface<a class="anchor" aria-label="anchor" href="#interface"></a>
 </h2>
-<p>The recommended user-facing API is intentionally small.</p>
+<p>Every module follows the same shape:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>import_*()</code> reads tool output into a typed data frame.</li>
+<li>
+<code>plot_*()</code> returns a complete <code>ggplot</code> object with module defaults.</li>
+<li>
+<code>ggpop() + geom_*()</code> provides the same visual grammar inside a ggplot pipeline.</li>
+</ol>
 <table class="table">
 <colgroup>
-<col width="25%">
-<col width="25%">
-<col width="25%">
-<col width="25%">
+<col width="20%">
+<col width="20%">
+<col width="20%">
+<col width="20%">
+<col width="20%">
 </colgroup>
 <thead><tr>
 <th>Module</th>
 <th>Import</th>
 <th>Direct plot</th>
 <th>ggplot extension</th>
+<th>Guide</th>
 </tr></thead>
 <tbody>
 <tr>
-<td>GWAS Manhattan</td>
+<td>GWAS</td>
 <td><code><a href="reference/import_gwas.html">import_gwas()</a></code></td>
-<td><code><a href="reference/plot_manha.html">plot_manha()</a></code></td>
-<td><code>ggpop() + geom_manha()</code></td>
-</tr>
-<tr>
-<td>GWAS Q-Q</td>
-<td><code><a href="reference/import_gwas.html">import_gwas()</a></code></td>
-<td><code><a href="reference/plot_qq.html">plot_qq()</a></code></td>
-<td><code>ggpop() + geom_qq()</code></td>
+<td>
+<code><a href="reference/plot_manha.html">plot_manha()</a></code>, <code><a href="reference/plot_qq.html">plot_qq()</a></code>
+</td>
+<td>
+<code><a href="reference/geom_manha.html">geom_manha()</a></code>, <code><a href="reference/geom_qq.html">geom_qq()</a></code>
+</td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/gwas.html">GWAS</a></td>
 </tr>
 <tr>
 <td>PCA</td>
 <td>
-<code><a href="reference/import_pca.html">import_pca()</a></code> / <code><a href="reference/import_pca.html">compute_pca()</a></code>
+<code><a href="reference/import_pca.html">import_pca()</a></code>, <code><a href="reference/import_pca.html">compute_pca()</a></code>
 </td>
 <td><code><a href="reference/plot_pca.html">plot_pca()</a></code></td>
-<td><code>ggpop() + geom_pca()</code></td>
+<td><code><a href="reference/geom_pca.html">geom_pca()</a></code></td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/pca.html">PCA</a></td>
 </tr>
 <tr>
 <td>Admixture</td>
 <td><code><a href="reference/import_admix.html">import_admix()</a></code></td>
-<td><code><a href="reference/plot_admix.html">plot_admix()</a></code></td>
-<td><code>ggpop() + geom_admix()</code></td>
+<td>
+<code><a href="reference/plot_admix.html">plot_admix()</a></code>, <code><a href="reference/plot_admix2.html">plot_admix2()</a></code>
+</td>
+<td>
+<code><a href="reference/geom_admix.html">geom_admix()</a></code>, <code><a href="reference/plot_admix2.html">geom_admix2()</a></code>
+</td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/admixture.html">Admixture</a></td>
 </tr>
 <tr>
 <td>Population statistics</td>
 <td><code><a href="reference/import_stats.html">import_stats()</a></code></td>
 <td><code><a href="reference/geom_stats.html">plot_stats()</a></code></td>
-<td><code>ggpop() + geom_stats()</code></td>
+<td><code><a href="reference/geom_stats.html">geom_stats()</a></code></td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/stats.html">Stats</a></td>
 </tr>
 <tr>
 <td>LD decay</td>
-<td><code>import_ld_decay(method = ...)</code></td>
-<td><code>plot_ld_decay(measure = ...)</code></td>
-<td><code>ggpop() + geom_ld_decay(measure = ...)</code></td>
+<td><code><a href="reference/import_ld_decay.html">import_ld_decay()</a></code></td>
+<td><code><a href="reference/geom_ld_decay.html">plot_ld_decay()</a></code></td>
+<td><code><a href="reference/geom_ld_decay.html">geom_ld_decay()</a></code></td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/ld-decay.html">LD decay</a></td>
 </tr>
 <tr>
 <td>Selective sweeps</td>
 <td><code><a href="reference/import_selection.html">import_selection()</a></code></td>
 <td><code><a href="reference/geom_selection.html">plot_selection()</a></code></td>
-<td><code>ggpop() + geom_selection()</code></td>
+<td><code><a href="reference/geom_selection.html">geom_selection()</a></code></td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/selection.html">Selection</a></td>
 </tr>
 <tr>
 <td>Introgression</td>
 <td><code><a href="reference/import_introgression.html">import_introgression()</a></code></td>
 <td><code><a href="reference/geom_introgression.html">plot_introgression()</a></code></td>
-<td><code>ggpop() + geom_introgression()</code></td>
+<td><code><a href="reference/geom_introgression.html">geom_introgression()</a></code></td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/introgression.html">Introgression</a></td>
 </tr>
 <tr>
 <td>Demographic / Ne history</td>
 <td>
-<code><a href="reference/import_ne_history.html">import_ne_history()</a></code> / <code><a href="reference/import_ne_history.html">import_demographic_history()</a></code>
+<code><a href="reference/import_ne_history.html">import_ne_history()</a></code>, <code><a href="reference/import_ne_history.html">import_demographic_history()</a></code>
 </td>
 <td>
-<code><a href="reference/geom_ne_history.html">plot_ne_history()</a></code> / <code><a href="reference/geom_ne_history.html">plot_demographic_history()</a></code>
+<code><a href="reference/geom_ne_history.html">plot_ne_history()</a></code>, <code><a href="reference/geom_ne_history.html">plot_demographic_history()</a></code>
 </td>
 <td>
-<code>ggpop() + geom_ne_history()</code> / <code><a href="reference/geom_ne_history.html">geom_demographic_history()</a></code>
+<code><a href="reference/geom_ne_history.html">geom_ne_history()</a></code>, <code><a href="reference/geom_ne_history.html">geom_demographic_history()</a></code>
 </td>
-</tr>
-<tr>
-<td>Population groups</td>
-<td><code><a href="reference/import_pop_group.html">import_pop_group()</a></code></td>
-<td>used by plot functions</td>
-<td>used by geom layers</td>
+<td><a href="https://wwz33.github.io/ggPopi/articles/guides/ne-history.html">Ne history</a></td>
 </tr>
 </tbody>
 </table>
-<p>Advanced compatibility helpers remain available for users who need direct backend behavior, but ordinary workflows should prefer the <code>import_*() |&gt; plot_*()</code> and <code>import_*() |&gt; ggpop() + geom_*()</code> interfaces.</p>
-</div>
-<div class="section level2">
-<h2 id="color-schemes">Color Schemes<a class="anchor" aria-label="anchor" href="#color-schemes"></a>
-</h2>
-<p><code>ggpop</code> provides a unified discrete palette entry for population-genomics categorical variables. PCA population colours and admixture cluster fills use the same publication-oriented palette system by default.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"population"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">ggpop_palette</a></span><span class="op">(</span><span class="fl">5</span>, <span class="st">"admixture"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">scale_colour_ggpop</a></span><span class="op">(</span><span class="st">"population"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">scale_fill_ggpop</a></span><span class="op">(</span><span class="st">"admixture"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="fixed-installation-issues">Fixed Installation Issues<a class="anchor" aria-label="anchor" href="#fixed-installation-issues"></a>
-</h2>
-<p>This version includes dependency fixes needed for reliable source installation:</p>
-<ul>
-<li>replaced <code>flashpcaR/flashpcaR/src/*.cpp</code> and <code>src/*.h</code> path stubs with real source files;</li>
-<li>changed <code>flashpcaR/flashpcaR/src/Makevars</code> and <code>Makevars.win</code> from <code>CXX11</code> to <code>CXX14</code>;</li>
-<li>embedded fastman-style Manhattan and Q-Q plotting behavior in native ggplot layers.</li>
-</ul>
 </div>
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
 <ul>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/gwas.html">GWAS guide</a> Manhattan and Q-Q plotting workflows</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/pca.html">PCA guide</a> PCA imports, population colours, and plotting</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/admixture.html">Admixture guide</a> ADMIXTURE/STRUCTURE imports, group labels, and sorting</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/stats.html">Population statistics guide</a> Windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta plotting</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/ld-decay.html">LD decay guide</a> PopLDdecay imports with point and line plot styles</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/selection.html">Selective sweep guide</a> selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/introgression.html">Introgression guide</a> Dsuite local/trio statistics, ADMIXTOOLS f-stat summaries, and TreeMix graph summaries</li>
-<li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/ne-history.html">Ne history guide</a> PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size histories</li>
+<li>Getting started: <a href="https://wwz33.github.io/ggPopi/articles/ggPopi.html" class="uri">https://wwz33.github.io/ggPopi/articles/ggPopi.html</a>
+</li>
+<li>Function reference: <a href="https://wwz33.github.io/ggPopi/reference/" class="uri">https://wwz33.github.io/ggPopi/reference/</a>
+</li>
+<li>Compatibility helpers: <a href="https://wwz33.github.io/ggPopi/articles/guides/compatibility.html" class="uri">https://wwz33.github.io/ggPopi/articles/guides/compatibility.html</a>
+</li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+<h2 id="design">Design<a class="anchor" aria-label="anchor" href="#design"></a>
 </h2>
-<p><code>ggpop</code> builds on <code>ggplot2</code> and follows tidy plotting conventions inspired by packages such as <code>tidyplots</code>. Optional compatibility paths reference <code>flashpcaR</code> and <code>pophelper</code>, while GWAS Manhattan and Q-Q plots use native ggplot layers with <code>fastman</code>-style data transformation and layout.</p>
+<p><code>ggPopi</code> keeps the user-facing API small while preserving module-specific visual defaults. Direct <code>plot_*()</code> functions are the reference style, and matching <code>geom_*()</code> layers make those defaults available in ggplot compositions.</p>
+<p>Palette and theme helpers such as <code><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">ggpop_palette()</a></code>, <code><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">scale_colour_ggpop()</a></code>, <code><a href="https://rdrr.io/pkg/ggPopi/man/pop_palettes.html" class="external-link">scale_fill_ggpop()</a></code>, and <code><a href="reference/themes.html">theme_tidyplot()</a></code> provide shared styling across modules.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
