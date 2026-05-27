@@ -32,7 +32,7 @@ The intended flow is:
 |---|---|---|---|
 | Import GCTA/GEMMA/EMMAX | `import_gwas(file, type = ...)` | - | Returns `ggpop_gwas` |
 | Manhattan | `plot_manha()` | `ggpop(data) + geom_manha()` | Defaults are aligned |
-| Q-Q | `plot_qq()` | `ggpop(data) + ggpop::geom_qq()` | Use explicit namespace to avoid `ggplot2::geom_qq()` |
+| Q-Q | `plot_qq()` | `ggpop(data) + ggPopi::geom_qq()` | Use explicit namespace to avoid `ggplot2::geom_qq()` |
 | Backend | internal fastman-style layout | native ggpop stat | Direct wrappers and geoms share one implementation |
 
 ## GCTA example
@@ -58,7 +58,7 @@ gwas |>
 
 gwas |>
   ggpop() +
-  ggpop::geom_qq()
+  ggPopi::geom_qq()
 ```
 
 `plot_manha(gwas)` and `ggpop(gwas) + geom_manha()`

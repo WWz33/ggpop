@@ -152,12 +152,22 @@
     data[[column]] <- as.numeric(data[[column]])
   }
   data$source <- source
-  data$.group <- interaction(data$method, data$sample_id, drop = TRUE, sep = ":")
+  data$.group <- .ne_history_group_id(data)
   if (any(!is.finite(data$time) | !is.finite(data$ne), na.rm = TRUE)) {
     stop("Ne history time and Ne values must be finite numeric values.", call. = FALSE)
   }
   class(data) <- unique(c("ggpop_ne_history", class(data)))
   data
+}
+
+.ne_history_group_id <- function(data) {
+  parts <- list(data$method, data$sample_id)
+  for (column in c("series", "type", "line_type", "plot_type", "plot_num", "replicate", "bootstrap", "bs", "n")) {
+    if (column %in% names(data)) {
+      parts <- c(parts, list(data[[column]]))
+    }
+  }
+  do.call(interaction, c(parts, list(drop = TRUE, sep = ":")))
 }
 
 .stats_group_id <- function(data) {

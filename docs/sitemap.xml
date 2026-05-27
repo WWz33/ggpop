@@ -1,6 +1,6 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://wwz33.github.io/ggPopi/404.html</loc></url>
-<url><loc>https://wwz33.github.io/ggPopi/articles/ggpop.html</loc></url>
+<url><loc>https://wwz33.github.io/ggPopi/articles/ggPopi.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/articles/guides/admixture.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/articles/guides/color-schemes.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/articles/guides/compatibility.html</loc></url>
@@ -40,6 +40,7 @@
 <url><loc>https://wwz33.github.io/ggPopi/reference/import_stats.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/reference/index.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/reference/plot_admix.html</loc></url>
+<url><loc>https://wwz33.github.io/ggPopi/reference/plot_admix2.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/reference/plot_manha.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/reference/plot_pca.html</loc></url>
 <url><loc>https://wwz33.github.io/ggPopi/reference/plot_qq.html</loc></url>

@@ -13,7 +13,7 @@ import_ne_history <- function(dir = NULL, ..., type = c("auto", "psmc", "msmc2",
     type,
     psmc = .import_ne_history_psmc(files, sample_id, mutation_rate, generation_time, bin_size),
     msmc2 = .import_ne_history_msmc2(files, sample_id, mutation_rate, generation_time),
-    smcpp = .import_ne_history_smcpp(files, sample_id),
+    smcpp = .import_ne_history_smcpp(files, sample_id, mutation_rate, generation_time),
     stairway = .import_ne_history_stairway(files, sample_id)
   )
   .new_ggpop_ne_history(data, source = type)
@@ -156,30 +156,60 @@ import_ne_history <- function(dir = NULL, ..., type = c("auto", "psmc", "msmc2",
   .stats_bind_rows(rows)
 }
 
-.import_ne_history_smcpp <- function(files, sample_id) {
+.import_ne_history_smcpp <- function(files, sample_id, mutation_rate, generation_time) {
   rows <- lapply(seq_along(files), function(index) {
-    .import_ne_history_smcpp_file(files[[index]], sample_id = .ne_history_sample_id(files, index, sample_id))
+    .import_ne_history_smcpp_file(
+      files[[index]],
+      sample_id = .ne_history_sample_id(files, index, sample_id),
+      mutation_rate = mutation_rate,
+      generation_time = generation_time
+    )
   })
   .stats_bind_rows(rows)
 }
 
-.import_ne_history_smcpp_file <- function(file, sample_id) {
+.import_ne_history_smcpp_file <- function(file, sample_id, mutation_rate, generation_time) {
   raw <- utils::read.csv(file, stringsAsFactors = FALSE, check.names = FALSE)
   names(raw) <- .standardize_names(names(raw))
   pop_col <- .first_existing(raw, c("population", "pop", "label", "name", "model"))
   time_col <- .ne_history_required_column(raw, c("time", "generation", "generations", "x"), file, "time")
   ne_col <- .ne_history_required_column(raw, c("ne", "popsize", "population_size", "y"), file, "Ne")
+  unit_col <- .first_existing(raw, c("time_unit", "time_units", "unit", "units"))
+  raw_unit <- if (is.null(unit_col)) "generations" else tolower(as.character(raw[[unit_col]][1]))
+  time_unit <- if (grepl("year", raw_unit)) "years" else "generations"
+  time <- as.numeric(raw[[time_col]])
+  if (identical(time_unit, "generations") && !is.null(generation_time) && generation_time != 1) {
+    time <- time * generation_time
+    time_unit <- "years"
+  }
   data <- data.frame(
     method = "SMC++",
     sample_id = if (is.null(pop_col)) sample_id else as.character(raw[[pop_col]]),
-    time = raw[[time_col]],
+    time = time,
     ne = raw[[ne_col]],
-    time_unit = "generations",
+    time_unit = time_unit,
     scale = "absolute",
     file = basename(file),
     stringsAsFactors = FALSE
   )
+  if (!is.null(mutation_rate)) {
+    data$mutation_rate <- mutation_rate
+  }
+  if (!is.null(generation_time)) {
+    data$generation_time <- generation_time
+  }
+  optional <- .ne_history_optional_columns(raw)
+  for (column in optional) {
+    data[[column]] <- raw[[column]]
+  }
   data
+}
+
+.ne_history_optional_columns <- function(raw) {
+  intersect(
+    c("series", "type", "line_type", "plot_type", "plot_num", "replicate", "bootstrap", "bs", "n"),
+    names(raw)
+  )
 }
 
 .import_ne_history_stairway <- function(files, sample_id) {
@@ -233,3 +263,5 @@ import_ne_history <- function(dir = NULL, ..., type = c("auto", "psmc", "msmc2",
   if (!is.null(file_name) && nzchar(file_name)) return(file_name)
   tools::file_path_sans_ext(basename(files[[index]]))
 }
+
+import_demographic_history <- import_ne_history

@@ -18,11 +18,29 @@ geom_ne_history <- function(mapping = ggplot2::aes(x = .data$time, y = .data$ne)
     mapping <- .add_ne_history_group_mapping(mapping)
   }
   colour_count <- .ne_history_colour_count(layer_data, colour_by)
+  plot_data <- .ne_history_split_bootstrap(layer_data)
+  main_data <- plot_data$main
+  bootstrap_data <- plot_data$bootstrap
+  if (!is.null(main_data) && !is.function(main_data) && nrow(main_data) == 0) {
+    main_data <- layer_data
+    bootstrap_data <- NULL
+  }
   layers <- list(
     .ne_history_ci_layers(layer_data, colour_by, palette, ci),
+    if (!is.null(bootstrap_data) && nrow(bootstrap_data) > 0) .geom_ne_history_layer(
+      mapping = mapping,
+      data = bootstrap_data,
+      style = style,
+      ...,
+      size = (size %||% .ne_history_default_size(style, base_size)) * 0.65,
+      alpha = alpha %||% 0.12,
+      na.rm = na.rm,
+      show.legend = FALSE,
+      inherit.aes = inherit.aes
+    ),
     .geom_ne_history_layer(
       mapping = mapping,
-      data = layer_data,
+      data = main_data,
       style = style,
       ...,
       size = size %||% .ne_history_default_size(style, base_size),
@@ -62,6 +80,9 @@ ggplot_add.ggpop_ne_history_layers <- function(object, plot, object_name) {
   }
   for (layer in unclass(object)) {
     plot <- plot + layer
+  }
+  if (inherits(plot$data, "ggpop_ne_history")) {
+    plot <- plot + ggplot2::labs(x = .ne_history_x_label(plot$data), y = "Effective population size")
   }
   plot
 }
@@ -137,3 +158,7 @@ plot_ne_history <- function(data, sample_id = NULL, method = NULL,
   if (identical(unit, "scaled")) return("Scaled time")
   "Time before present (generations)"
 }
+
+geom_demographic_history <- geom_ne_history
+
+plot_demographic_history <- plot_ne_history

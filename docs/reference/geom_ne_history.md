@@ -43,6 +43,44 @@ plot_ne_history(
   log_y = TRUE,
   ...
 )
+
+geom_demographic_history(
+  mapping = ggplot2::aes(x = .data$time, y = .data$ne, colour = .data$sample_id),
+  data = NULL,
+  ...,
+  sample_id = NULL,
+  method = NULL,
+  style = c("auto", "step", "line", "point"),
+  ci = TRUE,
+  colour_by = c("sample_id", "method"),
+  size = NULL,
+  alpha = NULL,
+  base_size = 11,
+  base_family = "",
+  palette = "population",
+  log_x = TRUE,
+  log_y = TRUE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+
+plot_demographic_history(
+  data,
+  sample_id = NULL,
+  method = NULL,
+  style = c("auto", "step", "line", "point"),
+  ci = TRUE,
+  title = NULL,
+  subtitle = NULL,
+  caption = NULL,
+  base_size = 11,
+  base_family = "",
+  palette = "population",
+  log_x = TRUE,
+  log_y = TRUE,
+  ...
+)
 ```
 
 ## Arguments
@@ -105,8 +143,16 @@ plot_ne_history(
 
 ## Value
 
-`geom_ne_history()` returns a list of ggplot layers. `plot_ne_history()`
-returns a ggplot object.
+`geom_ne_history()` and `geom_demographic_history()` return a list of
+ggplot layers. `plot_ne_history()` and `plot_demographic_history()`
+return a ggplot object.
+
+## Details
+
+SMC++ bootstrap or replicate trajectories are drawn first as thin
+low-alpha lines when common columns such as `type`, `plot_type`,
+`replicate`, or `bootstrap` identify them. Main trajectories remain
+visually dominant.
 
 ## Examples
 

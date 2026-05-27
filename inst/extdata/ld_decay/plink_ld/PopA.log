@@ -1,0 +1,39 @@
+PLINK v1.9.0-b.8 64-bit (22 Oct 2024)
+Options in effect:
+  --allow-extra-chr
+  --allow-no-sex
+  --double-id
+  --keep PopA_subset.txt
+  --ld-window 999999
+  --ld-window-kb 100
+  --ld-window-r2 0
+  --out PopA
+  --r2
+  --thin 0.01
+  --vcf ../../finalsnp.vcf
+
+Hostname: sri-test-01
+Working directory: /sri/home/sri2025201067/gs/ldecay/plink_ld
+Start time: Fri May 22 01:14:17 2026
+
+Random number seed: 1779383657
+515185 MB RAM detected; reserving 257592 MB for main workspace.
+--vcf: PopA-temporary.bed + PopA-temporary.bim + PopA-temporary.fam written.
+60990 variants loaded from .bim file.
+304 people (0 males, 0 females, 304 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to PopA.nosex .
+--thin: 60348 variants removed (642 remaining).
+--keep: 65 people remaining.
+Using up to 55 threads (change this with --threads).
+Before main variant filters, 65 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate in remaining samples is exactly 1.
+642 variants and 65 people pass filters and QC.
+Note: No phenotypes present.
+Running --r2 with the following filters:
+  --ld-window: 999999
+  --ld-window-kb: 100
+  --ld-window-r2: 0
+--r2 to PopA.ld ... done.
+
+End time: Fri May 22 01:14:17 2026

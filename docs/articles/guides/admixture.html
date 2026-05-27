@@ -40,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../../articles/ggPopi.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+<li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -97,8 +97,11 @@ objects;</li>
 <li>
 <code><a href="../../reference/plot_admix.html">plot_admix()</a></code> returns a <code>ggplot</code> object;</li>
 <li>
-<code>ggpop() + geom_admix()</code> gives the extension-style
-layered workflow.</li>
+<code>ggpop() + geom_admix()</code> gives the pophelper-style
+layered workflow;</li>
+<li>
+<code><a href="../../reference/plot_admix2.html">plot_admix2()</a></code> and <code>ggpop() + geom_admix2()</code>
+give a pure ggplot-style layout.</li>
 </ul>
 <div class="section level2">
 <h2 id="api-summary">API summary<a class="anchor" aria-label="anchor" href="#api-summary"></a>
@@ -134,7 +137,17 @@ layered workflow.</li>
 <tr class="even">
 <td>Layered plot</td>
 <td><code>ggpop(data) + geom_admix(k = ...)</code></td>
-<td>Main ggplot extension path</td>
+<td>Pophelper-style ggplot extension path</td>
+</tr>
+<tr class="odd">
+<td>Pure ggplot plot</td>
+<td><code>plot_admix2(data, k = ...)</code></td>
+<td>Figure 2-like minimal ggplot layout</td>
+</tr>
+<tr class="even">
+<td>Pure ggplot layer</td>
+<td><code>ggpop(data) + geom_admix2(k = ...)</code></td>
+<td>Layered route for the minimal ggplot layout</td>
 </tr>
 <tr class="odd">
 <td>Original pophelper behavior</td>
@@ -211,15 +224,23 @@ layered workflow.</li>
 <p><code><a href="../../reference/plot_admix.html">plot_admix()</a></code> is the direct plot wrapper.
 <code><a href="../../reference/geom_admix.html">geom_admix()</a></code> is the layered interface when you want to
 build a larger <code>ggplot</code> object yourself. Both routes use the
-same visual defaults; <code><a href="../../reference/plot_admix.html">plot_admix()</a></code> is the reference style,
-and <code>ggpop(admix) + geom_admix()</code> reproduces that
-publication-level look inside a ggplot composition.</p>
+same pophelper-style visual defaults; <code><a href="../../reference/plot_admix.html">plot_admix()</a></code> is the
+reference style, and <code>ggpop(admix) + geom_admix()</code> reproduces
+that look inside a ggplot composition.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="admixture_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Stacked bar chart from plot_admix. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar for K equals 3." width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/geom_admix.html">geom_admix</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="admixture_files/figure-html/unnamed-chunk-8-2.png" class="r-plt" alt="Stacked bar chart from ggpop plus geom_admix. The same K equals 3 ancestry proportions are displayed through the layered ggplot extension path." width="700"></p>
+<p>The <code>admix2</code> route mirrors the upstream Figure 2
+stacked-bar layout more closely.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/plot_admix2.html">plot_admix2</a></span><span class="op">(</span><span class="va">admix</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<p><img src="admixture_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="ggplot-style stacked bar chart. Individuals are displayed in a cleaner pure ggplot layout with the same ancestry proportions and faceted K panels, mirroring the upstream Figure 2 admixture figure." width="700"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="va">admix</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../../reference/plot_admix2.html">geom_admix2</a></span><span class="op">(</span>k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<p><img src="admixture_files/figure-html/unnamed-chunk-9-2.png" class="r-plt" alt="ggplot-style stacked bar chart. Individuals are displayed in a cleaner pure ggplot layout with the same ancestry proportions and faceted K panels, mirroring the upstream Figure 2 admixture figure." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="structure-style-input">STRUCTURE-style input<a class="anchor" aria-label="anchor" href="#structure-style-input"></a>
@@ -227,7 +248,7 @@ publication-level look inside a ggplot composition.</p>
 <p><code><a href="../../reference/import_admix.html">import_admix()</a></code> also accepts limited STRUCTURE-style
 inputs. The importer always returns the same typed long-format
 object.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">structure</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_admix.html">import_admix</a></span><span class="op">(</span><span class="st">"structure_results.out"</span>, type <span class="op">=</span> <span class="st">"structure"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../../reference/plot_admix.html">plot_admix</a></span><span class="op">(</span><span class="va">structure</span>, k <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span></span></code></pre></div>
 </div>

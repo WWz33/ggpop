@@ -4,9 +4,9 @@
 \usage{
 geom_admix(mapping = NULL, data = NULL, ...,
   sort = c("none", "cluster", "all", "label"), sortind = NULL,
-  k = "all", palette = NULL, group = "pop", order_group = FALSE,
-  show_group_labels = NULL, subset_group = NULL, bar_width = 1,
-  show.legend = FALSE, show_sample_labels = FALSE,
+  k = "all", palette = NULL, group = "pop", pop_group = TRUE,
+  order_group = FALSE, show_group_labels = NULL, subset_group = NULL,
+  bar_width = 1, show.legend = FALSE, show_sample_labels = FALSE,
   indlabwithgrplab = FALSE, indlabsep = " ", indlabsize = 5,
   indlabangle = 90, indlabvjust = 0.5, indlabhjust = 1,
   indlabcol = "grey30", indlabspacer = 0, grplabsize = 7,
@@ -21,8 +21,9 @@ geom_admix(mapping = NULL, data = NULL, ...,
 \item{...}{Additional layer parameters.}
 \item{sort, sortind}{Sample ordering strategy: `none`, `all`, `cluster`, `label`, or a cluster name such as `K1`. `sortind` is a pophelper-compatible alias.}
 \item{k}{K selection: `"all"`, a single integer, or an integer vector.}
-\item{palette}{Optional cluster palette for publication style.}
+\item{palette}{Optional cluster palette.}
 \item{group}{Population group column, usually `pop` from `import_pop_group()`.}
+\item{pop_group}{Set to `FALSE` to disable population group facets.}
 \item{order_group, show_group_labels, subset_group}{Pophelper-style group ordering, strip display, and subsetting controls.}
 \item{bar_width}{Admixture bar width.}
 \item{indlabwithgrplab, indlabsep, indlabsize, indlabangle, indlabvjust, indlabhjust, indlabcol, indlabspacer}{Individual label controls aligned with pophelper naming.}

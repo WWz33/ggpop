@@ -20,51 +20,37 @@ left as-is or collapsed again with `method = "MeanBin"`, `MedianBin`, or
 
 ## Import PopLDdecay results
 
-The bundled example contains a PopLDdecay `final_ld.stat.gz` result
-file. The importer standardizes `Dist` to `dist`, `Mean_r^2` to `r2`,
+The bundled example contains one PopLDdecay `*.stat.gz` result per
+population. importer standardizes `Dist` to `dist`, `Mean_r^2` to `r2`,
 and `NumberPairs` to `n_pairs`.
 
 ``` r
-ld_dir <- ggpop_extdata("ld_decay", "PopLDdecay")
+ld_dir <- ggpop_extdata("ld_decay", "poplddcay")
 ld_decay <- import_ld_decay(ld_dir, type = "poplddecay")
 class(ld_decay)
 #> [1] "ggpop_ld_decay" "data.frame"
 head(ld_decay)
-#>                                    dist dist_kb        r2 d_prime
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r0   10    0.01 0.7623450      NA
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r1   20    0.02 0.7568097      NA
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r2   30    0.03 0.7534708      NA
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r3   40    0.04 0.7596488      NA
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r4   50    0.05 0.7457370      NA
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r5   60    0.06 0.7534852      NA
-#>                                      sum_r2 sum_d_prime n_pairs
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 1458.366          NA    1913
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 2479.309          NA    3276
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 2169.242          NA    2879
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 1838.350          NA    2420
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 1412.426          NA    1894
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 1104.609          NA    1466
-#>                                           pop  sample_id
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 PopLDdecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 PopLDdecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 PopLDdecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 PopLDdecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 PopLDdecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 PopLDdecay PopLDdecay
-#>                                               file ld_method
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 final_ld.bin.gz   MeanBin
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 final_ld.bin.gz   MeanBin
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 final_ld.bin.gz   MeanBin
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 final_ld.bin.gz   MeanBin
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 final_ld.bin.gz   MeanBin
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 final_ld.bin.gz   MeanBin
-#>                                        source     .group
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r0 poplddecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r1 poplddecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r2 poplddecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r3 poplddecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r4 poplddecay PopLDdecay
-#> PopLDdecay\rfinal_ld.bin.gz\r10\r5 poplddecay PopLDdecay
+#>                           dist dist_kb        r2 d_prime   sum_r2
+#> PopA\rPopA.stat.gz\r10\r0   10    0.01 0.7666593      NA 1687.417
+#> PopA\rPopA.stat.gz\r10\r1   20    0.02 0.7609297      NA 2447.911
+#> PopA\rPopA.stat.gz\r10\r2   30    0.03 0.7585424      NA 2059.443
+#> PopA\rPopA.stat.gz\r10\r3   40    0.04 0.7613730      NA 1764.863
+#> PopA\rPopA.stat.gz\r10\r4   50    0.05 0.7546858      NA 1353.152
+#> PopA\rPopA.stat.gz\r10\r5   60    0.06 0.7595983      NA 1078.630
+#>                           sum_d_prime n_pairs  pop sample_id
+#> PopA\rPopA.stat.gz\r10\r0          NA    2201 PopA      PopA
+#> PopA\rPopA.stat.gz\r10\r1          NA    3217 PopA      PopA
+#> PopA\rPopA.stat.gz\r10\r2          NA    2715 PopA      PopA
+#> PopA\rPopA.stat.gz\r10\r3          NA    2318 PopA      PopA
+#> PopA\rPopA.stat.gz\r10\r4          NA    1793 PopA      PopA
+#> PopA\rPopA.stat.gz\r10\r5          NA    1420 PopA      PopA
+#>                                   file ld_method     source .group
+#> PopA\rPopA.stat.gz\r10\r0 PopA.stat.gz   MeanBin poplddecay   PopA
+#> PopA\rPopA.stat.gz\r10\r1 PopA.stat.gz   MeanBin poplddecay   PopA
+#> PopA\rPopA.stat.gz\r10\r2 PopA.stat.gz   MeanBin poplddecay   PopA
+#> PopA\rPopA.stat.gz\r10\r3 PopA.stat.gz   MeanBin poplddecay   PopA
+#> PopA\rPopA.stat.gz\r10\r4 PopA.stat.gz   MeanBin poplddecay   PopA
+#> PopA\rPopA.stat.gz\r10\r5 PopA.stat.gz   MeanBin poplddecay   PopA
 ```
 
 Population grouping follows the same `pop_group.txt` convention used by
@@ -79,14 +65,27 @@ can be used to re-bin PopLDdecay summaries with the same mean-bin,
 median, or percentile behavior used by the legacy plotting scripts.
 
 ``` r
-ld_group_dir <- ggpop_extdata("ld_decay", "PopLDdecay_grouped")
+ld_group_dir <- ggpop_extdata("ld_decay", "poplddcay")
 ld_grouped <- import_ld_decay(
   ld_group_dir,
-  pop_group = ggpop_extdata("pop_group.txt"),
   type = "poplddecay"
 )
 unique(ld_grouped$pop)
-#> [1] "PopC" "PopB" "PopA"
+#> [1] "PopA" "PopB" "PopC" "PopD"
+```
+
+PLINK pairwise LD tables can be imported the same way. A single `.ld`
+file draws one population, while importing the directory keeps one curve
+per population file.
+
+``` r
+plink_ld <- import_ld_decay(
+  ggpop_extdata("ld_decay", "plink_ld"),
+  type = "plink",
+  bin_size = 200
+)
+unique(plink_ld$pop)
+#> [1] "PopA" "PopB" "PopC"
 ```
 
 ## Point style
@@ -104,7 +103,7 @@ plot_ld_decay(
 
 ![LD decay point plot. Pairwise distance in kilobases is on the x-axis
 and mean LD r squared is on the y-axis, with points coloured by
-population label.](ld-decay_files/figure-html/unnamed-chunk-3-1.png)
+population label.](ld-decay_files/figure-html/unnamed-chunk-4-1.png)
 
 ## Line style
 
@@ -120,7 +119,7 @@ plot_ld_decay(
 
 ![LD decay line plot. Pairwise distance in kilobases is on the x-axis
 and mean LD r squared is on the y-axis, with a continuous curve showing
-the decay pattern.](ld-decay_files/figure-html/unnamed-chunk-4-1.png)
+the decay pattern.](ld-decay_files/figure-html/unnamed-chunk-5-1.png)
 
 ## Fitted line style
 
@@ -137,7 +136,7 @@ plot_ld_decay(
 ![LD decay fitted line plot. Pairwise distance in kilobases is on the
 x-axis and mean LD r squared is on the y-axis, with fitted curves
 coloured by population
-label.](ld-decay_files/figure-html/unnamed-chunk-5-1.png)
+label.](ld-decay_files/figure-html/unnamed-chunk-6-1.png)
 
 ## Layered path
 
@@ -153,4 +152,4 @@ ld_grouped |>
 
 ![Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise
 distance in kilobases is on the x-axis and mean LD r squared is on the
-y-axis.](ld-decay_files/figure-html/unnamed-chunk-6-1.png)
+y-axis.](ld-decay_files/figure-html/unnamed-chunk-7-1.png)

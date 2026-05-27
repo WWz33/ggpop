@@ -6,7 +6,9 @@
   creates typed `ggpop_admix` objects;
 - [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
   returns a `ggplot` object;
-- `ggpop() + geom_admix()` gives the extension-style layered workflow.
+- `ggpop() + geom_admix()` gives the pophelper-style layered workflow;
+- [`plot_admix2()`](https://wwz33.github.io/ggPopi/reference/plot_admix2.md)
+  and `ggpop() + geom_admix2()` give a pure ggplot-style layout.
 
 ## API summary
 
@@ -15,7 +17,9 @@
 | Import ADMIXTURE directory or `.Q` files | `import_admix(file, type = "admixture", pop_group = NULL)` | Reads full K result sets |
 | Import STRUCTURE-style numeric Q matrix | `import_admix(file, type = "structure")` | Limited numeric Q support |
 | Direct plot | `plot_admix(data, k = ...)` | `k = "all"`, one K, or a vector |
-| Layered plot | `ggpop(data) + geom_admix(k = ...)` | Main ggplot extension path |
+| Layered plot | `ggpop(data) + geom_admix(k = ...)` | Pophelper-style ggplot extension path |
+| Pure ggplot plot | `plot_admix2(data, k = ...)` | Figure 2-like minimal ggplot layout |
+| Pure ggplot layer | `ggpop(data) + geom_admix2(k = ...)` | Layered route for the minimal ggplot layout |
 | Original pophelper behavior | [`plot_pophelper_q()`](https://wwz33.github.io/ggPopi/reference/pophelper_compat.md) | Advanced compatibility layer |
 
 ## Full K results
@@ -115,10 +119,10 @@ plot_admix.](admixture_files/figure-html/unnamed-chunk-7-1.png)
 is the direct plot wrapper.
 [`geom_admix()`](https://wwz33.github.io/ggPopi/reference/geom_admix.md)
 is the layered interface when you want to build a larger `ggplot` object
-yourself. Both routes use the same visual defaults;
+yourself. Both routes use the same pophelper-style visual defaults;
 [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
 is the reference style, and `ggpop(admix) + geom_admix()` reproduces
-that publication-level look inside a ggplot composition.
+that look inside a ggplot composition.
 
 ``` r
 plot_admix(admix, k = 3)
@@ -135,6 +139,27 @@ ggpop(admix) + geom_admix(k = 3)
 ![Stacked bar chart from ggpop plus geom_admix. The same K equals 3
 ancestry proportions are displayed through the layered ggplot extension
 path.](admixture_files/figure-html/unnamed-chunk-8-2.png)
+
+The `admix2` route mirrors the upstream Figure 2 stacked-bar layout more
+closely.
+
+``` r
+plot_admix2(admix, k = 3)
+```
+
+![ggplot-style stacked bar chart. Individuals are displayed in a cleaner
+pure ggplot layout with the same ancestry proportions and faceted K
+panels, mirroring the upstream Figure 2 admixture
+figure.](admixture_files/figure-html/unnamed-chunk-9-1.png)
+
+``` r
+ggpop(admix) + geom_admix2(k = 3)
+```
+
+![ggplot-style stacked bar chart. Individuals are displayed in a cleaner
+pure ggplot layout with the same ancestry proportions and faceted K
+panels, mirroring the upstream Figure 2 admixture
+figure.](admixture_files/figure-html/unnamed-chunk-9-2.png)
 
 ## STRUCTURE-style input
 

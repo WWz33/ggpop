@@ -22,7 +22,7 @@ ggpop_extdata <- function(...) {
 The recommended user-facing interfaces are:
 
 - `import_gwas()` |> `plot_manha()` or `ggpop()` + `geom_manha()`
-- `import_gwas()` |> `plot_qq()` or `ggpop()` + `ggpop::geom_qq()`
+- `import_gwas()` |> `plot_qq()` or `ggpop()` + `ggPopi::geom_qq()`
 - `plot_admix()`
 - `ggpop() + geom_admix()`
 

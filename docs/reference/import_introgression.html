@@ -18,11 +18,11 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/ggPopi.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
@@ -62,8 +62,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">import_introgression</span><span class="op">(</span></span>
 <span>  dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"dsuite_dtrios"</span>, <span class="st">"dsuite_dinvestigate"</span>, <span class="st">"genomics_general"</span>,</span>
-<span>    <span class="st">"treemix"</span>, <span class="st">"qpgraph"</span><span class="op">)</span></span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"dsuite_dtrios"</span>, <span class="st">"dsuite_dinvestigate"</span>, <span class="st">"fixed_diff"</span>,</span>
+<span>    <span class="st">"genomics_general"</span>, <span class="st">"admixtools"</span>, <span class="st">"treemix"</span>, <span class="st">"qpgraph"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -78,7 +78,7 @@
 <dd><p>Optional named file paths. Relative paths are resolved inside <code>dir</code>.</p></dd>
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Input type. Supports Dsuite <code>Dtrios</code>, Dsuite <code>Dinvestigate</code>/localFstats, genomics_general ABBA-BABA window outputs, TreeMix edge lists, and ADMIXTOOLS2 qpGraph edge tables.</p></dd>
+<dd><p>Input type. Supports Dsuite <code>Dtrios</code>/BBAA/Dmin trio summaries, Dsuite <code>Dinvestigate</code>/localFstats window summaries, fixed-difference trio summaries, genomics_general ABBA-BABA window outputs, ADMIXTOOLS qpdstat/f3/f4ratio tables, TreeMix internal edge/treeout summaries, and legacy qpGraph edge tables. TreeMix <code>*.edges.gz</code> imports use matching <code>*.vertices.gz</code> files when present to recover the drift-coordinate layout.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -87,24 +87,33 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Windowed Dsuite <code>Dinvestigate</code>/localFstats and genomics_general ABBA-BABA outputs are normalized to one row per statistic per window. Dsuite <code>Dtrios</code> is imported as trio-level D statistic summaries. Graph imports expect a user-facing edge table with <code>from</code> and <code>to</code> columns; this is suitable for TreeMix migration-edge summaries or ADMIXTOOLS2 qpGraph edge data frames.</p>
+    <p>Windowed Dsuite <code>Dinvestigate</code>/localFstats and genomics_general ABBA-BABA outputs are normalized to one row per statistic per window. Dsuite <code>Dtrios</code>/BBAA/Dmin files are imported as trio-level D statistic summaries. ADMIXTOOLS qpdstat, f3, and f4ratio outputs are imported as trio statistic tables. TreeMix internal <code>*.edges.gz</code> and <code>*.treeout.gz</code> files are imported as lightweight graph summaries. For <code>*.edges.gz</code>, a same-prefix <code>*.vertices.gz</code> file is used when available to add <code>x</code>, <code>y</code>, <code>xend</code>, and <code>yend</code> drift coordinates; <code>*.treeout.gz</code> alone remains a migration-edge summary. Legacy qpGraph edge tables expect user-facing <code>from</code> and <code>to</code> columns.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">gg_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"introgression"</span>, <span class="st">"genomics_general"</span>, package <span class="op">=</span> <span class="st">"ggpop"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu">import_introgression</span><span class="op">(</span><span class="va">gg_dir</span>, type <span class="op">=</span> <span class="st">"genomics_general"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> `dir` must point to an existing directory.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">local_fstats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"extdata"</span>, <span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"PopB_PopC_PopA_localFstats_run1_100_50.txt"</span>,</span></span>
+<span class="r-in"><span>  package <span class="op">=</span> <span class="st">"ggPopi"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu">import_introgression</span><span class="op">(</span><span class="va">local_fstats</span>, type <span class="op">=</span> <span class="st">"dsuite_dinvestigate"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">intro</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_introgression.html">plot_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'intro' not found</span>
+<span class="r-plt img"><img src="import_introgression-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">trios</span> <span class="op">&lt;-</span> <span class="fu">import_introgression</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>, <span class="st">"Dtrios.tsv"</span>, package <span class="op">=</span> <span class="st">"ggpop"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>, <span class="st">"dsuite_results_BBAA.txt"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> `dir` must point to an existing directory.</span>
-<span class="r-in"><span><span class="va">trios</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'trios' not found</span>
+<span class="r-in"><span><span class="va">trios</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_introgression.html">plot_introgression</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"matrix"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="import_introgression-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">qpdstat</span> <span class="op">&lt;-</span> <span class="fu">import_introgression</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"introgression"</span>, <span class="st">"admixtools"</span>, <span class="st">"qpdstat_result.csv"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  type <span class="op">=</span> <span class="st">"admixtools"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">qpdstat</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="import_introgression-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

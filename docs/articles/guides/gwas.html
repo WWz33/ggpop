@@ -40,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../../articles/ggPopi.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+<li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -131,7 +131,7 @@ without an external <code>fastman</code> dependency.</li>
 <tr class="odd">
 <td>Q-Q</td>
 <td><code><a href="../../reference/plot_qq.html">plot_qq()</a></code></td>
-<td><code>ggpop(data) + ggpop::geom_qq()</code></td>
+<td><code>ggpop(data) + ggPopi::geom_qq()</code></td>
 <td>Use explicit namespace to avoid <code><a href="https://ggplot2.tidyverse.org/reference/geom_qq.html" class="external-link">ggplot2::geom_qq()</a></code>
 </td>
 </tr>
@@ -168,10 +168,7 @@ without an external <code>fastman</code> dependency.</li>
 <code class="sourceCode R"><span></span>
 <span><span class="va">gwas</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">ggpop</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ggpop/man/geom_qq.html" class="external-link">geom_qq</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Registered S3 method overwritten by 'ggpop':</span></span>
-<span><span class="co">#&gt;   method                     from  </span></span>
-<span><span class="co">#&gt;   print.ggpop_palette_scheme ggPopi</span></span></code></pre></div>
+<span>  <span class="fu">ggPopi</span><span class="fu">::</span><span class="fu"><a href="../../reference/geom_qq.html">geom_qq</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="gwas_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" alt="Q-Q scatter plot from the layered ggplot workflow. Expected minus log10 p-values are on the x-axis and observed minus log10 p-values are on the y-axis, with points compared against a diagonal reference line." width="700"></p>
 <p><code>plot_manha(gwas)</code> and
 <code>ggpop(gwas) + geom_manha()</code> share the same default threshold

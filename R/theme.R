@@ -35,15 +35,20 @@ theme_ggpop_publication <- function(base_size = 11, base_family = "",
 
 .ggpop_apply_labels <- function(plot, title = NULL, subtitle = NULL, caption = NULL,
                                 x = NULL, y = NULL, fill = NULL, colour = NULL) {
-  plot + ggplot2::labs(
+  labels <- list(
     title = title,
     subtitle = subtitle,
     caption = caption,
     x = x,
-    y = y,
-    fill = fill,
-    colour = colour
+    y = y
   )
+  if (!is.null(fill)) {
+    labels$fill <- fill
+  }
+  if (!is.null(colour)) {
+    labels$colour <- colour
+  }
+  plot + do.call(ggplot2::labs, labels)
 }
 
 theme_tidyplot <- function(plot, base_size = 7, base_family = "",

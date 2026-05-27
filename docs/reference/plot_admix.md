@@ -18,7 +18,7 @@ plot_admix(data, title = NULL, subtitle = NULL, caption = NULL,
   k = "all", palette = NULL, group = "pop", order_group = FALSE,
   show_group_labels = NULL, subset_group = NULL, show_legend = FALSE,
   show_sample_labels = FALSE, base_size = 5, base_family = "",
-  legend_position = "top", bar_width = 1, ...)
+  legend_position = "top", pop_group = TRUE, bar_width = 1, ...)
 as_pophelper_qlist(data)
 plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
   theme = "theme_bw", basesize = 8)
@@ -60,6 +60,10 @@ plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
   Admixture plot theme settings aligned with the supported pophelper
   \`plotQ()\` subset.
 
+- pop_group:
+
+  Set to \`FALSE\` to disable population group facets.
+
 - bar_width:
 
   Admixture bar width.
@@ -75,7 +79,8 @@ plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
 
 ## Details
 
-The recommended user-facing admixture plotting interfaces are
-\`plot_admix()\` and \`geom_admix()\`. \`plot_admixture_pophelper()\` is
-an advanced compatibility escape hatch for users who need original
-pophelper behavior.
+The pophelper-style user-facing admixture plotting interfaces are
+\`plot_admix()\` and \`geom_admix()\`. Use \`plot_admix2()\` or
+\`geom_admix2()\` when you want the cleaner pure ggplot facet layout.
+\`plot_admixture_pophelper()\` is an advanced compatibility escape hatch
+for users who need original pophelper behavior.

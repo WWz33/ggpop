@@ -19,6 +19,13 @@ tables; it does not estimate Ne histories directly from VCF.
 | Direct plot | `plot_ne_history(data)` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ne_history()` | Tidy ggplot extension path |
 
+[`import_demographic_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md),
+[`plot_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md),
+and
+[`geom_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
+are aliases for the same API. They are provided for users who think in
+demographic-history terms rather than Ne-history terms.
+
 ## Plot conventions
 
 [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
@@ -31,38 +38,62 @@ presentation; pass `log_x = FALSE` or `log_y = FALSE` for linear axes.
 
 ## SMC++ curves
 
+The bundled SMC++ example follows the Acropora-style CSV shape
+`label,x,y,plot_type,plot_num`, extended with population labels from
+`pop_group.txt` (`PopA`-`PopD`) and bootstrap trajectories. Values are
+biologically plausible output-like examples: a recent recovery, a
+bottleneck around tens of thousands of years ago, and larger ancestral
+Ne. They are not estimated inside `ggPopi`.
+
 ``` r
 smcpp <- import_ne_history(
   ggpop_extdata("ne_history", "SMC++", "model.csv"),
-  type = "smcpp"
+  type = "smcpp",
+  mutation_rate = 1.2e-8,
+  generation_time = 5
 )
 class(smcpp)
 #> [1] "ggpop_ne_history" "data.frame"
 head(smcpp)
-#>   method sample_id  time    ne   time_unit    scale      file source
-#> 1  SMC++      PopA  1000 20000 generations absolute model.csv  smcpp
-#> 2  SMC++      PopA  5000 28000 generations absolute model.csv  smcpp
-#> 3  SMC++      PopA 20000 16000 generations absolute model.csv  smcpp
-#> 4  SMC++      PopB  1000 18000 generations absolute model.csv  smcpp
-#> 5  SMC++      PopB  5000 24000 generations absolute model.csv  smcpp
-#> 6  SMC++      PopB 20000 14000 generations absolute model.csv  smcpp
-#>       .group
-#> 1 SMC++:PopA
-#> 2 SMC++:PopA
-#> 3 SMC++:PopA
-#> 4 SMC++:PopB
-#> 5 SMC++:PopB
-#> 6 SMC++:PopB
+#>   method sample_id  time     ne time_unit    scale      file
+#> 1  SMC++      PopA 1e+03  42000     years absolute model.csv
+#> 2  SMC++      PopA 3e+03  52000     years absolute model.csv
+#> 3  SMC++      PopA 1e+04  36000     years absolute model.csv
+#> 4  SMC++      PopA 3e+04  14000     years absolute model.csv
+#> 5  SMC++      PopA 1e+05  68000     years absolute model.csv
+#> 6  SMC++      PopA 3e+05 180000     years absolute model.csv
+#>   mutation_rate generation_time type plot_type plot_num replicate
+#> 1       1.2e-08               5 main      path        0          
+#> 2       1.2e-08               5 main      path        0          
+#> 3       1.2e-08               5 main      path        0          
+#> 4       1.2e-08               5 main      path        0          
+#> 5       1.2e-08               5 main      path        0          
+#> 6       1.2e-08               5 main      path        0          
+#>   source                  .group
+#> 1  smcpp SMC++:PopA:main:path:0:
+#> 2  smcpp SMC++:PopA:main:path:0:
+#> 3  smcpp SMC++:PopA:main:path:0:
+#> 4  smcpp SMC++:PopA:main:path:0:
+#> 5  smcpp SMC++:PopA:main:path:0:
+#> 6  smcpp SMC++:PopA:main:path:0:
 ```
 
 ``` r
-plot_ne_history(smcpp)
+plot_ne_history(
+  smcpp,
+  caption = "Example SMC++ output-style data; g = 5 years, mu = 1.2e-8 follows the Acropora reference workflow."
+)
 ```
 
 ![Effective population size history line plot. Time before present is on
 the x-axis and effective population size is on the y-axis, with separate
-curves for two
-populations.](ne-history_files/figure-html/unnamed-chunk-2-1.png)
+curves for four populations. Bootstrap trajectories are faint lines
+behind the main population
+curves.](ne-history_files/figure-html/unnamed-chunk-2-1.png)
+
+SMC++ CSV files produced on a generation scale can be converted to years
+by passing `generation_time`. If the input already has a `time_unit`
+column set to `years`, the x values are left unchanged.
 
 ## Stairway Plot 2 intervals
 

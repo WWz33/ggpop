@@ -1,0 +1,13 @@
+P1	P2	P3	Dstatistic	Z-score	p-value	f4-ratio	BBAA	ABBA	BABA
+Highland_East	Highland_West	Lowland_North	0.118	4.21	0.000026	0.31	4980.4	4512.8	3561.2
+Highland_East	Highland_West	Lowland_South	0.044	1.72	0.085000	0.12	4722.1	4210.5	3856.4
+Highland_East	Highland_West	Hybrid_North	0.186	6.34	0.00000023	0.47	4628.7	5216.9	3579.6
+Highland_East	Highland_West	Hybrid_South	0.091	3.09	0.002000	0.24	4512.2	4768.1	3972.6
+Lowland_North	Lowland_South	Highland_East	-0.073	-2.64	0.008300	0.18	4398.0	3742.7	4330.1
+Lowland_North	Lowland_South	Highland_West	-0.029	-1.11	0.267000	0.07	4411.5	3960.6	4198.3
+Lowland_North	Lowland_South	Hybrid_North	0.156	5.48	0.00000004	0.39	4280.9	5033.5	3676.8
+Lowland_North	Lowland_South	Hybrid_South	0.131	4.77	0.0000018	0.35	4312.3	4898.7	3764.2
+Hybrid_North	Hybrid_South	Highland_East	-0.052	-2.21	0.027000	0.15	3898.1	3574.0	3965.5
+Hybrid_North	Hybrid_South	Highland_West	-0.018	-0.74	0.459000	0.05	3920.4	3745.9	3883.1
+Hybrid_North	Hybrid_South	Lowland_North	0.066	2.82	0.004800	0.21	4056.8	4340.2	3803.7
+Hybrid_North	Hybrid_South	Lowland_South	0.094	3.67	0.000240	0.28	3998.7	4451.9	3701.4

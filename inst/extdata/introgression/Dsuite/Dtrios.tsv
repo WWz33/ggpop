@@ -1,4 +1,0 @@
-P1	P2	P3	Dstatistic	Z-score	p-value	f4-ratio	BBAA	BABA	ABBA
-PopA	PopB	PopC	0.18	4.2	0.00003	0.24	120	90	145
-PopA	PopD	PopC	-0.11	-3.1	0.00200	0.15	132	150	118
-PopB	PopD	PopC	0.06	1.5	0.12000	0.08	141	129	137

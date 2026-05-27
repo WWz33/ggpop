@@ -1,0 +1,7 @@
+"pop1","pop2","pop3","pop4","est","se","z","p"
+"Highland_East","Highland_West","Hybrid_North","Outgroup",-0.142,0.024,-5.92,0.0000000032
+"Highland_East","Highland_West","Hybrid_South","Outgroup",-0.071,0.023,-3.09,0.0020
+"Lowland_North","Lowland_South","Hybrid_North","Outgroup",-0.128,0.021,-6.10,0.0000000011
+"Lowland_North","Lowland_South","Hybrid_South","Outgroup",-0.096,0.020,-4.80,0.0000016
+"Highland_East","Lowland_North","Hybrid_North","Outgroup",0.034,0.019,1.79,0.0730
+"Highland_West","Lowland_South","Hybrid_South","Outgroup",0.018,0.018,1.00,0.3170

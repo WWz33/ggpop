@@ -40,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../../articles/ggPopi.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+<li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -159,52 +159,37 @@ directly</td>
 <div class="section level2">
 <h2 id="import-poplddecay-results">Import PopLDdecay results<a class="anchor" aria-label="anchor" href="#import-poplddecay-results"></a>
 </h2>
-<p>The bundled example contains a PopLDdecay
-<code>final_ld.stat.gz</code> result file. The importer standardizes
-<code>Dist</code> to <code>dist</code>, <code>Mean_r^2</code> to
-<code>r2</code>, and <code>NumberPairs</code> to
-<code>n_pairs</code>.</p>
+<p>The bundled example contains one PopLDdecay <code>*.stat.gz</code>
+result per population. importer standardizes <code>Dist</code> to
+<code>dist</code>, <code>Mean_r^2</code> to <code>r2</code>, and
+<code>NumberPairs</code> to <code>n_pairs</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ld_dir</span> <span class="op">&lt;-</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ld_decay"</span>, <span class="st">"PopLDdecay"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ld_dir</span> <span class="op">&lt;-</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ld_decay"</span>, <span class="st">"poplddcay"</span><span class="op">)</span></span>
 <span><span class="va">ld_decay</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span><span class="va">ld_dir</span>, type <span class="op">=</span> <span class="st">"poplddecay"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ld_decay</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_ld_decay" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ld_decay</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    dist dist_kb        r2 d_prime</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0   10    0.01 0.7623450      NA</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1   20    0.02 0.7568097      NA</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2   30    0.03 0.7534708      NA</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3   40    0.04 0.7596488      NA</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4   50    0.05 0.7457370      NA</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5   60    0.06 0.7534852      NA</span></span>
-<span><span class="co">#&gt;                                      sum_r2 sum_d_prime n_pairs</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 1458.366          NA    1913</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 2479.309          NA    3276</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 2169.242          NA    2879</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 1838.350          NA    2420</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 1412.426          NA    1894</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 1104.609          NA    1466</span></span>
-<span><span class="co">#&gt;                                           pop  sample_id</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 PopLDdecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 PopLDdecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 PopLDdecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 PopLDdecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 PopLDdecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 PopLDdecay PopLDdecay</span></span>
-<span><span class="co">#&gt;                                               file ld_method</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 final_ld.bin.gz   MeanBin</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 final_ld.bin.gz   MeanBin</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 final_ld.bin.gz   MeanBin</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 final_ld.bin.gz   MeanBin</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 final_ld.bin.gz   MeanBin</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 final_ld.bin.gz   MeanBin</span></span>
-<span><span class="co">#&gt;                                        source     .group</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r0 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r1 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r2 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r3 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r4 poplddecay PopLDdecay</span></span>
-<span><span class="co">#&gt; PopLDdecay\rfinal_ld.bin.gz\r10\r5 poplddecay PopLDdecay</span></span></code></pre></div>
+<span><span class="co">#&gt;                           dist dist_kb        r2 d_prime   sum_r2</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r0   10    0.01 0.7666593      NA 1687.417</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r1   20    0.02 0.7609297      NA 2447.911</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r2   30    0.03 0.7585424      NA 2059.443</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r3   40    0.04 0.7613730      NA 1764.863</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r4   50    0.05 0.7546858      NA 1353.152</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r5   60    0.06 0.7595983      NA 1078.630</span></span>
+<span><span class="co">#&gt;                           sum_d_prime n_pairs  pop sample_id</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r0          NA    2201 PopA      PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r1          NA    3217 PopA      PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r2          NA    2715 PopA      PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r3          NA    2318 PopA      PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r4          NA    1793 PopA      PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r5          NA    1420 PopA      PopA</span></span>
+<span><span class="co">#&gt;                                   file ld_method     source .group</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r0 PopA.stat.gz   MeanBin poplddecay   PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r1 PopA.stat.gz   MeanBin poplddecay   PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r2 PopA.stat.gz   MeanBin poplddecay   PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r3 PopA.stat.gz   MeanBin poplddecay   PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r4 PopA.stat.gz   MeanBin poplddecay   PopA</span></span>
+<span><span class="co">#&gt; PopA\rPopA.stat.gz\r10\r5 PopA.stat.gz   MeanBin poplddecay   PopA</span></span></code></pre></div>
 <p>Population grouping follows the same <code>pop_group.txt</code>
 convention used by PCA and admixture. The LD decay file label is stored
 as <code>sample_id</code>; if a matching <code>sample</code> appears in
@@ -217,14 +202,24 @@ fitted curves after mapping sample labels to groups.</p>
 with the same mean-bin, median, or percentile behavior used by the
 legacy plotting scripts.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ld_group_dir</span> <span class="op">&lt;-</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ld_decay"</span>, <span class="st">"PopLDdecay_grouped"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ld_group_dir</span> <span class="op">&lt;-</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ld_decay"</span>, <span class="st">"poplddcay"</span><span class="op">)</span></span>
 <span><span class="va">ld_grouped</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span></span>
 <span>  <span class="va">ld_group_dir</span>,</span>
-<span>  pop_group <span class="op">=</span> <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"pop_group.txt"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"poplddecay"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ld_grouped</span><span class="op">$</span><span class="va">pop</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "PopC" "PopB" "PopA"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "PopA" "PopB" "PopC" "PopD"</span></span></code></pre></div>
+<p>PLINK pairwise LD tables can be imported the same way. A single
+<code>.ld</code> file draws one population, while importing the
+directory keeps one curve per population file.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plink_ld</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ld_decay.html">import_ld_decay</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ld_decay"</span>, <span class="st">"plink_ld"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"plink"</span>,</span>
+<span>  bin_size <span class="op">=</span> <span class="fl">200</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">plink_ld</span><span class="op">$</span><span class="va">pop</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "PopA" "PopB" "PopC"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="point-style">Point style<a class="anchor" aria-label="anchor" href="#point-style"></a>
@@ -233,47 +228,47 @@ legacy plotting scripts.</p>
 in Kb on the x-axis and mean LD
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>r</mi><mn>2</mn></msup><annotation encoding="application/x-tex">r^2</annotation></semantics></math>
 on the y-axis, with population labels mapped to colour.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span></span>
 <span>  <span class="va">ld_grouped</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"point"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ld-decay_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." width="700"></p>
+<p><img src="ld-decay_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="LD decay point plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with points coloured by population label." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="line-style">Line style<a class="anchor" aria-label="anchor" href="#line-style"></a>
 </h2>
 <p>The line style uses the same data and population colour mapping, but
 draws a continuous decay curve.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span></span>
 <span>  <span class="va">ld_grouped</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"line"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ld-decay_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern." width="700"></p>
+<p><img src="ld-decay_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="LD decay line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with a continuous curve showing the decay pattern." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="fitted-line-style">Fitted line style<a class="anchor" aria-label="anchor" href="#fitted-line-style"></a>
 </h2>
 <p>Use <code>style = "fit"</code> when you want a smoothed
 population-level decay curve.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span></span>
 <span>  <span class="va">ld_grouped</span>,</span>
 <span>  style <span class="op">=</span> <span class="st">"fit"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="ld-decay_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="LD decay fitted line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with fitted curves coloured by population label." width="700"></p>
+<p><img src="ld-decay_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="LD decay fitted line plot. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis, with fitted curves coloured by population label." width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="layered-path">Layered path<a class="anchor" aria-label="anchor" href="#layered-path"></a>
 </h2>
 <p>Use <code><a href="../../reference/ggpop.html">ggpop()</a></code> plus <code><a href="../../reference/geom_ld_decay.html">geom_ld_decay()</a></code> when
 composing with other ggplot layers.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ld_grouped</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_ld_decay.html">geom_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ld-decay_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis." width="700"></p>
+<p><img src="ld-decay_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="Layered LD decay point plot using ggpop plus geom_ld_decay. Pairwise distance in kilobases is on the x-axis and mean LD r squared is on the y-axis." width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -117,11 +117,13 @@ returns a ggplot object.
 ld_dir <- system.file("extdata", "ld_decay", "PopLDdecay_grouped", package = "ggPopi")
 groups <- system.file("extdata", "pop_group.txt", package = "ggPopi")
 ld <- import_ld_decay(ld_dir, type = "poplddecay", pop_group = groups)
+#> Error: `dir` must point to an existing directory.
 ld |> plot_ld_decay(style = "point")
-
+#> Error: object 'ld' not found
 ld |> plot_ld_decay(style = "line")
-
+#> Error: object 'ld' not found
 ld |> plot_ld_decay(style = "fit")
-
+#> Error: object 'ld' not found
 ld |> ggpop() + geom_ld_decay(style = "point")
+#> Error: object 'ld' not found
 ```

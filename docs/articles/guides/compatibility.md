@@ -11,7 +11,7 @@ The recommended user-facing interfaces are:
   \|\>
   [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md) or
   [`ggpop()`](https://wwz33.github.io/ggPopi/reference/ggpop.md) +
-  [`ggpop::geom_qq()`](https://rdrr.io/pkg/ggpop/man/geom_qq.html)
+  [`ggPopi::geom_qq()`](https://wwz33.github.io/ggPopi/reference/geom_qq.md)
 - [`plot_admix()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
 - `ggpop() + geom_admix()`
 

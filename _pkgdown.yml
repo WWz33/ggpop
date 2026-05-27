@@ -39,7 +39,7 @@ articles:
 - title: Start Here
   navbar: ~
   contents:
-  - ggpop
+  - ggPopi
 - title: Module Guides
   navbar: Guides
   contents:
@@ -84,6 +84,7 @@ reference:
   desc: Narrow user-facing admixture plotting API.
   contents:
   - plot_admix
+  - plot_admix2
   - geom_admix
 - title: Population Genomics Statistics
   desc: Windowed FST, pi, Tajima's D, and related statistics from pixy or vcftools.
@@ -104,7 +105,7 @@ reference:
   - plot_selection
   - geom_selection
 - title: Introgression
-  desc: Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plots.
+  desc: Dsuite local/trio statistics, ADMIXTOOLS f-stat tables, and TreeMix graph summaries.
   contents:
   - import_introgression
   - plot_introgression

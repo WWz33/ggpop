@@ -1,5 +1,0 @@
-from	to	weight
-PopC	PopA	0.18
-PopD	PopB	0.11
-Root	PopC	1.00
-Root	PopD	1.00

@@ -16,6 +16,8 @@ test_that("GWAS tidy ggpop pipeline builds Manhattan and QQ layers", {
   qq <- ggpop(data) + geom_qq()
 
   expect_s3_class(manha, "ggplot")
+  expect_equal(manha$labels$x, "Chromosome")
+  expect_equal(manha$labels$y, expression(-log[10]~(p)))
   expect_equal(length(ggplot2::ggplot_build(manha)$data), 3)
   expect_silent(ggplot2::ggplot_build(manha))
   expect_silent(ggplot2::ggplot_build(qq))
@@ -24,11 +26,13 @@ test_that("GWAS tidy ggpop pipeline builds Manhattan and QQ layers", {
 test_that("GWAS direct plot aligns with Manhattan geom defaults", {
   data <- import_gwas(extdata_path("small_gcta.mlma"), type = "gcta")
 
-  plot <- plot_manha(data)
-  geom <- ggpop(data) + geom_manha()
+  plot <- ggplot2::ggplot_build(plot_manha(data))
+  geom <- ggplot2::ggplot_build(ggpop(data) + geom_manha())
 
-  expect_s3_class(plot, "ggplot")
-  expect_equal(length(ggplot2::ggplot_build(plot)$data), length(ggplot2::ggplot_build(geom)$data))
+  expect_equal(length(plot$data), length(geom$data))
+  expect_equal(plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
+  expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))
+  expect_equal(geom$plot$labels$x, "Chromosome")
 })
 
 test_that("plot_manha and geom_manha share the same internal fastman visual contract", {
@@ -36,13 +40,14 @@ test_that("plot_manha and geom_manha share the same internal fastman visual cont
 
   plot <- ggplot2::ggplot_build(plot_manha(data))
   geom_layer <- geom_manha()
-  geom <- ggplot2::ggplot_build(ggpop(data) + geom_manha(data = data))
+  geom <- ggplot2::ggplot_build(ggpop(data) + geom_manha())
 
   expect_true(is.list(geom_layer))
 
   plot_points <- plot$data[[1]]
   geom_points <- geom$data[[1]]
 
+  expect_equal(plot_points[c("x", "y", "colour", "PANEL")], geom_points[c("x", "y", "colour", "PANEL")])
   expect_equal(range(plot_points$x, na.rm = TRUE), range(geom_points$x, na.rm = TRUE))
   expect_equal(plot$layout$panel_params[[1]]$x$breaks, geom$layout$panel_params[[1]]$x$breaks)
   expect_equal(as.character(plot$layout$panel_params[[1]]$x$get_labels()), as.character(geom$layout$panel_params[[1]]$x$get_labels()))

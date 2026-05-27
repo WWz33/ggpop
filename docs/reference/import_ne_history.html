@@ -18,11 +18,11 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/ggPopi.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
@@ -67,6 +67,16 @@
 <span>  mutation_rate <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  generation_time <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  bin_size <span class="op">=</span> <span class="fl">100</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">import_demographic_history</span><span class="op">(</span></span>
+<span>  dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"auto"</span>, <span class="st">"psmc"</span>, <span class="st">"msmc2"</span>, <span class="st">"smcpp"</span>, <span class="st">"stairway"</span><span class="op">)</span>,</span>
+<span>  sample_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mutation_rate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  bin_size <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -87,10 +97,10 @@
 <dd><p>Optional sample or population labels for input files.</p></dd>
 
 <dt id="arg-mutation-rate">mutation_rate<a class="anchor" aria-label="anchor" href="#arg-mutation-rate"></a></dt>
-<dd><p>Optional per-site mutation rate. Required to convert PSMC/MSMC2 scaled values to absolute time and Ne.</p></dd>
+<dd><p>Optional per-site mutation rate. Required to convert PSMC/MSMC2 scaled values to absolute time and Ne. For SMC++ outputs, the value is retained as metadata when supplied.</p></dd>
 
 <dt id="arg-generation-time">generation_time<a class="anchor" aria-label="anchor" href="#arg-generation-time"></a></dt>
-<dd><p>Generation time multiplier for absolute PSMC/MSMC2 time.</p></dd>
+<dd><p>Generation time multiplier for absolute PSMC/MSMC2 time. For SMC++ CSV files with generation-scale time values, values are multiplied by this number and reported as years. If the input contains a <code>time_unit</code> column with years, time values are left unchanged.</p></dd>
 
 <dt id="arg-bin-size">bin_size<a class="anchor" aria-label="anchor" href="#arg-bin-size"></a></dt>
 <dd><p>PSMC bin size used for theta scaling.</p></dd>
@@ -98,11 +108,11 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A <code>ggpop_ne_history</code> tidy S3 data frame with standardized columns including <code>method</code>, <code>sample_id</code>, <code>time</code>, <code>ne</code>, <code>time_unit</code>, and <code>scale</code>.</p>
+    <p>A <code>ggpop_ne_history</code> tidy S3 data frame with standardized columns including <code>method</code>, <code>sample_id</code>, <code>time</code>, <code>ne</code>, <code>time_unit</code>, and <code>scale</code>. Common SMC++ columns such as <code>plot_type</code>, <code>plot_num</code>, <code>type</code>, and <code>replicate</code> are retained, as are supplied SMC++ <code>mutation_rate</code> and <code>generation_time</code> assumptions.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>PSMC and MSMC2 outputs are scaled unless <code>mutation_rate</code> is supplied. SMC++ and Stairway Plot 2 examples are expected to already contain absolute time and effective population size columns. Stairway Plot 2 confidence intervals are retained when lower and upper Ne columns are present.</p>
+    <p>PSMC and MSMC2 outputs are scaled unless <code>mutation_rate</code> is supplied. SMC++ and Stairway Plot 2 examples are expected to contain absolute effective population size columns. SMC++ time values are treated as generations unless a <code>time_unit</code> column says they are years. Stairway Plot 2 confidence intervals are retained when lower and upper Ne columns are present.</p>
     </div>
 
     <div class="section level2">

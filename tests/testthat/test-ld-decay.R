@@ -1,11 +1,11 @@
 test_that("LD decay imports PopLDdecay stat files", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
-  ld_file <- file.path(ld_dir, "final_ld.bin.gz")
+  ld_dir <- extdata_dir("ld_decay/poplddcay")
+  ld_file <- file.path(ld_dir, "PopA.stat.gz")
 
   auto <- import_ld_decay(ld_file, type = "auto")
   explicit <- import_ld_decay(
     ld_dir,
-    soybean = "final_ld.stat.gz",
+    soybean = "PopB.stat.gz",
     type = "poplddecay"
   )
 
@@ -20,8 +20,8 @@ test_that("LD decay imports PopLDdecay stat files", {
 })
 
 test_that("LD decay plots support point and line styles", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
-  data <- import_ld_decay(ld_dir, pop = "PopLDdecay", type = "poplddecay")
+  ld_dir <- extdata_dir("ld_decay/poplddcay")
+  data <- import_ld_decay(file.path(ld_dir, "PopA.stat.gz"), type = "poplddecay")
 
   point_plot <- plot_ld_decay(data, style = "point")
   line_plot <- plot_ld_decay(data, style = "line")
@@ -105,7 +105,7 @@ test_that("LD decay plots support D prime and combined measures", {
 })
 
 test_that("LD decay plots support population filtering and palettes", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
+  ld_dir <- extdata_dir("ld_decay/poplddcay")
   a <- import_ld_decay(ld_dir, pop = "A", type = "poplddecay")
   b <- import_ld_decay(ld_dir, pop = "B", type = "poplddecay")
   data <- .new_ggpop_ld_decay(rbind(as.data.frame(a), as.data.frame(b)), source = "poplddecay")
@@ -120,7 +120,7 @@ test_that("LD decay plots support population filtering and palettes", {
 })
 
 test_that("LD decay imports map file labels through pop_group", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
+  ld_dir <- extdata_dir("ld_decay/poplddcay")
   group <- data.frame(sample = "sample_a", pop = "PopA")
 
   data <- import_ld_decay(
@@ -134,22 +134,30 @@ test_that("LD decay imports map file labels through pop_group", {
   expect_equal(unique(data$pop), "PopA")
 })
 
-test_that("LD decay plots regroup lines after pop_group mapping", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
-  group <- data.frame(sample = "sample_a", pop = "PopA")
-  data <- import_ld_decay(ld_dir, pop = "sample_a", pop_group = group, type = "poplddecay")
+test_that("LD decay line plots keep sample-level groups after pop_group mapping", {
+  data <- .new_ggpop_ld_decay(data.frame(
+    dist = rep(c(10, 20), 2),
+    dist_kb = rep(c(0.01, 0.02), 2),
+    r2 = c(0.7, 0.5, 0.4, 0.2),
+    n_pairs = rep(10, 4),
+    pop = rep(c("sample_a", "sample_b"), each = 2),
+    sample_id = rep(c("sample_a", "sample_b"), each = 2),
+    file = rep(c("sample_a.stat", "sample_b.stat"), each = 2)
+  ), source = "poplddecay")
+  group <- data.frame(sample = c("sample_a", "sample_b"), pop = c("PopA", "PopA"))
 
   plot <- plot_ld_decay(data, pop_group = group, style = "line")
   built <- ggplot2::ggplot_build(plot)
 
   expect_s3_class(plot, "ggplot")
   expect_silent(ggplot2::ggplot_build(plot))
-  expect_true("PopA" %in% unique(built$plot$data$pop))
-  expect_equal(unique(as.character(built$plot$data$.group)), "PopA")
+  expect_true(all(built$plot$data$pop == "PopA"))
+  expect_equal(sort(unique(built$plot$data$sample_id)), c("sample_a", "sample_b"))
+  expect_equal(length(unique(built$data[[1]]$group)), 2)
 })
 
 test_that("LD decay layered plots keep grouped colouring", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay")
+  ld_dir <- extdata_dir("ld_decay/poplddcay")
   group <- data.frame(sample = c("sample_a", "sample_b"), pop = c("PopA", "PopB"))
   a <- import_ld_decay(ld_dir, pop = "sample_a", pop_group = group, type = "poplddecay")
   b <- import_ld_decay(ld_dir, pop = "sample_b", pop_group = group, type = "poplddecay")
@@ -212,18 +220,30 @@ test_that("LD decay fit style draws population summaries", {
   expect_equal(length(unique(built$data[[1]]$group)), 3)
 })
 
-test_that("LD decay bundled grouped example maps through shared pop_group", {
-  ld_dir <- extdata_dir("ld_decay/PopLDdecay_grouped")
+test_that("LD decay bundled PopLDdecay example keeps one curve per population", {
+  ld_dir <- extdata_dir("ld_decay/poplddcay")
   data <- import_ld_decay(
     ld_dir,
-    pop_group = extdata_path("pop_group.txt"),
     type = "poplddecay"
   )
   built <- ggplot2::ggplot_build(plot_ld_decay(data, style = "point"))
 
-  expect_equal(sort(unique(data$sample_id)), c("P001", "P004", "P009"))
-  expect_equal(sort(unique(data$pop)), c("PopA", "PopB", "PopC"))
-  expect_equal(length(unique(built$data[[1]]$colour)), 3)
+  expect_equal(sort(unique(data$sample_id)), c("PopA", "PopB", "PopC", "PopD"))
+  expect_equal(sort(unique(data$pop)), c("PopA", "PopB", "PopC", "PopD"))
+  expect_equal(length(unique(built$data[[1]]$colour)), 4)
+})
+
+test_that("LD decay bundled PLINK examples import single and multiple populations", {
+  ld_dir <- extdata_dir("ld_decay/plink_ld")
+
+  single <- import_ld_decay(file.path(ld_dir, "PopA.ld"), pop = "PopA", type = "auto")
+  multi <- import_ld_decay(ld_dir, type = "plink", bin_size = 200)
+  built <- ggplot2::ggplot_build(plot_ld_decay(multi, style = "line"))
+
+  expect_s3_class(single, "ggpop_ld_decay")
+  expect_equal(unique(single$pop), "PopA")
+  expect_equal(sort(unique(multi$pop)), c("PopA", "PopB", "PopC"))
+  expect_equal(length(unique(built$data[[1]]$group)), 3)
 })
 
 test_that("LD decay pop_group does not collapse unmatched file labels", {

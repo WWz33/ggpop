@@ -38,6 +38,10 @@ estimate Ne histories directly from VCF.
 | Direct plot | `plot_ne_history(data)` | Returns a `ggplot` object |
 | Layered plot | `ggpop(data) + geom_ne_history()` | Tidy ggplot extension path |
 
+`import_demographic_history()`, `plot_demographic_history()`, and
+`geom_demographic_history()` are aliases for the same API. They are provided
+for users who think in demographic-history terms rather than Ne-history terms.
+
 ## Plot conventions
 
 `plot_ne_history()` defaults to the plotting style used most often by each
@@ -49,18 +53,34 @@ matching the usual demographic-history presentation; pass `log_x = FALSE` or
 
 ## SMC++ curves
 
+The bundled SMC++ example follows the Acropora-style CSV shape
+`label,x,y,plot_type,plot_num`, extended with population labels from
+`pop_group.txt` (`PopA`-`PopD`) and bootstrap trajectories. Values are
+biologically plausible output-like examples: a recent recovery, a bottleneck
+around tens of thousands of years ago, and larger ancestral Ne. They are not
+estimated inside `ggPopi`.
+
 ```{r}
 smcpp <- import_ne_history(
   ggpop_extdata("ne_history", "SMC++", "model.csv"),
-  type = "smcpp"
+  type = "smcpp",
+  mutation_rate = 1.2e-8,
+  generation_time = 5
 )
 class(smcpp)
 head(smcpp)
 ```
 
-```{r, fig.alt = "Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."}
-plot_ne_history(smcpp)
+```{r, fig.alt = "Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for four populations. Bootstrap trajectories are faint lines behind the main population curves."}
+plot_ne_history(
+  smcpp,
+  caption = "Example SMC++ output-style data; g = 5 years, mu = 1.2e-8 follows the Acropora reference workflow."
+)
 ```
+
+SMC++ CSV files produced on a generation scale can be converted to years by
+passing `generation_time`. If the input already has a `time_unit` column set to
+`years`, the x values are left unchanged.
 
 ## Stairway Plot 2 intervals
 

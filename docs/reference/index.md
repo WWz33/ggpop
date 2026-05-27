@@ -50,6 +50,9 @@ Narrow user-facing admixture plotting API.
   [`as_pophelper_qlist()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
   [`plot_admixture_pophelper()`](https://wwz33.github.io/ggPopi/reference/plot_admix.md)
   : Publication-oriented admixture plots
+- [`plot_admix2()`](https://wwz33.github.io/ggPopi/reference/plot_admix2.md)
+  [`geom_admix2()`](https://wwz33.github.io/ggPopi/reference/plot_admix2.md)
+  : Pure ggplot-style admixture plots
 - [`geom_admix()`](https://wwz33.github.io/ggPopi/reference/geom_admix.md)
   : Admixture barplot layer
 
@@ -86,8 +89,8 @@ Selscan and XPCLR imports with chromosome and region plotting.
 
 ## Introgression
 
-Dsuite, genomics_general, TreeMix-style, and qpGraph introgression
-plots.
+Dsuite local/trio statistics, ADMIXTOOLS f-stat tables, and TreeMix
+graph summaries.
 
 - [`import_introgression()`](https://wwz33.github.io/ggPopi/reference/import_introgression.md)
   : Import introgression results
@@ -101,9 +104,12 @@ Effective population size histories from PSMC, MSMC2, SMC++, and
 Stairway Plot 2.
 
 - [`import_ne_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md)
+  [`import_demographic_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md)
   : Import effective population size history
 - [`geom_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
   [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
+  [`geom_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
+  [`plot_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
   : Effective population size history plots
 
 ## Styling

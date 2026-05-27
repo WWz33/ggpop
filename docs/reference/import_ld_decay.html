@@ -18,11 +18,11 @@
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/ggPopi.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../articles/guides/pca.html">PCA plots</a></li>
@@ -127,12 +127,13 @@ The plotting helpers use the mapped population label for colour. Point and line 
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ld_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ld_decay"</span>, <span class="st">"PopLDdecay_grouped"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">groups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"pop_group.txt"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ld</span> <span class="op">&lt;-</span> <span class="fu">import_ld_decay</span><span class="op">(</span><span class="va">ld_dir</span>, type <span class="op">=</span> <span class="st">"poplddecay"</span>, pop_group <span class="op">=</span> <span class="va">groups</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> `dir` must point to an existing directory.</span>
 <span class="r-in"><span><span class="va">ld</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="import_ld_decay-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'ld' not found</span>
 <span class="r-in"><span><span class="va">ld</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="import_ld_decay-2.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'ld' not found</span>
 <span class="r-in"><span><span class="va">ld</span> <span class="op">|&gt;</span> <span class="fu"><a href="geom_ld_decay.html">plot_ld_decay</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"fit"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="import_ld_decay-3.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'ld' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

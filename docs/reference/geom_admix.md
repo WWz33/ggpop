@@ -13,9 +13,9 @@ object.
 ``` r
 geom_admix(mapping = NULL, data = NULL, ...,
   sort = c("none", "cluster", "all", "label"), sortind = NULL,
-  k = "all", palette = NULL, group = "pop", order_group = FALSE,
-  show_group_labels = NULL, subset_group = NULL, bar_width = 1,
-  show.legend = FALSE, show_sample_labels = FALSE,
+  k = "all", palette = NULL, group = "pop", pop_group = TRUE,
+  order_group = FALSE, show_group_labels = NULL, subset_group = NULL,
+  bar_width = 1, show.legend = FALSE, show_sample_labels = FALSE,
   indlabwithgrplab = FALSE, indlabsep = " ", indlabsize = 5,
   indlabangle = 90, indlabvjust = 0.5, indlabhjust = 1,
   indlabcol = "grey30", indlabspacer = 0, grplabsize = 7,
@@ -51,11 +51,15 @@ geom_admix(mapping = NULL, data = NULL, ...,
 
 - palette:
 
-  Optional cluster palette for publication style.
+  Optional cluster palette.
 
 - group:
 
   Population group column, usually \`pop\` from \`import_pop_group()\`.
+
+- pop_group:
+
+  Set to \`FALSE\` to disable population group facets.
 
 - order_group, show_group_labels, subset_group:
 

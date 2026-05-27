@@ -43,12 +43,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/ggPopi.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+<li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="articles/guides/pca.html">PCA plots</a></li>
@@ -86,7 +86,7 @@
 </div>
 <!-- badges: start -->
 
-<p>The goal of <code>ggPopi</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, LD decay curves, plus selective sweep scan plots for selscan and XPCLR outputs, and introgression summaries from Dsuite, genomics_general, TreeMix-style edge tables, and ADMIXTOOLS2 qpGraph outputs. It also includes effective population size history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.</p>
+<p>The goal of <code>ggPopi</code> is to streamline publication-ready population-genomics visualization in R. It combines typed import helpers, direct plotting functions, and composable <code>ggplot2</code> extension layers for GWAS, PCA, and admixture results. It also includes a population genomics statistics module for windowed FST, pi, Tajima’s D, Dxy, and Watterson’s theta summaries, LD decay curves, plus selective sweep scan plots for selscan and XPCLR outputs, and introgression summaries from Dsuite local and trio statistics, ADMIXTOOLS f-stat tables, and TreeMix lightweight graph summaries. It also includes effective population size history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.</p>
 <p><code>ggPopi</code> focuses on a tidy workflow:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/import_gwas.html">import_gwas</a></span><span class="op">(</span><span class="st">"assoc.mlma"</span>, type <span class="op">=</span> <span class="st">"gcta"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -129,7 +129,7 @@
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Here are the main workflows.</p>
-<p>Also have a look at the <a href="https://wwz33.github.io/ggPopi/articles/ggpop.html">getting started guide</a> and the <a href="https://wwz33.github.io/ggPopi/reference/">full documentation</a>.</p>
+<p>Also have a look at the <a href="https://wwz33.github.io/ggPopi/articles/ggPopi.html">getting started guide</a> and the <a href="https://wwz33.github.io/ggPopi/reference/">full documentation</a>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://wwz33.github.io/ggPopi/">ggPopi</a></span><span class="op">)</span></span>
 <span></span>
@@ -219,28 +219,33 @@ P002    PopB</code></pre>
 <p>Selection plots support signed or absolute score views. Fixed thresholds such as <code>threshold = 2</code> draw score cutoffs directly, while <code>threshold = 0.95, threshold_type = "quantile"</code> derives a cutoff from the filtered scan values. Genome-wide calls default to a Manhattan-like chromosome axis; calls with <code>chr</code>, <code>start</code>, or <code>end</code> default to a single-region view.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="st">"introgression/vcf_pop_example/ABBABABA_window.csv"</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"genomics_general"</span></span>
+<span>  <span class="st">"introgression/Dsuite/PopB_PopC_PopA_localFstats_run1_100_50.txt"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"dsuite_dinvestigate"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fd"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p align="center">
 <img src="reference/figures/readme-introgression.png" width="60%" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over a genome axis."></p>
-<p>The bundled <code>vcf_pop_example</code> table is a compact genomics_general-style window summary derived from the package VCF and the shared <code>pop_group.txt</code> metadata for examples and tests.</p>
-<p>Trio-level D-statistics and graph edge tables use the same import and direct plot shape:</p>
+<p>The bundled Dsuite localFstats table is a compact window scan for examples and tests. The trio/statistic examples use a small highland/lowland/hybrid toy system so non-window plots have meaningful positive, negative, and near-zero signals. The same importer also reads Dsuite BBAA/Dmin trio summaries, ADMIXTOOLS qpdstat/f3/f4ratio tables, and TreeMix internal edge/treeout summaries. For TreeMix <code>*.edges.gz</code>, a matching <code>*.vertices.gz</code> file is used when present to preserve the drift-coordinate layout.</p>
+<p>Dsuite trio-level D-statistics default to a P2-by-P3 matrix, which is the more useful publication view for BBAA/Dmin-style summaries. The same table can still be shown as an ordered forest/lollipop summary with <code>style = "trio"</code>:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"Dtrios.tsv"</span>, type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"introgression/Dsuite/dsuite_results_BBAA.txt"</span>, type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"qpgraph_edges.tsv"</span>, type <span class="op">=</span> <span class="st">"qpgraph"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/import_introgression.html">import_introgression</a></span><span class="op">(</span><span class="st">"introgression/Dsuite/dsuite_results_BBAA.txt"</span>, type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"trio"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ne_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_ne_history.html">import_ne_history</a></span><span class="op">(</span><span class="st">"smcpp_model.csv"</span>, type <span class="op">=</span> <span class="st">"smcpp"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ne_history</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/import_ne_history.html">import_demographic_history</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ne_history"</span>, <span class="st">"SMC++"</span>, <span class="st">"model.csv"</span>, package <span class="op">=</span> <span class="st">"ggPopi"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"smcpp"</span>,</span>
+<span>  mutation_rate <span class="op">=</span> <span class="fl">1.2e-8</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="fl">5</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/geom_ne_history.html">plot_ne_history</a></span><span class="op">(</span><span class="va">ne_history</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/geom_ne_history.html">plot_demographic_history</a></span><span class="op">(</span><span class="va">ne_history</span><span class="op">)</span></span></code></pre></div>
 <p align="center">
-<img src="reference/figures/readme-ne-history.png" width="60%" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations."></p>
-<p>Ne history plots read output from PSMC, MSMC2, SMC++, or Stairway Plot 2. Raw VCF and <code>pop_group.txt</code> files are upstream inputs to those tools, not direct Ne history curves.</p>
+<img src="reference/figures/readme-ne-history.png" width="60%" alt="Effective population size history plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for four populations and faint bootstrap trajectories behind the main curves."></p>
+<p>Ne history plots read output from PSMC, MSMC2, SMC++, or Stairway Plot 2. <code><a href="reference/import_ne_history.html">import_demographic_history()</a></code>, <code><a href="reference/geom_ne_history.html">plot_demographic_history()</a></code>, and <code><a href="reference/geom_ne_history.html">geom_demographic_history()</a></code> are aliases for users who think in demographic history terms. The bundled SMC++ CSV is an Acropora-style output-shaped example using the package <code>pop_group.txt</code> population labels (<code>PopA</code>-<code>PopD</code>) and biologically plausible bottleneck/recovery histories; raw VCF and <code>pop_group</code> metadata are upstream inputs to the external inference tools, not direct Ne history curves inferred inside <code>ggPopi</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="interface">Interface<a class="anchor" aria-label="anchor" href="#interface"></a>
@@ -311,10 +316,16 @@ P002    PopB</code></pre>
 <td><code>ggpop() + geom_introgression()</code></td>
 </tr>
 <tr>
-<td>Ne history</td>
-<td><code><a href="reference/import_ne_history.html">import_ne_history()</a></code></td>
-<td><code><a href="reference/geom_ne_history.html">plot_ne_history()</a></code></td>
-<td><code>ggpop() + geom_ne_history()</code></td>
+<td>Demographic / Ne history</td>
+<td>
+<code><a href="reference/import_ne_history.html">import_ne_history()</a></code> / <code><a href="reference/import_ne_history.html">import_demographic_history()</a></code>
+</td>
+<td>
+<code><a href="reference/geom_ne_history.html">plot_ne_history()</a></code> / <code><a href="reference/geom_ne_history.html">plot_demographic_history()</a></code>
+</td>
+<td>
+<code>ggpop() + geom_ne_history()</code> / <code><a href="reference/geom_ne_history.html">geom_demographic_history()</a></code>
+</td>
 </tr>
 <tr>
 <td>Population groups</td>
@@ -363,7 +374,7 @@ P002    PopB</code></pre>
 <li>
 <a href="https://wwz33.github.io/ggPopi/articles/guides/selection.html">Selective sweep guide</a> selscan and XPCLR imports, signed or absolute score plots, and quantile thresholds</li>
 <li>
-<a href="https://wwz33.github.io/ggPopi/articles/guides/introgression.html">Introgression guide</a> Dsuite, genomics_general, TreeMix-style, and qpGraph introgression plotting</li>
+<a href="https://wwz33.github.io/ggPopi/articles/guides/introgression.html">Introgression guide</a> Dsuite local/trio statistics, ADMIXTOOLS f-stat summaries, and TreeMix graph summaries</li>
 <li>
 <a href="https://wwz33.github.io/ggPopi/articles/guides/ne-history.html">Ne history guide</a> PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size histories</li>
 </ul>

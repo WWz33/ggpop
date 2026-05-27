@@ -17,6 +17,16 @@ import_ne_history(
   generation_time = 1,
   bin_size = 100
 )
+
+import_demographic_history(
+  dir = NULL,
+  ...,
+  type = c("auto", "psmc", "msmc2", "smcpp", "stairway"),
+  sample_id = NULL,
+  mutation_rate = NULL,
+  generation_time = 1,
+  bin_size = 100
+)
 ```
 
 ## Arguments
@@ -40,11 +50,15 @@ import_ne_history(
 - mutation_rate:
 
   Optional per-site mutation rate. Required to convert PSMC/MSMC2 scaled
-  values to absolute time and Ne.
+  values to absolute time and Ne. For SMC++ outputs, the value is
+  retained as metadata when supplied.
 
 - generation_time:
 
-  Generation time multiplier for absolute PSMC/MSMC2 time.
+  Generation time multiplier for absolute PSMC/MSMC2 time. For SMC++ CSV
+  files with generation-scale time values, values are multiplied by this
+  number and reported as years. If the input contains a `time_unit`
+  column with years, time values are left unchanged.
 
 - bin_size:
 
@@ -54,14 +68,18 @@ import_ne_history(
 
 A `ggpop_ne_history` tidy S3 data frame with standardized columns
 including `method`, `sample_id`, `time`, `ne`, `time_unit`, and `scale`.
+Common SMC++ columns such as `plot_type`, `plot_num`, `type`, and
+`replicate` are retained, as are supplied SMC++ `mutation_rate` and
+`generation_time` assumptions.
 
 ## Details
 
 PSMC and MSMC2 outputs are scaled unless `mutation_rate` is supplied.
-SMC++ and Stairway Plot 2 examples are expected to already contain
-absolute time and effective population size columns. Stairway Plot 2
-confidence intervals are retained when lower and upper Ne columns are
-present.
+SMC++ and Stairway Plot 2 examples are expected to contain absolute
+effective population size columns. SMC++ time values are treated as
+generations unless a `time_unit` column says they are years. Stairway
+Plot 2 confidence intervals are retained when lower and upper Ne columns
+are present.
 
 ## Examples
 

@@ -9,7 +9,7 @@ plot_admix(data, title = NULL, subtitle = NULL, caption = NULL,
   k = "all", palette = NULL, group = "pop", order_group = FALSE,
   show_group_labels = NULL, subset_group = NULL, show_legend = FALSE,
   show_sample_labels = FALSE, base_size = 5, base_family = "",
-  legend_position = "top", bar_width = 1, ...)
+  legend_position = "top", pop_group = TRUE, bar_width = 1, ...)
 as_pophelper_qlist(data)
 plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
   theme = "theme_bw", basesize = 8)
@@ -23,6 +23,7 @@ plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
 \item{group, order_group, show_group_labels, subset_group}{Population group column and pophelper-style group controls.}
 \item{show_legend, show_sample_labels}{Legend and sample-label display switches.}
 \item{base_size, base_family, legend_position}{Admixture plot theme settings aligned with the supported pophelper `plotQ()` subset.}
+\item{pop_group}{Set to `FALSE` to disable population group facets.}
 \item{bar_width}{Admixture bar width.}
 \item{...}{Additional arguments passed to `geom_admix()` or `pophelper::plotQ()`.}
 \item{exportplot, returnplot, theme, basesize}{Arguments forwarded to `pophelper::plotQ()`.}
@@ -31,5 +32,5 @@ plot_admixture_pophelper(data, ..., exportplot = FALSE, returnplot = TRUE,
 `plot_admix()` is ggpop's native ggplot wrapper and always returns a ggplot object. It accepts full multi-K `ggpop_admix` data from `import_admix()` and filters with `k`; `k = "all"` renders joined K panels in the supported pophelper `plotQ(imgoutput = "join")` style. With `pop_group`, it supports individual labels, sorted individuals, group labels, and group-aware sorting. `plot_admixture_pophelper()` converts ggpop long-form admixture data to a pophelper qlist and calls `pophelper::plotQ()` for direct original-package compatibility; its return structure follows pophelper.
 }
 \details{
-The recommended user-facing admixture plotting interfaces are `plot_admix()` and `geom_admix()`. `plot_admixture_pophelper()` is an advanced compatibility escape hatch for users who need original pophelper behavior.
+The pophelper-style user-facing admixture plotting interfaces are `plot_admix()` and `geom_admix()`. Use `plot_admix2()` or `geom_admix2()` when you want the cleaner pure ggplot facet layout. `plot_admixture_pophelper()` is an advanced compatibility escape hatch for users who need original pophelper behavior.
 }

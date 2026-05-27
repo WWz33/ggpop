@@ -39,12 +39,12 @@ collapsed again with `method = "MeanBin"`, `MedianBin`, or
 
 ## Import PopLDdecay results
 
-The bundled example contains a PopLDdecay `final_ld.stat.gz` result file. The
+The bundled example contains one PopLDdecay `*.stat.gz` result per population.
 importer standardizes `Dist` to `dist`, `Mean_r^2` to `r2`, and `NumberPairs`
 to `n_pairs`.
 
 ```{r}
-ld_dir <- ggpop_extdata("ld_decay", "PopLDdecay")
+ld_dir <- ggpop_extdata("ld_decay", "poplddcay")
 ld_decay <- import_ld_decay(ld_dir, type = "poplddecay")
 class(ld_decay)
 head(ld_decay)
@@ -61,13 +61,25 @@ used to re-bin PopLDdecay summaries with the same mean-bin, median, or
 percentile behavior used by the legacy plotting scripts.
 
 ```{r}
-ld_group_dir <- ggpop_extdata("ld_decay", "PopLDdecay_grouped")
+ld_group_dir <- ggpop_extdata("ld_decay", "poplddcay")
 ld_grouped <- import_ld_decay(
   ld_group_dir,
-  pop_group = ggpop_extdata("pop_group.txt"),
   type = "poplddecay"
 )
 unique(ld_grouped$pop)
+```
+
+PLINK pairwise LD tables can be imported the same way. A single `.ld` file
+draws one population, while importing the directory keeps one curve per
+population file.
+
+```{r}
+plink_ld <- import_ld_decay(
+  ggpop_extdata("ld_decay", "plink_ld"),
+  type = "plink",
+  bin_size = 200
+)
+unique(plink_ld$pop)
 ```
 
 ## Point style

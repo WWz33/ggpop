@@ -3,7 +3,7 @@
 ### Start Here
 
 - [Getting Started with
-  ggPopi](https://wwz33.github.io/ggPopi/articles/ggpop.md):
+  ggPopi](https://wwz33.github.io/ggPopi/articles/ggPopi.md):
 
 ### Module Guides
 

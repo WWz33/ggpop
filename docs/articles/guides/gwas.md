@@ -17,7 +17,7 @@ intended flow is:
 |----|----|----|----|
 | Import GCTA/GEMMA/EMMAX | `import_gwas(file, type = ...)` | \- | Returns `ggpop_gwas` |
 | Manhattan | [`plot_manha()`](https://wwz33.github.io/ggPopi/reference/plot_manha.md) | `ggpop(data) + geom_manha()` | Defaults are aligned |
-| Q-Q | [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md) | `ggpop(data) + ggpop::geom_qq()` | Use explicit namespace to avoid [`ggplot2::geom_qq()`](https://ggplot2.tidyverse.org/reference/geom_qq.html) |
+| Q-Q | [`plot_qq()`](https://wwz33.github.io/ggPopi/reference/plot_qq.md) | `ggpop(data) + ggPopi::geom_qq()` | Use explicit namespace to avoid [`ggplot2::geom_qq()`](https://ggplot2.tidyverse.org/reference/geom_qq.html) |
 | Backend | internal fastman-style layout | native ggpop stat | Direct wrappers and geoms share one implementation |
 
 ## GCTA example
@@ -62,10 +62,7 @@ lines.](gwas_files/figure-html/unnamed-chunk-4-1.png)
 
 gwas |>
   ggpop() +
-  ggpop::geom_qq()
-#> Registered S3 method overwritten by 'ggpop':
-#>   method                     from
-#>   print.ggpop_palette_scheme ggPopi
+  ggPopi::geom_qq()
 ```
 
 ![Q-Q scatter plot from the layered ggplot workflow. Expected minus

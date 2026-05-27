@@ -23,7 +23,8 @@ ggpop_extdata <- function(...) {
 
 - `import_admix()` creates typed `ggpop_admix` objects;
 - `plot_admix()` returns a `ggplot` object;
-- `ggpop() + geom_admix()` gives the extension-style layered workflow.
+- `ggpop() + geom_admix()` gives the pophelper-style layered workflow;
+- `plot_admix2()` and `ggpop() + geom_admix2()` give a pure ggplot-style layout.
 
 ## API summary
 
@@ -32,7 +33,9 @@ ggpop_extdata <- function(...) {
 | Import ADMIXTURE directory or `.Q` files | `import_admix(file, type = "admixture", pop_group = NULL)` | Reads full K result sets |
 | Import STRUCTURE-style numeric Q matrix | `import_admix(file, type = "structure")` | Limited numeric Q support |
 | Direct plot | `plot_admix(data, k = ...)` | `k = "all"`, one K, or a vector |
-| Layered plot | `ggpop(data) + geom_admix(k = ...)` | Main ggplot extension path |
+| Layered plot | `ggpop(data) + geom_admix(k = ...)` | Pophelper-style ggplot extension path |
+| Pure ggplot plot | `plot_admix2(data, k = ...)` | Figure 2-like minimal ggplot layout |
+| Pure ggplot layer | `ggpop(data) + geom_admix2(k = ...)` | Layered route for the minimal ggplot layout |
 | Original pophelper behavior | `plot_pophelper_q()` | Advanced compatibility layer |
 
 ## Full K results
@@ -95,12 +98,19 @@ ggpop(admix) +
 
 `plot_admix()` is the direct plot wrapper.
 `geom_admix()` is the layered interface when you want to build a larger `ggplot` object yourself.
-Both routes use the same visual defaults; `plot_admix()` is the reference style,
-and `ggpop(admix) + geom_admix()` reproduces that publication-level look inside a ggplot composition.
+Both routes use the same pophelper-style visual defaults; `plot_admix()` is the reference style,
+and `ggpop(admix) + geom_admix()` reproduces that look inside a ggplot composition.
 
 ```{r, fig.alt = c("Stacked bar chart from plot_admix. Individuals are arranged along the x-axis and ancestry proportions are stacked within each bar for K equals 3.", "Stacked bar chart from ggpop plus geom_admix. The same K equals 3 ancestry proportions are displayed through the layered ggplot extension path.")}
 plot_admix(admix, k = 3)
 ggpop(admix) + geom_admix(k = 3)
+```
+
+The `admix2` route mirrors the upstream Figure 2 stacked-bar layout more closely.
+
+```{r, fig.alt = "ggplot-style stacked bar chart. Individuals are displayed in a cleaner pure ggplot layout with the same ancestry proportions and faceted K panels, mirroring the upstream Figure 2 admixture figure."}
+plot_admix2(admix, k = 3)
+ggpop(admix) + geom_admix2(k = 3)
 ```
 
 ## STRUCTURE-style input

@@ -40,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../../articles/ggPopi.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+<li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -146,6 +146,11 @@ values</td>
 </tr>
 </tbody>
 </table>
+<p><code><a href="../../reference/import_ne_history.html">import_demographic_history()</a></code>,
+<code><a href="../../reference/geom_ne_history.html">plot_demographic_history()</a></code>, and
+<code><a href="../../reference/geom_ne_history.html">geom_demographic_history()</a></code> are aliases for the same API.
+They are provided for users who think in demographic-history terms
+rather than Ne-history terms.</p>
 </div>
 <div class="section level2">
 <h2 id="plot-conventions">Plot conventions<a class="anchor" aria-label="anchor" href="#plot-conventions"></a>
@@ -161,31 +166,54 @@ demographic-history presentation; pass <code>log_x = FALSE</code> or
 <div class="section level2">
 <h2 id="smc-curves">SMC++ curves<a class="anchor" aria-label="anchor" href="#smc-curves"></a>
 </h2>
+<p>The bundled SMC++ example follows the Acropora-style CSV shape
+<code>label,x,y,plot_type,plot_num</code>, extended with population
+labels from <code>pop_group.txt</code>
+(<code>PopA</code>-<code>PopD</code>) and bootstrap trajectories. Values
+are biologically plausible output-like examples: a recent recovery, a
+bottleneck around tens of thousands of years ago, and larger ancestral
+Ne. They are not estimated inside <code>ggPopi</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">smcpp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_ne_history.html">import_ne_history</a></span><span class="op">(</span></span>
 <span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"ne_history"</span>, <span class="st">"SMC++"</span>, <span class="st">"model.csv"</span><span class="op">)</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"smcpp"</span></span>
+<span>  type <span class="op">=</span> <span class="st">"smcpp"</span>,</span>
+<span>  mutation_rate <span class="op">=</span> <span class="fl">1.2e-8</span>,</span>
+<span>  generation_time <span class="op">=</span> <span class="fl">5</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">smcpp</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ggpop_ne_history" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">smcpp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   method sample_id  time    ne   time_unit    scale      file source</span></span>
-<span><span class="co">#&gt; 1  SMC++      PopA  1000 20000 generations absolute model.csv  smcpp</span></span>
-<span><span class="co">#&gt; 2  SMC++      PopA  5000 28000 generations absolute model.csv  smcpp</span></span>
-<span><span class="co">#&gt; 3  SMC++      PopA 20000 16000 generations absolute model.csv  smcpp</span></span>
-<span><span class="co">#&gt; 4  SMC++      PopB  1000 18000 generations absolute model.csv  smcpp</span></span>
-<span><span class="co">#&gt; 5  SMC++      PopB  5000 24000 generations absolute model.csv  smcpp</span></span>
-<span><span class="co">#&gt; 6  SMC++      PopB 20000 14000 generations absolute model.csv  smcpp</span></span>
-<span><span class="co">#&gt;       .group</span></span>
-<span><span class="co">#&gt; 1 SMC++:PopA</span></span>
-<span><span class="co">#&gt; 2 SMC++:PopA</span></span>
-<span><span class="co">#&gt; 3 SMC++:PopA</span></span>
-<span><span class="co">#&gt; 4 SMC++:PopB</span></span>
-<span><span class="co">#&gt; 5 SMC++:PopB</span></span>
-<span><span class="co">#&gt; 6 SMC++:PopB</span></span></code></pre></div>
+<span><span class="co">#&gt;   method sample_id  time     ne time_unit    scale      file</span></span>
+<span><span class="co">#&gt; 1  SMC++      PopA 1e+03  42000     years absolute model.csv</span></span>
+<span><span class="co">#&gt; 2  SMC++      PopA 3e+03  52000     years absolute model.csv</span></span>
+<span><span class="co">#&gt; 3  SMC++      PopA 1e+04  36000     years absolute model.csv</span></span>
+<span><span class="co">#&gt; 4  SMC++      PopA 3e+04  14000     years absolute model.csv</span></span>
+<span><span class="co">#&gt; 5  SMC++      PopA 1e+05  68000     years absolute model.csv</span></span>
+<span><span class="co">#&gt; 6  SMC++      PopA 3e+05 180000     years absolute model.csv</span></span>
+<span><span class="co">#&gt;   mutation_rate generation_time type plot_type plot_num replicate</span></span>
+<span><span class="co">#&gt; 1       1.2e-08               5 main      path        0          </span></span>
+<span><span class="co">#&gt; 2       1.2e-08               5 main      path        0          </span></span>
+<span><span class="co">#&gt; 3       1.2e-08               5 main      path        0          </span></span>
+<span><span class="co">#&gt; 4       1.2e-08               5 main      path        0          </span></span>
+<span><span class="co">#&gt; 5       1.2e-08               5 main      path        0          </span></span>
+<span><span class="co">#&gt; 6       1.2e-08               5 main      path        0          </span></span>
+<span><span class="co">#&gt;   source                  .group</span></span>
+<span><span class="co">#&gt; 1  smcpp SMC++:PopA:main:path:0:</span></span>
+<span><span class="co">#&gt; 2  smcpp SMC++:PopA:main:path:0:</span></span>
+<span><span class="co">#&gt; 3  smcpp SMC++:PopA:main:path:0:</span></span>
+<span><span class="co">#&gt; 4  smcpp SMC++:PopA:main:path:0:</span></span>
+<span><span class="co">#&gt; 5  smcpp SMC++:PopA:main:path:0:</span></span>
+<span><span class="co">#&gt; 6  smcpp SMC++:PopA:main:path:0:</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_ne_history.html">plot_ne_history</a></span><span class="op">(</span><span class="va">smcpp</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ne-history_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for two populations." width="700"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_ne_history.html">plot_ne_history</a></span><span class="op">(</span></span>
+<span>  <span class="va">smcpp</span>,</span>
+<span>  caption <span class="op">=</span> <span class="st">"Example SMC++ output-style data; g = 5 years, mu = 1.2e-8 follows the Acropora reference workflow."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="ne-history_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Effective population size history line plot. Time before present is on the x-axis and effective population size is on the y-axis, with separate curves for four populations. Bootstrap trajectories are faint lines behind the main population curves." width="700"></p>
+<p>SMC++ CSV files produced on a generation scale can be converted to
+years by passing <code>generation_time</code>. If the input already has
+a <code>time_unit</code> column set to <code>years</code>, the x values
+are left unchanged.</p>
 </div>
 <div class="section level2">
 <h2 id="stairway-plot-2-intervals">Stairway Plot 2 intervals<a class="anchor" aria-label="anchor" href="#stairway-plot-2-intervals"></a>

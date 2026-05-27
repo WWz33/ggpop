@@ -54,3 +54,29 @@
     show.legend = FALSE
   )
 }
+
+.ne_history_split_bootstrap <- function(data) {
+  if (is.function(data) || is.null(data)) {
+    return(list(main = data, bootstrap = NULL))
+  }
+  is_bootstrap <- rep(FALSE, nrow(data))
+  if ("type" %in% names(data)) {
+    is_bootstrap <- is_bootstrap | grepl("boot|bs|rep", tolower(as.character(data$type)))
+  }
+  if ("line_type" %in% names(data)) {
+    is_bootstrap <- is_bootstrap | grepl("boot|bs|rep", tolower(as.character(data$line_type)))
+  }
+  if ("plot_type" %in% names(data)) {
+    is_bootstrap <- is_bootstrap | grepl("boot|bs|rep", tolower(as.character(data$plot_type)))
+  }
+  for (column in c("replicate", "bootstrap", "bs", "n")) {
+    if (column %in% names(data)) {
+      value <- tolower(as.character(data[[column]]))
+      is_bootstrap <- is_bootstrap | (!is.na(value) & nzchar(value) & !value %in% c("main", "direct", "path", "0"))
+    }
+  }
+  list(
+    main = data[!is_bootstrap, , drop = FALSE],
+    bootstrap = data[is_bootstrap, , drop = FALSE]
+  )
+}

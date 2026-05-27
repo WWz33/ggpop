@@ -234,10 +234,7 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
   if (!is.null(suggestive_color)) {
     suggestive_colour <- suggestive_color
   }
-  colour_count <- 64
-  if (!is.null(data) && "chr" %in% names(data)) {
-    colour_count <- max(length(.gwas_chr_levels(as.character(data$chr))), 2)
-  }
+  scale_data <- data
   layers <- list(
     .geom_manha_layer(
       mapping = mapping,
@@ -274,14 +271,51 @@ geom_manha <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, 
     },
     ggplot2::scale_y_continuous(expand = c(0, 0)),
     .gwas_fastman_theme(base_size = base_size, base_family = base_family),
-    .gwas_fastman_scale(data, speedup = speedup, logp = logp, maxP = maxP, bybp = bybp),
-    if (isTRUE(binary)) {
-      .gwas_binary_colour_scale(colour_count, palette)
-    } else {
-      scale_colour_ggpop(colour_count, palette, guide = "none")
-    }
+    ggplot2::labs(x = "Chromosome", y = if (isTRUE(logp)) expression(-log[10]~(p)) else "p")
   )
-  Filter(Negate(is.null), layers)
+  structure(
+    Filter(Negate(is.null), layers),
+    class = c("ggpop_manha_layers", "list"),
+    ggpop_manha_scale_data = scale_data,
+    ggpop_manha_scale_params = list(
+      speedup = speedup,
+      logp = logp,
+      maxP = maxP,
+      bybp = bybp,
+      palette = palette,
+      binary = binary
+    )
+  )
+}
+
+ggplot_add.ggpop_manha_layers <- function(object, plot, object_name) {
+  scale_data <- attr(object, "ggpop_manha_scale_data", exact = TRUE)
+  scale_params <- attr(object, "ggpop_manha_scale_params", exact = TRUE)
+  if (is.null(scale_data) && inherits(plot$data, "ggpop_gwas")) {
+    scale_data <- plot$data
+  }
+  for (layer in unclass(object)) {
+    plot <- plot + layer
+  }
+  if (!is.null(scale_data)) {
+    plot <- plot + .gwas_fastman_scale(
+      scale_data,
+      speedup = scale_params$speedup,
+      logp = scale_params$logp,
+      maxP = scale_params$maxP,
+      bybp = scale_params$bybp
+    )
+  }
+  colour_count <- 64
+  if (!is.null(scale_data) && "chr" %in% names(scale_data)) {
+    colour_count <- max(length(.gwas_chr_levels(as.character(scale_data$chr))), 2)
+  }
+  plot <- plot + if (isTRUE(scale_params$binary)) {
+    .gwas_binary_colour_scale(colour_count, scale_params$palette)
+  } else {
+    scale_colour_ggpop(colour_count, scale_params$palette, guide = "none")
+  }
+  plot
 }
 
 geom_manha_pub <- function(mapping = ggplot2::aes(chr = .data$chr, pos = .data$pos, p = .data$p),

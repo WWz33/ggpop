@@ -40,12 +40,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../../articles/ggPopi.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="../../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../../articles/ggpop.html">Getting Started with ggPopi</a></li>
-    <li><hr class="dropdown-divider"></li>
+<li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Guides</h6></li>
     <li><a class="dropdown-item" href="../../articles/guides/gwas.html">GWAS plots</a></li>
     <li><a class="dropdown-item" href="../../articles/guides/pca.html">PCA plots</a></li>
@@ -89,11 +89,22 @@
 
     
     
-<p><code>ggpop</code> imports common introgression summaries into a
-typed <code>ggpop_introgression</code> object. The module covers window
-statistics from Dsuite and genomics_general, trio-level Dsuite
-D-statistics, and edge tables from TreeMix-style migration summaries or
-ADMIXTOOLS2 qpGraph outputs.</p>
+<p><code>ggPopi</code> imports common introgression summaries into a
+typed <code>ggpop_introgression</code> object. The module is
+intentionally split by result semantics:</p>
+<ul>
+<li>Dsuite localFstats / <code>Dinvestigate</code> outputs are genomic
+window scans.</li>
+<li>Dsuite <code>BBAA</code> / <code>Dmin</code> outputs are trio-level
+D-statistic summaries.</li>
+<li>ADMIXTOOLS <code>qpdstat</code>, <code>f3</code>, and
+<code>f4ratio</code> outputs are trio statistic tables, not graph
+edges.</li>
+<li>TreeMix internal <code>*.edges.gz</code> / <code>*.treeout.gz</code>
+files are imported as a lightweight graph summary. Full TreeMix
+tree-layout and residual heatmap views belong to a dedicated TreeMix
+plotting layer.</li>
+</ul>
 <div class="section level2">
 <h2 id="api-summary">API summary<a class="anchor" aria-label="anchor" href="#api-summary"></a>
 </h2>
@@ -110,28 +121,30 @@ ADMIXTOOLS2 qpGraph outputs.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Import Dsuite Dtrios</td>
+<td>Import Dsuite global trio results</td>
 <td><code>import_introgression(file, type = "dsuite_dtrios")</code></td>
-<td>Trio-level D statistic summaries</td>
+<td>
+<code>BBAA</code>, <code>Dmin</code>, and similar Dsuite trio
+tables</td>
 </tr>
 <tr class="even">
 <td>Import Dsuite local windows</td>
 <td><code>import_introgression(file, type = "dsuite_dinvestigate")</code></td>
-<td>D, fd, fdM, and df window statistics</td>
+<td>
+<code>D</code>, <code>fd</code>, <code>fdM</code>, and
+<code>df</code> window statistics</td>
 </tr>
 <tr class="odd">
-<td>Import genomics_general windows</td>
-<td><code>import_introgression(file, type = "genomics_general")</code></td>
-<td>ABBA-BABA window outputs</td>
+<td>Import ADMIXTOOLS statistics</td>
+<td><code>import_introgression(file, type = "admixtools")</code></td>
+<td>
+<code>qpdstat</code>, <code>f3</code>, and <code>f4ratio</code>
+CSV/table outputs</td>
 </tr>
 <tr class="even">
-<td>Import graph edges</td>
-<td>
-<code>import_introgression(file, type = "treemix")</code> /
-<code>"qpgraph"</code>
-</td>
-<td>Reads user-facing <code>from</code> / <code>to</code> edge
-tables</td>
+<td>Import TreeMix summaries</td>
+<td><code>import_introgression(file, type = "treemix")</code></td>
+<td>Lightweight tree/migration edge summaries</td>
 </tr>
 <tr class="odd">
 <td>Direct plot</td>
@@ -147,111 +160,144 @@ tables</td>
 </table>
 </div>
 <div class="section level2">
-<h2 id="window-introgression-statistics">Window introgression statistics<a class="anchor" aria-label="anchor" href="#window-introgression-statistics"></a>
+<h2 id="dsuite-window-scans">Dsuite Window Scans<a class="anchor" aria-label="anchor" href="#dsuite-window-scans"></a>
 </h2>
-<p>genomics_general ABBA-BABA windows are imported in long form, with
-one row per statistic per window. Genome-wide calls default to a
-chromosome-wise window point plot on a Manhattan-like genome axis,
-matching common ABBA-BABA/fdM window summaries where each point is one
-genomic window.</p>
+<p>Dsuite <code>Dinvestigate</code> / localFstats files are imported in
+long form, with one row per statistic per genomic window. Genome-wide
+calls default to a chromosome-wise Manhattan-like window plot, a common
+pattern in population genomics scripts for <code>D</code>,
+<code>fd</code>, <code>fdM</code>, and <code>df</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">intro</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"vcf_pop_example"</span>, <span class="st">"ABBABABA_window.csv"</span><span class="op">)</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"genomics_general"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">intro</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ggpop_introgression" "data.frame"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">intro</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "D"   "fd"  "fdM"</span></span></code></pre></div>
-<p>This bundled file is a compact genomics_general-style ABBA-BABA
-window table derived from the package VCF and <code>pop_group.txt</code>
-metadata. It is included so the examples share the same population
-labels as the other modules; for real analyses, import the output
-produced by genomics_general or Dsuite.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over chromosomes 1 and 2." width="700"></p>
-<p>When a chromosome or region is supplied, the direct plot uses a local
-position axis in megabases.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">intro</span>, stat <span class="op">=</span> <span class="st">"D"</span>, chr <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Regional introgression plot. D statistic windows on chromosome 1 are shown as a point-and-line trace over genomic position in megabases." width="700"></p>
-<p>Dsuite <code>Dinvestigate</code> / localFstats files use the same
-plotting path.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dsuite_windows</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>, <span class="st">"Dinvestigate.tsv"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>, <span class="st">"PopB_PopC_PopA_localFstats_run1_100_50.txt"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"dsuite_dinvestigate"</span></span>
 <span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">dsuite_windows</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ggpop_introgression" "data.frame"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dsuite_windows</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "D"   "fd"  "fdM" "df"</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">dsuite_windows</span>, stat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"fdM"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="Window introgression plot. D and fdM statistics are shown as chromosome-wise Manhattan-like points in stacked panels over genomic windows." width="700"></p>
+<p>When a chromosome or region is supplied, the direct plot uses a local
+position axis in megabases and draws a point-and-line trace.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">dsuite_windows</span>, stat <span class="op">=</span> <span class="st">"D"</span>, chr <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="Regional introgression plot. D statistic windows on chromosome 1 are shown as a point-and-line trace over genomic position in megabases." width="700"></p>
 </div>
 <div class="section level2">
-<h2 id="trio-d-statistics">Trio D-statistics<a class="anchor" aria-label="anchor" href="#trio-d-statistics"></a>
+<h2 id="dsuite-trio-summaries">Dsuite Trio Summaries<a class="anchor" aria-label="anchor" href="#dsuite-trio-summaries"></a>
 </h2>
-<p>Dsuite <code>Dtrios</code> summaries are imported as trio-level
-statistics. The default plot orders trios by D statistic value and keeps
-the direction visible.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dtrios</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>, <span class="st">"Dtrios.tsv"</span><span class="op">)</span>,</span>
+<p>Dsuite global <code>BBAA</code> / <code>Dmin</code> outputs are
+imported as trio-level D statistics. The bundled trio table is a
+biologically structured toy example with highland, lowland, and hybrid
+populations. The default plot is a Dsuite-style <code>P2 x P3</code>
+matrix: population pairs define the tile grid, D statistic defines the
+diverging fill, and significant cells are outlined without changing the
+colour scale. If repeated rows share the same P2/P3 combination, the
+matrix keeps the row with the largest absolute D value and preserves its
+sign, so strong negative signals remain visible after aggregation.
+Population labels are cleaned for display only, so names such as
+<code>Highland_East</code> are plotted as <code>Highland East</code>
+while the imported data keeps the original identifiers.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dsuite_bbaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"Dsuite"</span>, <span class="st">"dsuite_results_BBAA.txt"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"dsuite_dtrios"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">dtrios</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Trio-level D statistic dot plot. Population trios are listed on the y-axis and D statistic values are shown on the x-axis relative to zero." width="700"></p>
+<span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">dsuite_bbaa</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="Dsuite trio matrix plot. P2 populations are shown on the x-axis, P3 populations are shown on the y-axis, D statistic values are drawn as diverging-colour tiles, and significant cells are outlined." width="700"></p>
+<p>Use <code>style = "trio"</code> when the same Dsuite table should be
+shown as an ordered forest/lollipop summary. This keeps the sign visible
+and uses filled points for significant rows.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">dsuite_bbaa</span>, style <span class="op">=</span> <span class="st">"trio"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="Trio-level D statistic forest plot. Population trios are listed on the y-axis and D statistic values are shown on the x-axis relative to zero." width="700"></p>
 </div>
 <div class="section level2">
-<h2 id="graph-edge-tables">Graph edge tables<a class="anchor" aria-label="anchor" href="#graph-edge-tables"></a>
+<h2 id="admixtools-statistics">ADMIXTOOLS Statistics<a class="anchor" aria-label="anchor" href="#admixtools-statistics"></a>
 </h2>
-<p>TreeMix and qpGraph workflows often need graph visualization after
-model fitting. <code>ggpop</code> reads a compact edge table with
-<code>from</code> and <code>to</code> columns, plus optional weights or
-bounds. TreeMix internal <code>*.edges.gz</code> files are not treated
-as a stable public schema; convert migration edges from the user-facing
-<code>treeout.gz</code> summary or provide an explicit edge table. Full
-TreeMix-style <code>plot_tree()</code> plus residual heatmap support
-belongs to a dedicated TreeMix view.</p>
+<p>ADMIXTOOLS outputs are statistic tables. <code>qpdstat</code> is
+imported as <code>stat = "D"</code>, <code>f3</code> as
+<code>stat = "f3"</code>, and <code>f4ratio</code> as
+<code>stat = "f4_ratio"</code>. These should be drawn as trio summaries
+with standard-error bars when <code>se</code> is present. The example
+tables use the same highland/lowland/hybrid population set so the
+forest-style summaries show both significant admixture and near-zero
+contrasts. Z/P columns are retained in the data rather than being
+coerced into graph edges. When multiple statistic families are plotted
+together, <code>ggPopi</code> facets by <code>stat</code> so
+D-statistics, f3 values, and f4-ratio estimates are not mixed on a
+single scale.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">qpdstat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"admixtools"</span>, <span class="st">"qpdstat_result.csv"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"admixtools"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">f3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"admixtools"</span>, <span class="st">"f3_result.csv"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"admixtools"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">f4ratio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"admixtools"</span>, <span class="st">"f4ratio_result.csv"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"admixtools"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">qpdstat</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "D"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">f3</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "f3"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">f4ratio</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "f4_ratio"</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">qpdstat</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="ADMIXTOOLS qpdstat trio plot. A D statistic estimate and standard-error bar are shown for the population trio relative to zero." width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">admixtools_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"admixtools"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"admixtools"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">admixtools_all</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="ADMIXTOOLS mixed statistic plot. D, f3, and f4-ratio trio summaries are split into separate panels so each statistic family keeps its own scale." width="700"></p>
+</div>
+<div class="section level2">
+<h2 id="treemix-edge-summaries">TreeMix Edge Summaries<a class="anchor" aria-label="anchor" href="#treemix-edge-summaries"></a>
+</h2>
+<p>TreeMix full plotting requires its own tree layout and covariance
+residual logic. In this module, TreeMix internal <code>*.edges.gz</code>
+and <code>*.treeout.gz</code> outputs are imported as a compact graph
+summary so migration and tree edges can still be inspected in the same
+tidy workflow. When a matching <code>*.vertices.gz</code> file is
+available next to an <code>*.edges.gz</code> file,
+<code><a href="../../reference/import_introgression.html">import_introgression()</a></code> uses it to keep the TreeMix
+drift-coordinate layout instead of falling back to a generic graph. The
+lightweight graph labels population tips only; internal TreeMix node
+identifiers are kept out of the display.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">treemix_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"TreeMix"</span>, <span class="st">"migration_edges.tsv"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"treemix"</span>, <span class="st">"treemix.M1.edges.gz"</span><span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"treemix"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">treemix_edges</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="Introgression graph edge diagram. Root, source, and target population nodes are connected by directed migration or graph edges." width="700"></p>
-<p>ADMIXTOOLS2 qpGraph edge data frames can be written as a table and
-imported the same way.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">qpgraph_edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/import_introgression.html">import_introgression</a></span><span class="op">(</span></span>
-<span>  <span class="fu">ggpop_extdata</span><span class="op">(</span><span class="st">"introgression"</span>, <span class="st">"ADMIXTOOLS2"</span>, <span class="st">"qpgraph_edges.tsv"</span><span class="op">)</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"qpgraph"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">qpgraph_edges</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                     analysis stat from   to value weight lower upper</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.1    graph edge Root PopC  1.00   1.00   0.0   1.0</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.2    graph edge Root PopD  1.00   1.00   0.0   1.0</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.3    graph edge PopC PopA  0.24   0.24   0.1   0.4</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.4    graph edge PopD PopB  0.16   0.16   0.1   0.3</span></span>
-<span><span class="co">#&gt;                                  file  source</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.1 qpgraph_edges.tsv qpgraph</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.2 qpgraph_edges.tsv qpgraph</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.3 qpgraph_edges.tsv qpgraph</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.4 qpgraph_edges.tsv qpgraph</span></span>
-<span><span class="co">#&gt;                                           .group</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.1 graph:edge:qpgraph_edges.tsv</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.2 graph:edge:qpgraph_edges.tsv</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.3 graph:edge:qpgraph_edges.tsv</span></span>
-<span><span class="co">#&gt; qpgraph_edges.tsv.4 graph:edge:qpgraph_edges.tsv</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">treemix_edges</span><span class="op">$</span><span class="va">stat</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; migration      tree </span></span>
+<span><span class="co">#&gt;         1         7</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../../reference/geom_introgression.html">plot_introgression</a></span><span class="op">(</span><span class="va">treemix_edges</span><span class="op">)</span></span></code></pre></div>
+<p><img src="introgression_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="TreeMix graph plotted in drift coordinates. Grey tree edges connect population tips and internal nodes, while a red curved arrow marks the migration edge." width="700"></p>
+<p>Covariance residual heatmaps, migration-model comparison, and full
+TreeMix diagnostics are intentionally left for a dedicated TreeMix API
+rather than being folded into the generic introgression layer.</p>
 </div>
 <div class="section level2">
-<h2 id="layered-path">Layered path<a class="anchor" aria-label="anchor" href="#layered-path"></a>
+<h2 id="layered-path">Layered Path<a class="anchor" aria-label="anchor" href="#layered-path"></a>
 </h2>
 <p>Use <code><a href="../../reference/ggpop.html">ggpop()</a></code> plus <code><a href="../../reference/geom_introgression.html">geom_introgression()</a></code> when
 composing with additional ggplot layers.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">intro</span> <span class="op">|&gt;</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dsuite_windows</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../../reference/ggpop.html">ggpop</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="../../reference/geom_introgression.html">geom_introgression</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"D"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="introgression_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise Manhattan-like points over the genome." width="700"></p>
+<p><img src="introgression_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="Layered introgression plot using ggpop plus geom_introgression. D statistic windows are drawn as chromosome-wise Manhattan-like points over the genome." width="700"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

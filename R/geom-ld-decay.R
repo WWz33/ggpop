@@ -17,7 +17,7 @@ geom_ld_decay <- function(mapping = ggplot2::aes(x = .data$dist_kb, y = .data$r2
   if (style == "fit") {
     layer_data <- .ld_decay_summarise_pop_group(layer_data)
   }
-  layer_data <- .ld_decay_group_data(layer_data)
+  layer_data <- .ld_decay_group_data(layer_data, style = style)
   layer_data <- .ld_decay_measure_data(layer_data, measure = measure)
   mapping <- .ld_decay_measure_mapping(mapping, measure = measure)
   if (.ld_decay_should_map_colour(layer_data, mapping, colour_by)) {
@@ -75,19 +75,15 @@ ggplot_add.ggpop_ld_decay_layers <- function(object, plot, object_name) {
   filter <- attr(object, "ggpop_ld_decay_filter", exact = TRUE)
   if (inherits(plot$data, "ggpop_ld_decay")) {
     plot$data <- if (is.function(layer_data)) {
+      data <- .ld_decay_pop_group_data(
+        .filter_ld_decay_data(plot$data, pop = filter$pop),
+        pop_group = filter$pop_group
+      )
+      if (identical(filter$style, "fit")) {
+        data <- .ld_decay_summarise_pop_group(data)
+      }
       .ld_decay_measure_data(
-        .ld_decay_group_data(
-          {
-            data <- .ld_decay_pop_group_data(
-              .filter_ld_decay_data(plot$data, pop = filter$pop),
-              pop_group = filter$pop_group
-            )
-            if (identical(filter$style, "fit")) {
-              data <- .ld_decay_summarise_pop_group(data)
-            }
-            data
-          }
-        ),
+        .ld_decay_group_data(data, style = filter$style),
         measure = filter$measure
       )
     } else {
@@ -113,7 +109,7 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
   if (style == "fit") {
     selected <- .ld_decay_summarise_pop_group(selected)
   }
-  selected <- .ld_decay_group_data(selected)
+  selected <- .ld_decay_group_data(selected, style = style)
   plot <- ggpop(selected) +
     geom_ld_decay(
       data = selected,
@@ -250,25 +246,28 @@ plot_ld_decay <- function(data, pop = NULL, pop_group = NULL, style = c("point",
   stats::weighted.mean(x[ok], weight[ok])
 }
 
-.ld_decay_group_data <- function(data) {
+.ld_decay_group_data <- function(data, style = c("point", "line", "fit")) {
+  style <- match.arg(style)
   if (is.null(data)) {
-    return(function(plot_data) .ld_decay_group_data(plot_data))
+    force(style)
+    return(function(plot_data) .ld_decay_group_data(plot_data, style = style))
   }
   if (is.function(data)) {
-    return(function(plot_data) .ld_decay_group_data(data(plot_data)))
+    force(style)
+    return(function(plot_data) .ld_decay_group_data(data(plot_data), style = style))
   }
   .require_class(data, "ggpop_ld_decay", "LD decay data")
-  if (".pop_grouped" %in% names(data) && any(data$.pop_grouped %in% TRUE)) {
-    source_group <- ifelse(
-      data$.pop_grouped %in% TRUE,
-      as.character(data$pop),
-      paste(as.character(data$pop), as.character(data$file %||% data$sample_id), sep = ":")
-    )
-    data$.group <- interaction(source_group, drop = TRUE, sep = ":")
-  } else if ("file" %in% names(data)) {
-    data$.group <- interaction(data$pop, data$file, drop = TRUE, sep = ":")
+  if (style == "fit") {
+    data$.group <- interaction(as.character(data$pop), drop = TRUE, sep = ":")
   } else {
-    data$.group <- interaction(data$pop, drop = TRUE, sep = ":")
+    source_group <- if ("sample_id" %in% names(data)) {
+      as.character(data$sample_id)
+    } else if ("file" %in% names(data)) {
+      as.character(data$file)
+    } else {
+      as.character(data$pop)
+    }
+    data$.group <- interaction(as.character(data$pop), source_group, drop = TRUE, sep = ":")
   }
   data
 }

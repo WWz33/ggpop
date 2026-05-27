@@ -7,9 +7,10 @@ layers for GWAS, PCA, and admixture results. It also includes a
 population genomics statistics module for windowed FST, pi, Tajima’s D,
 Dxy, and Watterson’s theta summaries, LD decay curves, plus selective
 sweep scan plots for selscan and XPCLR outputs, and introgression
-summaries from Dsuite, genomics_general, TreeMix-style edge tables, and
-ADMIXTOOLS2 qpGraph outputs. It also includes effective population size
-history curves from PSMC, MSMC2, SMC++, and Stairway Plot 2 outputs.
+summaries from Dsuite local and trio statistics, ADMIXTOOLS f-stat
+tables, and TreeMix lightweight graph summaries. It also includes
+effective population size history curves from PSMC, MSMC2, SMC++, and
+Stairway Plot 2 outputs.
 
 `ggPopi` focuses on a tidy workflow:
 
@@ -74,8 +75,8 @@ Dependency repository policy:
 Here are the main workflows.
 
 Also have a look at the [getting started
-guide](https://wwz33.github.io/ggPopi/articles/ggpop.html) and the [full
-documentation](https://wwz33.github.io/ggPopi/reference/).
+guide](https://wwz33.github.io/ggPopi/articles/ggPopi.html) and the
+[full documentation](https://wwz33.github.io/ggPopi/reference/).
 
 ``` r
 library(ggPopi)
@@ -214,45 +215,67 @@ single-region view.
 
 ``` r
 intro <- import_introgression(
-  "introgression/vcf_pop_example/ABBABABA_window.csv",
-  type = "genomics_general"
+  "introgression/Dsuite/PopB_PopC_PopA_localFstats_run1_100_50.txt",
+  type = "dsuite_dinvestigate"
 )
 
-plot_introgression(intro, stat = c("D", "fdM"))
+plot_introgression(intro, stat = c("D", "fd", "fdM"))
 ```
 
 ![Window introgression plot. D and fdM statistics are shown as
 chromosome-wise Manhattan-like points in stacked panels over a genome
 axis.](reference/figures/readme-introgression.png)
 
-The bundled `vcf_pop_example` table is a compact genomics_general-style
-window summary derived from the package VCF and the shared
-`pop_group.txt` metadata for examples and tests.
+The bundled Dsuite localFstats table is a compact window scan for
+examples and tests. The trio/statistic examples use a small
+highland/lowland/hybrid toy system so non-window plots have meaningful
+positive, negative, and near-zero signals. The same importer also reads
+Dsuite BBAA/Dmin trio summaries, ADMIXTOOLS qpdstat/f3/f4ratio tables,
+and TreeMix internal edge/treeout summaries. For TreeMix `*.edges.gz`, a
+matching `*.vertices.gz` file is used when present to preserve the
+drift-coordinate layout.
 
-Trio-level D-statistics and graph edge tables use the same import and
-direct plot shape:
+Dsuite trio-level D-statistics default to a P2-by-P3 matrix, which is
+the more useful publication view for BBAA/Dmin-style summaries. The same
+table can still be shown as an ordered forest/lollipop summary with
+`style = "trio"`:
 
 ``` r
-import_introgression("Dtrios.tsv", type = "dsuite_dtrios") |>
+import_introgression("introgression/Dsuite/dsuite_results_BBAA.txt", type = "dsuite_dtrios") |>
   plot_introgression()
 
-import_introgression("qpgraph_edges.tsv", type = "qpgraph") |>
-  plot_introgression()
+import_introgression("introgression/Dsuite/dsuite_results_BBAA.txt", type = "dsuite_dtrios") |>
+  plot_introgression(style = "trio")
 ```
 
 ``` r
-ne_history <- import_ne_history("smcpp_model.csv", type = "smcpp")
+ne_history <- import_demographic_history(
+  system.file("extdata", "ne_history", "SMC++", "model.csv", package = "ggPopi"),
+  type = "smcpp",
+  mutation_rate = 1.2e-8,
+  generation_time = 5
+)
 
-plot_ne_history(ne_history)
+plot_demographic_history(ne_history)
 ```
 
 ![Effective population size history plot. Time before present is on the
 x-axis and effective population size is on the y-axis, with separate
-curves for two populations.](reference/figures/readme-ne-history.png)
+curves for four populations and faint bootstrap trajectories behind the
+main curves.](reference/figures/readme-ne-history.png)
 
 Ne history plots read output from PSMC, MSMC2, SMC++, or Stairway Plot
-2. Raw VCF and `pop_group.txt` files are upstream inputs to those tools,
-not direct Ne history curves.
+2.
+[`import_demographic_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md),
+[`plot_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md),
+and
+[`geom_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md)
+are aliases for users who think in demographic history terms. The
+bundled SMC++ CSV is an Acropora-style output-shaped example using the
+package `pop_group.txt` population labels (`PopA`-`PopD`) and
+biologically plausible bottleneck/recovery histories; raw VCF and
+`pop_group` metadata are upstream inputs to the external inference
+tools, not direct Ne history curves inferred inside `ggPopi`.
 
 ## Interface
 
@@ -268,7 +291,7 @@ The recommended user-facing API is intentionally small.
 | LD decay | `import_ld_decay(method = ...)` | `plot_ld_decay(measure = ...)` | `ggpop() + geom_ld_decay(measure = ...)` |
 | Selective sweeps | [`import_selection()`](https://wwz33.github.io/ggPopi/reference/import_selection.md) | [`plot_selection()`](https://wwz33.github.io/ggPopi/reference/geom_selection.md) | `ggpop() + geom_selection()` |
 | Introgression | [`import_introgression()`](https://wwz33.github.io/ggPopi/reference/import_introgression.md) | [`plot_introgression()`](https://wwz33.github.io/ggPopi/reference/geom_introgression.md) | `ggpop() + geom_introgression()` |
-| Ne history | [`import_ne_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` |
+| Demographic / Ne history | [`import_ne_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md) / [`import_demographic_history()`](https://wwz33.github.io/ggPopi/reference/import_ne_history.md) | [`plot_ne_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md) / [`plot_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md) | `ggpop() + geom_ne_history()` / [`geom_demographic_history()`](https://wwz33.github.io/ggPopi/reference/geom_ne_history.md) |
 | Population groups | [`import_pop_group()`](https://wwz33.github.io/ggPopi/reference/import_pop_group.md) | used by plot functions | used by geom layers |
 
 Advanced compatibility helpers remain available for users who need
@@ -323,8 +346,8 @@ installation:
   quantile thresholds
 - [Introgression
   guide](https://wwz33.github.io/ggPopi/articles/guides/introgression.html)
-  Dsuite, genomics_general, TreeMix-style, and qpGraph introgression
-  plotting
+  Dsuite local/trio statistics, ADMIXTOOLS f-stat summaries, and TreeMix
+  graph summaries
 - [Ne history
   guide](https://wwz33.github.io/ggPopi/articles/guides/ne-history.html)
   PSMC, MSMC2, SMC++, and Stairway Plot 2 effective population size
